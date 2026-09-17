@@ -1,0 +1,26 @@
+{
+  "at": "2026-09-17T02:38:20Z",
+  "run_id": "2026-09-17-002-extract",
+  "lines": 32,
+  "max_lines": 80,
+  "friction_severities": {
+    "papercut": 1,
+    "major": 1,
+    "minor": 1
+  },
+  "fields": {
+    "run_id": "2026-09-17-002-extract",
+    "step_type": "extract",
+    "step_id": "S1",
+    "target": "stretch-panic-usa",
+    "override_note": " — proposed by next_step.py",
+    "started": "2026-09-17T02:35:55Z",
+    "finished": "2026-09-17T02:38:08Z",
+    "commit": "the commit whose message starts `run 2026-09-17-002-extract:` (git log --grep)",
+    "what_changed": "- Ledger: no status changes.\n- config/target.json: `SLUS_201.82` 5898360 bytes sha1 `0a330e76424b7254e4096d8809b2a927603d3581`, .comment `MW MIPS C Compiler (2.3.1.01)`, 6 IRX modules; DOSSIER.md writ",
+    "build_check": "n/a — this step precedes the first build (split-baseline)",
+    "step_table": "n/a",
+    "next_step": "S2 calibrate — config/compiler.json missing",
+    "friction_summary": "3 entries (major 1, minor 1, papercut 1); stages attested: E, R, S, V, X; export: FRICTION-REPORT.md\n- F-1 [papercut/tool-gap] targets.py resolve does not match the game name for stretch-panic-usa\n- F"
+  }
+}

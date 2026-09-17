@@ -14,7 +14,7 @@ them from the user's disc.
 | (no ledger yet — functions appear after segment-map) | | | | | | | |
 | image | unclassified | 0 | 0 | 0 | 0 | 0 | 0 |
 
-Steps run: 0; last run: none; build check: not yet run; compiler: not calibrated; regenerated 2026-09-17T01:55:54Z.
+Steps run: 1; last run: 2026-09-17-001-bootstrap; build check: not yet run; compiler: not calibrated; regenerated 2026-09-17T02:37:53Z.
 <!-- progress-table:end -->
 
 ## Layout

@@ -1,0 +1,29 @@
+{
+  "run_id": "2026-09-17-002-extract",
+  "step_id": "S1",
+  "step_type": "extract",
+  "override": false,
+  "proposed": "extract",
+  "proposed_reason": "config/target.json missing",
+  "reason": "config/target.json missing",
+  "target": "stretch-panic-usa",
+  "started": "2026-09-17T02:35:55Z",
+  "finished": "2026-09-17T02:38:08Z",
+  "stage": "done",
+  "position": {},
+  "outcome": "complete",
+  "commit": null,
+  "notes": [],
+  "ledger_at_start": {
+    "functions": 0,
+    "matched": 0,
+    "wip": 0,
+    "asm": 0,
+    "library": 0,
+    "skipped-data": 0,
+    "external_matched": 0,
+    "runner_batches": 0
+  },
+  "updated": "2026-09-17T02:37:53Z",
+  "summary": "S1 extract: boot ELF SLUS_201.82 (5898360 B, sha1 0a330e76...) extracted from the MODE2/2352 .bin, config/target.json + DOSSIER.md + config/fingerprint.json written; extract_elf.py taught to read raw 2352-byte CD sectors"
+}

@@ -1,0 +1,847 @@
+{
+  "script": "extract_elf",
+  "at": "2026-09-17T02:37:04Z",
+  "schema": 1,
+  "ok": true,
+  "slug": "stretch-panic-usa",
+  "title": "Stretch Panic (USA) SLUS_201.82",
+  "extracted_at": "2026-09-17T02:37:05Z",
+  "iso": {
+    "path": "Stretch Panic (USA).bin",
+    "size": 221452560,
+    "sector_mode": "raw2352-mode2",
+    "volume_id": "STRETCH_PANIC",
+    "root_lba": 22
+  },
+  "system_cnf": {
+    "BOOT2": "cdrom0:\\SLUS_201.82;1",
+    "VER": "1.01",
+    "VMODE": "NTSC"
+  },
+  "boot_file": "SLUS_201.82",
+  "elf": {
+    "path": "disc/SLUS_201.82",
+    "size": 5898360,
+    "lba": 28,
+    "sha1": "0a330e76424b7254e4096d8809b2a927603d3581",
+    "sha256": "57cd4396045a2532f08ced630184e8dcb8b2b39b2adb0d9bdedf5d2b913498b9"
+  },
+  "elf_header": {
+    "class": "ELF32",
+    "endian": "LE",
+    "type": "EXEC",
+    "machine": "MIPS",
+    "entry": "0x00100008",
+    "flags": "0x20924000",
+    "phnum": 23,
+    "shnum": 29,
+    "stripped": true,
+    "symtab_entries": 0
+  },
+  "program_headers": [
+    {
+      "type": "LOAD",
+      "offset": "0x00000380",
+      "vaddr": "0x00100000",
+      "paddr": "0x00100000",
+      "filesz": "0x0059F800",
+      "memsz": "0x005B3900",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x002A3500",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x0083C800",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x00365F00",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x001D5600",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x0032B400",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x0015B600",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x00106E80",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x00144C00",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x0010AD80",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x000DFD00",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x000D2200",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x000C5E80",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x00103A80",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x00192E00",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x00140680",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x00177980",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x000DD580",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x00154180",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x000ECA80",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x00081200",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x00156E00",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x00EF0100",
+      "paddr": "0x00EF0100",
+      "filesz": "0x00000000",
+      "memsz": "0x00000000",
+      "flags": "RW",
+      "align": "0x00000010"
+    }
+  ],
+  "sections": [
+    {
+      "name": "",
+      "type": "NULL",
+      "flags": "",
+      "addr": "0x00000000",
+      "offset": "0x00000000",
+      "size": "0x00000000"
+    },
+    {
+      "name": ".shstrtab",
+      "type": "STRTAB",
+      "flags": "",
+      "addr": "0x00000000",
+      "offset": "0x0059FB80",
+      "size": "0x0000002D"
+    },
+    {
+      "name": ".strtab",
+      "type": "STRTAB",
+      "flags": "",
+      "addr": "0x00000000",
+      "offset": "0x00000000",
+      "size": "0x00000000"
+    },
+    {
+      "name": ".symtab",
+      "type": "SYMTAB",
+      "flags": "",
+      "addr": "0x00000000",
+      "offset": "0x00000000",
+      "size": "0x00000000"
+    },
+    {
+      "name": "",
+      "type": "PROGBITS",
+      "flags": "WAX",
+      "addr": "0x00100000",
+      "offset": "0x00000380",
+      "size": "0x0059F800"
+    },
+    {
+      "name": "",
+      "type": "PROGBITS",
+      "flags": "WAX",
+      "addr": "0x006B3900",
+      "offset": "0x0059FB80",
+      "size": "0x00000000"
+    },
+    {
+      "name": "",
+      "type": "PROGBITS",
+      "flags": "WAX",
+      "addr": "0x006B3900",
+      "offset": "0x0059FB80",
+      "size": "0x00000000"
+    },
+    {
+      "name": "",
+      "type": "PROGBITS",
+      "flags": "WAX",
+      "addr": "0x006B3900",
+      "offset": "0x0059FB80",
+      "size": "0x00000000"
+    },
+    {
+      "name": "",
+      "type": "PROGBITS",
+      "flags": "WAX",
+      "addr": "0x006B3900",
+      "offset": "0x0059FB80",
+      "size": "0x00000000"
+    },
+    {
+      "name": "",
+      "type": "PROGBITS",
+      "flags": "WAX",
+      "addr": "0x006B3900",
+      "offset": "0x0059FB80",
+      "size": "0x00000000"
+    },
+    {
+      "name": "",
+      "type": "PROGBITS",
+      "flags": "WAX",
+      "addr": "0x006B3900",
+      "offset": "0x0059FB80",
+      "size": "0x00000000"
+    },
+    {
+      "name": "",
+      "type": "PROGBITS",
+      "flags": "WAX",
+      "addr": "0x006B3900",
+      "offset": "0x0059FB80",
+      "size": "0x00000000"
+    },
+    {
+      "name": "",
+      "type": "PROGBITS",
+      "flags": "WAX",
+      "addr": "0x006B3900",
+      "offset": "0x0059FB80",
+      "size": "0x00000000"
+    },
+    {
+      "name": "",
+      "type": "PROGBITS",
+      "flags": "WAX",
+      "addr": "0x006B3900",
+      "offset": "0x0059FB80",
+      "size": "0x00000000"
+    },
+    {
+      "name": "",
+      "type": "PROGBITS",
+      "flags": "WAX",
+      "addr": "0x006B3900",
+      "offset": "0x0059FB80",
+      "size": "0x00000000"
+    },
+    {
+      "name": "",
+      "type": "PROGBITS",
+      "flags": "WAX",
+      "addr": "0x006B3900",
+      "offset": "0x0059FB80",
+      "size": "0x00000000"
+    },
+    {
+      "name": "",
+      "type": "PROGBITS",
+      "flags": "WAX",
+      "addr": "0x006B3900",
+      "offset": "0x0059FB80",
+      "size": "0x00000000"
+    },
+    {
+      "name": "",
+      "type": "PROGBITS",
+      "flags": "WAX",
+      "addr": "0x006B3900",
+      "offset": "0x0059FB80",
+      "size": "0x00000000"
+    },
+    {
+      "name": "",
+      "type": "PROGBITS",
+      "flags": "WAX",
+      "addr": "0x006B3900",
+      "offset": "0x0059FB80",
+      "size": "0x00000000"
+    },
+    {
+      "name": "",
+      "type": "PROGBITS",
+      "flags": "WAX",
+      "addr": "0x006B3900",
+      "offset": "0x0059FB80",
+      "size": "0x00000000"
+    },
+    {
+      "name": "",
+      "type": "PROGBITS",
+      "flags": "WAX",
+      "addr": "0x006B3900",
+      "offset": "0x0059FB80",
+      "size": "0x00000000"
+    },
+    {
+      "name": "",
+      "type": "PROGBITS",
+      "flags": "WAX",
+      "addr": "0x006B3900",
+      "offset": "0x0059FB80",
+      "size": "0x00000000"
+    },
+    {
+      "name": "",
+      "type": "PROGBITS",
+      "flags": "WAX",
+      "addr": "0x006B3900",
+      "offset": "0x0059FB80",
+      "size": "0x00000000"
+    },
+    {
+      "name": "",
+      "type": "PROGBITS",
+      "flags": "WAX",
+      "addr": "0x006B3900",
+      "offset": "0x0059FB80",
+      "size": "0x00000000"
+    },
+    {
+      "name": "",
+      "type": "PROGBITS",
+      "flags": "WAX",
+      "addr": "0x006B3900",
+      "offset": "0x0059FB80",
+      "size": "0x00000000"
+    },
+    {
+      "name": "",
+      "type": "PROGBITS",
+      "flags": "WAX",
+      "addr": "0x006B3900",
+      "offset": "0x0059FB80",
+      "size": "0x00000000"
+    },
+    {
+      "name": "",
+      "type": "PROGBITS",
+      "flags": "WA",
+      "addr": "0x00EF0100",
+      "offset": "0x0059FB80",
+      "size": "0x00000000"
+    },
+    {
+      "name": ".comment",
+      "type": "PROGBITS",
+      "flags": "",
+      "addr": "0x00000000",
+      "offset": "0x0059FBAD",
+      "size": "0x0000002B"
+    },
+    {
+      "name": ".reginfo",
+      "type": "MIPS_REGINFO",
+      "flags": "",
+      "addr": "0x00000000",
+      "offset": "0x0059FBD8",
+      "size": "0x00000018"
+    }
+  ],
+  "load_segments": [
+    {
+      "type": "LOAD",
+      "offset": "0x00000380",
+      "vaddr": "0x00100000",
+      "paddr": "0x00100000",
+      "filesz": "0x0059F800",
+      "memsz": "0x005B3900",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x002A3500",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x0083C800",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x00365F00",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x001D5600",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x0032B400",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x0015B600",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x00106E80",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x00144C00",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x0010AD80",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x000DFD00",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x000D2200",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x000C5E80",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x00103A80",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x00192E00",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x00140680",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x00177980",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x000DD580",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x00154180",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x000ECA80",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x00081200",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x006B3900",
+      "paddr": "0x006B3900",
+      "filesz": "0x00000000",
+      "memsz": "0x00156E00",
+      "flags": "RWX",
+      "align": "0x00000080"
+    },
+    {
+      "type": "LOAD",
+      "offset": "0x0059FB80",
+      "vaddr": "0x00EF0100",
+      "paddr": "0x00EF0100",
+      "filesz": "0x00000000",
+      "memsz": "0x00000000",
+      "flags": "RW",
+      "align": "0x00000010"
+    }
+  ],
+  "comment": "MW MIPS C Compiler (2.3.1.01)",
+  "comment_strings": [
+    "MW MIPS C Compiler (2.3.1.01)",
+    "PlayStation2"
+  ],
+  "compiler": {
+    "family": "mwcc",
+    "version_string": "2.3.1.01",
+    "source": ".comment"
+  },
+  "sdk": {
+    "append_lines": [],
+    "sce_identifier_count": 13,
+    "sce_identifiers_sample": [
+      "sceCdCbfunc",
+      "sceCdCbfunc_num",
+      "sceCdStPause",
+      "sceCdStRead",
+      "sceCdStResume",
+      "sceCdStStat",
+      "sceGsDefDispEnv",
+      "sceGsPutDrawEnv",
+      "sceGsSyncPath",
+      "scePadPortOpen",
+      "scePadRead",
+      "sceSifSetDma",
+      "sceSifWriteBackDCache"
+    ],
+    "library_markers": [
+      "libdma: sync timeout",
+      "libmc: too old release of mcman.irx",
+      "libmc: too old release of mcserv.irx",
+      "libpad: Module version mismatch ",
+      "libpad: buffer addr is not 64 byte align. %08x",
+      "libpad: pad port is already open [%d][%d]",
+      "libpad: sceSifSetDma faild",
+      "libpad: tPadDma Structure Invalid"
+    ]
+  },
+  "irx_modules": [
+    "LIBSD.IRX",
+    "MCMAN.IRX",
+    "MCSERV.IRX",
+    "PADMAN.IRX",
+    "SIO2MAN.IRX",
+    "SMSPS2.IRX"
+  ],
+  "irx_strings": [
+    "LIBSD.IRX",
+    "MCMAN.IRX",
+    "MCSERV.IRX",
+    "PADMAN.IRX",
+    "SIO2MAN.IRX",
+    "SMSPS2.IRX"
+  ],
+  "language_hint": "C",
+  "cpp_mangled_count": 0,
+  "string_count": 24944,
+  "disc_root_listing": [
+    {
+      "path": "\\SYSTEM.CNF;1",
+      "lba": 27,
+      "size": 57,
+      "dir": false
+    },
+    {
+      "path": "\\SLUS_201.82;1",
+      "lba": 28,
+      "size": 5898360,
+      "dir": false
+    },
+    {
+      "path": "\\MODULES",
+      "lba": 23,
+      "size": 2048,
+      "dir": true
+    },
+    {
+      "path": "\\STAGE",
+      "lba": 24,
+      "size": 2048,
+      "dir": true
+    },
+    {
+      "path": "\\SE",
+      "lba": 25,
+      "size": 2048,
+      "dir": true
+    },
+    {
+      "path": "\\BGM",
+      "lba": 26,
+      "size": 2048,
+      "dir": true
+    },
+    {
+      "path": "\\ZZZZZZZZ.ZZZ;1",
+      "lba": 78501,
+      "size": 31752000,
+      "dir": false
+    }
+  ],
+  "disc_dirs": [
+    "\\MODULES",
+    "\\STAGE",
+    "\\SE",
+    "\\BGM"
+  ]
+}
