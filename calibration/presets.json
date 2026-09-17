@@ -1,0 +1,111 @@
+{
+  "at": "2026-09-17T03:17:07Z",
+  "source": "https://www.decomp.me/api/preset?platform=ps2&page_size=100",
+  "fetch_error": null,
+  "presets": [
+    {
+      "id": 252,
+      "name": "Super Dragon Ball Z",
+      "compiler": "mwcps2-3.0.3-020716",
+      "compiler_flags": "-O4,p -sym on -lang=c"
+    },
+    {
+      "id": 251,
+      "name": "Mega Man X7 (February 20th)",
+      "compiler": "mwcps2-3.0b22-020926",
+      "compiler_flags": "-O3,p -lang=c++ -sdatathreshold 0 -sym on"
+    },
+    {
+      "id": 246,
+      "name": "Kuon",
+      "compiler": "mwcps2-3.0b52-030722",
+      "compiler_flags": "-O3,p -sym on -str readonly -inline deferred"
+    },
+    {
+      "id": 245,
+      "name": "LEGO Racers 2",
+      "compiler": "mwcps2-2.4-001213",
+      "compiler_flags": "-O3,p -lang=c++ -inline auto -Cpp_exceptions off"
+    },
+    {
+      "id": 234,
+      "name": "Frogger: The Great Quest",
+      "compiler": "mwcps2-2.4-001213",
+      "compiler_flags": "-c -lang c++ -O4,p -inline auto,deferred -g -enum min -Cpp_exceptions off -strings readonly,reuse"
+    },
+    {
+      "id": 221,
+      "name": "Silent Hill 3",
+      "compiler": "mwcps2-3.0.3-020716",
+      "compiler_flags": "-O3,p -sdatathreshold 0 -sym on"
+    },
+    {
+      "id": 220,
+      "name": "Silent Hill 2",
+      "compiler": "mwcps2-2.4-001213",
+      "compiler_flags": "-O2,p -sdatathreshold 0 -str readonly -sym on -enum min -d DEBUG"
+    },
+    {
+      "id": 213,
+      "name": "Sonic Riders: Zero Gravity",
+      "compiler": "mwcps2-3.0.1b198-051011",
+      "compiler_flags": "-lang=c++ -O4,p -inline auto,deferred,bottomup -Cpp_exceptions off -sym full -sdatathreshold 0"
+    },
+    {
+      "id": 209,
+      "name": "Monster Hunter (JP)",
+      "compiler": "mwcps2-3.0b52-030722",
+      "compiler_flags": "-sdatathreshold 8 -O4,p -c -lang c -multibyte -enum min -fl divbyzerocheck"
+    },
+    {
+      "id": 154,
+      "name": "Street Fighter III: 3rd Strike (Anniversary Collection)",
+      "compiler": "mwcps2-3.0b38-030307",
+      "compiler_flags": "-O0,p -sdatathreshold 128 -sym on -str readonly -fl divbyzerocheck"
+    },
+    {
+      "id": 150,
+      "name": "Shadow Hearts",
+      "compiler": "mwcps2-2.3.3-000906",
+      "compiler_flags": "-lang C++ -O3,p -Cpp_exceptions off -enum min"
+    },
+    {
+      "id": 145,
+      "name": "Resident Evil: Code Veronica X",
+      "compiler": "mwcps2-2.3.3-000906",
+      "compiler_flags": "-sdatathreshold 0 -O3,p -sym on"
+    },
+    {
+      "id": 131,
+      "name": "Shaun Palmer's Pro Snowboarder",
+      "compiler": "mwcps2-2.4-001213",
+      "compiler_flags": "-version -O0,p -opt display -sym on -char unsigned -str readonly"
+    }
+  ],
+  "flagsets": [
+    "-O4,p",
+    "-O3,p -sdatathreshold 0",
+    "-O3,p -str readonly -inline deferred",
+    "-O3,p -inline auto",
+    "-O4,p -inline auto,deferred -enum min -strings readonly,reuse",
+    "-O2,p -sdatathreshold 0 -str readonly -enum min",
+    "-O4,p -inline auto,deferred,bottomup -sdatathreshold 0",
+    "-sdatathreshold 8 -O4,p min -fl divbyzerocheck",
+    "-O0,p -sdatathreshold 128 -str readonly -fl divbyzerocheck",
+    "-O3,p -enum min",
+    "-sdatathreshold 0 -O3,p",
+    "-O0,p -char unsigned -str readonly",
+    "-O0,p",
+    "-O1,p",
+    "-O2,p",
+    "-O3,p",
+    "-O4,p -sdatathreshold 0",
+    "-O2,p -sdatathreshold 0",
+    "-O4,p -inline auto",
+    "-O4,s",
+    "-O3,p -inline auto -sdatathreshold 0",
+    "-O4,p -fp single",
+    "-O3,p -fp single -sdatathreshold 0"
+  ],
+  "note": "flag sets are normalized: -c, -g, -sym, -opt display, -lang, -Cpp_exceptions and -d DEBUG dropped; the basic -O ladder appended"
+}

@@ -1,0 +1,26 @@
+{
+  "at": "2026-09-17T03:28:52Z",
+  "run_id": "2026-09-17-003-calibrate",
+  "lines": 60,
+  "max_lines": 80,
+  "friction_severities": {
+    "papercut": 1,
+    "minor": 2,
+    "major": 2
+  },
+  "fields": {
+    "run_id": "2026-09-17-003-calibrate",
+    "step_type": "calibrate",
+    "step_id": "S2",
+    "target": "stretch-panic-usa",
+    "override_note": " — proposed by next_step.py",
+    "started": "2026-09-17T03:16:40Z",
+    "finished": "2026-09-17T03:28:26Z",
+    "commit": "the commit whose message starts `run 2026-09-17-003-calibrate:` (git log --grep)",
+    "what_changed": "- Ledger: functions 0 → 8 (+8), matched 0 → 4 (+4), wip 0 → 4 (+4).\n- config/compiler.json: `mwcps2-2.3.3-000906` flags `-O3,p -sdatathreshold 0`, calibrated: True, 4 of 8 candidate functions byte-mat",
+    "build_check": "n/a — this step precedes the first build (split-baseline)",
+    "step_table": "# Calibration table — every (compiler, flags) x function cell, every score (2026-09-17T03:28:12Z)\n\nCell = objdiff match % (B = .text bytes identical to the target; err = compile error). Judgment is a ",
+    "next_step": "S3 split-baseline — build/check.json missing",
+    "friction_summary": "5 entries (major 2, minor 2, papercut 1); stages attested: E, R, S, V, X; export: FRICTION-REPORT.md\n- F-1 [papercut/environment] git_sync.sh pull skipped: working tree dirty\n- F-2 [minor/doc-gap] K1 "
+  }
+}

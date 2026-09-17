@@ -1,0 +1,1006 @@
+{
+  "at": "2026-09-17T03:28:12Z",
+  "functions": [
+    "func_00103628",
+    "func_001185E8",
+    "func_00120340",
+    "func_00131740",
+    "func_00145A10",
+    "func_00157650",
+    "func_00164E80",
+    "func_00172A40"
+  ],
+  "combos": [
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O3,p",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 4,
+      "score_100": 4,
+      "scores": [
+        9.933333,
+        54.076923,
+        90.125,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O3,p -enum min",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 4,
+      "score_100": 4,
+      "scores": [
+        9.933333,
+        54.076923,
+        90.125,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O3,p -fp single -sdatathreshold 0",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 4,
+      "score_100": 4,
+      "scores": [
+        9.933333,
+        54.076923,
+        90.125,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O3,p -inline auto",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 4,
+      "score_100": 4,
+      "scores": [
+        9.933333,
+        54.076923,
+        90.125,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O3,p -inline auto -sdatathreshold 0",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 4,
+      "score_100": 4,
+      "scores": [
+        9.933333,
+        54.076923,
+        90.125,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O3,p -sdatathreshold 0",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 4,
+      "score_100": 4,
+      "scores": [
+        9.933333,
+        54.076923,
+        90.125,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O3,p -str readonly -inline deferred",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 4,
+      "score_100": 4,
+      "scores": [
+        9.933333,
+        54.076923,
+        90.125,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O4,p",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 4,
+      "score_100": 4,
+      "scores": [
+        9.933333,
+        54.076923,
+        90.125,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O4,p -fp single",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 4,
+      "score_100": 4,
+      "scores": [
+        9.933333,
+        54.076923,
+        90.125,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O4,p -inline auto",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 4,
+      "score_100": 4,
+      "scores": [
+        9.933333,
+        54.076923,
+        90.125,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O4,p -sdatathreshold 0",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 4,
+      "score_100": 4,
+      "scores": [
+        9.933333,
+        54.076923,
+        90.125,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-sdatathreshold 0 -O3,p",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 4,
+      "score_100": 4,
+      "scores": [
+        9.933333,
+        54.076923,
+        90.125,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O3,p",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 4,
+      "score_100": 4,
+      "scores": [
+        10.533334,
+        54.076923,
+        78.125,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O3,p -enum min",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 4,
+      "score_100": 4,
+      "scores": [
+        10.533334,
+        54.076923,
+        78.125,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O3,p -fp single -sdatathreshold 0",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 4,
+      "score_100": 4,
+      "scores": [
+        10.533334,
+        54.076923,
+        78.125,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O3,p -inline auto",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 4,
+      "score_100": 4,
+      "scores": [
+        10.533334,
+        54.076923,
+        78.125,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O3,p -inline auto -sdatathreshold 0",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 4,
+      "score_100": 4,
+      "scores": [
+        10.533334,
+        54.076923,
+        78.125,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O3,p -sdatathreshold 0",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 4,
+      "score_100": 4,
+      "scores": [
+        10.533334,
+        54.076923,
+        78.125,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O3,p -str readonly -inline deferred",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 4,
+      "score_100": 4,
+      "scores": [
+        10.533334,
+        54.076923,
+        78.125,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O4,p",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 4,
+      "score_100": 4,
+      "scores": [
+        10.533334,
+        54.076923,
+        78.125,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O4,p -fp single",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 4,
+      "score_100": 4,
+      "scores": [
+        10.533334,
+        54.076923,
+        78.125,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O4,p -inline auto",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 4,
+      "score_100": 4,
+      "scores": [
+        10.533334,
+        54.076923,
+        78.125,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O4,p -sdatathreshold 0",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 4,
+      "score_100": 4,
+      "scores": [
+        10.533334,
+        54.076923,
+        78.125,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-sdatathreshold 0 -O3,p",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 4,
+      "score_100": 4,
+      "scores": [
+        10.533334,
+        54.076923,
+        78.125,
+        100.0,
+        100.0,
+        100.0,
+        100.0,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O3,s",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 1,
+      "score_100": 1,
+      "scores": [
+        9.933333,
+        27.538462,
+        83.458336,
+        46.333332,
+        100.0,
+        78.30769,
+        55.863636,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O4,s",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 1,
+      "score_100": 1,
+      "scores": [
+        9.933333,
+        27.538462,
+        83.458336,
+        46.333332,
+        100.0,
+        78.30769,
+        55.863636,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O3,s",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 1,
+      "score_100": 1,
+      "scores": [
+        10.533334,
+        27.538462,
+        71.041664,
+        46.333332,
+        100.0,
+        78.30769,
+        55.863636,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O4,s",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 1,
+      "score_100": 1,
+      "scores": [
+        10.533334,
+        27.538462,
+        71.041664,
+        46.333332,
+        100.0,
+        78.30769,
+        55.863636,
+        62.666668
+      ]
+    },
+    {
+      "compiler": "mwcps2-3.0-011126",
+      "flags": "-O3,p",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        13.266666,
+        53.692307,
+        68.125,
+        78.333336,
+        65.25,
+        86.15385,
+        72.954544,
+        8.0
+      ]
+    },
+    {
+      "compiler": "mwcps2-3.0-011126",
+      "flags": "-O4,p",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        13.266666,
+        53.692307,
+        68.125,
+        78.333336,
+        65.25,
+        86.15385,
+        72.954544,
+        8.0
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O2,p",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        11.666667,
+        50.615383,
+        54.875,
+        75.958336,
+        71.583336,
+        62.23077,
+        45.909092,
+        0.0
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O2,p -sdatathreshold 0",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        11.666667,
+        50.615383,
+        54.875,
+        75.958336,
+        71.583336,
+        62.23077,
+        45.909092,
+        0.0
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O1,p",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        11.666667,
+        50.615383,
+        54.875,
+        67.208336,
+        71.583336,
+        62.23077,
+        51.136364,
+        0.0
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O2,p",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        11.666667,
+        58.307693,
+        43.083332,
+        75.958336,
+        71.583336,
+        62.23077,
+        45.909092,
+        0.0
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O2,p -sdatathreshold 0",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        11.666667,
+        58.307693,
+        43.083332,
+        75.958336,
+        71.583336,
+        62.23077,
+        45.909092,
+        0.0
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O1,p",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        11.666667,
+        58.307693,
+        43.083332,
+        67.208336,
+        71.583336,
+        62.23077,
+        51.136364,
+        0.0
+      ]
+    },
+    {
+      "compiler": "mwcps2-3.0-011126",
+      "flags": "-O2,p",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        11.666667,
+        58.307693,
+        38.666668,
+        73.666664,
+        71.583336,
+        57.615383,
+        37.954544,
+        7.6666665
+      ]
+    },
+    {
+      "compiler": "mwcps2-3.0-011126",
+      "flags": "-O1,p",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        11.666667,
+        58.307693,
+        38.666668,
+        64.708336,
+        71.583336,
+        57.615383,
+        45.909092,
+        1.0
+      ]
+    },
+    {
+      "compiler": "mwcps2-3.0-011126",
+      "flags": "-O3,s",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        13.266666,
+        27.538462,
+        65.208336,
+        44.041668,
+        65.25,
+        65.30769,
+        43.636364,
+        8.0
+      ]
+    },
+    {
+      "compiler": "mwcps2-3.0-011126",
+      "flags": "-O4,s",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        13.266666,
+        27.538462,
+        65.208336,
+        44.041668,
+        65.25,
+        65.30769,
+        43.636364,
+        8.0
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O0,p",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        0.0,
+        0.0,
+        0.0,
+        43.458332,
+        5.6666665,
+        0.0,
+        10.454545,
+        0.0
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O0,p -char unsigned -str readonly",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        0.0,
+        0.0,
+        0.0,
+        43.458332,
+        5.6666665,
+        0.0,
+        10.454545,
+        0.0
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O0,p",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        0.0,
+        0.0,
+        0.0,
+        43.458332,
+        5.5833335,
+        0.0,
+        10.454545,
+        0.0
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O0,p -char unsigned -str readonly",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        0.0,
+        0.0,
+        0.0,
+        43.458332,
+        5.5833335,
+        0.0,
+        10.454545,
+        0.0
+      ]
+    },
+    {
+      "compiler": "mwcps2-3.0-011126",
+      "flags": "-O0,p",
+      "functions": 8,
+      "compiled": 8,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        0.0,
+        0.0,
+        0.0,
+        41.166668,
+        5.6666665,
+        0.0,
+        4.9545455,
+        0.0
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O0,p -sdatathreshold 128 -str readonly -fl divbyzerocheck",
+      "functions": 8,
+      "compiled": 0,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O2,p -sdatathreshold 0 -str readonly -enum min",
+      "functions": 8,
+      "compiled": 0,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O4,p -inline auto,deferred -enum min -strings readonly,reuse",
+      "functions": 8,
+      "compiled": 0,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O4,p -inline auto,deferred,bottomup -sdatathreshold 0",
+      "functions": 8,
+      "compiled": 0,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-sdatathreshold 8 -O4,p min -fl divbyzerocheck",
+      "functions": 8,
+      "compiled": 0,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O0,p -sdatathreshold 128 -str readonly -fl divbyzerocheck",
+      "functions": 8,
+      "compiled": 0,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O2,p -sdatathreshold 0 -str readonly -enum min",
+      "functions": 8,
+      "compiled": 0,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O4,p -inline auto,deferred -enum min -strings readonly,reuse",
+      "functions": 8,
+      "compiled": 0,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O4,p -inline auto,deferred,bottomup -sdatathreshold 0",
+      "functions": 8,
+      "compiled": 0,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-sdatathreshold 8 -O4,p min -fl divbyzerocheck",
+      "functions": 8,
+      "compiled": 0,
+      "byte_identical": 0,
+      "score_100": 0,
+      "scores": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    }
+  ],
+  "cells": 440
+}

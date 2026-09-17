@@ -1,0 +1,403 @@
+{
+  "family": "mwcc",
+  "compiler_id": "mwcps2-2.3.3-000906",
+  "flags": "-O3,p -sdatathreshold 0",
+  "compiler_dir": "tools/compilers/mwcps2-2.3.3-000906",
+  "runner": "tools/wibo",
+  "calibrated": true,
+  "calibrated_at": "2026-09-17T03:28:12Z",
+  "chosen_by": "operator override (--compiler/--flags)",
+  "matched_candidates": 4,
+  "candidate_functions": 8,
+  "pin_min_matches": 3,
+  "preset_source": "https://www.decomp.me/api/preset?platform=ps2&page_size=100",
+  "candidates_tried": [
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O3,p",
+      "byte_identical": 4,
+      "score_100": 4,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O3,p -enum min",
+      "byte_identical": 4,
+      "score_100": 4,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O3,p -fp single -sdatathreshold 0",
+      "byte_identical": 4,
+      "score_100": 4,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O3,p -inline auto",
+      "byte_identical": 4,
+      "score_100": 4,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O3,p -inline auto -sdatathreshold 0",
+      "byte_identical": 4,
+      "score_100": 4,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O3,p -sdatathreshold 0",
+      "byte_identical": 4,
+      "score_100": 4,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O3,p -str readonly -inline deferred",
+      "byte_identical": 4,
+      "score_100": 4,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O4,p",
+      "byte_identical": 4,
+      "score_100": 4,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O4,p -fp single",
+      "byte_identical": 4,
+      "score_100": 4,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O4,p -inline auto",
+      "byte_identical": 4,
+      "score_100": 4,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O4,p -sdatathreshold 0",
+      "byte_identical": 4,
+      "score_100": 4,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-sdatathreshold 0 -O3,p",
+      "byte_identical": 4,
+      "score_100": 4,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O3,p",
+      "byte_identical": 4,
+      "score_100": 4,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O3,p -enum min",
+      "byte_identical": 4,
+      "score_100": 4,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O3,p -fp single -sdatathreshold 0",
+      "byte_identical": 4,
+      "score_100": 4,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O3,p -inline auto",
+      "byte_identical": 4,
+      "score_100": 4,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O3,p -inline auto -sdatathreshold 0",
+      "byte_identical": 4,
+      "score_100": 4,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O3,p -sdatathreshold 0",
+      "byte_identical": 4,
+      "score_100": 4,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O3,p -str readonly -inline deferred",
+      "byte_identical": 4,
+      "score_100": 4,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O4,p",
+      "byte_identical": 4,
+      "score_100": 4,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O4,p -fp single",
+      "byte_identical": 4,
+      "score_100": 4,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O4,p -inline auto",
+      "byte_identical": 4,
+      "score_100": 4,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O4,p -sdatathreshold 0",
+      "byte_identical": 4,
+      "score_100": 4,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-sdatathreshold 0 -O3,p",
+      "byte_identical": 4,
+      "score_100": 4,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O3,s",
+      "byte_identical": 1,
+      "score_100": 1,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O4,s",
+      "byte_identical": 1,
+      "score_100": 1,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O3,s",
+      "byte_identical": 1,
+      "score_100": 1,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O4,s",
+      "byte_identical": 1,
+      "score_100": 1,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-3.0-011126",
+      "flags": "-O3,p",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-3.0-011126",
+      "flags": "-O4,p",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O2,p",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O2,p -sdatathreshold 0",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O1,p",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O2,p",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O2,p -sdatathreshold 0",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O1,p",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-3.0-011126",
+      "flags": "-O2,p",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-3.0-011126",
+      "flags": "-O1,p",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-3.0-011126",
+      "flags": "-O3,s",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-3.0-011126",
+      "flags": "-O4,s",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O0,p",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O0,p -char unsigned -str readonly",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O0,p",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O0,p -char unsigned -str readonly",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-3.0-011126",
+      "flags": "-O0,p",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O0,p -sdatathreshold 128 -str readonly -fl divbyzerocheck",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O2,p -sdatathreshold 0 -str readonly -enum min",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O4,p -inline auto,deferred -enum min -strings readonly,reuse",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-O4,p -inline auto,deferred,bottomup -sdatathreshold 0",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.3.3-000906",
+      "flags": "-sdatathreshold 8 -O4,p min -fl divbyzerocheck",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O0,p -sdatathreshold 128 -str readonly -fl divbyzerocheck",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O2,p -sdatathreshold 0 -str readonly -enum min",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O4,p -inline auto,deferred -enum min -strings readonly,reuse",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-O4,p -inline auto,deferred,bottomup -sdatathreshold 0",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    },
+    {
+      "compiler": "mwcps2-2.4-001213",
+      "flags": "-sdatathreshold 8 -O4,p min -fl divbyzerocheck",
+      "byte_identical": 0,
+      "score_100": 0,
+      "functions": 8
+    }
+  ],
+  "assumption_A1": "not confirmed: mwcps2-2.3.3-000906 -O3,p -sdatathreshold 0 byte-matches 4/8 calibration functions",
+  "link_regime": "undecided"
+}

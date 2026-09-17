@@ -1,0 +1,29 @@
+{
+  "run_id": "2026-09-17-003-calibrate",
+  "step_id": "S2",
+  "step_type": "calibrate",
+  "override": false,
+  "proposed": "calibrate",
+  "proposed_reason": "config/compiler.json missing",
+  "reason": "config/compiler.json missing",
+  "target": "stretch-panic-usa",
+  "started": "2026-09-17T03:16:40Z",
+  "finished": "2026-09-17T03:28:26Z",
+  "stage": "done",
+  "position": {},
+  "outcome": "complete",
+  "commit": null,
+  "notes": [],
+  "ledger_at_start": {
+    "functions": 0,
+    "matched": 0,
+    "wip": 0,
+    "asm": 0,
+    "library": 0,
+    "skipped-data": 0,
+    "external_matched": 0,
+    "runner_batches": 0
+  },
+  "updated": "2026-09-17T03:28:25Z",
+  "summary": "pinned mwcps2-2.3.3-000906 -O3,p -sdatathreshold 0 (4/8 calibration functions byte-identical); 8 candidates in the ledger"
+}
