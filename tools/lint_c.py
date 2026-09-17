@@ -12,7 +12,16 @@ through a pointer cast; inline asm). Default scope: src/**/*.c and include/**/*.
 FILE arguments narrow it (a wip attempt before `mark`, say).
 
 Rules (error): overlay-cast, byte-offset, reinterpret-lvalue, inline-asm.
-Rules (advisory, need an evidence note in the ledger): volatile, goto.
+Rules (advisory, need an evidence note in the ledger): volatile, goto, vu0-asm.
+
+The one asm form that is not an error is a VU0 macro-mode block (remediation 10,
+stretch-panic-usa run 007 F-2): a CodeWarrior `asm { ... }` block whose every
+instruction is a COP2 instruction (`lqc2`, `sqc2`, `cfc2`, `ctc2`, `qmfc2`, `qmtc2`,
+the `v*` vector ops). The pinned compiler has no C spelling for those instructions —
+the block over `register` pointer locals is the only source form it accepts (K1 §6
+item 11) — so such a block is reported as `vu0-asm` (advisory) on its first line.
+A block with any other instruction inside, a GNU `asm(...)` / `__asm__(...)`
+statement, and a CodeWarrior `asm` function are `inline-asm` (error).
 
 Prints `path:line: rule: source line`; exit 0 clean, 1 error findings, 2 usage.
 `ledger.py mark` runs the error rules on the C it accepts and records the findings on
@@ -41,6 +50,38 @@ RULES = [
     ("goto", "advisory", re.compile(r"\bgoto\b")),
 ]
 
+# CodeWarrior's block form, `asm { ... }` (the paren form above is GNU's, which the
+# pinned mwccps2 does not accept). The block is one finding on its opening line.
+ASM_BLOCK = re.compile(r"(?<![\w.])(?:__asm__|__asm|asm)\s*(?:volatile\s*)?\{")
+# a CodeWarrior asm function: `asm void f(...)` / `asm int f(...)`
+ASM_FUNC = re.compile(r"(?<![\w.])asm\s+[A-Za-z_][\w\s\*]*\b[A-Za-z_]\w*\s*\(")
+# COP2 (VU0 macro mode): the vector-unit loads/stores and moves, and every `v*` op
+COP2_MNEMONIC = re.compile(r"^(?:lqc2|sqc2|cfc2|ctc2|qmfc2|qmtc2|v[a-z0-9]+(?:\.[xyzw]{1,4})?)$", re.I)
+
+
+def asm_blocks(text):
+    """(line_no, [mnemonics]) for every `asm { ... }` block in comment-stripped text."""
+    out = []
+    for m in ASM_BLOCK.finditer(text):
+        depth, i = 0, m.end() - 1
+        while i < len(text):
+            if text[i] == "{":
+                depth += 1
+            elif text[i] == "}":
+                depth -= 1
+                if depth == 0:
+                    break
+            i += 1
+        body = text[m.end():i]
+        mnemonics = []
+        for stmt in re.split(r"[;\n]", body):
+            stmt = stmt.strip()
+            if not stmt or stmt.endswith(":"):  # empty, or a label
+                continue
+            mnemonics.append(stmt.split()[0])
+        out.append((text.count("\n", 0, m.start()) + 1, mnemonics))
+    return out
+
 
 def strip_comments(text):
     text = re.sub(r"/\*.*?\*/", lambda m: re.sub(r"[^\n]", " ", m.group(0)), text, flags=re.S)
@@ -49,12 +90,26 @@ def strip_comments(text):
 
 def lint_text(text, path=""):
     findings = []
-    for lineno, line in enumerate(strip_comments(text).splitlines(), 1):
+    stripped = strip_comments(text)
+    lines = stripped.splitlines()
+    for lineno, mnemonics in asm_blocks(stripped):
+        src = lines[lineno - 1].strip() if lineno <= len(lines) else "asm {"
+        foreign = [x for x in mnemonics if not COP2_MNEMONIC.match(x)]
+        if mnemonics and not foreign:
+            findings.append({"path": path, "line": lineno, "rule": "vu0-asm", "severity": "advisory",
+                             "source": f"{src}  [{', '.join(mnemonics)}]"})
+        else:
+            findings.append({"path": path, "line": lineno, "rule": "inline-asm", "severity": "error",
+                             "source": f"{src}  [not COP2: {', '.join(foreign) or 'empty block'}]"})
+    for lineno, line in enumerate(lines, 1):
+        if ASM_FUNC.search(line):
+            findings.append({"path": path, "line": lineno, "rule": "inline-asm", "severity": "error", "source": line.strip()})
         hits = [(rule, sev) for rule, sev, rx in RULES if rx.search(line)]
         if ("reinterpret-lvalue", "error") in hits:  # `*(T *)&x[0]` is one finding, not two
             hits = [h for h in hits if h[0] != "overlay-cast"]
         for rule, sev in hits:
             findings.append({"path": path, "line": lineno, "rule": rule, "severity": sev, "source": line.strip()})
+    findings.sort(key=lambda f: (f["line"], f["rule"]))
     return findings
 
 

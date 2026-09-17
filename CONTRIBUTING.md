@@ -10,7 +10,11 @@ step machine, so a few rules keep human and automated work from colliding.
   `config/compiler.json` (`compiler_id`, `flags`), written as the original could
   have been — no second struct laid over an element address, no byte arithmetic
   to reach a field, no `*(int *)&x`, no inline asm, no permuter output as it came
-  out (`python3 tools/lint_c.py --repo . <file>` exits 0 on it). Put the source
+  out (`python3 tools/lint_c.py --repo . <file>` exits 0 on it). The one exception
+  is a VU0 macro-mode block — an `asm { }` block of coprocessor-2 instructions
+  (`lqc2`, `v*`, `sqc2`) over `register` pointer locals — because the compiler has
+  no other source form for those instructions; the lint reports it as `vu0-asm`
+  (advisory) and a comment above the block names the vector operation. Put the source
   where the segment's other functions live under `src/`, and state the objdiff
   score (100) in the pull request. A function is only "matched" when its compiled
   `.text` is byte-identical; a 99 % is a work-in-progress and can go in
