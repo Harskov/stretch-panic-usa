@@ -1,0 +1,25 @@
+# Nothing from the game enters this repository: your copy of the executable goes in
+# orig/<SERIAL>/, and everything built or extracted from it stays out.
+/orig/*/*
+!/orig/*/.gitkeep
+*.iso
+*.bin
+*.cue
+*.elf
+*.o
+/asm/
+/assets/
+/build/
+/expected/
+/tools/*
+!/tools/lint_c.py
+# generated per machine
+build.ninja
+.ninja_*
+objdiff.json
+ctx.c
+permuter_settings.toml
+/nonmatchings/
+__pycache__/
+*.pyc
+.DS_Store

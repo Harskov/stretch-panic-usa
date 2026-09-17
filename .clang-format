@@ -1,0 +1,20 @@
+---
+# Close to the style most matching-decompilation projects use (4-space indent, K&R braces,
+# 120 columns). Formatting never changes the compiled code under the pinned compiler.
+BasedOnStyle: LLVM
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ColumnLimit: 120
+BreakBeforeBraces: Linux
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AllowShortBlocksOnASingleLine: Never
+IndentCaseLabels: false
+PointerAlignment: Right
+AlignConsecutiveMacros: true
+SortIncludes: Never
+SpaceAfterCStyleCast: false
+KeepEmptyLinesAtTheStartOfBlocks: false
+MaxEmptyLinesToKeep: 1

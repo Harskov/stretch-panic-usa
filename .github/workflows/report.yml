@@ -1,0 +1,37 @@
+name: Progress report
+
+# Validates the committed objdiff report and uploads it as the artifact decomp.dev
+# consumes (SLUS_201.82_report). The report is written by the maintainer's pipeline from
+# its match records: a function counts as matched only after the pinned compiler rebuilt
+# it byte-identical on a machine that has the game. Nothing from the game is needed here.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Report present
+        id: report
+        run: echo "present=$([ -f progress/report.json ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+      - name: Validate the report with objdiff-cli
+        if: steps.report.outputs.present == 'true'
+        run: |
+          curl --fail --location --retry 3 https://github.com/encounter/objdiff/releases/download/v3.8.1/objdiff-cli-linux-x86_64 -o "$RUNNER_TEMP/objdiff-cli"
+          echo "c8290281e82114bcc1a06ff73061110d3902a177822e750337de2537188e358f  $RUNNER_TEMP/objdiff-cli" | sha256sum --check
+          chmod +x "$RUNNER_TEMP/objdiff-cli"
+          "$RUNNER_TEMP/objdiff-cli" report changes progress/report.json progress/report.json -o "$RUNNER_TEMP/report-validation.json"
+      - name: Upload the decomp.dev report
+        if: steps.report.outputs.present == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: SLUS_201.82_report
+          path: progress/report.json
+          if-no-files-found: error
