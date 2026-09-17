@@ -1,0 +1,25 @@
+{
+  "at": "2026-09-17T01:56:04Z",
+  "run_id": "2026-09-17-001-bootstrap",
+  "lines": 31,
+  "max_lines": 80,
+  "friction_severities": {
+    "blocker": 1,
+    "major": 1
+  },
+  "fields": {
+    "run_id": "2026-09-17-001-bootstrap",
+    "step_type": "bootstrap",
+    "step_id": "S0",
+    "target": "stretch-panic-usa",
+    "override_note": " — proposed by next_step.py",
+    "started": "2026-09-17T01:52:54Z",
+    "finished": "2026-09-17T01:55:55Z",
+    "commit": "the commit whose message starts `run 2026-09-17-001-bootstrap:` (git log --grep)",
+    "what_changed": "- Ledger: no status changes.\n- tools/manifest.json: 7 tools, 4 compilers, assembler decision `debian-deb`, smoke tests 11/11 ok.\n- New target repository for Stretch Panic (USA). The BOOT2 name in the ",
+    "build_check": "n/a — this step precedes the first build (split-baseline)",
+    "step_table": "n/a",
+    "next_step": "S1 extract — config/target.json missing",
+    "friction_summary": "2 entries (blocker 1, major 1); stages attested: E, R, S, V, X; export: FRICTION-REPORT.md\n- F-1 [blocker/environment] device VM session disk 100% full; $HOME unusable for scratch\n- F-2 [major/tool-ga"
+  }
+}

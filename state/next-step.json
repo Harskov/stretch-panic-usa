@@ -1,0 +1,10 @@
+{
+  "at": "2026-09-17T01:55:55Z",
+  "proposed": "extract",
+  "step_id": "S1",
+  "reason": "config/target.json missing",
+  "notes": [],
+  "never_auto_selected": [
+    "ghidra-hints"
+  ]
+}

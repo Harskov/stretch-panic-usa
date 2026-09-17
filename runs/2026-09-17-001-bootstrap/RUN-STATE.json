@@ -1,0 +1,29 @@
+{
+  "run_id": "2026-09-17-001-bootstrap",
+  "step_id": "S0",
+  "step_type": "bootstrap",
+  "override": false,
+  "proposed": "bootstrap",
+  "proposed_reason": "tools/manifest.json missing",
+  "reason": "tools/manifest.json missing",
+  "target": "stretch-panic-usa",
+  "started": "2026-09-17T01:52:54Z",
+  "finished": "2026-09-17T01:55:55Z",
+  "stage": "done",
+  "position": {},
+  "outcome": "complete",
+  "commit": null,
+  "notes": [],
+  "ledger_at_start": {
+    "functions": 0,
+    "matched": 0,
+    "wip": 0,
+    "asm": 0,
+    "library": 0,
+    "skipped-data": 0,
+    "external_matched": 0,
+    "runner_batches": 0
+  },
+  "updated": "2026-09-17T01:55:54Z",
+  "summary": "toolchain installed under tools/ and manifest.json written with 11/11 smoke tests ok; scratch redirected to /tmp because the VM session disk is full"
+}

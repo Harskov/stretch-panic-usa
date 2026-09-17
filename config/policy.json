@@ -1,0 +1,20 @@
+{
+  "batch_size": 12,
+  "attempt_cap": 3,
+  "permuter_timeout_s": 120,
+  "consolidate_every_n_matches": 25,
+  "data_migrate_threshold": 0.8,
+  "calibration_candidates_min": 5,
+  "calibration_candidates_max": 10,
+  "calibration_pin_min_matches": 3,
+  "run_report_max_lines": 80,
+  "runner": {
+    "attempt_cap": 10,
+    "usd_cap_per_function": 0.25,
+    "usd_cap_per_queue": 10,
+    "workers": 4,
+    "escalate_min_score": 95,
+    "default_model": "zai:glm-5.3",
+    "evidence": "Model Tiering Audit AUDIT-REPORT §11.5 and benches/decompilation-assistant-ps2.md (criterion: Tier 1 >= 95 %, Tier 3 >= 40 %, <= $0.25 per attempted function); bench 2026-09-11 zai:glm-5.3 Tier 1 23/24 (95.8 %), $0.042 per match, $0.040 per function, ledger unchanged; runner batches 2026-09-11-001/-002: 4/4 matched, check ok"
+  }
+}

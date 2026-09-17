@@ -1,0 +1,46 @@
+{
+  "generated": "2026-09-17T01:55:54Z",
+  "totals": {
+    "functions": 0,
+    "bytes_total": 0,
+    "bytes_matched": 0,
+    "matched": 0,
+    "wip": 0,
+    "asm": 0,
+    "library": 0,
+    "skipped-data": 0,
+    "unassigned": 0,
+    "game_functions": 0,
+    "game_matched": 0,
+    "game_matched_pct": 0.0,
+    "external_matched": 0,
+    "operator_matched": 0
+  },
+  "segments": [
+    {
+      "segment": "image",
+      "kind": "unclassified",
+      "functions": 0,
+      "bytes_total": 0,
+      "bytes_matched": 0,
+      "matched": 0,
+      "wip": 0,
+      "asm": 0,
+      "library": 0,
+      "skipped-data": 0,
+      "unassigned": 0
+    }
+  ],
+  "steps_run": 0,
+  "last_run": null,
+  "build_check_ok": null,
+  "link_regime": null,
+  "compiler_id": null,
+  "calibrated": null,
+  "runner": {
+    "batches": 0,
+    "matched": 0,
+    "cost_usd": 0,
+    "last_batch": null
+  }
+}
