@@ -15,9 +15,9 @@
     "started": "2026-09-17T05:42:28Z",
     "finished": "2026-09-17T05:51:25Z",
     "commit": "the commit whose message starts `run 2026-09-17-004-split-baseline:` (git log --grep)",
-    "what_changed": "- Ledger: no status changes.\n- Baseline: link regime `undecided`; splat YAML and symbol_addrs.txt written.\n- Partial: closed at Jordan's request before the baseline linked. Two blockers, both new to t",
+    "what_changed": "- Ledger: no status changes.\n- Baseline: link regime `undecided`; splat YAML and symbol_addrs.txt written.\n- Partial: closed at the user's request before the baseline linked. Two blockers, both new to t",
     "build_check": "`check.json`: ok = **False**, checked 2026-09-17T05:51:03Z, regime `undecided`; image None–None, rebuilt None of None bytes; first diff None, None differing byte(s).",
-    "step_table": "# Baseline table — split-baseline (S3) — PARTIAL\n\nThe run was closed at Jordan's request before the baseline linked. The table records\nthe state reached, not a finished baseline.\n\n| subsegment | file ",
+    "step_table": "# Baseline table — split-baseline (S3) — PARTIAL\n\nThe run was closed at the user's request before the baseline linked. The table records\nthe state reached, not a finished baseline.\n\n| subsegment | file ",
     "next_step": "S3 split-baseline — check.json red (first diff None) with zero C",
     "friction_summary": "2 entries (blocker 2); stages attested: E, R, S, V, X; export: FRICTION-REPORT.md\n- F-1 [blocker/tool-bug] splat 0.50.0 emits the .main_bss ld entry but writes no asm/data/main_bss.bss.s, so the first"
   }

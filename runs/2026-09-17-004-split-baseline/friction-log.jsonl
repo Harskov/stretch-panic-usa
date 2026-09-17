@@ -4,6 +4,6 @@
 {"kind": "attest", "at": "2026-09-17T05:51:31Z", "stage": "R", "note": "reviewed"}
 {"kind": "attest", "at": "2026-09-17T05:51:31Z", "stage": "S", "note": "reviewed"}
 {"kind": "attest", "at": "2026-09-17T05:51:31Z", "stage": "X", "note": "reviewed"}
-{"kind": "attest", "at": "2026-09-17T05:51:31Z", "stage": "E", "note": "2 blockers filed; run cut short at Jordan's request before the baseline linked"}
+{"kind": "attest", "at": "2026-09-17T05:51:31Z", "stage": "E", "note": "2 blockers filed; run cut short at the user's request before the baseline linked"}
 {"kind": "attest", "at": "2026-09-17T05:51:31Z", "stage": "V", "note": "SHIP scripts ran on a partial run (check.json red)"}
 {"kind": "export", "at": "2026-09-17T05:51:31Z", "to": "targets/stretch-panic-usa/runs/2026-09-17-004-split-baseline/FRICTION-REPORT.md", "entries": 2, "unattested": [], "refused": false, "copy": "friction-reports/stretch-panic-usa-2026-09-17-004-split-baseline-FRICTION-REPORT.md"}

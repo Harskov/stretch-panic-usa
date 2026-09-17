@@ -1,6 +1,6 @@
 # Baseline table — split-baseline (S3) — PARTIAL
 
-The run was closed at Jordan's request before the baseline linked. The table records
+The run was closed at the user's request before the baseline linked. The table records
 the state reached, not a finished baseline.
 
 | subsegment | file offset | vram | type | result |

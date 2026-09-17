@@ -9,7 +9,7 @@
 
 - Ledger: no status changes.
 - Baseline: link regime `undecided`; splat YAML and symbol_addrs.txt written.
-- Partial: closed at Jordan's request before the baseline linked. Two blockers, both new to this target. F-1 — splat 0.50.0 lists build/asm/data/main_bss.bss.s.o in the NOLOAD .bss output section but writes no .s for a bss subsegment, so the first link cannot start; fixed in the toolkit this run (configure.py gained write_missing_bss_stubs(), which writes '.section .bss' + '.space <bss_size>' when the file splat references is absent; pre-fix copy in _backup/run-fixes/2026-09-17-004-split-baseline-configure.py). The Fate target only ever built because an equivalent stub was created before its S3 run and has survived since. F-2 — the S3 one-asm-subsegment YAML does not assemble here: 656 R5900-invalid opcodes (654 lld, 2 sdc1) from filler data at 0x0054A8EC-0x0054F29C that spimdisasm decoded as instructions. The judgment: this is a doctrine gap, not a tool bug. spimdisasm is doing what an asm subsegment asks of it, and the S3 procedure has no sanctioned move for typing the minimum data needed to assemble before the segment map. The next S3 run should bound that blob from asm/main.s (0xCBD3CBD3 filler above 0x0054E868, 0x9A9A9AFF/0xFDFBA3F6 runs at the two sdc1 sites), add one narrow data subsegment, and leave the real boundaries to S4. The link regime (A6) is still undecided.
+- Partial: closed at the user's request before the baseline linked. Two blockers, both new to this target. F-1 — splat 0.50.0 lists build/asm/data/main_bss.bss.s.o in the NOLOAD .bss output section but writes no .s for a bss subsegment, so the first link cannot start; fixed in the toolkit this run (configure.py gained write_missing_bss_stubs(), which writes '.section .bss' + '.space <bss_size>' when the file splat references is absent; pre-fix copy in _backup/run-fixes/2026-09-17-004-split-baseline-configure.py). The Fate target only ever built because an equivalent stub was created before its S3 run and has survived since. F-2 — the S3 one-asm-subsegment YAML does not assemble here: 656 R5900-invalid opcodes (654 lld, 2 sdc1) from filler data at 0x0054A8EC-0x0054F29C that spimdisasm decoded as instructions. The judgment: this is a doctrine gap, not a tool bug. spimdisasm is doing what an asm subsegment asks of it, and the S3 procedure has no sanctioned move for typing the minimum data needed to assemble before the segment map. The next S3 run should bound that blob from asm/main.s (0xCBD3CBD3 filler above 0x0054E868, 0x9A9A9AFF/0xFDFBA3F6 runs at the two sdc1 sites), add one narrow data subsegment, and leave the real boundaries to S4. The link regime (A6) is still undecided.
 
 ## Build check
 
@@ -19,7 +19,7 @@
 
 # Baseline table — split-baseline (S3) — PARTIAL
 
-The run was closed at Jordan's request before the baseline linked. The table records
+The run was closed at the user's request before the baseline linked. The table records
 the state reached, not a finished baseline.
 
 | subsegment | file offset | vram | type | result |

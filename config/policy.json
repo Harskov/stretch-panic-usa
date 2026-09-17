@@ -15,6 +15,6 @@
     "workers": 4,
     "escalate_min_score": 95,
     "default_model": "zai:glm-5.3",
-    "evidence": "Model Tiering Audit AUDIT-REPORT §11.5 and benches/decompilation-assistant-ps2.md (criterion: Tier 1 >= 95 %, Tier 3 >= 40 %, <= $0.25 per attempted function); bench 2026-09-11 zai:glm-5.3 Tier 1 23/24 (95.8 %), $0.042 per match, $0.040 per function, ledger unchanged; runner batches 2026-09-11-001/-002: 4/4 matched, check ok"
+    "evidence": "the MatchRunner model bench of 2026-09-11 (criterion: Tier 1 >= 95 %, Tier 3 >= 40 %, <= $0.25 per attempted function); bench 2026-09-11 zai:glm-5.3 Tier 1 23/24 (95.8 %), $0.042 per match, $0.040 per function, ledger unchanged; runner batches 2026-09-11-001/-002: 4/4 matched, check ok"
   }
 }
