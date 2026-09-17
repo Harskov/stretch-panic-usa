@@ -1,0 +1,29 @@
+{
+  "run_id": "2026-09-17-005-split-baseline",
+  "step_id": "S3",
+  "step_type": "split-baseline",
+  "override": false,
+  "proposed": "split-baseline",
+  "proposed_reason": "check.json red (first diff None) with zero C",
+  "reason": "check.json red (first diff None) with zero C",
+  "target": "stretch-panic-usa",
+  "started": "2026-09-17T05:54:51Z",
+  "finished": "2026-09-17T06:01:43Z",
+  "stage": "done",
+  "position": {},
+  "outcome": "complete",
+  "commit": null,
+  "notes": [],
+  "ledger_at_start": {
+    "functions": 8,
+    "matched": 4,
+    "wip": 4,
+    "asm": 0,
+    "library": 0,
+    "skipped-data": 0,
+    "external_matched": 0,
+    "runner_batches": 0
+  },
+  "updated": "2026-09-17T06:01:29Z",
+  "summary": "zero-C baseline green (data subsegment main_data at 0x17EF00 over the asset region), link_regime full (A6 probe func_00131740 byte-identical)"
+}

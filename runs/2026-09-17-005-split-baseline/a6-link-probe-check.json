@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-09-17T05:59:27Z",
+  "built": "build/SLUS_201.82.elf",
+  "original": "disc/SLUS_201.82",
+  "link_regime": "undecided",
+  "ok": true,
+  "image_start": "0x00100000",
+  "image_end": "0x0069F800",
+  "original_size": 5896192,
+  "rebuilt_size": 5896192,
+  "first_diff_addr": null,
+  "diff_count": 0,
+  "diff_ranges": [],
+  "segments": [
+    {
+      "name": "main",
+      "start": "0x00100000",
+      "end": "0x0069F800",
+      "ok": true,
+      "first_diff": null,
+      "diff_count": 0
+    }
+  ]
+}

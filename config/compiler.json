@@ -399,5 +399,7 @@
     }
   ],
   "assumption_A1": "not confirmed: mwcps2-2.3.3-000906 -O3,p -sdatathreshold 0 byte-matches 4/8 calibration functions",
-  "link_regime": "undecided"
+  "link_regime": "full",
+  "link_regime_evidence": "S3 probe: func_00131740 (calibration match, 96 bytes) compiled with mwcps2-2.3.3-000906 -O3,p -sdatathreshold 0 as a c subsegment at rom 0x31AC0 (vram 0x131740), linked into build/SLUS_201.82.elf; check_build.py ok=true, 0 differing bytes (runs/2026-09-17-005-split-baseline/a6-link-probe-check.json)",
+  "link_regime_at": "2026-09-17T05:59:36Z"
 }

@@ -1,0 +1,2 @@
+// symbol_addrs.txt for Stretch Panic (USA) SLUS_201.82 — one symbol per line: name = 0xADDR; // type:func size:0xN
+// written by ledger.py rename / S4 segment-map; comments start with //

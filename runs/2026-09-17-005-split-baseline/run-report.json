@@ -1,0 +1,25 @@
+{
+  "at": "2026-09-17T06:01:43Z",
+  "run_id": "2026-09-17-005-split-baseline",
+  "lines": 44,
+  "max_lines": 80,
+  "friction_severities": {
+    "major": 1,
+    "papercut": 1
+  },
+  "fields": {
+    "run_id": "2026-09-17-005-split-baseline",
+    "step_type": "split-baseline",
+    "step_id": "S3",
+    "target": "stretch-panic-usa",
+    "override_note": " — proposed by next_step.py",
+    "started": "2026-09-17T05:54:51Z",
+    "finished": "2026-09-17T06:01:43Z",
+    "commit": "the commit whose message starts `run 2026-09-17-005-split-baseline:` (git log --grep)",
+    "what_changed": "- Ledger: no status changes.\n- Baseline: link regime `full`; splat YAML and symbol_addrs.txt written.\n- The image assembles once the asset region is typed as data: code ends at 0x0017EF00 (func_0017ED",
+    "build_check": "`check.json`: ok = **True**, checked 2026-09-17T06:01:30Z, regime `full`; image 0x00100000–0x0069F800, rebuilt 5896192 of 5896192 bytes; first diff None, 0 differing byte(s). Segments: main ok.",
+    "step_table": "# Baseline table — split-baseline (S3), run 2026-09-17-005\n\n| subsegment | file offset | vram | type | evidence |\n|---|---|---|---|---|\n| main | 0x00000380 | 0x00100000 | asm | code from the entry poi",
+    "next_step": "S4 segment-map — ledger/segments.json missing or provisional",
+    "friction_summary": "2 entries (major 1, papercut 1); stages attested: E, R, S, V, X; export: FRICTION-REPORT.md\n- F-1 [major/tool-gap] gen_splat_yaml.py --initial cannot express a data subsegment, so the S3 restore-the-b"
+  }
+}
