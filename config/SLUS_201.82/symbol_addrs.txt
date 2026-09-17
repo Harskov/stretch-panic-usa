@@ -1,0 +1,2 @@
+// symbol_addrs.txt for Stretch Panic (USA) SLUS_201.82: name = 0xADDR; // type:func size:0xN
+// a name other than func_/D_<address> is backed by evidence cited above its function or in its pull request

@@ -38,5 +38,6 @@ segments:
     subalign: 16
     subsegments:
       - [0x00000380, asm, main]
+      - [0x0007F280, data, main_data]   # S3 run 005: code ends at func_0017ED50 (+nop pad) at vram 0x0017EF00; fingerprint.json classes 0x180000-0x69F800 as data; assembler refused lld/sdc1 decoded from filler at 0x54A8EC-0x54F29C
       - [0x0059FB80, bss, main_bss]
   - [0x0059FB80]
