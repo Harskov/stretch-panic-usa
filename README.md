@@ -34,7 +34,7 @@ them from the user's disc.
 | main_bss | bss | 0 | 0 | 0 | 0 | 0 | 0 |
 | **total** | | 2027 | 4 | 2 | 1349 | 672 | 284 / 510776 |
 
-Steps run: 5; last run: 2026-09-17-005-split-baseline; build check: ok; compiler: mwcps2-2.3.3-000906; regenerated 2026-09-17T07:01:48Z.
+Steps run: 6; last run: 2026-09-17-006-segment-map; build check: ok; compiler: mwcps2-2.3.3-000906; regenerated 2026-09-17T07:23:17Z.
 <!-- progress-table:end -->
 
 ## Building and verifying

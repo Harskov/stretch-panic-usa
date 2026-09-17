@@ -31,6 +31,10 @@ of the ELF. Progress is on [decomp.dev](https://decomp.dev) (see the README). A
 pull request that adds a matched function is picked up by the maintainer's next run,
 which rebuilds it with the pinned compiler and records it in the ledger.
 
+<!-- pinned-compiler:start -->
+Pinned at present: compiler id `mwcps2-2.3.3-000906`, flags `-O3,p -sdatathreshold 0` (`config/compiler.json`; changed only by a calibrate step).
+<!-- pinned-compiler:end -->
+
 ## What not to touch by hand
 
 `ledger/functions.jsonl`, `ledger/renames.jsonl`, `state/*.jsonl`,
