@@ -1,4 +1,4 @@
-# splat configuration for Stretch Panic (USA) SLUS_201.82 — written by gen_splat_yaml.py 2026-09-17T06:59:31Z
+# splat configuration for Stretch Panic (USA) SLUS_201.82 — written by gen_splat_yaml.py 2026-09-17T14:15:54Z
 name: stretch-panic-usa
 sha1: 0a330e76424b7254e4096d8809b2a927603d3581
 options:
@@ -54,10 +54,28 @@ segments:
       - [0x00045DC0, asm, game_00_2]
       - [0x00045E10, asm, game_memcard]
       - [0x000482E0, asm, game_01]
+      - [0x000571A0, c, game_01/func_00156E20]
+      - [0x000571A8, asm, game_01_1]
+      - [0x000571B0, c, game_01/func_00156E30]
+      - [0x000571B8, asm, game_01_2]
       - [0x000579D0, c, game_01/func_00157650]
-      - [0x00057A04, asm, game_01_1]
+      - [0x00057A04, asm, game_01_3]
+      - [0x00057C40, c, game_01/func_001578C0]
+      - [0x00057C94, asm, game_01_4]
+      - [0x000581E0, c, game_01/func_00157E60]
+      - [0x00058214, asm, game_01_5]
+      - [0x00058450, c, game_01/func_001580D0]
+      - [0x000584A4, asm, game_01_6]
+      - [0x000589F0, c, game_01/func_00158670]
+      - [0x00058A04, asm, game_01_7]
+      - [0x000637F0, c, game_01/func_00163470]
+      - [0x000637F8, asm, game_01_8]
+      - [0x00063800, c, game_01/func_00163480]
+      - [0x00063808, asm, game_01_9]
       - [0x00065200, c, game_01/func_00164E80]
-      - [0x00065258, asm, game_01_2]
+      - [0x00065258, asm, game_01_10]
+      - [0x00065750, c, game_01/func_001653D0]
+      - [0x000657A0, asm, game_01_11]
       - [0x0007F280, data, data_vu]
       - [0x00096400, data, data_sdk]
       - [0x000975D0, data, data_game]

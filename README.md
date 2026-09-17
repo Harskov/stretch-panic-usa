@@ -26,15 +26,15 @@ them from the user's disc.
 | sdk_libc | libc | 123 | 0 | 0 | 0 | 123 | 0 (0.0%) |
 | game_00 | game | 563 | 2 | 1 | 560 | 0 | 144 (0.1%) |
 | game_memcard | game | 74 | 0 | 0 | 74 | 0 | 0 (0.0%) |
-| game_01 | game | 714 | 2 | 1 | 711 | 0 | 140 (0.1%) |
+| game_01 | game | 714 | 11 | 4 | 699 | 0 | 492 (0.2%) |
 | data_vu | data | 0 | 0 | 0 | 0 | 0 | 0 |
 | data_sdk | data | 0 | 0 | 0 | 0 | 0 | 0 |
 | data_game | data | 0 | 0 | 0 | 0 | 0 | 0 |
 | rodata_00 | rodata | 0 | 0 | 0 | 0 | 0 | 0 |
 | main_bss | bss | 0 | 0 | 0 | 0 | 0 | 0 |
-| **total** | | 2027 | 4 | 2 | 1349 | 672 | 284 / 510776 |
+| **total** | | 2027 | 13 | 5 | 1337 | 672 | 636 / 510776 |
 
-Steps run: 6; last run: 2026-09-17-006-segment-map; build check: ok; compiler: mwcps2-2.3.3-000906; regenerated 2026-09-17T07:23:17Z.
+Steps run: 6; last run: 2026-09-17-006-segment-map; build check: ok; compiler: mwcps2-2.3.3-000906; regenerated 2026-09-17T14:17:44Z.
 <!-- progress-table:end -->
 
 ## Building and verifying

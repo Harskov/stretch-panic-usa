@@ -1,0 +1,29 @@
+{
+  "run_id": "2026-09-17-007-match-batch",
+  "step_id": "S6",
+  "step_type": "match-batch",
+  "override": false,
+  "proposed": "match-batch",
+  "proposed_reason": "1351 game function(s) still asm/wip; batch size 12",
+  "reason": "1351 game function(s) still asm/wip; batch size 12",
+  "target": "stretch-panic-usa",
+  "started": "2026-09-17T14:04:06Z",
+  "finished": "2026-09-17T14:17:44Z",
+  "stage": "done",
+  "position": {},
+  "outcome": "complete",
+  "commit": null,
+  "notes": [],
+  "ledger_at_start": {
+    "functions": 2027,
+    "matched": 4,
+    "wip": 2,
+    "asm": 1349,
+    "library": 672,
+    "skipped-data": 0,
+    "external_matched": 0,
+    "runner_batches": 0
+  },
+  "updated": "2026-09-17T14:15:54Z",
+  "summary": "S6 batch of 12 in game_01: 9 matched (func_00156E20/E30, 00157E60, 001578C0, 001580D0, 00158670, 00163470/480, 001653D0), 3 parked (func_00163B60 95.3, func_00165800 85.3, func_001636C0 9.9 — VU0 macro-mode ops); check ok"
+}
