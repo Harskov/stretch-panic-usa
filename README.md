@@ -1,4 +1,7 @@
-# stretch-panic-usa — matching decompilation
+# Stretch Panic (USA) SLUS_201.82 — matching decompilation
+
+[![Progress report](https://github.com/Harskov/stretch-panic-usa/actions/workflows/report.yml/badge.svg)](https://github.com/Harskov/stretch-panic-usa/actions/workflows/report.yml)
+[![Code progress](https://decomp.dev/Harskov/stretch-panic-usa.svg?mode=shield&measure=code&label=Code)](https://decomp.dev/Harskov/stretch-panic-usa)
 
 Target repository of the Decompilation Assistant (PS2) project. One step of the
 decompilation is performed per run; the state lives in this tree
@@ -14,7 +17,7 @@ them from the user's disc.
 | image | unclassified | 8 | 4 | 4 | 0 | 0 | 284 (51.4%) |
 | **total** | | 8 | 4 | 4 | 0 | 0 | 284 / 552 |
 
-Steps run: 2; last run: 2026-09-17-002-extract; build check: not yet run; compiler: mwcps2-2.3.3-000906; regenerated 2026-09-17T03:28:26Z.
+Steps run: 3; last run: 2026-09-17-003-calibrate; build check: not yet run; compiler: mwcps2-2.3.3-000906; regenerated 2026-09-17T03:52:29Z.
 <!-- progress-table:end -->
 
 ## Building and verifying
@@ -36,6 +39,25 @@ loaded memory image compared with the original (`build/check.json`).
 Disclosure: this decompilation is AI-assisted. C is proposed by language models
 and accepted only when it compiles byte-identical; every run's report and
 friction log are committed under `runs/`. See `CONTRIBUTING.md` to contribute.
+
+## Progress reporting
+
+Progress is published the way the decompilation community tracks it, through
+[decomp.dev](https://decomp.dev): `tools/objdiff_report.py` writes an objdiff (v2)
+report from `ledger/functions.jsonl`, and the `Progress report` workflow generates it
+on every push to `main`, validates it with `objdiff-cli` and uploads it as the
+`<BOOT2 file>_report` artifact decomp.dev consumes. The ledger is the evidence behind
+every number: a function is recorded as matched only after the pinned compiler
+rebuilt its C byte-identical on the maintainer's machine, where the disc is, so the
+workflow needs nothing from the game. To regenerate the report locally:
+
+```sh
+python3 tools/objdiff_report.py --repo . --out build/report.json
+```
+
+`matched_code` counts byte-identical functions; `complete_code` counts those linked
+into the rebuilt ELF whose loaded image equals the original's (`build/check.json`).
+Categories: game code, SDK and libc.
 
 ## License
 

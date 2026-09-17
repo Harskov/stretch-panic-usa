@@ -1,0 +1,41 @@
+name: Progress report
+
+# Generates the objdiff (v2) progress report from the committed ledger and uploads it as
+# the artifact decomp.dev consumes (<BOOT2 file>_report, e.g. SLPM_551.08_report).
+# The ledger is the evidence: a function is recorded as matched only after the pinned
+# compiler rebuilt its C byte-identical on the maintainer's machine, where the disc is.
+# Nothing from the game is needed here, so the workflow runs on a bare checkout.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Report name from config/target.json
+        id: target
+        run: echo "version=$(python3 -c 'import json; print(json.load(open("config/target.json"))["boot_file"])')" >> "$GITHUB_OUTPUT"
+      - name: Generate the objdiff v2 report from the ledger
+        run: python3 tools/objdiff_report.py --repo . --out build/report.json
+      - name: Validate the report with objdiff-cli
+        run: |
+          curl --fail --location --retry 3 https://github.com/encounter/objdiff/releases/download/v3.8.1/objdiff-cli-linux-x86_64 -o "$RUNNER_TEMP/objdiff-cli"
+          echo "c8290281e82114bcc1a06ff73061110d3902a177822e750337de2537188e358f  $RUNNER_TEMP/objdiff-cli" | sha256sum --check
+          chmod +x "$RUNNER_TEMP/objdiff-cli"
+          "$RUNNER_TEMP/objdiff-cli" report changes build/report.json build/report.json -o "$RUNNER_TEMP/report-validation.json"
+      - name: Upload the decomp.dev report
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.target.outputs.version }}_report
+          path: build/report.json
+          if-no-files-found: error

@@ -14,6 +14,7 @@ asm/
 build/
 tools/*
 !tools/manifest.json
+!tools/objdiff_report.py
 wip/*/target.s
 wip/**/*.o
 wip/**/*.bin

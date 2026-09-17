@@ -18,6 +18,16 @@ step machine, so a few rules keep human and automated work from colliding.
   name (`func_00123456`, `D_0052ABCD`) stays.
 - **A fix to a header or a build issue**: as usual.
 
+## Tools
+
+The compiler is a Metrowerks CodeWarrior for PS2 build, run under `wibo` on Linux;
+`config/compiler.json` names the exact build (a decomp.me compiler id) and flags, so a
+function can be worked on at [decomp.me](https://decomp.me) with that compiler and
+those flags, or locally with `objdiff` against the object lifted from your own copy
+of the ELF. Progress is on [decomp.dev](https://decomp.dev) (see the README). A
+pull request that adds a matched function is picked up by the maintainer's next run,
+which rebuilds it with the pinned compiler and records it in the ledger.
+
 ## What not to touch by hand
 
 `ledger/functions.jsonl`, `ledger/renames.jsonl`, `state/*.jsonl`,
