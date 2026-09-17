@@ -1,5 +1,5 @@
 {
-  "at": "2026-09-17T05:42:55Z",
+  "at": "2026-09-17T06:07:24Z",
   "mode": "initial",
   "basename": "SLUS_201.82",
   "load": {
@@ -16,9 +16,21 @@
       "name": "main"
     },
     {
+      "offset": "0x0007F280",
+      "type": "data",
+      "name": "main_data"
+    },
+    {
       "offset": "0x0059FB80",
       "type": "bss",
       "name": "main_bss"
+    }
+  ],
+  "initial_data_ranges": [
+    {
+      "vram": "0x0017EF00",
+      "name": "main_data",
+      "evidence": "S3 run 005: code ends at func_0017ED50 (+nop pad) at vram 0x0017EF00; fingerprint.json classes 0x180000-0x69F800 as data; assembler refused lld/sdc1 decoded from filler at 0x54A8EC-0x54F29C"
     }
   ]
 }

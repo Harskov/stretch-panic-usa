@@ -1,0 +1,11 @@
+{
+  "at": "2026-09-17T06:07:24Z",
+  "note": "pre-S4 data typing for gen_splat_yaml.py --initial (the assembler refused opcodes decoded from asset bytes); superseded by ledger/segments.json at S4",
+  "ranges": [
+    {
+      "vram": "0x0017EF00",
+      "name": "main_data",
+      "evidence": "S3 run 005: code ends at func_0017ED50 (+nop pad) at vram 0x0017EF00; fingerprint.json classes 0x180000-0x69F800 as data; assembler refused lld/sdc1 decoded from filler at 0x54A8EC-0x54F29C"
+    }
+  ]
+}

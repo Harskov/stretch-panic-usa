@@ -1,4 +1,4 @@
-# splat configuration for Stretch Panic (USA) SLUS_201.82 — written by gen_splat_yaml.py 2026-09-17T05:42:55Z
+# splat configuration for Stretch Panic (USA) SLUS_201.82 — written by gen_splat_yaml.py 2026-09-17T06:07:24Z
 name: stretch-panic-usa
 sha1: 0a330e76424b7254e4096d8809b2a927603d3581
 options:
@@ -23,8 +23,8 @@ options:
   section_order: [".text", ".data", ".rodata", ".bss"]
   generated_c_preamble: "#include \"common.h\""
   generated_s_preamble: ""
-  string_encoding: SHIFT-JIS
-  data_string_encoding: SHIFT-JIS
+  string_encoding: ASCII
+  data_string_encoding: ASCII
   rodata_string_guesser_level: 0
   data_string_guesser_level: 0
   asm_emit_size_directive: false
