@@ -1,0 +1,13 @@
+# normalise line endings: the repository lives on a Windows disk and is edited from Linux
+* text=auto eol=lf
+*.jsonl text eol=lf
+*.c text eol=lf
+*.h text eol=lf
+*.s text eol=lf
+*.md text eol=lf
+*.yaml text eol=lf
+*.json text eol=lf
+*.bin binary
+*.o binary
+*.elf binary
+*.iso binary

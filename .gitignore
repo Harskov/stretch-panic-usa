@@ -15,7 +15,10 @@ build/
 tools/*
 !tools/manifest.json
 wip/*/target.s
-wip/*/*.o
+wip/**/*.o
+wip/**/*.bin
+# compiled objects and lifted .text bytes at any depth under wip/ (permuter/target.o,
+# *.o.text.bin): publication cleanup 2026-09-16 found 131 tracked by the old wip/*/*.o line
 # calibration (S2): the C attempts, the table and results.jsonl are kept; disassembly
 # of the original and compiled objects are not
 calibration/candidates.md

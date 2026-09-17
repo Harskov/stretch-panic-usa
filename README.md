@@ -17,6 +17,32 @@ them from the user's disc.
 Steps run: 1; last run: 2026-09-17-001-bootstrap; build check: not yet run; compiler: not calibrated; regenerated 2026-09-17T02:37:53Z.
 <!-- progress-table:end -->
 
+## Building and verifying
+
+Nothing from the game is in this repository: no disc, no executable, no
+extracted assets, no disassembly, no compiled objects. To build you need your
+own copy of the disc; the toolchain (Metrowerks CodeWarrior for PS2, run under
+wibo, plus splat and objdiff) is fetched by the project's bootstrap and pinned
+in `tools/manifest.json`. The pinned compiler and flags are in
+`config/compiler.json`; any function's C can be verified independently by
+compiling it with that compiler and diffing the object against the original.
+
+How progress is measured: a function counts as matched only when its compiled
+`.text` is byte-identical to the original (objdiff score 100); the record in
+`ledger/functions.jsonl` carries the object's sha256, the C's sha256, the
+compiler id and the flags. After every step the full ELF is rebuilt and its
+loaded memory image compared with the original (`build/check.json`).
+
+Disclosure: this decompilation is AI-assisted. C is proposed by language models
+and accepted only when it compiles byte-identical; every run's report and
+friction log are committed under `runs/`. See `CONTRIBUTING.md` to contribute.
+
+## License
+
+The C source, headers, configuration and records in this repository are under
+the MIT License (`LICENSE`). The game is not: it remains the property of its
+rightsholders and is not distributed here.
+
 ## Layout
 
 | Path | Holds |
