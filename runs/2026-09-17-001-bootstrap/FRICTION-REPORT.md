@@ -58,7 +58,7 @@ Silence is not evidence of frictionlessness: a stage is either attested (`clear-
 - **Stage:** Stage R RESUME | **Logged:** 2026-09-17T01:53:03Z
 - **Observed (fact):** df -h $HOME: /dev/sdc 9.8G size, 9.3G used, 0 Avail, 100% on /sessions. 'mkdir $HOME/tmp/spacetest' -> 'No space left on device'. du -sh /sessions/* sums to 1.9G (the passthrough mount), so the used space is other sessions' directories, unreadable and not freeable from here. The project folder itself is a passthrough with 245G free (df -h . -> /proc/self/fd/3 932G, 245G Avail). /tmp is on / (9.6G, 4.1G Avail) and writable: dd 100MiB ok.
 - **Expected:** a writable $HOME on the VM, since bootstrap.sh clones into $HOME before copying to the mount
-- **Operator hypothesis — UNVERIFIED, verify against the artifacts before building on it:** the /sessions disk is shared across desktop sessions on jaspc and was filled by other sessions; it is not this project's data
+- **Operator hypothesis — UNVERIFIED, verify against the artifacts before building on it:** the /sessions disk is shared across desktop sessions on this device and was filled by other sessions; it is not this project's data
 - **Repro:** `df -h $HOME; mkdir $HOME/tmp/spacetest`
 
 ### F-2 — [major / tool-gap] bootstrap.sh hardcodes $HOME for the clone scratch with no override
