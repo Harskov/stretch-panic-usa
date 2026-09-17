@@ -5,7 +5,7 @@ clean-ups and fixes.
 
 ## Compiler
 
-Pinned: not pinned yet (the compiler calibration has not run). Every function is compiled with exactly these; they change
+Pinned: compiler `mwcps2-2.3.3-000906` with flags `-O3,p -sdatathreshold 0`. Every function is compiled with exactly these; they change
 only when the calibration is redone, and this line is updated with them.
 
 ## A matched function

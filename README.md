@@ -43,7 +43,7 @@ here, any function can be checked on its own:
 1. Copy `SLUS_201.82` from your disc to `orig/SLUS_201.82/SLUS_201.82` and check it:
    `sha1sum -c config/SLUS_201.82/checksum.sha1`.
 2. Compile the function's file under `src/` with the pinned compiler and flags
-   (not pinned yet (the compiler calibration has not run)), for example on [decomp.me](https://decomp.me), and diff the
+   (compiler `mwcps2-2.3.3-000906` with flags `-O3,p -sdatathreshold 0`), for example on [decomp.me](https://decomp.me), and diff the
    object against the function in your executable with
    [objdiff](https://github.com/encounter/objdiff). The splat configuration in
    `config/SLUS_201.82/` gives every function's address and segment.
