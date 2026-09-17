@@ -1,8 +1,8 @@
 {
-  "at": "2026-09-17T06:01:43Z",
-  "proposed": "segment-map",
-  "step_id": "S4",
-  "reason": "ledger/segments.json missing or provisional",
+  "at": "2026-09-17T07:02:04Z",
+  "proposed": "match-batch",
+  "step_id": "S6",
+  "reason": "1351 game function(s) still asm/wip; batch size 12",
   "notes": [],
   "never_auto_selected": [
     "ghidra-hints"

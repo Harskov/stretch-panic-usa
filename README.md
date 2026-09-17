@@ -12,14 +12,29 @@ them from the user's disc.
 ## Progress
 
 <!-- progress-table:start -->
-**Progress is not measured yet**: the segment map (S4) has not run, so the ledger holds only the calibration candidates (S2) and the totals below are not a share of the game. The decomp.dev report is published from the first segment map on.
-
 | Segment | Kind | Functions | Matched | Wip | Asm | Library | Bytes matched |
 |---|---|---|---|---|---|---|---|
-| calibration candidates | unclassified | 8 | 4 | 4 | 0 | 0 | 284 |
-| **total** | | 8 | 4 | 4 | 0 | 0 | 284 / 552 |
+| crt0 | game | 4 | 0 | 0 | 4 | 0 | 0 (0.0%) |
+| mw_runtime | libc | 39 | 0 | 0 | 0 | 39 | 0 (0.0%) |
+| sdk_libgraph | sdk | 21 | 0 | 0 | 0 | 21 | 0 (0.0%) |
+| sdk_libdma | sdk | 12 | 0 | 0 | 0 | 12 | 0 (0.0%) |
+| sdk_libkernel | sdk | 339 | 0 | 0 | 0 | 339 | 0 (0.0%) |
+| sdk_libpad | sdk | 34 | 0 | 0 | 0 | 34 | 0 (0.0%) |
+| sdk_libcdvd | sdk | 48 | 0 | 0 | 0 | 48 | 0 (0.0%) |
+| sdk_libmc | sdk | 26 | 0 | 0 | 0 | 26 | 0 (0.0%) |
+| sdk_libm | sdk | 30 | 0 | 0 | 0 | 30 | 0 (0.0%) |
+| sdk_libc | libc | 123 | 0 | 0 | 0 | 123 | 0 (0.0%) |
+| game_00 | game | 563 | 2 | 1 | 560 | 0 | 144 (0.1%) |
+| game_memcard | game | 74 | 0 | 0 | 74 | 0 | 0 (0.0%) |
+| game_01 | game | 714 | 2 | 1 | 711 | 0 | 140 (0.1%) |
+| data_vu | data | 0 | 0 | 0 | 0 | 0 | 0 |
+| data_sdk | data | 0 | 0 | 0 | 0 | 0 | 0 |
+| data_game | data | 0 | 0 | 0 | 0 | 0 | 0 |
+| rodata_00 | rodata | 0 | 0 | 0 | 0 | 0 | 0 |
+| main_bss | bss | 0 | 0 | 0 | 0 | 0 | 0 |
+| **total** | | 2027 | 4 | 2 | 1349 | 672 | 284 / 510776 |
 
-Steps run: 4; last run: 2026-09-17-004-split-baseline; build check: ok; compiler: mwcps2-2.3.3-000906; regenerated 2026-09-17T06:01:31Z.
+Steps run: 5; last run: 2026-09-17-005-split-baseline; build check: ok; compiler: mwcps2-2.3.3-000906; regenerated 2026-09-17T07:01:48Z.
 <!-- progress-table:end -->
 
 ## Building and verifying

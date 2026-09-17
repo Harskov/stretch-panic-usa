@@ -1,0 +1,29 @@
+{
+  "run_id": "2026-09-17-006-segment-map",
+  "step_id": "S4",
+  "step_type": "segment-map",
+  "override": false,
+  "proposed": "segment-map",
+  "proposed_reason": "ledger/segments.json missing or provisional",
+  "reason": "ledger/segments.json missing or provisional",
+  "target": "stretch-panic-usa",
+  "started": "2026-09-17T06:50:05Z",
+  "finished": "2026-09-17T07:02:04Z",
+  "stage": "done",
+  "position": {},
+  "outcome": "complete",
+  "commit": null,
+  "notes": [],
+  "ledger_at_start": {
+    "functions": 8,
+    "matched": 4,
+    "wip": 4,
+    "asm": 0,
+    "library": 0,
+    "skipped-data": 0,
+    "external_matched": 0,
+    "runner_batches": 0
+  },
+  "updated": "2026-09-17T07:01:48Z",
+  "summary": "segments.json final: 18 segments (crt0, MW runtime, 8 SDK libs, game_00/game_memcard/game_01, 3 data, rodata tail, bss); split build green; 2027 functions in the ledger (1349 asm, 672 library, 4 matched+linked, 2 wip)"
+}

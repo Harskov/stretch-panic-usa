@@ -1,6 +1,6 @@
 {
-  "at": "2026-09-17T06:07:24Z",
-  "mode": "initial",
+  "at": "2026-09-17T06:59:31Z",
+  "mode": "from-segments",
   "basename": "SLUS_201.82",
   "load": {
     "offset": "0x00000380",
@@ -13,24 +13,132 @@
     {
       "offset": "0x00000380",
       "type": "asm",
-      "name": "main"
+      "name": "crt0"
+    },
+    {
+      "offset": "0x00000470",
+      "type": "asm",
+      "name": "mw_runtime"
+    },
+    {
+      "offset": "0x00002840",
+      "type": "asm",
+      "name": "sdk_libgraph"
+    },
+    {
+      "offset": "0x00003D30",
+      "type": "asm",
+      "name": "sdk_libdma"
+    },
+    {
+      "offset": "0x000044D0",
+      "type": "asm",
+      "name": "sdk_libkernel"
+    },
+    {
+      "offset": "0x0000D020",
+      "type": "asm",
+      "name": "sdk_libpad"
+    },
+    {
+      "offset": "0x0000E550",
+      "type": "asm",
+      "name": "sdk_libcdvd"
+    },
+    {
+      "offset": "0x00011340",
+      "type": "asm",
+      "name": "sdk_libmc"
+    },
+    {
+      "offset": "0x000129E0",
+      "type": "asm",
+      "name": "sdk_libm"
+    },
+    {
+      "offset": "0x00015C80",
+      "type": "asm",
+      "name": "sdk_libc"
+    },
+    {
+      "offset": "0x0001F960",
+      "type": "asm",
+      "name": "game_00"
+    },
+    {
+      "offset": "0x00031AC0",
+      "type": "c",
+      "name": "game_00/func_00131740"
+    },
+    {
+      "offset": "0x00031B20",
+      "type": "asm",
+      "name": "game_00_1"
+    },
+    {
+      "offset": "0x00045D90",
+      "type": "c",
+      "name": "game_00/func_00145A10"
+    },
+    {
+      "offset": "0x00045DC0",
+      "type": "asm",
+      "name": "game_00_2"
+    },
+    {
+      "offset": "0x00045E10",
+      "type": "asm",
+      "name": "game_memcard"
+    },
+    {
+      "offset": "0x000482E0",
+      "type": "asm",
+      "name": "game_01"
+    },
+    {
+      "offset": "0x000579D0",
+      "type": "c",
+      "name": "game_01/func_00157650"
+    },
+    {
+      "offset": "0x00057A04",
+      "type": "asm",
+      "name": "game_01_1"
+    },
+    {
+      "offset": "0x00065200",
+      "type": "c",
+      "name": "game_01/func_00164E80"
+    },
+    {
+      "offset": "0x00065258",
+      "type": "asm",
+      "name": "game_01_2"
     },
     {
       "offset": "0x0007F280",
       "type": "data",
-      "name": "main_data"
+      "name": "data_vu"
+    },
+    {
+      "offset": "0x00096400",
+      "type": "data",
+      "name": "data_sdk"
+    },
+    {
+      "offset": "0x000975D0",
+      "type": "data",
+      "name": "data_game"
+    },
+    {
+      "offset": "0x00599B80",
+      "type": "rodata",
+      "name": "rodata_00"
     },
     {
       "offset": "0x0059FB80",
       "type": "bss",
       "name": "main_bss"
-    }
-  ],
-  "initial_data_ranges": [
-    {
-      "vram": "0x0017EF00",
-      "name": "main_data",
-      "evidence": "S3 run 005: code ends at func_0017ED50 (+nop pad) at vram 0x0017EF00; fingerprint.json classes 0x180000-0x69F800 as data; assembler refused lld/sdc1 decoded from filler at 0x54A8EC-0x54F29C"
     }
   ]
 }

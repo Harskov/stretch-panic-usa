@@ -1,21 +1,57 @@
 {
-  "at": "2026-09-17T05:42:50Z",
-  "functions": 8,
+  "at": "2026-09-17T07:01:25Z",
+  "functions": 2027,
   "by_status": {
-    "wip": 4,
+    "asm": 1349,
+    "library": 672,
+    "wip": 2,
     "matched": 4
   },
   "by_segment": {
-    "(none)": {
-      "wip": 4,
-      "matched": 4
+    "crt0": {
+      "asm": 4
+    },
+    "mw_runtime": {
+      "library": 39
+    },
+    "sdk_libgraph": {
+      "library": 21
+    },
+    "sdk_libdma": {
+      "library": 12
+    },
+    "sdk_libkernel": {
+      "library": 339
+    },
+    "sdk_libpad": {
+      "library": 34
+    },
+    "sdk_libcdvd": {
+      "library": 48
+    },
+    "sdk_libmc": {
+      "library": 26
+    },
+    "sdk_libm": {
+      "library": 30
+    },
+    "sdk_libc": {
+      "library": 123
+    },
+    "game_00": {
+      "asm": 560,
+      "wip": 1,
+      "matched": 2
+    },
+    "game_memcard": {
+      "asm": 74
+    },
+    "game_01": {
+      "asm": 711,
+      "matched": 2,
+      "wip": 1
     }
   },
-  "matched_not_linked": [
-    "func_00131740",
-    "func_00145A10",
-    "func_00157650",
-    "func_00164E80"
-  ],
+  "matched_not_linked": [],
   "link_blocked": []
 }
