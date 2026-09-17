@@ -26,6 +26,13 @@ calibration/*/target.s
 calibration/*/*.o
 calibration/*/*.bin
 calibration/*/*.err
+# permuter lane (S6): the working files hold absolute per-machine paths and logs; only the
+# candidate C (output-*.c) and NOTES are kept (remediation 5 commit audit, 2026-09-17)
+wip/*/permuter/bin/
+wip/*/permuter/compile.sh
+wip/*/permuter/permute.json
+wip/*/permuter/*.log
+wip/*/permuter/settings.toml
 # generated per machine by configure.py (absolute tool paths)
 build.ninja
 .ninja_*

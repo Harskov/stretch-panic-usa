@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "created": "2026-09-17T01:55:31Z",
+  "created": "2026-09-17T03:41:50Z",
   "slug": "stretch-panic-usa",
   "tools": {
     "venv": {
@@ -97,67 +97,67 @@
   "smoke_tests": {
     "wibo-mwccps2-version": {
       "ok": true,
-      "cmd": "'/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/wibo' '/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/compilers/mwcps2-2.4-001213/mwccps2.exe' -version",
+      "cmd": "tools/wibo tools/compilers/mwcps2-2.4-001213/mwccps2.exe -version",
       "rc": 0,
       "output": "\nMetrowerks C/C++ Compiler for MIPS/PlayStation2.\nCopyright (c) 2000, Metrowerks Corporation\nAll rights reserved.\nVersion 2.4 (Engineering Build 0017)\nRuntime Built: Dec 13 2000 10:37:30\n\n"
     },
     "wibo-mwccps2-compile": {
       "ok": true,
-      "cmd": "'/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/wibo' '/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/compilers/mwcps2-2.4-001213/mwccps2.exe' -c -O4,p -nostdinc -stderr '/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/smoke/hello.c' -o '/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/smoke/hello.o'",
+      "cmd": "tools/wibo tools/compilers/mwcps2-2.4-001213/mwccps2.exe -c -O4,p -nostdinc -stderr tools/smoke/hello.c -o tools/smoke/hello.o",
       "rc": 0,
       "output": ""
     },
     "objdiff-version": {
       "ok": true,
-      "cmd": "'/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/objdiff-cli' --version",
+      "cmd": "tools/objdiff-cli --version",
       "rc": 0,
       "output": "objdiff-cli 3.7.3\n"
     },
     "objdiff-reads-mw-object": {
       "ok": true,
-      "cmd": "'/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/objdiff-cli' diff -1 '/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/smoke/hello.o' -2 '/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/smoke/hello.o' add3 -o - --format json",
+      "cmd": "tools/objdiff-cli diff -1 tools/smoke/hello.o -2 tools/smoke/hello.o add3 -o - --format json",
       "rc": 0,
       "output": "ze\":4,\"formatted\":\"jr ra\",\"parts\":[{\"opcode\":{\"mnemonic\":\"jr\",\"opcode\":76}},{\"arg\":{\"opaque\":\"ra\"}}]}},{\"instruction\":{\"address\":\"8\",\"size\":4,\"formatted\":\"addu v0, a2, v0\",\"parts\":[{\"opcode\":{\"mnemonic\":\"addu\",\"opcode\":87}},{\"arg\":{\"opaque\":\"v0\"}},{\"separator\":true},{\"arg\":{\"opaque\":\"a2\"}},{\"separator\":true},{\"arg\":{\"opaque\":\"v0\"}}]}}]},{\"name\":\"[.mwcats]\",\"size\":\"8\",\"flags\":{\"local\":true},\"kind\":\"SYMBOL_SECTION\"}]},\"right\":{\"sections\":[{\"name\":\".symtab\",\"size\":\"48\"},{\"name\":\".strtab\",\"size\":\"19\"},{\"name\":\".shstrtab\",\"size\":\"62\"},{\"name\":\".comment\",\"size\":\"30\"},{\"name\":\".text\",\"kind\":\"SECTION_CODE\",\"size\":\"12\"},{\"name\":\".mwcats\",\"size\":\"8\"},{\"name\":\".rel.mwcats\",\"size\":\"8\"}],\"symbols\":[{\"name\":\"add3\",\"size\":\"12\",\"flags\":{\"global\":true},\"kind\":\"SYMBOL_FUNCTION\",\"target_symbol\":0,\"match_percent\":100.0,\"instructions\":[{\"instruction\":{\"size\":4,\"formatted\":\"addu v0, a0, a1\",\"parts\":[{\"opcode\":{\"mnemonic\":\"addu\",\"opcode\":87}},{\"arg\":{\"opaque\":\"v0\"}},{\"separator\":true},{\"arg\":{\"opaque\":\"a0\"}},{\"separator\":true},{\"arg\":{\"opaque\":\"a1\"}}]}},{\"instruction\":{\"address\":\"4\",\"size\":4,\"formatted\":\"jr ra\",\"parts\":[{\"opcode\":{\"mnemonic\":\"jr\",\"opcode\":76}},{\"arg\":{\"opaque\":\"ra\"}}]}},{\"instruction\":{\"address\":\"8\",\"size\":4,\"formatted\":\"addu v0, a2, v0\",\"parts\":[{\"opcode\":{\"mnemonic\":\"addu\",\"opcode\":87}},{\"arg\":{\"opaque\":\"v0\"}},{\"separator\":true},{\"arg\":{\"opaque\":\"a2\"}},{\"separator\":true},{\"arg\":{\"opaque\":\"v0\"}}]}}]},{\"name\":\"[.mwcats]\",\"size\":\"8\",\"flags\":{\"local\":true},\"kind\":\"SYMBOL_SECTION\"}]}}"
     },
     "m2c-help": {
       "ok": true,
-      "cmd": "'/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/venv/bin/python' '/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/m2c/m2c.py' --help",
+      "cmd": "tools/venv/bin/python tools/m2c/m2c.py --help",
       "rc": 0,
       "output": "                 everything\n  --no-switches         Disable detecting irregular switch statements from if\n                        trees. Jump tables switches are still emitted.\n  --no-andor            Disable detection of &&/||\n  --no-unk-inference    Disable type inference on unknown struct fields &\n                        unknown global symbol types. See the README for more\n                        information on unknown inference.\n  --no-stack-spill      Disable stack spilling detection, which introduces\n                        unnecessary temporaries in unoptimized code instead of\n                        using the stack.\n  --heuristic-strings   Heuristically detect strings in rodata even when not\n                        defined using .asci/.asciz.\n  --reg-vars REGISTERS  Use single variables instead of temps/phis for the\n                        given registers (comma separated)\n  --goto PATTERN        Emit gotos for branches on lines containing this\n                        substring (possibly within a comment). Default:\n                        \"GOTO\". Multiple patterns are allowed.\n  --disable-gc          Disable Python garbage collection. Can improve\n                        performance at the risk of running out of memory.\n  --union-field STRUCT:FIELD\n                        Specify which field to use for a union. Format:\n                        STRUCT_NAME:FIELD_NAME (e.g., MyUnion:int_value). Can\n                        be specified multiple times for different unions.\n"
     },
     "splat-version": {
       "ok": true,
-      "cmd": "'/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/venv/bin/python' -m splat --version",
+      "cmd": "tools/venv/bin/python -m splat --version",
       "rc": 0,
       "output": "splat 0.50.0\n"
     },
     "python-modules": {
       "ok": true,
-      "cmd": "'/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/venv/bin/python' -c 'import spimdisasm, rabbitizer, pycparser; print(spimdisasm.__version__, rabbitizer.__version__)'",
+      "cmd": "tools/venv/bin/python -c 'import spimdisasm, rabbitizer, pycparser; print(spimdisasm.__version__, rabbitizer.__version__)'",
       "rc": 0,
       "output": "1.42.4 1.16.2\n"
     },
     "assembler-r5900": {
       "ok": true,
-      "cmd": "'/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/binutils-deb/usr/bin/mipsel-linux-gnu-as' -EL -march=r5900 -mabi=eabi -no-pad-sections -G0 -o '/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/smoke/r5900.o' '/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/smoke/r5900.s'",
+      "cmd": "tools/binutils-deb/usr/bin/mipsel-linux-gnu-as -EL -march=r5900 -mabi=eabi -no-pad-sections -G0 -o tools/smoke/r5900.o tools/smoke/r5900.s",
       "rc": 0,
       "output": ""
     },
     "linker": {
       "ok": true,
-      "cmd": "'/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/binutils-deb/usr/bin/mipsel-linux-gnu-ld' -EL -T '/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/smoke/smoke.ld' -o '/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/smoke/r5900.elf' '/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/smoke/r5900.o'",
+      "cmd": "tools/binutils-deb/usr/bin/mipsel-linux-gnu-ld -EL -T tools/smoke/smoke.ld -o tools/smoke/r5900.elf tools/smoke/r5900.o",
       "rc": 0,
       "output": ""
     },
     "objdump-r5900": {
       "ok": true,
-      "cmd": "'/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/binutils-deb/usr/bin/mipsel-linux-gnu-objdump' -d '/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/smoke/r5900.o'",
+      "cmd": "tools/binutils-deb/usr/bin/mipsel-linux-gnu-objdump -d tools/smoke/r5900.o",
       "rc": 0,
-      "output": "\n/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/smoke/r5900.o:     file format elf32-tradlittlemips\n\n\nDisassembly of section .text:\n\n00000000 <smoke_fn>:\n   0:\t70851628 \tpaddub\tv0,a0,a1\n   4:\t7ba30010 \tlq\tv1,16(sp)\n   8:\t7fa30020 \tsq\tv1,32(sp)\n   c:\t70003030 \tpmfhl.lw\ta2\n  10:\t03e00008 \tjr\tra\n  14:\t24420001 \taddiu\tv0,v0,1\n"
+      "output": "\ntools/smoke/r5900.o:     file format elf32-tradlittlemips\n\n\nDisassembly of section .text:\n\n00000000 <smoke_fn>:\n   0:\t70851628 \tpaddub\tv0,a0,a1\n   4:\t7ba30010 \tlq\tv1,16(sp)\n   8:\t7fa30020 \tsq\tv1,32(sp)\n   c:\t70003030 \tpmfhl.lw\ta2\n  10:\t03e00008 \tjr\tra\n  14:\t24420001 \taddiu\tv0,v0,1\n"
     },
     "permuter-help": {
       "ok": true,
-      "cmd": "'/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/venv/bin/python' '/sessions/rcw-016d3ghcwl9m78mytizynhrb/mnt/Decompilation Assistant (PS2)/targets/stretch-panic-usa/tools/decomp-permuter/permuter.py' --help",
+      "cmd": "tools/venv/bin/python tools/decomp-permuter/permuter.py --help",
       "rc": 0,
       "output": "ious output with the\n                        given probability (float in 0..1, default 0.6).\n  -j THREADS            Number of own threads to use (default: 1 without -J, 0\n                        with -J).\n  -J                    Harness extra compute power through cyberspace\n                        (permuter@home).\n  --pah-debug           Enable debug prints for permuter@home.\n  --priority PRIORITY   Proportion of server resources to use when multiple\n                        people are using -J at the same time. Defaults to 1.0,\n                        meaning resources are split equally, but can be set to\n                        any value within [0.01, 2.0]. Each server runs with a\n                        priority threshold, which defaults to 0.1, below which\n                        they will not run permuter jobs at all.\n  --no-context-output   Removes all text above the target function in the\n                        output source files\n  --only-if-below SCORE_THRESHOLD\n                        Only report scores better (lower) than this value\n  --debug               Debug mode, only compiles and scores the base for\n                        debugging issues\n  --speed [1-100]       Speed% to run at to reduce resources. Default 100\n  --no-ignore-branch-targets\n                        Take branch targets into account when computing the\n                        score. Not recommended: it increases score volatility\n                        in combination with insertions/deletions.\n"
     }
