@@ -15,6 +15,7 @@ build/
 tools/*
 !tools/manifest.json
 !tools/objdiff_report.py
+!tools/lint_c.py
 wip/*/target.s
 wip/**/*.o
 wip/**/*.bin

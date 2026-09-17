@@ -12,12 +12,14 @@ them from the user's disc.
 ## Progress
 
 <!-- progress-table:start -->
+**Progress is not measured yet**: the segment map (S4) has not run, so the ledger holds only the calibration candidates (S2) and the totals below are not a share of the game. The decomp.dev report is published from the first segment map on.
+
 | Segment | Kind | Functions | Matched | Wip | Asm | Library | Bytes matched |
 |---|---|---|---|---|---|---|---|
-| image | unclassified | 8 | 4 | 4 | 0 | 0 | 284 (51.4%) |
+| calibration candidates | unclassified | 8 | 4 | 4 | 0 | 0 | 284 |
 | **total** | | 8 | 4 | 4 | 0 | 0 | 284 / 552 |
 
-Steps run: 3; last run: 2026-09-17-003-calibrate; build check: not yet run; compiler: mwcps2-2.3.3-000906; regenerated 2026-09-17T03:52:29Z.
+Steps run: 3; last run: 2026-09-17-003-calibrate; build check: not yet run; compiler: mwcps2-2.3.3-000906; regenerated 2026-09-17T05:16:38Z.
 <!-- progress-table:end -->
 
 ## Building and verifying
@@ -38,7 +40,12 @@ loaded memory image compared with the original (`build/check.json`).
 
 Disclosure: this decompilation is AI-assisted. C is proposed by language models
 and accepted only when it compiles byte-identical; every run's report and
-friction log are committed under `runs/`. See `CONTRIBUTING.md` to contribute.
+friction log are committed under `runs/`. Provenance is per function: the ledger
+record says who wrote the C (`match.origin`: the operator session, or the
+MatchRunner lane with its model and prompt hash). Byte-identical is the gate, not
+the goal: C that reaches 100 through a layout cast or a permuter's text is flagged
+by `tools/lint_c.py` (listed in the progress table when any exist) and rewritten
+as plain C at the next consolidate step. See `CONTRIBUTING.md` to contribute.
 
 ## Progress reporting
 

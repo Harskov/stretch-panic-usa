@@ -17,7 +17,8 @@ Writes the report: one unit per segment (name = segment; source_path = src/<segm
        that are linked into the rebuilt ELF (the byte-identical image, build/check.json).
        Categories: game (segments of kind game), sdk (kind sdk / libc). Data is not
        tracked by the ledger before S7 data-migrate and is reported as 0.
-Exit 0 written (prints the totals); 2 missing inputs.
+Exit 0 written (prints the totals) or, before segment-map, nothing written (a report
+       over the calibration candidates alone would be a false progress signal); 2 missing inputs.
 """
 import argparse
 import json
@@ -69,6 +70,13 @@ def main():
         print("ledger/functions.jsonl missing or empty (segment-map has not run): no report", file=sys.stderr)
         return 2
     segs = (json.loads((repo / "ledger" / "segments.json").read_text(encoding="utf-8")) if (repo / "ledger" / "segments.json").is_file() else {}).get("segments", [])
+    if not segs:
+        # Before segment-map the ledger holds only the calibration candidates; a report over
+        # them would publish a share of nothing (remediation 7). No report, exit 0, the
+        # workflow skips the upload.
+        print("ledger/segments.json missing (segment-map has not run): the ledger holds only calibration candidates, "
+              "which is not a progress measure — no report written", file=sys.stderr)
+        return 0
     seg_kind = {s["name"]: s.get("kind", "game") for s in segs}
     target = json.loads((repo / "config" / "target.json").read_text(encoding="utf-8")) if (repo / "config" / "target.json").is_file() else {}
 

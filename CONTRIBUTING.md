@@ -7,9 +7,12 @@ step machine, so a few rules keep human and automated work from colliding.
 
 - **A matched function**: the C for one or more functions, byte-identical to
   the original when compiled with the compiler and flags pinned in
-  `config/compiler.json` (`compiler_id`, `flags`). Put the source where the
-  segment's other functions live under `src/`, and state the objdiff score
-  (100) in the pull request. A function is only "matched" when its compiled
+  `config/compiler.json` (`compiler_id`, `flags`), written as the original could
+  have been — no second struct laid over an element address, no byte arithmetic
+  to reach a field, no `*(int *)&x`, no inline asm, no permuter output as it came
+  out (`python3 tools/lint_c.py --repo . <file>` exits 0 on it). Put the source
+  where the segment's other functions live under `src/`, and state the objdiff
+  score (100) in the pull request. A function is only "matched" when its compiled
   `.text` is byte-identical; a 99 % is a work-in-progress and can go in
   `wip/<function>/` as `attempt-N.c` with the score in the PR.
 - **A name or a type**: only with evidence — a referenced string, an SDK call
@@ -40,7 +43,7 @@ the PR, the PR is not merged as a match.
 ## Pull request checklist
 
 - Compiler id and flags used (must equal `config/compiler.json`).
-- Objdiff score per function.
+- Objdiff score per function; `tools/lint_c.py` exit 0 on the files.
 - Evidence for every name or struct field you introduce.
 - No compiled objects, no disassembly, no disc content, no ELF — the
   `.gitignore` refuses most of it; please do not force it in.
@@ -48,6 +51,8 @@ the PR, the PR is not merged as a match.
 ## Disclosure
 
 Matching in this repository is done partly with AI assistance (LLM-proposed C,
-verified by compiling and diffing). Contributions made the same way are fine;
-please say so in the PR. What matters is the byte-identical object, not who or
-what wrote the C.
+verified by compiling and diffing); the ledger records which lane wrote each
+function. Contributions made the same way are fine; please say so in the PR. A
+byte-identical object is the gate; the C also has to read as source a person
+would have written, and a match that gets to 100 through a layout trick is
+rewritten before the function counts as done.

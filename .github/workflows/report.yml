@@ -26,14 +26,21 @@ jobs:
         id: target
         run: echo "version=$(python3 -c 'import json; print(json.load(open("config/target.json"))["boot_file"])')" >> "$GITHUB_OUTPUT"
       - name: Generate the objdiff v2 report from the ledger
-        run: python3 tools/objdiff_report.py --repo . --out build/report.json
+        id: report
+        # Before the segment map (S4) the script writes nothing: the ledger then holds only
+        # calibration candidates, and a percentage over them is not progress.
+        run: |
+          python3 tools/objdiff_report.py --repo . --out build/report.json
+          echo "present=$([ -f build/report.json ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
       - name: Validate the report with objdiff-cli
+        if: steps.report.outputs.present == 'true'
         run: |
           curl --fail --location --retry 3 https://github.com/encounter/objdiff/releases/download/v3.8.1/objdiff-cli-linux-x86_64 -o "$RUNNER_TEMP/objdiff-cli"
           echo "c8290281e82114bcc1a06ff73061110d3902a177822e750337de2537188e358f  $RUNNER_TEMP/objdiff-cli" | sha256sum --check
           chmod +x "$RUNNER_TEMP/objdiff-cli"
           "$RUNNER_TEMP/objdiff-cli" report changes build/report.json build/report.json -o "$RUNNER_TEMP/report-validation.json"
       - name: Upload the decomp.dev report
+        if: steps.report.outputs.present == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: ${{ steps.target.outputs.version }}_report

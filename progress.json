@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-17T03:52:29Z",
+  "generated": "2026-09-17T05:16:38Z",
   "totals": {
     "functions": 8,
     "bytes_total": 552,
@@ -14,7 +14,9 @@
     "game_matched": 4,
     "game_matched_pct": 50.0,
     "external_matched": 0,
-    "operator_matched": 4
+    "operator_matched": 4,
+    "matched_with_lint": 0,
+    "lint_flagged": []
   },
   "segments": [
     {
