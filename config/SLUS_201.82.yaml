@@ -1,0 +1,42 @@
+# splat configuration for Stretch Panic (USA) SLUS_201.82 — written by gen_splat_yaml.py 2026-09-17T05:42:55Z
+name: stretch-panic-usa
+sha1: 0a330e76424b7254e4096d8809b2a927603d3581
+options:
+  basename: SLUS_201.82
+  target_path: disc/SLUS_201.82
+  base_path: ..
+  platform: ps2
+  compiler: MWCCPS2
+  asm_path: asm
+  src_path: src
+  build_path: build
+  ld_script_path: build/SLUS_201.82.ld
+  symbol_addrs_path: config/symbol_addrs.txt
+  undefined_funcs_auto_path: config/undefined_funcs_auto.txt
+  undefined_syms_auto_path: config/undefined_syms_auto.txt
+  find_file_boundaries: false
+  migrate_rodata_to_functions: false
+  asm_function_macro: glabel
+  asm_data_macro: dlabel
+  asm_jtbl_label_macro: jlabel
+  asm_inc_header: ".set noat      /* allow manual use of $at */\n.set noreorder /* don't insert nops after branches */\n\n"
+  section_order: [".text", ".data", ".rodata", ".bss"]
+  generated_c_preamble: "#include \"common.h\""
+  generated_s_preamble: ""
+  string_encoding: SHIFT-JIS
+  data_string_encoding: SHIFT-JIS
+  rodata_string_guesser_level: 0
+  data_string_guesser_level: 0
+  asm_emit_size_directive: false
+  gp_value: 0x006A77F0
+segments:
+  - name: main
+    type: code
+    start: 0x00000380
+    vram: 0x00100000
+    bss_size: 0x00014100
+    subalign: 16
+    subsegments:
+      - [0x00000380, asm, main]
+      - [0x0059FB80, bss, main_bss]
+  - [0x0059FB80]

@@ -1,0 +1,24 @@
+{
+  "at": "2026-09-17T05:42:55Z",
+  "mode": "initial",
+  "basename": "SLUS_201.82",
+  "load": {
+    "offset": "0x00000380",
+    "vaddr": "0x00100000",
+    "filesz": "0x0059F800",
+    "memsz": "0x005B3900"
+  },
+  "gp_value": "0x006A77F0",
+  "subsegments": [
+    {
+      "offset": "0x00000380",
+      "type": "asm",
+      "name": "main"
+    },
+    {
+      "offset": "0x0059FB80",
+      "type": "bss",
+      "name": "main_bss"
+    }
+  ]
+}

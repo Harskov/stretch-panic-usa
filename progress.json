@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-17T05:16:38Z",
+  "generated": "2026-09-17T05:51:25Z",
   "totals": {
     "functions": 8,
     "bytes_total": 552,
@@ -35,7 +35,7 @@
   ],
   "steps_run": 3,
   "last_run": "2026-09-17-003-calibrate",
-  "build_check_ok": null,
+  "build_check_ok": false,
   "link_regime": "undecided",
   "compiler_id": "mwcps2-2.3.3-000906",
   "calibrated": true,

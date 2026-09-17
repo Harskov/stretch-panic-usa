@@ -19,7 +19,7 @@ them from the user's disc.
 | calibration candidates | unclassified | 8 | 4 | 4 | 0 | 0 | 284 |
 | **total** | | 8 | 4 | 4 | 0 | 0 | 284 / 552 |
 
-Steps run: 3; last run: 2026-09-17-003-calibrate; build check: not yet run; compiler: mwcps2-2.3.3-000906; regenerated 2026-09-17T05:16:38Z.
+Steps run: 3; last run: 2026-09-17-003-calibrate; build check: RED; compiler: mwcps2-2.3.3-000906; regenerated 2026-09-17T05:51:25Z.
 <!-- progress-table:end -->
 
 ## Building and verifying

@@ -1,8 +1,8 @@
 {
-  "at": "2026-09-17T03:28:26Z",
+  "at": "2026-09-17T05:51:25Z",
   "proposed": "split-baseline",
   "step_id": "S3",
-  "reason": "build/check.json missing",
+  "reason": "check.json red (first diff None) with zero C",
   "notes": [],
   "never_auto_selected": [
     "ghidra-hints"
