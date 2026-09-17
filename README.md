@@ -66,6 +66,13 @@ python3 tools/objdiff_report.py --repo . --out build/report.json
 into the rebuilt ELF whose loaded image equals the original's (`build/check.json`).
 Categories: game code, SDK and libc.
 
+## Contributing
+
+`CONTRIBUTING.md` has the pinned compiler id and flags, how to verify a function at
+[decomp.me](https://decomp.me) or locally with objdiff against your own copy of the disc,
+and how a match is recorded in the ledger. Pull requests with plain, readable C are
+welcome; a matched function is one whose object is byte-identical to the original.
+
 ## License
 
 The C source, headers, configuration and records in this repository are under
