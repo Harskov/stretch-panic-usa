@@ -1,35 +1,6 @@
-typedef unsigned char u8;
-typedef unsigned int u32;
-typedef unsigned __int128 u128;
-typedef float f32;
+#include "game_01/obj1F0.h"
 
-typedef struct Sub {
-    unsigned char unk_00[0x54];
-    int unk_54;
-} Sub;
-
-typedef struct Arg1 {
-    unsigned char unk_00[0x80];
-    f32 unk_80;
-    unsigned char unk_84[0x44];
-    Sub *unk_C8;
-} Arg1;
-
-typedef struct Obj {
-    unsigned char unk_00[0x10];
-    u128 unk_10;
-    unsigned char unk_20[0x10];
-    u128 unk_30;
-    unsigned char unk_40[0x20];
-    int unk_60;
-    unsigned char unk_64[0x174];
-    int unk_1D8;
-    unsigned char unk_1DC[0x14];
-    u128 unk_1F0;
-    u128 unk_200;
-} Obj;
-
-void func_0015BA00(Obj *arg0, Arg1 *arg1) {
+void func_0015BA00(Obj1F0 *arg0, Owner1F0 *arg1) {
     f32 zero;
 
     arg0->unk_10 = arg0->unk_1F0;
