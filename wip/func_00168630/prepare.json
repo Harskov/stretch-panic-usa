@@ -1,0 +1,19 @@
+{
+  "at": "2026-09-18T17:30:24Z",
+  "function": "func_00168630",
+  "target_s": "wip/func_00168630/target.s",
+  "insns": 19,
+  "m2c": "ok",
+  "cop2_insns": 0,
+  "externs": {
+    "data": [],
+    "functions": [
+      "func_00168630"
+    ]
+  },
+  "exemplars": [
+    "func_001683E0",
+    "func_001653D0",
+    "func_00164E80"
+  ]
+}

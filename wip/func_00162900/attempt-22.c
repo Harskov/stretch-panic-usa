@@ -1,0 +1,33 @@
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned int u32;
+typedef unsigned long long u64;
+typedef signed char s8;
+typedef short s16;
+typedef int s32;
+typedef long long s64;
+typedef float f32;
+typedef unsigned __int128 u128;
+
+typedef struct Obj {
+    unsigned char unk_00[0x28C];
+    u8 unk_28C;
+    unsigned char unk_28D[0x310 - 0x28D];
+    u128 unk_310;
+    u128 unk_320;
+    u128 unk_330;
+} Obj;
+
+typedef struct Src {
+    unsigned char unk_00[0x80];
+    u128 unk_80;
+    u128 unk_90;
+    u128 unk_A0;
+} Src;
+
+void func_00162900(Obj *arg0, Src *arg1) {
+    arg0->unk_28C = 1;
+    arg0->unk_310 = arg1->unk_80;
+    arg0->unk_320 = arg1->unk_90;
+    arg0->unk_330 = arg1->unk_A0;
+}

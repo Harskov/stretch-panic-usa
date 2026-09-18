@@ -26,15 +26,17 @@ them from the user's disc.
 | sdk_libc | libc | 123 | 0 | 0 | 0 | 123 | 0 (0.0%) |
 | game_00 | game | 563 | 2 | 1 | 560 | 0 | 144 (0.1%) |
 | game_memcard | game | 74 | 0 | 0 | 74 | 0 | 0 (0.0%) |
-| game_01 | game | 714 | 11 | 4 | 699 | 0 | 492 (0.2%) |
+| game_01 | game | 714 | 31 | 12 | 671 | 0 | 1052 (0.5%) |
 | data_vu | data | 0 | 0 | 0 | 0 | 0 | 0 |
 | data_sdk | data | 0 | 0 | 0 | 0 | 0 | 0 |
 | data_game | data | 0 | 0 | 0 | 0 | 0 | 0 |
 | rodata_00 | rodata | 0 | 0 | 0 | 0 | 0 | 0 |
 | main_bss | bss | 0 | 0 | 0 | 0 | 0 | 0 |
-| **total** | | 2027 | 13 | 5 | 1337 | 672 | 636 / 510776 |
+| **total** | | 2027 | 33 | 13 | 1309 | 672 | 1196 / 510776 |
 
-Steps run: 6; last run: 2026-09-17-006-segment-map; build check: ok; compiler: mwcps2-2.3.3-000906; regenerated 2026-09-17T14:17:44Z.
+Matched by the operator: 13; by the external lane (MatchRunner): 20 in 3 batch(es) (last 2026-09-18-003).
+
+Steps run: 7; last run: 2026-09-17-007-match-batch; build check: ok; compiler: mwcps2-2.3.3-000906; regenerated 2026-09-18T19:27:31Z.
 <!-- progress-table:end -->
 
 ## Building and verifying

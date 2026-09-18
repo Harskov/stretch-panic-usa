@@ -1,19 +1,19 @@
 {
-  "generated": "2026-09-17T14:17:44Z",
+  "generated": "2026-09-18T19:27:31Z",
   "totals": {
     "functions": 2027,
     "bytes_total": 510776,
-    "bytes_matched": 636,
-    "matched": 13,
-    "wip": 5,
-    "asm": 1337,
+    "bytes_matched": 1196,
+    "matched": 33,
+    "wip": 13,
+    "asm": 1309,
     "library": 672,
     "skipped-data": 0,
     "unassigned": 0,
     "game_functions": 1355,
-    "game_matched": 13,
-    "game_matched_pct": 0.96,
-    "external_matched": 0,
+    "game_matched": 33,
+    "game_matched_pct": 2.44,
+    "external_matched": 20,
     "operator_matched": 13,
     "matched_with_lint": 0,
     "lint_flagged": []
@@ -180,10 +180,10 @@
       "kind": "game",
       "functions": 714,
       "bytes_total": 220924,
-      "bytes_matched": 492,
-      "matched": 11,
-      "wip": 4,
-      "asm": 699,
+      "bytes_matched": 1052,
+      "matched": 31,
+      "wip": 12,
+      "asm": 671,
       "library": 0,
       "skipped-data": 0,
       "unassigned": 0
@@ -254,16 +254,16 @@
       "unassigned": 0
     }
   ],
-  "steps_run": 6,
-  "last_run": "2026-09-17-006-segment-map",
+  "steps_run": 7,
+  "last_run": "2026-09-17-007-match-batch",
   "build_check_ok": true,
   "link_regime": "full",
   "compiler_id": "mwcps2-2.3.3-000906",
   "calibrated": true,
   "runner": {
-    "batches": 0,
-    "matched": 0,
-    "cost_usd": 0,
-    "last_batch": null
+    "batches": 3,
+    "matched": 20,
+    "cost_usd": 0.063,
+    "last_batch": "2026-09-18-003"
   }
 }
