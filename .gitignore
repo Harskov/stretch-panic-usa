@@ -50,6 +50,8 @@ bench/*/attempts/*.o
 bench/*/*.bin
 bench/*/*/*.o
 state/runner.lock
-# xrefs.py index: derived from the asm in 3 s, holds decoded game strings; regenerated, never committed
+# xrefs.py index and naming census: derived from the asm, hold decoded game strings;
+# regenerated, never committed (remediation 12)
 reference/xrefs-index.json
+reference/naming-census.json
 targets-state.json
