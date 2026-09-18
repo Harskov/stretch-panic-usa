@@ -1,0 +1,39 @@
+{
+  "function": "func_00167ED0",
+  "addr": "0x00167ED0",
+  "status": "asm",
+  "segment": "game_01",
+  "asm_file": "asm/game_01_23.s",
+  "callers": [],
+  "referenced_from_data": [
+    "D_0069CD10"
+  ],
+  "callees": [
+    {
+      "name": "func_00114EC8",
+      "status": "library/sdk_libm",
+      "call_sites": 2
+    },
+    {
+      "name": "func_00168530",
+      "status": "asm/game_01",
+      "call_sites": 1
+    },
+    {
+      "name": "func_00168630",
+      "status": "matched/game_01",
+      "call_sites": 1
+    }
+  ],
+  "references": [
+    {
+      "symbol": "D_006A6B80",
+      "kind": "unknown",
+      "string": null,
+      "words": null,
+      "file": null
+    }
+  ],
+  "at": "2026-09-18T20:52:55Z",
+  "index": "reference/xrefs-index.json"
+}

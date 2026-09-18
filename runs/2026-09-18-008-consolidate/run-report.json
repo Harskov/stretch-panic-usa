@@ -1,0 +1,25 @@
+{
+  "at": "2026-09-18T21:00:48Z",
+  "run_id": "2026-09-18-008-consolidate",
+  "lines": 57,
+  "max_lines": 80,
+  "friction_severities": {
+    "major": 1,
+    "minor": 1
+  },
+  "fields": {
+    "run_id": "2026-09-18-008-consolidate",
+    "step_type": "consolidate",
+    "step_id": "S8",
+    "target": "stretch-panic-usa",
+    "override_note": " — proposed by next_step.py",
+    "started": "2026-09-18T20:51:38Z",
+    "finished": "2026-09-18T21:00:12Z",
+    "commit": "the commit whose message starts `run 2026-09-18-008-consolidate:` (git log --grep)",
+    "what_changed": "- Ledger: no status changes.\n- The step's decisive result is negative on naming and positive on types. None of the five admitted naming sources reaches any of the 33 matched functions: no matched func",
+    "build_check": "`check.json`: ok = **True**, checked 2026-09-18T21:00:06Z, regime `full`; image 0x00100000–0x0069F800, rebuilt 5896192 of 5896192 bytes; first diff None, 0 differing byte(s). Segments: crt0 ok; mw_run",
+    "step_table": "# Rename table — run 2026-09-18-008-consolidate\n\n| old | new | evidence |\n|---|---|---|\n| — | — | n/a — no function clears the evidence bar |\n\nNo name was written this run. `ledger/renames.jsonl` is u",
+    "next_step": "S6 match-batch — 1322 game function(s) still asm/wip; batch size 12\n- note: external lane: 4 runner batch(es), 20 matched, $0.09 in state/runner-steps.jsonl (never a step of a run)",
+    "friction_summary": "2 entries (major 1, minor 1); stages attested: E, R, S, V, X; export: FRICTION-REPORT.md\n- F-1 [major/tool-gap] xrefs.py cannot report a matched, linked function — the evidence S8 needs disappears at "
+  }
+}

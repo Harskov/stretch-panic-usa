@@ -1,21 +1,6 @@
-typedef struct Slot {
-    unsigned char active;
-    unsigned char unk_01[0x1F];
-    float pos_x;
-    float vel_x;
-    float pos_y;
-    float vel_y;
-    float pos_z;
-    float vel_z;
-    unsigned char unk_38[8];
-} Slot;
+#include "game_01/pool70.h"
 
-typedef struct Pool {
-    unsigned char unk_00[0x70];
-    Slot slots[8];
-} Pool;
-
-void func_001578C0(Pool *p, int i) {
+void func_001578C0(Pool70 *p, int i) {
     p->slots[i].pos_x += p->slots[i].vel_x;
     p->slots[i].pos_y += p->slots[i].vel_y;
     p->slots[i].pos_z += p->slots[i].vel_z;

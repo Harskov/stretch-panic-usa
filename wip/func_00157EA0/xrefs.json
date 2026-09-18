@@ -1,0 +1,46 @@
+{
+  "function": "func_00157EA0",
+  "addr": "0x00157EA0",
+  "status": "asm",
+  "segment": "game_01",
+  "asm_file": "asm/game_01_5.s",
+  "callers": [
+    {
+      "name": "func_00157D60",
+      "status": "asm/game_01",
+      "call_sites": 1,
+      "file": "asm/game_01_4.s"
+    }
+  ],
+  "referenced_from_data": [],
+  "callees": [
+    {
+      "name": "func_00114B28",
+      "status": "library/sdk_libm",
+      "call_sites": 2
+    },
+    {
+      "name": "func_00114EC8",
+      "status": "library/sdk_libm",
+      "call_sites": 3
+    },
+    {
+      "name": "func_00119AB0",
+      "status": "library/sdk_libc",
+      "call_sites": 4
+    },
+    {
+      "name": "func_00157E60",
+      "status": "matched/game_01",
+      "call_sites": 1
+    },
+    {
+      "name": "func_0016B6B0",
+      "status": "asm/game_01",
+      "call_sites": 1
+    }
+  ],
+  "references": [],
+  "at": "2026-09-18T20:52:55Z",
+  "index": "reference/xrefs-index.json"
+}

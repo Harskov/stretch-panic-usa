@@ -1,0 +1,15 @@
+{
+  "function": "func_00169A40",
+  "addr": "0x00169A40",
+  "status": "matched",
+  "segment": "game_01",
+  "asm_file": "wip/func_00169A40/target.s",
+  "callers": [],
+  "referenced_from_data": [
+    "D_0069CD70"
+  ],
+  "callees": [],
+  "references": [],
+  "at": "2026-09-18T20:52:16Z",
+  "index": "reference/xrefs-index.json"
+}

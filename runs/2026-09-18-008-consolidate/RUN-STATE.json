@@ -1,0 +1,31 @@
+{
+  "run_id": "2026-09-18-008-consolidate",
+  "step_id": "S8",
+  "step_type": "consolidate",
+  "override": false,
+  "proposed": "consolidate",
+  "proposed_reason": "33 matches since the last consolidate (threshold 25)",
+  "reason": "33 matches since the last consolidate (threshold 25)",
+  "target": "stretch-panic-usa",
+  "started": "2026-09-18T20:51:38Z",
+  "finished": "2026-09-18T21:00:12Z",
+  "stage": "done",
+  "position": {},
+  "outcome": "complete",
+  "commit": null,
+  "notes": [
+    "external lane: 4 runner batch(es), 20 matched, $0.09 in state/runner-steps.jsonl (never a step of a run)"
+  ],
+  "ledger_at_start": {
+    "functions": 2027,
+    "matched": 33,
+    "wip": 13,
+    "asm": 1309,
+    "library": 672,
+    "skipped-data": 0,
+    "external_matched": 20,
+    "runner_batches": 4
+  },
+  "updated": "2026-09-18T20:58:34Z",
+  "summary": "two shared headers (pool70.h, obj1F0.h) for the structs 7 matched functions agreed on; all 7 rewritten and re-marked at objdiff 100; 11 ledger notes recording the vtable-slot evidence; no rename clears the evidence bar"
+}

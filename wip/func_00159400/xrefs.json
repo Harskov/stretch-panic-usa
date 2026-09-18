@@ -1,0 +1,21 @@
+{
+  "function": "func_00159400",
+  "addr": "0x00159400",
+  "status": "asm",
+  "segment": "game_01",
+  "asm_file": "asm/game_01_8.s",
+  "callers": [],
+  "referenced_from_data": [
+    "D_0069CA00"
+  ],
+  "callees": [
+    {
+      "name": "func_00159E20",
+      "status": "matched/game_01",
+      "call_sites": 1
+    }
+  ],
+  "references": [],
+  "at": "2026-09-18T20:52:54Z",
+  "index": "reference/xrefs-index.json"
+}
