@@ -1,0 +1,15 @@
+{
+  "function": "func_00145A10",
+  "addr": "0x00145A10",
+  "status": "matched",
+  "segment": "game_00",
+  "asm_file": "calibration/func_00145A10/target.s",
+  "callers": [],
+  "referenced_from_data": [
+    "D_0069C8B0"
+  ],
+  "callees": [],
+  "references": [],
+  "at": "2026-09-18T21:19:28Z",
+  "index": "reference/xrefs-index.json"
+}
