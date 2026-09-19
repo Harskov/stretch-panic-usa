@@ -29,7 +29,7 @@ systematic name (`func_00123456`, `D_0052ABCD`) stays, and struct fields stay `u
 
 ## Progress
 
-**113 of 1355** game functions are matched (1.08 % of the game code by size), and 0 game functions carry a name backed by evidence. 672 SDK and runtime-library functions are identified as library code and are not counted.
+**121 of 1355** game functions are matched (1.37 % of the game code by size), and 0 game functions carry a name backed by evidence. 672 SDK and runtime-library functions are identified as library code and are not counted.
 
 The per-function report is on [decomp.dev](https://decomp.dev/Harskov/stretch-panic-usa).
 
