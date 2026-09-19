@@ -26,17 +26,19 @@ them from the user's disc.
 | sdk_libc | libc | 123 | 0 | 0 | 0 | 123 | 0 (0.0%) |
 | game_00 | game | 563 | 2 | 1 | 560 | 0 | 144 (0.1%) |
 | game_memcard | game | 74 | 0 | 0 | 74 | 0 | 0 (0.0%) |
-| game_01 | game | 714 | 81 | 32 | 601 | 0 | 2652 (1.2%) |
+| game_01 | game | 714 | 102 | 39 | 573 | 0 | 3336 (1.5%) |
 | data_vu | data | 0 | 0 | 0 | 0 | 0 | 0 |
 | data_sdk | data | 0 | 0 | 0 | 0 | 0 | 0 |
 | data_game | data | 0 | 0 | 0 | 0 | 0 | 0 |
 | rodata_00 | rodata | 0 | 0 | 0 | 0 | 0 | 0 |
 | main_bss | bss | 0 | 0 | 0 | 0 | 0 | 0 |
-| **total** | | 2027 | 83 | 33 | 1239 | 672 | 2796 / 510776 |
+| **total** | | 2027 | 104 | 40 | 1211 | 672 | 3480 / 510776 |
 
-Matched by the operator: 19; by the external lane (MatchRunner): 64 in 15 batch(es) (last 2026-09-19-006).
+Matched functions whose C still carries a layout cast flagged by `lint_c.py` (byte-identical, not final source; rewritten at consolidate): 3 — func_00151460, func_001514A0, func_00179E80.
 
-Steps run: 10; last run: 2026-09-19-010-ghidra-hints; build check: ok; compiler: mwcps2-2.3.3-000906; regenerated 2026-09-19T06:44:03Z.
+Matched by the operator: 19; by the external lane (MatchRunner): 85 in 18 batch(es) (last 2026-09-19-009).
+
+Steps run: 11; last run: 2026-09-19-011-match-batch; build check: ok; compiler: mwcps2-2.3.3-000906; regenerated 2026-09-19T08:09:15Z.
 <!-- progress-table:end -->
 
 ## Building and verifying

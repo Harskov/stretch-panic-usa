@@ -1,0 +1,17 @@
+{
+  "function": "func_00178B30",
+  "provider": "deepseek",
+  "model": "deepseek-flash",
+  "ladder": "deepseek-flash/none x3 -> deepseek-flash/high x3 -> deepseek-v4-pro/max xrest",
+  "prompt_version": "ds-v1",
+  "prompt_sha": "0d9bb441e13f1f1b77e4b62a9654fed885d9767ec40131dd0d34264d83b2618d",
+  "started": "2026-09-19T07:30:55Z",
+  "state": "error",
+  "attempts": [],
+  "usd": 0.0,
+  "tokens": 0,
+  "updated": "2026-09-19T07:50:26Z",
+  "note": "prepare failed: ERROR: func_00178B30: asm not found in asm/*.s",
+  "finished": "2026-09-19T07:50:26Z",
+  "elapsed": -0.4
+}

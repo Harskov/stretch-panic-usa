@@ -1,22 +1,26 @@
 {
-  "generated": "2026-09-19T06:44:03Z",
+  "generated": "2026-09-19T08:09:15Z",
   "totals": {
     "functions": 2027,
     "bytes_total": 510776,
-    "bytes_matched": 2796,
-    "matched": 83,
-    "wip": 33,
-    "asm": 1239,
+    "bytes_matched": 3480,
+    "matched": 104,
+    "wip": 40,
+    "asm": 1211,
     "library": 672,
     "skipped-data": 0,
     "unassigned": 0,
     "game_functions": 1355,
-    "game_matched": 83,
-    "game_matched_pct": 6.13,
-    "external_matched": 64,
+    "game_matched": 104,
+    "game_matched_pct": 7.68,
+    "external_matched": 85,
     "operator_matched": 19,
-    "matched_with_lint": 0,
-    "lint_flagged": []
+    "matched_with_lint": 3,
+    "lint_flagged": [
+      "func_00151460",
+      "func_001514A0",
+      "func_00179E80"
+    ]
   },
   "segments": [
     {
@@ -180,10 +184,10 @@
       "kind": "game",
       "functions": 714,
       "bytes_total": 220924,
-      "bytes_matched": 2652,
-      "matched": 81,
-      "wip": 32,
-      "asm": 601,
+      "bytes_matched": 3336,
+      "matched": 102,
+      "wip": 39,
+      "asm": 573,
       "library": 0,
       "skipped-data": 0,
       "unassigned": 0
@@ -254,16 +258,16 @@
       "unassigned": 0
     }
   ],
-  "steps_run": 10,
-  "last_run": "2026-09-19-010-ghidra-hints",
+  "steps_run": 11,
+  "last_run": "2026-09-19-011-match-batch",
   "build_check_ok": true,
   "link_regime": "full",
   "compiler_id": "mwcps2-2.3.3-000906",
   "calibrated": true,
   "runner": {
-    "batches": 15,
-    "matched": 64,
-    "cost_usd": 0.7129,
-    "last_batch": "2026-09-19-006"
+    "batches": 18,
+    "matched": 85,
+    "cost_usd": 1.2246,
+    "last_batch": "2026-09-19-009"
   }
 }
