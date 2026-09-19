@@ -15,7 +15,12 @@ typedef struct Vec {
 } Vec;
 
 typedef struct Ent {
-    u8 pad0[0x64];
+    u8 pad0[0x10];
+    /* +0x10 is read 16 bytes wide into +0x510, so it is a 128-bit field, not
+       part of the leading padding (K1 section 8: the pinned compiler emits
+       lq/sq only for a 128-bit type). */
+    u128 v10;
+    u8 pad20[0x64 - 0x20];
     s32 i64;
     s32 i68;
     u8 pad6C[0x178 - 0x6C];
@@ -44,5 +49,5 @@ void func_00179E80(Ent *arg0)
     arg0->i64 = 0;
     arg0->i68 = 0;
     arg0->b4E9 = 0;
-    arg0->v510 = *(u128 *)((u8 *)arg0 + 0x10);
+    arg0->v510 = arg0->v10;
 }

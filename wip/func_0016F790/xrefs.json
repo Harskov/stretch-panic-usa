@@ -1,0 +1,35 @@
+{
+  "function": "func_0016F790",
+  "addr": "0x0016F790",
+  "status": "matched",
+  "segment": "game_01",
+  "asm_file": "wip/func_0016F790/target.s",
+  "callers": [],
+  "referenced_from_data": [],
+  "callees": [],
+  "references": [
+    {
+      "symbol": "D_006AEE40",
+      "kind": "unknown",
+      "string": null,
+      "words": null,
+      "file": null
+    },
+    {
+      "symbol": "D_006AEE58",
+      "kind": "unknown",
+      "string": null,
+      "words": null,
+      "file": null
+    },
+    {
+      "symbol": "D_006AEE60",
+      "kind": "unknown",
+      "string": null,
+      "words": null,
+      "file": null
+    }
+  ],
+  "at": "2026-09-19T08:52:44Z",
+  "index": "reference/xrefs-index.json"
+}

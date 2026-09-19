@@ -1,0 +1,20 @@
+{
+  "function": "func_0016E740",
+  "addr": "0x0016E740",
+  "status": "matched",
+  "segment": "game_01",
+  "asm_file": "wip/func_0016E740/target.s",
+  "callers": [
+    {
+      "name": "func_0017B170",
+      "status": "asm/game_01",
+      "call_sites": 1,
+      "file": "asm/game_01_100.s"
+    }
+  ],
+  "referenced_from_data": [],
+  "callees": [],
+  "references": [],
+  "at": "2026-09-19T08:50:42Z",
+  "index": "reference/xrefs-index.json"
+}

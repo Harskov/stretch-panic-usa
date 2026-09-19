@@ -1,0 +1,31 @@
+{
+  "run_id": "2026-09-19-012-consolidate",
+  "step_id": "S8",
+  "step_type": "consolidate",
+  "override": false,
+  "proposed": "consolidate",
+  "proposed_reason": "27 matches since the last consolidate (threshold 25)",
+  "reason": "27 matches since the last consolidate (threshold 25)",
+  "target": "stretch-panic-usa",
+  "started": "2026-09-19T08:48:32Z",
+  "finished": "2026-09-19T08:55:28Z",
+  "stage": "done",
+  "position": {},
+  "outcome": "complete",
+  "commit": null,
+  "notes": [
+    "external lane: 19 runner batch(es), 85 matched, $1.60 in state/runner-steps.jsonl (never a step of a run)"
+  ],
+  "ledger_at_start": {
+    "functions": 2027,
+    "matched": 104,
+    "wip": 40,
+    "asm": 1211,
+    "library": 672,
+    "skipped-data": 0,
+    "external_matched": 68,
+    "runner_batches": 19
+  },
+  "updated": "2026-09-19T08:53:18Z",
+  "summary": "consolidate — 46 SDK stubs renamed from the Ghidra export in one batch; the three lint errors rewritten onto typed structs, one new shared header, objects unchanged; lint_c exit 0"
+}
