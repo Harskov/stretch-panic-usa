@@ -1,0 +1,31 @@
+{
+  "run_id": "2026-09-19-010-ghidra-hints",
+  "step_id": "S5",
+  "step_type": "ghidra-hints",
+  "override": true,
+  "proposed": "match-batch",
+  "proposed_reason": "1278 game function(s) still asm/wip; batch size 12",
+  "reason": "named in chat: S5 ghidra-hints on both targets",
+  "target": "stretch-panic-usa",
+  "started": "2026-09-19T04:42:32Z",
+  "finished": "2026-09-19T04:46:42Z",
+  "stage": "done",
+  "position": {},
+  "outcome": "complete",
+  "commit": null,
+  "notes": [
+    "external lane: 15 runner batch(es), 64 matched, $0.71 in state/runner-steps.jsonl (never a step of a run)"
+  ],
+  "ledger_at_start": {
+    "functions": 2027,
+    "matched": 77,
+    "wip": 35,
+    "asm": 1243,
+    "library": 672,
+    "skipped-data": 0,
+    "external_matched": 47,
+    "runner_batches": 15
+  },
+  "updated": "2026-09-19T04:46:07Z",
+  "summary": "Ghidra 12.1.3 + emotionengine-reloaded v2.1.37 headless export: 1669 functions, 25992 xrefs, 494 strings, 1666 decompiler C files under reference/ghidra/ with MANIFEST.json; exports gitignored, check green"
+}

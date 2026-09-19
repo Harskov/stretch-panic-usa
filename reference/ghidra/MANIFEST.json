@@ -1,0 +1,29 @@
+{
+  "step": "S5 ghidra-hints",
+  "target": "stretch-panic-usa",
+  "elf": "SLUS_201.82",
+  "elf_sha1": "0a330e76424b7254e4096d8809b2a927603d3581",
+  "ghidra_version": "12.1.3 PUBLIC (ghidra_12.1.3_PUBLIC_20260817.zip)",
+  "ghidra_zip_sha256": "93a5d11a9ad510622acaaf908c556a7b9b764d338e78a7567f3689bf5081fd54",
+  "extension": "ghidra-emotionengine-reloaded v2.1.37 (asset ghidra_12.1.3_PUBLIC_20260825_...zip)",
+  "extension_zip_sha256": "3af7641174b470bf19ec32b72b3929dbd21ec3f11d66894d2316be044fac1258",
+  "language_id": "r5900:LE:32:default",
+  "exported": "2026-09-19",
+  "run": "2026-09-19-010-ghidra-hints",
+  "where": "cloud sandbox (JDK 21.0.10); the archives were downloaded on the operator's VM because the sandbox's egress policy refuses github.com",
+  "counts": {
+    "functions": 1669,
+    "xrefs": 25992,
+    "strings": 494,
+    "decomp_files": 1666
+  },
+  "decompile_failures": 0,
+  "exports": [
+    "functions.json",
+    "xrefs.json",
+    "strings.json",
+    "decomp/<addr>.c"
+  ],
+  "publication": "the four exports are gitignored: they are lifted from the ELF (decompiler C, decoded game strings, xref graph) the way asm/ and reference/xrefs-index.json are. This MANIFEST.json is the committed record; regenerate the exports by re-running S5.",
+  "use": "hints for S8 naming and for choosing S6 batches by xref density; never copied into src/. Ghidra's function boundaries and the ledger's may differ - the ledger's (from splat) are the project's."
+}
