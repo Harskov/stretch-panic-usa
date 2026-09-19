@@ -1,5 +1,5 @@
 {
-  "at": "2026-09-19T12:43:03Z",
+  "at": "2026-09-19T13:21:00Z",
   "mode": "from-segments",
   "basename": "SLUS_201.82",
   "load": {
@@ -217,8 +217,28 @@
     },
     {
       "offset": "0x00052680",
+      "type": "c",
+      "name": "game_01/func_00152300"
+    },
+    {
+      "offset": "0x00052700",
+      "type": "c",
+      "name": "game_01/func_00152380"
+    },
+    {
+      "offset": "0x00052774",
       "type": "asm",
       "name": "game_01_12"
+    },
+    {
+      "offset": "0x00052950",
+      "type": "c",
+      "name": "game_01/func_001525D0"
+    },
+    {
+      "offset": "0x00052974",
+      "type": "asm",
+      "name": "game_01_13"
     },
     {
       "offset": "0x00052980",
@@ -228,7 +248,7 @@
     {
       "offset": "0x000529A4",
       "type": "asm",
-      "name": "game_01_13"
+      "name": "game_01_14"
     },
     {
       "offset": "0x000529B0",
@@ -238,7 +258,7 @@
     {
       "offset": "0x000529C0",
       "type": "asm",
-      "name": "game_01_14"
+      "name": "game_01_15"
     },
     {
       "offset": "0x000571A0",
@@ -248,7 +268,7 @@
     {
       "offset": "0x000571A8",
       "type": "asm",
-      "name": "game_01_15"
+      "name": "game_01_16"
     },
     {
       "offset": "0x000571B0",
@@ -258,7 +278,7 @@
     {
       "offset": "0x000571B8",
       "type": "asm",
-      "name": "game_01_16"
+      "name": "game_01_17"
     },
     {
       "offset": "0x000579D0",
@@ -268,7 +288,7 @@
     {
       "offset": "0x00057A04",
       "type": "asm",
-      "name": "game_01_17"
+      "name": "game_01_18"
     },
     {
       "offset": "0x00057C40",
@@ -278,7 +298,7 @@
     {
       "offset": "0x00057C94",
       "type": "asm",
-      "name": "game_01_18"
+      "name": "game_01_19"
     },
     {
       "offset": "0x000581E0",
@@ -288,7 +308,7 @@
     {
       "offset": "0x00058214",
       "type": "asm",
-      "name": "game_01_19"
+      "name": "game_01_20"
     },
     {
       "offset": "0x00058450",
@@ -298,7 +318,7 @@
     {
       "offset": "0x000584A4",
       "type": "asm",
-      "name": "game_01_20"
+      "name": "game_01_21"
     },
     {
       "offset": "0x000589F0",
@@ -308,7 +328,7 @@
     {
       "offset": "0x00058A04",
       "type": "asm",
-      "name": "game_01_21"
+      "name": "game_01_22"
     },
     {
       "offset": "0x000596B0",
@@ -318,7 +338,7 @@
     {
       "offset": "0x000596B8",
       "type": "asm",
-      "name": "game_01_22"
+      "name": "game_01_23"
     },
     {
       "offset": "0x00059BA0",
@@ -328,7 +348,7 @@
     {
       "offset": "0x00059BD4",
       "type": "asm",
-      "name": "game_01_23"
+      "name": "game_01_24"
     },
     {
       "offset": "0x0005A1A0",
@@ -338,7 +358,7 @@
     {
       "offset": "0x0005A1F8",
       "type": "asm",
-      "name": "game_01_24"
+      "name": "game_01_25"
     },
     {
       "offset": "0x0005A290",
@@ -348,7 +368,7 @@
     {
       "offset": "0x0005A298",
       "type": "asm",
-      "name": "game_01_25"
+      "name": "game_01_26"
     },
     {
       "offset": "0x0005A2A0",
@@ -358,7 +378,7 @@
     {
       "offset": "0x0005A2AC",
       "type": "asm",
-      "name": "game_01_26"
+      "name": "game_01_27"
     },
     {
       "offset": "0x0005B880",
@@ -368,7 +388,7 @@
     {
       "offset": "0x0005B8B4",
       "type": "asm",
-      "name": "game_01_27"
+      "name": "game_01_28"
     },
     {
       "offset": "0x0005BD80",
@@ -378,7 +398,7 @@
     {
       "offset": "0x0005BDF8",
       "type": "asm",
-      "name": "game_01_28"
+      "name": "game_01_29"
     },
     {
       "offset": "0x0005D890",
@@ -388,7 +408,7 @@
     {
       "offset": "0x0005D898",
       "type": "asm",
-      "name": "game_01_29"
+      "name": "game_01_30"
     },
     {
       "offset": "0x0005D8A0",
@@ -398,7 +418,7 @@
     {
       "offset": "0x0005D8A8",
       "type": "asm",
-      "name": "game_01_30"
+      "name": "game_01_31"
     },
     {
       "offset": "0x0005D8B0",
@@ -408,7 +428,7 @@
     {
       "offset": "0x0005D8B8",
       "type": "asm",
-      "name": "game_01_31"
+      "name": "game_01_32"
     },
     {
       "offset": "0x0005D8C0",
@@ -418,7 +438,7 @@
     {
       "offset": "0x0005D8C8",
       "type": "asm",
-      "name": "game_01_32"
+      "name": "game_01_33"
     },
     {
       "offset": "0x00062B10",
@@ -428,7 +448,17 @@
     {
       "offset": "0x00062B2C",
       "type": "asm",
-      "name": "game_01_33"
+      "name": "game_01_34"
+    },
+    {
+      "offset": "0x00062C80",
+      "type": "c",
+      "name": "game_01/func_00162900"
+    },
+    {
+      "offset": "0x00062CA4",
+      "type": "asm",
+      "name": "game_01_35"
     },
     {
       "offset": "0x000637F0",
@@ -438,7 +468,7 @@
     {
       "offset": "0x000637F8",
       "type": "asm",
-      "name": "game_01_34"
+      "name": "game_01_36"
     },
     {
       "offset": "0x00063800",
@@ -448,7 +478,7 @@
     {
       "offset": "0x00063808",
       "type": "asm",
-      "name": "game_01_35"
+      "name": "game_01_37"
     },
     {
       "offset": "0x00063A40",
@@ -458,7 +488,7 @@
     {
       "offset": "0x00063A90",
       "type": "asm",
-      "name": "game_01_36"
+      "name": "game_01_38"
     },
     {
       "offset": "0x00065200",
@@ -468,7 +498,7 @@
     {
       "offset": "0x00065258",
       "type": "asm",
-      "name": "game_01_37"
+      "name": "game_01_39"
     },
     {
       "offset": "0x00065750",
@@ -478,7 +508,7 @@
     {
       "offset": "0x000657A0",
       "type": "asm",
-      "name": "game_01_38"
+      "name": "game_01_40"
     },
     {
       "offset": "0x00067110",
@@ -488,7 +518,17 @@
     {
       "offset": "0x00067160",
       "type": "asm",
-      "name": "game_01_39"
+      "name": "game_01_41"
+    },
+    {
+      "offset": "0x00068720",
+      "type": "c",
+      "name": "game_01/func_001683A0"
+    },
+    {
+      "offset": "0x00068758",
+      "type": "asm",
+      "name": "game_01_42"
     },
     {
       "offset": "0x00068760",
@@ -498,7 +538,7 @@
     {
       "offset": "0x00068768",
       "type": "asm",
-      "name": "game_01_40"
+      "name": "game_01_43"
     },
     {
       "offset": "0x000689B0",
@@ -508,7 +548,7 @@
     {
       "offset": "0x000689FC",
       "type": "asm",
-      "name": "game_01_41"
+      "name": "game_01_44"
     },
     {
       "offset": "0x000691A0",
@@ -518,7 +558,7 @@
     {
       "offset": "0x000691A8",
       "type": "asm",
-      "name": "game_01_42"
+      "name": "game_01_45"
     },
     {
       "offset": "0x00069910",
@@ -528,7 +568,7 @@
     {
       "offset": "0x00069918",
       "type": "asm",
-      "name": "game_01_43"
+      "name": "game_01_46"
     },
     {
       "offset": "0x00069A30",
@@ -538,7 +578,7 @@
     {
       "offset": "0x00069A38",
       "type": "asm",
-      "name": "game_01_44"
+      "name": "game_01_47"
     },
     {
       "offset": "0x00069A40",
@@ -548,7 +588,7 @@
     {
       "offset": "0x00069A48",
       "type": "asm",
-      "name": "game_01_45"
+      "name": "game_01_48"
     },
     {
       "offset": "0x00069DC0",
@@ -558,7 +598,7 @@
     {
       "offset": "0x00069DC8",
       "type": "asm",
-      "name": "game_01_46"
+      "name": "game_01_49"
     },
     {
       "offset": "0x00069DD0",
@@ -568,7 +608,7 @@
     {
       "offset": "0x00069DD8",
       "type": "asm",
-      "name": "game_01_47"
+      "name": "game_01_50"
     },
     {
       "offset": "0x00069DE0",
@@ -578,7 +618,7 @@
     {
       "offset": "0x00069DE8",
       "type": "asm",
-      "name": "game_01_48"
+      "name": "game_01_51"
     },
     {
       "offset": "0x00069DF0",
@@ -588,7 +628,7 @@
     {
       "offset": "0x00069DF8",
       "type": "asm",
-      "name": "game_01_49"
+      "name": "game_01_52"
     },
     {
       "offset": "0x00069E00",
@@ -598,7 +638,7 @@
     {
       "offset": "0x00069E08",
       "type": "asm",
-      "name": "game_01_50"
+      "name": "game_01_53"
     },
     {
       "offset": "0x0006BA00",
@@ -608,7 +648,7 @@
     {
       "offset": "0x0006BA08",
       "type": "asm",
-      "name": "game_01_51"
+      "name": "game_01_54"
     },
     {
       "offset": "0x0006BA10",
@@ -618,7 +658,7 @@
     {
       "offset": "0x0006BA18",
       "type": "asm",
-      "name": "game_01_52"
+      "name": "game_01_55"
     },
     {
       "offset": "0x0006BA20",
@@ -628,7 +668,7 @@
     {
       "offset": "0x0006BA28",
       "type": "asm",
-      "name": "game_01_53"
+      "name": "game_01_56"
     },
     {
       "offset": "0x0006C170",
@@ -638,7 +678,7 @@
     {
       "offset": "0x0006C188",
       "type": "asm",
-      "name": "game_01_54"
+      "name": "game_01_57"
     },
     {
       "offset": "0x0006C200",
@@ -648,7 +688,7 @@
     {
       "offset": "0x0006C218",
       "type": "asm",
-      "name": "game_01_55"
+      "name": "game_01_58"
     },
     {
       "offset": "0x0006C220",
@@ -658,7 +698,17 @@
     {
       "offset": "0x0006C228",
       "type": "asm",
-      "name": "game_01_56"
+      "name": "game_01_59"
+    },
+    {
+      "offset": "0x0006C250",
+      "type": "c",
+      "name": "game_01/func_0016BED0"
+    },
+    {
+      "offset": "0x0006C3C0",
+      "type": "asm",
+      "name": "game_01_60"
     },
     {
       "offset": "0x0006C5E0",
@@ -668,7 +718,7 @@
     {
       "offset": "0x0006C618",
       "type": "asm",
-      "name": "game_01_57"
+      "name": "game_01_61"
     },
     {
       "offset": "0x0006CA90",
@@ -678,7 +728,7 @@
     {
       "offset": "0x0006CA98",
       "type": "asm",
-      "name": "game_01_58"
+      "name": "game_01_62"
     },
     {
       "offset": "0x0006CB00",
@@ -688,7 +738,7 @@
     {
       "offset": "0x0006CB08",
       "type": "asm",
-      "name": "game_01_59"
+      "name": "game_01_63"
     },
     {
       "offset": "0x0006D5C0",
@@ -698,7 +748,7 @@
     {
       "offset": "0x0006D5C8",
       "type": "asm",
-      "name": "game_01_60"
+      "name": "game_01_64"
     },
     {
       "offset": "0x0006D9E0",
@@ -708,7 +758,7 @@
     {
       "offset": "0x0006D9E8",
       "type": "asm",
-      "name": "game_01_61"
+      "name": "game_01_65"
     },
     {
       "offset": "0x0006D9F0",
@@ -718,7 +768,7 @@
     {
       "offset": "0x0006D9F8",
       "type": "asm",
-      "name": "game_01_62"
+      "name": "game_01_66"
     },
     {
       "offset": "0x0006DA00",
@@ -728,7 +778,7 @@
     {
       "offset": "0x0006DA08",
       "type": "asm",
-      "name": "game_01_63"
+      "name": "game_01_67"
     },
     {
       "offset": "0x0006DA10",
@@ -738,7 +788,7 @@
     {
       "offset": "0x0006DA28",
       "type": "asm",
-      "name": "game_01_64"
+      "name": "game_01_68"
     },
     {
       "offset": "0x0006DC80",
@@ -748,7 +798,7 @@
     {
       "offset": "0x0006DC88",
       "type": "asm",
-      "name": "game_01_65"
+      "name": "game_01_69"
     },
     {
       "offset": "0x0006DFB0",
@@ -758,7 +808,7 @@
     {
       "offset": "0x0006DFB8",
       "type": "asm",
-      "name": "game_01_66"
+      "name": "game_01_70"
     },
     {
       "offset": "0x0006DFC0",
@@ -778,7 +828,7 @@
     {
       "offset": "0x0006E064",
       "type": "asm",
-      "name": "game_01_67"
+      "name": "game_01_71"
     },
     {
       "offset": "0x0006E710",
@@ -788,7 +838,7 @@
     {
       "offset": "0x0006E71C",
       "type": "asm",
-      "name": "game_01_68"
+      "name": "game_01_72"
     },
     {
       "offset": "0x0006EAC0",
@@ -798,7 +848,7 @@
     {
       "offset": "0x0006EAD4",
       "type": "asm",
-      "name": "game_01_69"
+      "name": "game_01_73"
     },
     {
       "offset": "0x0006EAE0",
@@ -808,7 +858,7 @@
     {
       "offset": "0x0006EAF4",
       "type": "asm",
-      "name": "game_01_70"
+      "name": "game_01_74"
     },
     {
       "offset": "0x0006EB00",
@@ -818,7 +868,7 @@
     {
       "offset": "0x0006EB08",
       "type": "asm",
-      "name": "game_01_71"
+      "name": "game_01_75"
     },
     {
       "offset": "0x0006FB10",
@@ -828,7 +878,7 @@
     {
       "offset": "0x0006FBC8",
       "type": "asm",
-      "name": "game_01_72"
+      "name": "game_01_76"
     },
     {
       "offset": "0x0006FD70",
@@ -838,7 +888,7 @@
     {
       "offset": "0x0006FD78",
       "type": "asm",
-      "name": "game_01_73"
+      "name": "game_01_77"
     },
     {
       "offset": "0x0006FD80",
@@ -848,7 +898,7 @@
     {
       "offset": "0x0006FD8C",
       "type": "asm",
-      "name": "game_01_74"
+      "name": "game_01_78"
     },
     {
       "offset": "0x0006FD90",
@@ -858,7 +908,7 @@
     {
       "offset": "0x0006FD98",
       "type": "asm",
-      "name": "game_01_75"
+      "name": "game_01_79"
     },
     {
       "offset": "0x0006FDA0",
@@ -868,7 +918,7 @@
     {
       "offset": "0x0006FDAC",
       "type": "asm",
-      "name": "game_01_76"
+      "name": "game_01_80"
     },
     {
       "offset": "0x0006FDB0",
@@ -878,7 +928,7 @@
     {
       "offset": "0x0006FDB8",
       "type": "asm",
-      "name": "game_01_77"
+      "name": "game_01_81"
     },
     {
       "offset": "0x0006FDC0",
@@ -888,7 +938,7 @@
     {
       "offset": "0x0006FDC8",
       "type": "asm",
-      "name": "game_01_78"
+      "name": "game_01_82"
     },
     {
       "offset": "0x0006FDD0",
@@ -898,7 +948,7 @@
     {
       "offset": "0x0006FDF8",
       "type": "asm",
-      "name": "game_01_79"
+      "name": "game_01_83"
     },
     {
       "offset": "0x0006FE00",
@@ -908,7 +958,7 @@
     {
       "offset": "0x0006FE30",
       "type": "asm",
-      "name": "game_01_80"
+      "name": "game_01_84"
     },
     {
       "offset": "0x00070F60",
@@ -918,7 +968,7 @@
     {
       "offset": "0x00070F78",
       "type": "asm",
-      "name": "game_01_81"
+      "name": "game_01_85"
     },
     {
       "offset": "0x00070F80",
@@ -928,7 +978,7 @@
     {
       "offset": "0x00070F94",
       "type": "asm",
-      "name": "game_01_82"
+      "name": "game_01_86"
     },
     {
       "offset": "0x00072790",
@@ -938,7 +988,7 @@
     {
       "offset": "0x0007281C",
       "type": "asm",
-      "name": "game_01_83"
+      "name": "game_01_87"
     },
     {
       "offset": "0x00072DC0",
@@ -948,7 +998,7 @@
     {
       "offset": "0x00072DFC",
       "type": "asm",
-      "name": "game_01_84"
+      "name": "game_01_88"
     },
     {
       "offset": "0x00072E00",
@@ -958,7 +1008,7 @@
     {
       "offset": "0x00072E18",
       "type": "asm",
-      "name": "game_01_85"
+      "name": "game_01_89"
     },
     {
       "offset": "0x00072F70",
@@ -968,7 +1018,17 @@
     {
       "offset": "0x00072F78",
       "type": "asm",
-      "name": "game_01_86"
+      "name": "game_01_90"
+    },
+    {
+      "offset": "0x000732E0",
+      "type": "c",
+      "name": "game_01/func_00172F60"
+    },
+    {
+      "offset": "0x000733E8",
+      "type": "asm",
+      "name": "game_01_91"
     },
     {
       "offset": "0x00073740",
@@ -978,7 +1038,7 @@
     {
       "offset": "0x000737C0",
       "type": "asm",
-      "name": "game_01_87"
+      "name": "game_01_92"
     },
     {
       "offset": "0x00073F80",
@@ -988,7 +1048,7 @@
     {
       "offset": "0x00074034",
       "type": "asm",
-      "name": "game_01_88"
+      "name": "game_01_93"
     },
     {
       "offset": "0x00074530",
@@ -998,7 +1058,7 @@
     {
       "offset": "0x000745E4",
       "type": "asm",
-      "name": "game_01_89"
+      "name": "game_01_94"
     },
     {
       "offset": "0x000772B0",
@@ -1008,7 +1068,7 @@
     {
       "offset": "0x000772B8",
       "type": "asm",
-      "name": "game_01_90"
+      "name": "game_01_95"
     },
     {
       "offset": "0x000772C0",
@@ -1018,7 +1078,7 @@
     {
       "offset": "0x000772C8",
       "type": "asm",
-      "name": "game_01_91"
+      "name": "game_01_96"
     },
     {
       "offset": "0x000772D0",
@@ -1028,7 +1088,7 @@
     {
       "offset": "0x000772D8",
       "type": "asm",
-      "name": "game_01_92"
+      "name": "game_01_97"
     },
     {
       "offset": "0x000772E0",
@@ -1038,7 +1098,7 @@
     {
       "offset": "0x000772E8",
       "type": "asm",
-      "name": "game_01_93"
+      "name": "game_01_98"
     },
     {
       "offset": "0x000772F0",
@@ -1048,7 +1108,7 @@
     {
       "offset": "0x000772F8",
       "type": "asm",
-      "name": "game_01_94"
+      "name": "game_01_99"
     },
     {
       "offset": "0x00078070",
@@ -1058,7 +1118,7 @@
     {
       "offset": "0x00078078",
       "type": "asm",
-      "name": "game_01_95"
+      "name": "game_01_100"
     },
     {
       "offset": "0x00079BF0",
@@ -1068,7 +1128,7 @@
     {
       "offset": "0x00079C30",
       "type": "asm",
-      "name": "game_01_96"
+      "name": "game_01_101"
     },
     {
       "offset": "0x0007A070",
@@ -1078,7 +1138,7 @@
     {
       "offset": "0x0007A078",
       "type": "asm",
-      "name": "game_01_97"
+      "name": "game_01_102"
     },
     {
       "offset": "0x0007A080",
@@ -1088,7 +1148,7 @@
     {
       "offset": "0x0007A088",
       "type": "asm",
-      "name": "game_01_98"
+      "name": "game_01_103"
     },
     {
       "offset": "0x0007A090",
@@ -1098,7 +1158,7 @@
     {
       "offset": "0x0007A098",
       "type": "asm",
-      "name": "game_01_99"
+      "name": "game_01_104"
     },
     {
       "offset": "0x0007A0A0",
@@ -1108,7 +1168,7 @@
     {
       "offset": "0x0007A0A8",
       "type": "asm",
-      "name": "game_01_100"
+      "name": "game_01_105"
     },
     {
       "offset": "0x0007A0B0",
@@ -1118,7 +1178,7 @@
     {
       "offset": "0x0007A0F8",
       "type": "asm",
-      "name": "game_01_101"
+      "name": "game_01_106"
     },
     {
       "offset": "0x0007A170",
@@ -1127,8 +1187,13 @@
     },
     {
       "offset": "0x0007A1A0",
+      "type": "c",
+      "name": "game_01/func_00179E20"
+    },
+    {
+      "offset": "0x0007A1FC",
       "type": "asm",
-      "name": "game_01_102"
+      "name": "game_01_107"
     },
     {
       "offset": "0x0007A200",
@@ -1138,7 +1203,7 @@
     {
       "offset": "0x0007A238",
       "type": "asm",
-      "name": "game_01_103"
+      "name": "game_01_108"
     },
     {
       "offset": "0x0007A750",
@@ -1148,7 +1213,7 @@
     {
       "offset": "0x0007A778",
       "type": "asm",
-      "name": "game_01_104"
+      "name": "game_01_109"
     },
     {
       "offset": "0x0007A930",
@@ -1158,7 +1223,7 @@
     {
       "offset": "0x0007A954",
       "type": "asm",
-      "name": "game_01_105"
+      "name": "game_01_110"
     },
     {
       "offset": "0x0007A9C0",
@@ -1168,7 +1233,7 @@
     {
       "offset": "0x0007A9E8",
       "type": "asm",
-      "name": "game_01_106"
+      "name": "game_01_111"
     },
     {
       "offset": "0x0007ACD0",
@@ -1178,7 +1243,7 @@
     {
       "offset": "0x0007ACF8",
       "type": "asm",
-      "name": "game_01_107"
+      "name": "game_01_112"
     },
     {
       "offset": "0x0007C260",
@@ -1188,7 +1253,7 @@
     {
       "offset": "0x0007C268",
       "type": "asm",
-      "name": "game_01_108"
+      "name": "game_01_113"
     },
     {
       "offset": "0x0007F280",

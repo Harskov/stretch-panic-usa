@@ -1,29 +1,83 @@
 # Exemplars for func_00152300 — the 3 matched functions nearest by address
 
-## func_00152630 @ 0x00152630 (score 100.0, mwcps2-2.3.3-000906 -O3,p -sdatathreshold 0)
+## func_001522E0 @ 0x001522E0 (score 100.0, mwcps2-2.3.3-000906 -O3,p -sdatathreshold 0)
 
 ```c
-void func_0012E9E0();
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned int u32;
+typedef unsigned long long u64;
+typedef signed char s8;
+typedef short s16;
+typedef int s32;
+typedef long long s64;
+typedef float f32;
+typedef unsigned __int128 u128;
 
-void func_00152630(char *arg0) {
-    char *p = arg0 + 0x70;
-    func_0012E9E0(p, p, p);
+typedef struct Vec {
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 w;
+} Vec;
+
+void func_001522E0(char *arg0, char *arg1) {
+    *(u128 *)(arg1 + 0x0) = *(u128 *)(arg0 + 0x140);
+    *(u128 *)(arg1 + 0x10) = *(u128 *)(arg0 + 0x270);
+    *(f32 *)(arg1 + 0x20) = *(f32 *)(arg0 + 0x410) * *(f32 *)(arg0 + 0x410);
 }
 
 ```
 
-## func_00156E20 @ 0x00156E20 (score 100.0, mwcps2-2.3.3-000906 -O3,p -sdatathreshold 0)
+## func_00152030 @ 0x00152030 (score 100.0, mwcps2-2.3.3-000906 -O3,p -sdatathreshold 0)
 
 ```c
-void func_00156E20(void) {
+void func_00152040();
+
+void func_00152030(void) {
+    func_00152040();
 }
 
 ```
 
-## func_00156E30 @ 0x00156E30 (score 100.0, mwcps2-2.3.3-000906 -O3,p -sdatathreshold 0)
+## func_00152600 @ 0x00152600 (score 100.0, mwcps2-2.3.3-000906 -O3,p -sdatathreshold 0)
 
 ```c
-void func_00156E30(void) {
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned int u32;
+typedef unsigned long long u64;
+typedef signed char s8;
+typedef short s16;
+typedef int s32;
+typedef long long s64;
+typedef float f32;
+typedef unsigned __int128 u128;
+
+typedef struct Vec {
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 w;
+} Vec;
+
+typedef struct Src {
+    u8 pad0[0x80];
+    Vec a;
+    Vec b;
+    Vec c;
+} Src;
+
+void func_00152600(char *arg0, Src *arg1) {
+    *(u8 *)(arg0 + 0x414) = 1;
+    asm {
+        lq $a3, 0x80($a1)
+        lq $a2, 0x90($a1)
+        lq $v1, 0xA0($a1)
+        sq $a3, 0x4A0($a0)
+        sq $a2, 0x4B0($a0)
+        sq $v1, 0x4C0($a0)
+    }
 }
 
 ```

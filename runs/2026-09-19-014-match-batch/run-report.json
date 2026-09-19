@@ -1,0 +1,25 @@
+{
+  "at": "2026-09-19T13:24:44Z",
+  "run_id": "2026-09-19-014-match-batch",
+  "lines": 55,
+  "max_lines": 80,
+  "friction_severities": {
+    "minor": 3,
+    "major": 3
+  },
+  "fields": {
+    "run_id": "2026-09-19-014-match-batch",
+    "step_type": "match-batch",
+    "step_id": "S6",
+    "target": "stretch-panic-usa",
+    "override_note": " — proposed by next_step.py",
+    "started": "2026-09-19T12:56:29Z",
+    "finished": "2026-09-19T13:24:05Z",
+    "commit": "the commit whose message starts `run 2026-09-19-014-match-batch:` (git log --grep)",
+    "what_changed": "- Ledger: matched 113 → 121 (+8), wip 51 → 47 (-4), asm 1191 → 1187 (-4).\n- Eight of the twelve batch functions reached 100 byte-identical and four parked; the batch table lists every one. The decisiv",
+    "build_check": "`check.json`: ok = **True**, checked 2026-09-19T13:23:03Z, regime `full`; image 0x00100000–0x0069F800, rebuilt 5896192 of 5896192 bytes; first diff None, 0 differing byte(s). Segments: crt0 ok; mw_run",
+    "step_table": "# Batch table — run 2026-09-19-014-match-batch\n\nTarget `stretch-panic-usa`, compiler `mwcps2-2.3.3-000906`, flags `-O3,p -sdatathreshold 0`.\nBatch of 12 from segment `game_01`, in `select_batch.py` or",
+    "next_step": "S6 match-batch — 1234 game function(s) still asm/wip; batch size 12\n- note: external lane: 24 runner batch(es), 93 matched, $4.11 in state/runner-steps.jsonl (never a step of a run)",
+    "friction_summary": "6 entries (major 3, minor 3); stages attested: E, R, S, V, X; export: FRICTION-REPORT.md\n- F-1 [minor/doc-gap] quad copied whole then read lane by lane: the union spelling is not in K1 §6\n- F-2 [minor"
+  }
+}

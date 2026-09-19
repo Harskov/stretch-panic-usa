@@ -1,0 +1,33 @@
+{
+  "run_id": "2026-09-19-014-match-batch",
+  "step_id": "S6",
+  "step_type": "match-batch",
+  "override": false,
+  "proposed": "match-batch",
+  "proposed_reason": "1242 game function(s) still asm/wip; batch size 12",
+  "reason": "1242 game function(s) still asm/wip; batch size 12",
+  "target": "stretch-panic-usa",
+  "started": "2026-09-19T12:56:29Z",
+  "finished": "2026-09-19T13:24:05Z",
+  "stage": "done",
+  "position": {
+    "function": "func_0014E490"
+  },
+  "outcome": "complete",
+  "commit": null,
+  "notes": [
+    "external lane: 24 runner batch(es), 93 matched, $4.11 in state/runner-steps.jsonl (never a step of a run)"
+  ],
+  "ledger_at_start": {
+    "functions": 2027,
+    "matched": 113,
+    "wip": 51,
+    "asm": 1191,
+    "library": 672,
+    "skipped-data": 0,
+    "external_matched": 74,
+    "runner_batches": 24
+  },
+  "updated": "2026-09-19T13:21:00Z",
+  "summary": "match-batch: 8 of 12 matched byte-identical, 4 parked (3 on the vtable-dispatch register, 1 on the inlined float-to-int); check.json green"
+}
