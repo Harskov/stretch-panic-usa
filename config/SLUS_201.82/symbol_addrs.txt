@@ -46,3 +46,5 @@ sceSifGetReg = 0x00105670; // type:func size:0x10
 Deci2Call = 0x00105690; // type:func size:0x10
 RFU116_SetSyscall = 0x00105EA8; // type:func size:0x10
 RFU091 = 0x00105F00; // type:func size:0x10
+func_00178B10 = 0x00178B10; // type:func size:0x14
+func_00178B30 = 0x00178B30; // type:func size:0x288
