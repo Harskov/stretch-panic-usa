@@ -1,5 +1,41 @@
 # Exemplars for func_00166D90 — the 3 matched functions nearest by address
 
+## func_001683E0 @ 0x001683E0 (score 100.0, mwcps2-2.3.3-000906 -O3,p -sdatathreshold 0)
+
+```c
+void func_001683E0(void) {
+}
+
+```
+
+## func_00168630 @ 0x00168630 (score 100.0, mwcps2-2.3.3-000906 -O3,p -sdatathreshold 0)
+
+```c
+typedef struct Obj {
+    unsigned char unk_00[0x60];
+    int flags;
+    unsigned char unk_64[0x3C];
+    float unk_A0;
+    float unk_A4;
+    float unk_A8;
+    float unk_AC;
+} Obj;
+
+void func_00168630(Obj *o) {
+    float a;
+    float b;
+
+    o->unk_A8 += o->unk_AC;
+    b = o->unk_A4;
+    a = o->unk_A0;
+    o->unk_A0 = a - b;
+    if (a - b <= 0.0f) {
+        o->flags |= 0x10000;
+    }
+}
+
+```
+
 ## func_001653D0 @ 0x001653D0 (score 100.0, mwcps2-2.3.3-000906 -O3,p -sdatathreshold 0)
 
 ```c
@@ -24,87 +60,6 @@ int func_001653D0(Obj *o) {
         alive = 0;
     }
     return alive;
-}
-
-```
-
-## func_00164E80 @ 0x00164E80 (score 100.0, mwcps2-2.3.3-000906 -O3,p -sdatathreshold 0)
-
-```c
-typedef struct Ent {
-    unsigned char used;
-    unsigned char unk_01[0x2F];
-} Ent;
-
-typedef struct Obj {
-    unsigned char unk_00[0x50];
-    int count;
-    unsigned char unk_54[0x14];
-    Ent *arr;
-} Obj;
-
-Ent *func_00164E80(Obj *o) {
-    int i;
-
-    for (i = 0; i < o->count; i++) {
-        if (o->arr[i].used == 0) {
-            return &o->arr[i];
-        }
-    }
-    return 0;
-}
-
-```
-
-## func_001636C0 @ 0x001636C0 (score 100.0, mwcps2-2.3.3-000906 -O3,p -sdatathreshold 0)
-
-```c
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned int u32;
-typedef signed char s8;
-typedef short s16;
-typedef int s32;
-typedef float f32;
-
-typedef struct Vec {
-    float x;
-    float y;
-    float z;
-    float w;
-} Vec;
-
-typedef struct Obj {
-    unsigned char unk_00[0x10];
-    Vec pos;
-    Vec vel;
-    unsigned char unk_30[0x24];
-    float unk_54;
-    float unk_58;
-} Obj;
-
-int func_001636C0(Obj *o) {
-    register Vec *v;
-    register Vec *p;
-    float a;
-    float b;
-
-    p = &o->pos;
-    v = &o->vel;
-    asm {
-        lqc2 vf1, 0(p)
-        lqc2 vf2, 0(v)
-        vadd.xyz vf1, vf1, vf2
-        sqc2 vf1, 0(p)
-    }
-    b = o->unk_58;
-    a = o->unk_54;
-    a = a - b;
-    o->unk_54 = a;
-    if (a <= 0.0f) {
-        return 0;
-    }
-    return 1;
 }
 
 ```

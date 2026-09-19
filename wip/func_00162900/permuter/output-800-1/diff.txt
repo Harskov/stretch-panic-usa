@@ -1,0 +1,20 @@
+--- before
++++ after
+@@ -20,14 +20,16 @@
+ void func_00162900(Dst *arg0, Src *arg1)
+ {
+   u128 a;
++  volatile unsigned char new_var;
+   u128 b;
+   u128 c;
+   arg0->flag = 1;
+   c = arg1->vA0;
+   b = arg1->v90;
+   a = arg1->v80;
++  new_var = c;
+   arg0->v310 = a;
+   arg0->v320 = b;
+-  arg0->v330 = c;
++  arg0->v330 = new_var;
+ }
+ 

@@ -1,0 +1,21 @@
+typedef struct Vtbl {
+    unsigned char unk_00[0x10];
+    void (*f10)(void *);
+} Vtbl;
+
+typedef struct Inner {
+    Vtbl *vt;
+} Inner;
+
+typedef struct Obj {
+    unsigned char unk_00[0x50];
+    Inner *field_50;
+} Obj;
+
+void func_00178B10(Obj *p)
+{
+    Inner *q = p->field_50;
+    void (*f)(void *) = q->vt->f10;
+
+    f(q);
+}

@@ -1,0 +1,12 @@
+--- before
++++ after
+@@ -23,8 +23,8 @@
+   u128 b;
+   u128 c;
+   arg0->flag = 1;
++  b = arg1->v90;
+   c = arg1->vA0;
+-  b = arg1->v90;
+   a = arg1->v80;
+   arg0->v310 = a;
+   arg0->v320 = b;

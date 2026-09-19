@@ -3,15 +3,10 @@
 ## func_0016BEA0 @ 0x0016BEA0 (score 100.0, mwcps2-2.3.3-000906 -O3,p -sdatathreshold 0)
 
 ```c
-typedef struct {
-    int unk0;
-    int unk4;
-    int unk8;
-    unsigned char unkC;
-} S;
+#include "game_01/rec10.h"
 
-unsigned char func_0016BEA0(S *arg0) {
-    return arg0->unkC;
+u8 func_0016BEA0(Rec10 *arg0) {
+    return arg0->unk_0C;
 }
 
 ```
@@ -19,18 +14,13 @@ unsigned char func_0016BEA0(S *arg0) {
 ## func_0016BE80 @ 0x0016BE80 (score 100.0, mwcps2-2.3.3-000906 -O3,p -sdatathreshold 0)
 
 ```c
-typedef struct {
-    int unk0;
-    int unk4;
-    int unk8;
-    char unkC;
-} S;
+#include "game_01/rec10.h"
 
-void func_0016BE80(S *arg0, int arg1) {
-    arg0->unk0 = 1;
-    arg0->unk4 = 0;
-    arg0->unk8 = arg1;
-    arg0->unkC = 0;
+void func_0016BE80(Rec10 *arg0, s32 arg1) {
+    arg0->unk_00 = 1;
+    arg0->unk_04 = 0;
+    arg0->unk_08 = arg1;
+    arg0->unk_0C = 0;
 }
 
 ```
@@ -38,18 +28,13 @@ void func_0016BE80(S *arg0, int arg1) {
 ## func_0016BDF0 @ 0x0016BDF0 (score 100.0, mwcps2-2.3.3-000906 -O3,p -sdatathreshold 0)
 
 ```c
-typedef struct {
-    int unk0;
-    int unk4;
-    int unk8;
-    char unkC;
-} S;
+#include "game_01/rec10.h"
 
-S *func_0016BDF0(S *arg0) {
-    arg0->unk0 = 0;
-    arg0->unk4 = 0;
-    arg0->unk8 = 0;
-    arg0->unkC = 0;
+Rec10 *func_0016BDF0(Rec10 *arg0) {
+    arg0->unk_00 = 0;
+    arg0->unk_04 = 0;
+    arg0->unk_08 = 0;
+    arg0->unk_0C = 0;
     return arg0;
 }
 

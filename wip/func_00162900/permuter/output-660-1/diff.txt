@@ -1,0 +1,17 @@
+--- before
++++ after
+@@ -22,12 +22,13 @@
+   u128 a;
+   u128 b;
+   u128 c;
++  short new_var;
+   arg0->flag = 1;
+   c = arg1->vA0;
+   b = arg1->v90;
+   a = arg1->v80;
+   arg0->v310 = a;
+   arg0->v320 = b;
+-  arg0->v330 = c;
++  arg0->v330 = (new_var = c);
+ }
+ 

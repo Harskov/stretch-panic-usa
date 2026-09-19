@@ -1,50 +1,50 @@
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned int u32;
-typedef signed char s8;
-typedef short s16;
-typedef int s32;
-typedef float f32;
-typedef unsigned __int128 u128;
+#include "common.h"
 
-extern u8 D_006AEE40[];
+extern Vec D_006AEE40;
 extern u8 D_006AEE58;
 extern u8 D_006AEE60;
 
-void func_0016F790(u8 *arg0, u8 *arg1, s32 *arg2)
-{
-    register u8 *v;
-    register u8 *p;
-    s32 mode;
+typedef struct Obj {
+    unsigned char unk_00[0x10];
+    Vec v10;
+} Obj;
 
-    mode = *arg2;
-    if (mode == 2)
-        return;
-    if (mode == 1) {
-        v = D_006AEE40;
-        p = arg0 + 0x10;
+s32 func_0016F790(Obj *o, Vec *src, s32 *state)
+{
+    register Vec *a;
+    register Vec *d;
+    register Vec *b;
+
+    switch (*state) {
+    case 0:
+        a = &D_006AEE40;
+        d = &o->v10;
+        b = src;
         asm {
-            lqc2 vf1, 0(v)
-            lqc2 vf2, 0(arg1)
+            lqc2 vf1, 0(a)
+            lqc2 vf2, 0(b)
             vadd.xyz vf1, vf1, vf2
-            sqc2 vf1, 0(p)
+            sqc2 vf1, 0(d)
         }
-        if (D_006AEE60 != 0) {
-            *arg2 = *arg2 + 1;
+        if (D_006AEE58 | D_006AEE60) {
+            *state = *state + 1;
         }
-        return;
-    }
-    if (mode == 0) {
-        v = D_006AEE40;
-        p = arg0 + 0x10;
+        return 0;
+    case 1:
+        a = &D_006AEE40;
+        d = &o->v10;
+        b = src;
         asm {
-            lqc2 vf1, 0(v)
-            lqc2 vf2, 0(arg1)
+            lqc2 vf1, 0(a)
+            lqc2 vf2, 0(b)
             vadd.xyz vf1, vf1, vf2
-            sqc2 vf1, 0(p)
+            sqc2 vf1, 0(d)
         }
-        if ((D_006AEE58 | D_006AEE60) != 0) {
-            *arg2 = *arg2 + 1;
+        if (D_006AEE60) {
+            *state = *state + 1;
         }
+        return 0;
+    case 2:
+        return 1;
     }
 }

@@ -26,17 +26,17 @@ them from the user's disc.
 | sdk_libc | libc | 123 | 0 | 0 | 0 | 123 | 0 (0.0%) |
 | game_00 | game | 563 | 2 | 1 | 560 | 0 | 144 (0.1%) |
 | game_memcard | game | 74 | 0 | 0 | 74 | 0 | 0 (0.0%) |
-| game_01 | game | 714 | 75 | 34 | 605 | 0 | 2356 (1.1%) |
+| game_01 | game | 714 | 81 | 32 | 601 | 0 | 2652 (1.2%) |
 | data_vu | data | 0 | 0 | 0 | 0 | 0 | 0 |
 | data_sdk | data | 0 | 0 | 0 | 0 | 0 | 0 |
 | data_game | data | 0 | 0 | 0 | 0 | 0 | 0 |
 | rodata_00 | rodata | 0 | 0 | 0 | 0 | 0 | 0 |
 | main_bss | bss | 0 | 0 | 0 | 0 | 0 | 0 |
-| **total** | | 2027 | 77 | 35 | 1243 | 672 | 2500 / 510776 |
+| **total** | | 2027 | 83 | 33 | 1239 | 672 | 2796 / 510776 |
 
-Matched by the operator: 13; by the external lane (MatchRunner): 64 in 15 batch(es) (last 2026-09-19-006).
+Matched by the operator: 19; by the external lane (MatchRunner): 64 in 15 batch(es) (last 2026-09-19-006).
 
-Steps run: 9; last run: 2026-09-19-009-consolidate; build check: ok; compiler: mwcps2-2.3.3-000906; regenerated 2026-09-19T04:46:36Z.
+Steps run: 10; last run: 2026-09-19-010-ghidra-hints; build check: ok; compiler: mwcps2-2.3.3-000906; regenerated 2026-09-19T06:44:03Z.
 <!-- progress-table:end -->
 
 ## Building and verifying

@@ -1,0 +1,23 @@
+--- before
++++ after
+@@ -21,13 +21,15 @@
+ {
+   u128 a;
+   u128 b;
++  Dst *new_var;
+   u128 c;
+-  arg0->flag = 1;
++  new_var = arg0;
++  new_var->flag = 1;
+   c = arg1->vA0;
+   b = arg1->v90;
+-  a = arg1->v80;
+-  arg0->v310 = a;
+-  arg0->v320 = b;
+-  arg0->v330 = c;
++  ;
++  new_var->v310 = arg1->v80;
++  new_var->v320 = b;
++  new_var->v330 = (int) c;
+ }
+ 

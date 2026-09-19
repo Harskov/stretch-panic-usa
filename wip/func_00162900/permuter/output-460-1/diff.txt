@@ -1,0 +1,10 @@
+--- before
++++ after
+@@ -28,6 +28,7 @@
+   a = arg1->v80;
+   arg0->v310 = a;
+   arg0->v320 = b;
++  c = arg1->vA0;
+   arg0->v330 = c;
+ }
+ 

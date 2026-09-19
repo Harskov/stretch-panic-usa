@@ -16,27 +16,26 @@ extern s32 D_006B3880;
 extern s32 D_006B3888;
 
 void func_00172F60(void) {
+    s32 i;
     s32 *p;
     s32 *q;
-    s32 i;
 
-    p = &D_006B3700;
+    q = &D_006B3700;
     i = 0;
     do {
         i += 1;
-        *p = 0;
-        p += 1;
+        *q = 0;
+        q += 1;
     } while (i < 0x5F);
 
+    p = &D_00601BD0;
     D_006B3880 = 0;
+    q = &D_006B3580;
     D_006B3888 = 0;
-
-    p = &D_00601BD0;
-    q = &D_006B3580;
     i = 0;
     do {
+        i += 1;
         *q = *p;
-        i += 1;
         p += 1;
         q += 1;
     } while (i != 0x1C);
@@ -45,8 +44,8 @@ void func_00172F60(void) {
     q = &D_006B3580;
     i = 0;
     do {
+        i += 1;
         q[0x1C] = *p;
-        i += 1;
         p += 1;
         q += 1;
     } while (i != 0x1C);
@@ -55,8 +54,8 @@ void func_00172F60(void) {
     q = &D_006B3580;
     i = 0;
     do {
-        q[0x38] = *p;
         i += 1;
+        q[0x38] = *p;
         p += 1;
         q += 1;
     } while (i != 0x1C);

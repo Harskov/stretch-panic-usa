@@ -1,0 +1,31 @@
+{
+  "run_id": "2026-09-19-011-match-batch",
+  "step_id": "S6",
+  "step_type": "match-batch",
+  "override": false,
+  "proposed": "match-batch",
+  "proposed_reason": "1278 game function(s) still asm/wip; batch size 12",
+  "reason": "1278 game function(s) still asm/wip; batch size 12",
+  "target": "stretch-panic-usa",
+  "started": "2026-09-19T06:27:06Z",
+  "finished": "2026-09-19T06:44:03Z",
+  "stage": "done",
+  "position": {},
+  "outcome": "complete",
+  "commit": null,
+  "notes": [
+    "external lane: 15 runner batch(es), 64 matched, $0.71 in state/runner-steps.jsonl (never a step of a run)"
+  ],
+  "ledger_at_start": {
+    "functions": 2027,
+    "matched": 77,
+    "wip": 35,
+    "asm": 1243,
+    "library": 672,
+    "skipped-data": 0,
+    "external_matched": 47,
+    "runner_batches": 15
+  },
+  "updated": "2026-09-19T06:41:51Z",
+  "summary": "12-function batch: 6 matched byte-identical (77 -> 83), 6 parked with their best C and the exact remaining diff noted; func_0016F790 is the target's first operator VU0 macro-mode match; check green"
+}
