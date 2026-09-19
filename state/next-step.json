@@ -1,10 +1,12 @@
 {
-  "at": "2026-09-19T13:24:23Z",
+  "at": "2026-09-19T13:37:13Z",
   "proposed": "match-batch",
   "step_id": "S6",
   "reason": "1234 game function(s) still asm/wip; batch size 12",
   "notes": [
-    "external lane: 24 runner batch(es), 93 matched, $4.11 in state/runner-steps.jsonl (never a step of a run)"
+    "external lane: 24 runner batch(es), 93 matched, $4.11 in state/runner-steps.jsonl (never a step of a run)",
+    "runner batch(es) named by a wip/<fn>/runner.json but with no record in state/runner-steps.jsonl: 2026-09-19-016 — the batch died before it finalised, so its end-of-batch rebuild never ran: verify check.json and repair (S9) if red",
+    "1 function(s) at runner state=error, the runner could not work them: func_00178B30 — select_batch ranks them last; check the function has a glabel block in asm/"
   ],
   "never_auto_selected": [
     "ghidra-hints"
