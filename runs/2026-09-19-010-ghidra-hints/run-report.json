@@ -1,11 +1,11 @@
 {
-  "at": "2026-09-19T04:50:28Z",
+  "at": "2026-09-19T04:53:41Z",
   "run_id": "2026-09-19-010-ghidra-hints",
   "lines": 32,
   "max_lines": 80,
   "friction_severities": {
     "papercut": 1,
-    "minor": 2
+    "minor": 3
   },
   "fields": {
     "run_id": "2026-09-19-010-ghidra-hints",
@@ -16,10 +16,10 @@
     "started": "2026-09-19T04:42:32Z",
     "finished": "2026-09-19T04:46:42Z",
     "commit": "the commit whose message starts `run 2026-09-19-010-ghidra-hints:` (git log --grep)",
-    "what_changed": "- Ledger: no status changes.\n- The second S5 of the session, run against the toolchain the fate run had already installed in the cloud sandbox: no downloads, one analyzeHeadless pass (26 s of auto-ana",
+    "what_changed": "- Ledger: no status changes.",
     "build_check": "`check.json`: ok = **True**, checked 2026-09-19T04:46:34Z, regime `full`; image 0x00100000–0x0069F800, rebuilt 5896192 of 5896192 bytes; first diff None, 0 differing byte(s). Segments: crt0 ok; mw_run",
     "step_table": "n/a",
     "next_step": "S6 match-batch — 1278 game function(s) still asm/wip; batch size 12\n- note: external lane: 15 runner batch(es), 64 matched, $0.71 in state/runner-steps.jsonl (never a step of a run)",
-    "friction_summary": "3 entries (minor 2, papercut 1); stages attested: E, R, S, V, X; export: FRICTION-REPORT.md\n- F-1 [papercut/tool-bug] git checkout -- .gitignore through git_mount.sh did not restore the file\n- F-2 [mi"
+    "friction_summary": "4 entries (minor 3, papercut 1); stages attested: E, R, S, V, X; export: FRICTION-REPORT.md\n- F-1 [papercut/tool-bug] git checkout -- .gitignore through git_mount.sh did not restore the file\n- F-2 [mi"
   }
 }

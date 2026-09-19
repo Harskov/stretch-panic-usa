@@ -1,9 +1,9 @@
 # Friction Report — 2026-09-19-010-ghidra-hints
 
 **Job folder:** `2026-09-19-010-ghidra-hints`  
-**Log:** `friction-log.jsonl` (3 entries; opened 2026-09-19T04:42:41Z, exported 2026-09-19T04:50:19Z)  
+**Log:** `friction-log.jsonl` (4 entries; opened 2026-09-19T04:42:41Z, exported 2026-09-19T04:53:36Z)  
 **Skills build:** Ghidra 12.1.3 PUBLIC / ee-reloaded v2.1.37 / JDK 21.0.10 (cloud sandbox)  
-**Severity counts:** minor 2, papercut 1  
+**Severity counts:** minor 3, papercut 1  
 
 ## How to consume this report (for the remediating model)
 
@@ -48,7 +48,7 @@ Silence is not evidence of frictionlessness: a stage is either attested (`clear-
 | Stage R RESUME | 1 entry + attested complete |
 | Stage S SELECT | attested clear |
 | Stage E EXECUTE | 1 entry + attested complete |
-| Stage V SHIP | 1 entry + attested complete |
+| Stage V SHIP | 2 entries + attested complete |
 | Cross-cutting / environment | attested clear |
 
 ## Entries (most severe first)
@@ -64,9 +64,18 @@ Silence is not evidence of frictionlessness: a stage is either attested (`clear-
 ### F-3 — [minor / operator-drift] the operator's name was written into the run report's judgment paragraph
 
 - **Stage:** Stage V SHIP | **Logged:** 2026-09-19T04:50:19Z
-- **Observed (fact):** verify_run.py publish-clean FAIL: scrub-token hit(s): [('runs/2026-09-19-010-ghidra-hints/RUN-REPORT.md', 'Jordan')] - the --what-changed paragraph ended 'which is <the operator>'s call'. 10/11 checks; the commit 71d0943 was already made.
+- **Observed (fact):** verify_run.py publish-clean FAIL: one scrub-token hit in runs/2026-09-19-010-ghidra-hints/RUN-REPORT.md - the --what-changed paragraph ended with the operator's first name where the deliverables rule requires 'the user'. 10/11 checks; commit 71d0943 had already been made.
 - **Expected:** PROJECT-INSTRUCTIONS <deliverables>: a --summary or --what-changed paragraph says 'the user', never the name
 - **Operator hypothesis — UNVERIFIED, verify against the artifacts before building on it:** writing the paragraph in the same register as the chat carried the name into a tracked file; the check did its job and caught it before the push. Fixed by regenerating RUN-REPORT.md with the name replaced by 'the user' and committing again.
+- **Amended through the tool:** `observed` at 2026-09-19T04:53:17Z (the entry quoted the token it was reporting, so the export failed publish-clean in turn)
+
+### F-4 — [minor / tool-gap] friction_log.py amend cannot redact a scrub token: the original field stays verbatim in the committed jsonl
+
+- **Stage:** Stage V SHIP | **Tool:** `friction_log.py` | **Logged:** 2026-09-19T04:53:36Z
+- **Observed (fact):** F-3 quoted a publish-clean scrub token. 'amend --field observed' rewrote the exported field, and the export came out clean, but 'the original stays in the log' - so runs/2026-09-19-010-ghidra-hints/friction-log.jsonl, which is tracked, still carried the token and verify_run.py publish-clean failed a second time on it (and on FRICTION-REPORT.md before the re-export). The token had to be edited out of the jsonl by hand with sed, replacing it with a redaction note; the file still parses.
+- **Expected:** a redact path that removes a scrub token from the stored original too, since friction-log.jsonl is committed to a public repo
+- **Operator hypothesis — UNVERIFIED, verify against the artifacts before building on it:** amend was designed for integrity (never lose what was first written), which is right for every field except one that publish-clean forbids; a '--redact' mode that rewrites the original and records that a redaction happened would satisfy both
+- **Repro:** `friction_log.py amend <run> --id <id> --field observed --value <text without the token>; then grep the token in <run>/friction-log.jsonl`
 
 ### F-1 — [papercut / tool-bug] git checkout -- .gitignore through git_mount.sh did not restore the file
 
@@ -89,18 +98,18 @@ Cited artifacts: 1 — 1 present, 0 inside a checkpoint archive, 0 on another fi
 ```json
 {
   "job": "2026-09-19-010-ghidra-hints",
-  "exported": "2026-09-19T04:50:19Z",
+  "exported": "2026-09-19T04:53:36Z",
   "build": "Ghidra 12.1.3 PUBLIC / ee-reloaded v2.1.37 / JDK 21.0.10 (cloud sandbox)",
-  "entry_count": 3,
+  "entry_count": 4,
   "severity_counts": {
-    "minor": 2,
+    "minor": 3,
     "papercut": 1
   },
   "stages": {
     "R": "1 entry + attested complete",
     "S": "attested clear",
     "E": "1 entry + attested complete",
-    "V": "1 entry + attested complete",
+    "V": "2 entries + attested complete",
     "X": "attested clear"
   },
   "artifact_accounting": {
@@ -126,6 +135,14 @@ Cited artifacts: 1 — 1 present, 0 inside a checkpoint archive, 0 on another fi
       "severity": "minor",
       "category": "operator-drift",
       "title": "the operator's name was written into the run report's judgment paragraph"
+    },
+    {
+      "id": "F-4",
+      "stage": "V",
+      "severity": "minor",
+      "category": "tool-gap",
+      "title": "friction_log.py amend cannot redact a scrub token: the original field stays verbatim in the committed jsonl",
+      "tool": "friction_log.py"
     },
     {
       "id": "F-1",
