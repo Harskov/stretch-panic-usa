@@ -1,20 +1,40 @@
 {
-  "batch_size": 12,
-  "attempt_cap": 3,
-  "permuter_timeout_s": 120,
-  "consolidate_every_n_matches": 25,
-  "data_migrate_threshold": 0.8,
-  "calibration_candidates_min": 5,
-  "calibration_candidates_max": 10,
-  "calibration_pin_min_matches": 3,
-  "run_report_max_lines": 80,
-  "runner": {
-    "attempt_cap": 10,
-    "usd_cap_per_function": 0.25,
-    "usd_cap_per_queue": 10,
-    "workers": 4,
-    "escalate_min_score": 95,
-    "default_model": "zai:glm-5.3",
-    "evidence": "the MatchRunner model bench of 2026-09-11 (criterion: Tier 1 >= 95 %, Tier 3 >= 40 %, <= $0.25 per attempted function); bench 2026-09-11 zai:glm-5.3 Tier 1 23/24 (95.8 %), $0.042 per match, $0.040 per function, ledger unchanged; runner batches 2026-09-11-001/-002: 4/4 matched, check ok"
-  }
+ "batch_size": 12,
+ "attempt_cap": 3,
+ "permuter_timeout_s": 120,
+ "consolidate_every_n_matches": 25,
+ "data_migrate_threshold": 0.8,
+ "calibration_candidates_min": 5,
+ "calibration_candidates_max": 10,
+ "calibration_pin_min_matches": 3,
+ "run_report_max_lines": 80,
+ "runner": {
+  "attempt_cap": 10,
+  "usd_cap_per_function": 2.5,
+  "usd_cap_per_queue": 50,
+  "workers": 4,
+  "escalate_min_score": 95,
+  "default_model": "zai:glm-5.3",
+  "evidence": "runner evidence 2026-09-19: across both targets' external lanes, 32 match-batch-external records, 97 matched / 239 parked; of the 178 parked functions carrying a score the median best was objdiff 97.1 and 91 were at >= 95, and the dominant park note was 'byte-identical resubmissions in a row; the model is repeating itself' \u2014 a deterministic non-thinking sampler re-deriving the same near miss. On this target: 15 batches, 64 matched, 107 parked, median best 90.3, 38 of 85 scored parks at >= 95. The ladder escalates that tail to thinking mode and then to deepseek-v4-pro at effort max; the caps rise to $2.50 per function / $50 per queue so the ladder, not the money, decides when a function stops. Prior bench (2026-09-11, MatchRunner, zai:glm-5.3 Tier 1 23/24) retained below. || the MatchRunner model bench of 2026-09-11 (criterion: Tier 1 >= 95 %, Tier 3 >= 40 %, <= $0.25 per attempted function); bench 2026-09-11 zai:glm-5.3 Tier 1 23/24 (95.8 %), $0.042 per match, $0.040 per function, ledger unchanged; runner batches 2026-09-11-001/-002: 4/4 matched, check ok",
+  "ladder": [
+   {
+    "name": "flash-fast",
+    "model": "deepseek-flash",
+    "effort": "none",
+    "attempts": 3
+   },
+   {
+    "name": "flash-think",
+    "model": "deepseek-flash",
+    "effort": "high",
+    "attempts": 3
+   },
+   {
+    "name": "pro-max",
+    "model": "deepseek-v4-pro",
+    "effort": "max",
+    "attempts": 0
+   }
+  ]
+ }
 }
