@@ -1,9 +1,9 @@
 # Friction Report — 2026-09-19-010-ghidra-hints
 
 **Job folder:** `2026-09-19-010-ghidra-hints`  
-**Log:** `friction-log.jsonl` (2 entries; opened 2026-09-19T04:42:41Z, exported 2026-09-19T04:47:01Z)  
+**Log:** `friction-log.jsonl` (3 entries; opened 2026-09-19T04:42:41Z, exported 2026-09-19T04:50:19Z)  
 **Skills build:** Ghidra 12.1.3 PUBLIC / ee-reloaded v2.1.37 / JDK 21.0.10 (cloud sandbox)  
-**Severity counts:** minor 1, papercut 1  
+**Severity counts:** minor 2, papercut 1  
 
 ## How to consume this report (for the remediating model)
 
@@ -48,7 +48,7 @@ Silence is not evidence of frictionlessness: a stage is either attested (`clear-
 | Stage R RESUME | 1 entry + attested complete |
 | Stage S SELECT | attested clear |
 | Stage E EXECUTE | 1 entry + attested complete |
-| Stage V SHIP | attested clear |
+| Stage V SHIP | 1 entry + attested complete |
 | Cross-cutting / environment | attested clear |
 
 ## Entries (most severe first)
@@ -60,6 +60,13 @@ Silence is not evidence of frictionlessness: a stage is either attested (`clear-
 - **Expected:** a hint for every function the ledger knows, since the ledger's starts come from splat and are the project's
 - **Operator hypothesis — UNVERIFIED, verify against the artifacts before building on it:** Ghidra's auto-analyzer only creates a function where it finds a call or an entry reference, so 8-byte leaf stubs reached only through a jump table or a data pointer stay undefined code. A pre-script that calls createFunction at every address in config/symbol_addrs.txt before the export would close the gap; the ledger's boundaries are authoritative either way (K3 §8).
 - **Artifact:** `hints-table.md` (exists)
+
+### F-3 — [minor / operator-drift] the operator's name was written into the run report's judgment paragraph
+
+- **Stage:** Stage V SHIP | **Logged:** 2026-09-19T04:50:19Z
+- **Observed (fact):** verify_run.py publish-clean FAIL: scrub-token hit(s): [('runs/2026-09-19-010-ghidra-hints/RUN-REPORT.md', 'Jordan')] - the --what-changed paragraph ended 'which is <the operator>'s call'. 10/11 checks; the commit 71d0943 was already made.
+- **Expected:** PROJECT-INSTRUCTIONS <deliverables>: a --summary or --what-changed paragraph says 'the user', never the name
+- **Operator hypothesis — UNVERIFIED, verify against the artifacts before building on it:** writing the paragraph in the same register as the chat carried the name into a tracked file; the check did its job and caught it before the push. Fixed by regenerating RUN-REPORT.md with the name replaced by 'the user' and committing again.
 
 ### F-1 — [papercut / tool-bug] git checkout -- .gitignore through git_mount.sh did not restore the file
 
@@ -82,18 +89,18 @@ Cited artifacts: 1 — 1 present, 0 inside a checkpoint archive, 0 on another fi
 ```json
 {
   "job": "2026-09-19-010-ghidra-hints",
-  "exported": "2026-09-19T04:47:01Z",
+  "exported": "2026-09-19T04:50:19Z",
   "build": "Ghidra 12.1.3 PUBLIC / ee-reloaded v2.1.37 / JDK 21.0.10 (cloud sandbox)",
-  "entry_count": 2,
+  "entry_count": 3,
   "severity_counts": {
-    "minor": 1,
+    "minor": 2,
     "papercut": 1
   },
   "stages": {
     "R": "1 entry + attested complete",
     "S": "attested clear",
     "E": "1 entry + attested complete",
-    "V": "attested clear",
+    "V": "1 entry + attested complete",
     "X": "attested clear"
   },
   "artifact_accounting": {
@@ -112,6 +119,13 @@ Cited artifacts: 1 — 1 present, 0 inside a checkpoint archive, 0 on another fi
       "severity": "minor",
       "category": "evidence-gap",
       "title": "Ghidra's auto-analysis misses the tiny leaf functions S6 matches first: only 25 of 77 matched functions got a hint"
+    },
+    {
+      "id": "F-3",
+      "stage": "V",
+      "severity": "minor",
+      "category": "operator-drift",
+      "title": "the operator's name was written into the run report's judgment paragraph"
     },
     {
       "id": "F-1",
