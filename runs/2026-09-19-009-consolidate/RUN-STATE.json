@@ -1,0 +1,31 @@
+{
+  "run_id": "2026-09-19-009-consolidate",
+  "step_id": "S8",
+  "step_type": "consolidate",
+  "override": false,
+  "proposed": "consolidate",
+  "proposed_reason": "44 matches since the last consolidate (threshold 25)",
+  "reason": "44 matches since the last consolidate (threshold 25)",
+  "target": "stretch-panic-usa",
+  "started": "2026-09-19T04:00:38Z",
+  "finished": "2026-09-19T04:09:01Z",
+  "stage": "done",
+  "position": {},
+  "outcome": "complete",
+  "commit": null,
+  "notes": [
+    "external lane: 15 runner batch(es), 64 matched, $0.71 in state/runner-steps.jsonl (never a step of a run)"
+  ],
+  "ledger_at_start": {
+    "functions": 2027,
+    "matched": 77,
+    "wip": 35,
+    "asm": 1243,
+    "library": 672,
+    "skipped-data": 0,
+    "external_matched": 61,
+    "runner_batches": 15
+  },
+  "updated": "2026-09-19T04:08:24Z",
+  "summary": "six shared headers now carry the structs 14 matched functions agreed on; all 13 lint errors rewritten to plain C and re-marked byte-identical; no name clears the evidence bar (census 0 of 77)"
+}

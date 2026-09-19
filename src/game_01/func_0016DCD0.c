@@ -1,10 +1,6 @@
-typedef struct {
-    unsigned char pad[0x164];
-    int field164;
-    int field168;
-} Obj;
+#include "game_01/obj168.h"
 
-void func_0016DCD0(Obj *arg0, Obj *arg1) {
-    arg0->field164 = arg1->field164;
-    arg0->field168 = arg1->field168;
+void func_0016DCD0(Obj168 *arg0, Obj168 *arg1) {
+    arg0->unk_164 = arg1->unk_164;
+    arg0->unk_168 = arg1->unk_168;
 }

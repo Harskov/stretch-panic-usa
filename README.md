@@ -34,11 +34,9 @@ them from the user's disc.
 | main_bss | bss | 0 | 0 | 0 | 0 | 0 | 0 |
 | **total** | | 2027 | 77 | 35 | 1243 | 672 | 2500 / 510776 |
 
-Matched functions whose C still carries a layout cast flagged by `lint_c.py` (byte-identical, not final source; rewritten at consolidate): 3 — func_00159820, func_0016D240, func_00172410.
+Matched by the operator: 13; by the external lane (MatchRunner): 64 in 15 batch(es) (last 2026-09-19-006).
 
-Matched by the operator: 13; by the external lane (MatchRunner): 64 in 14 batch(es) (last 2026-09-19-005).
-
-Steps run: 8; last run: 2026-09-18-008-consolidate; build check: ok; compiler: mwcps2-2.3.3-000906; regenerated 2026-09-19T03:22:51Z.
+Steps run: 8; last run: 2026-09-18-008-consolidate; build check: ok; compiler: mwcps2-2.3.3-000906; regenerated 2026-09-19T04:09:01Z.
 <!-- progress-table:end -->
 
 ## Building and verifying

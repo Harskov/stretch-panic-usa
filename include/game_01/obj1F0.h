@@ -42,5 +42,10 @@ typedef struct Obj1F0 {
     f32 unk_254;
     f32 unk_258;
     f32 unk_25C;
+    unsigned char unk_260[0x30];
+    f32 unk_290;
+    f32 unk_294;
+    f32 unk_298;
+    f32 unk_29C;
 } Obj1F0;
 #endif

@@ -1,0 +1,20 @@
+{
+  "function": "func_0016D240",
+  "addr": "0x0016D240",
+  "status": "matched",
+  "segment": "game_01",
+  "asm_file": "wip/func_0016D240/target.s",
+  "callers": [],
+  "referenced_from_data": [
+    "D_0069CE00",
+    "D_0069D0E0",
+    "D_0069D1B0",
+    "D_0069D2B0",
+    "D_0069D320",
+    "D_0069D4B0"
+  ],
+  "callees": [],
+  "references": [],
+  "at": "2026-09-19T04:02:01Z",
+  "index": "reference/xrefs-index.json"
+}

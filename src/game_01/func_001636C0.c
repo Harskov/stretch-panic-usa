@@ -1,32 +1,21 @@
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned int u32;
-typedef signed char s8;
-typedef short s16;
-typedef int s32;
-typedef float f32;
+#include "common.h"
 
-typedef struct Vec {
-    float x;
-    float y;
-    float z;
-    float w;
-} Vec;
-
-typedef struct Obj {
+/* A different object from Obj50: its vector pair sits at +0x10/+0x20, not +0x50/+0x60,
+   and its counter at +0x54. Only the Vec type is shared. */
+typedef struct Obj10 {
     unsigned char unk_00[0x10];
     Vec pos;
     Vec vel;
     unsigned char unk_30[0x24];
-    float unk_54;
-    float unk_58;
-} Obj;
+    f32 unk_54;
+    f32 unk_58;
+} Obj10;
 
-int func_001636C0(Obj *o) {
+s32 func_001636C0(Obj10 *o) {
     register Vec *v;
     register Vec *p;
-    float a;
-    float b;
+    f32 a;
+    f32 b;
 
     p = &o->pos;
     v = &o->vel;

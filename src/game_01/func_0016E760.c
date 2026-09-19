@@ -1,13 +1,6 @@
-typedef struct {
-    unsigned char pad[0x64];
-    int field64;
-    int field68;
-    unsigned char pad2[0x28C];
-    int field2F8;
-    int field2FC;
-} Obj;
+#include "game_01/obj2F8.h"
 
-void func_0016E760(Obj *arg0) {
-    arg0->field64 = arg0->field2F8;
-    arg0->field68 = arg0->field2FC;
+void func_0016E760(Obj2F8 *arg0) {
+    arg0->unk_64 = arg0->unk_2F8;
+    arg0->unk_68 = arg0->unk_2FC;
 }
