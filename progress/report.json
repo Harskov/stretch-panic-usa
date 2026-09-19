@@ -1,17 +1,17 @@
 {
  "measures": {
-  "fuzzy_match_percent": 1.1384,
+  "fuzzy_match_percent": 1.2005,
   "total_code": 510776,
-  "matched_code": 2500,
-  "matched_code_percent": 0.4895,
+  "matched_code": 2796,
+  "matched_code_percent": 0.5474,
   "total_data": 0,
   "matched_data": 0,
   "matched_data_percent": 0.0,
   "total_functions": 2027,
-  "matched_functions": 77,
-  "matched_functions_percent": 3.7987,
-  "complete_code": 2500,
-  "complete_code_percent": 0.4895,
+  "matched_functions": 83,
+  "matched_functions_percent": 4.0947,
+  "complete_code": 2796,
+  "complete_code_percent": 0.5474,
   "complete_data": 0,
   "complete_data_percent": 0.0,
   "total_units": 13,
@@ -10874,18 +10874,18 @@
   {
    "name": "game_01",
    "measures": {
-    "fuzzy_match_percent": 2.5276,
+    "fuzzy_match_percent": 2.6712,
     "total_code": 220924,
-    "matched_code": 2356,
-    "matched_code_percent": 1.0664,
+    "matched_code": 2652,
+    "matched_code_percent": 1.2004,
     "total_data": 0,
     "matched_data": 0,
     "matched_data_percent": 0.0,
     "total_functions": 714,
-    "matched_functions": 75,
-    "matched_functions_percent": 10.5042,
-    "complete_code": 2356,
-    "complete_code_percent": 1.0664,
+    "matched_functions": 81,
+    "matched_functions_percent": 11.3445,
+    "complete_code": 2652,
+    "complete_code_percent": 1.2004,
     "complete_data": 0,
     "complete_data_percent": 0.0
    },
@@ -12974,7 +12974,7 @@
     {
      "name": "func_00162900",
      "size": 36,
-     "fuzzy_match_percent": 97.77778,
+     "fuzzy_match_percent": 98.666664,
      "metadata": {
       "virtual_address": 1452288
      }
@@ -14590,7 +14590,7 @@
     {
      "name": "func_0016F790",
      "size": 184,
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": 1505168
      }
@@ -14670,7 +14670,7 @@
     {
      "name": "func_0016FA50",
      "size": 40,
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": 1505872
      }
@@ -14678,7 +14678,7 @@
     {
      "name": "func_0016FA80",
      "size": 48,
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": 1505920
      }
@@ -15126,7 +15126,7 @@
     {
      "name": "func_00172F60",
      "size": 264,
-     "fuzzy_match_percent": 97.57576,
+     "fuzzy_match_percent": 98.181816,
      "metadata": {
       "virtual_address": 1519456
      }
@@ -15590,7 +15590,7 @@
     {
      "name": "func_00176F60",
      "size": 8,
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": 1535840
      }
@@ -15598,7 +15598,7 @@
     {
      "name": "func_00176F70",
      "size": 8,
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": 1535856
      }
@@ -15670,7 +15670,7 @@
     {
      "name": "func_00177CF0",
      "size": 8,
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 100.0,
      "metadata": {
       "virtual_address": 1539312
      }
@@ -15806,7 +15806,7 @@
     {
      "name": "func_00178B10",
      "size": 20,
-     "fuzzy_match_percent": 0.0,
+     "fuzzy_match_percent": 96.0,
      "metadata": {
       "virtual_address": 1542928
      }
@@ -16620,18 +16620,18 @@
    "id": "game",
    "name": "Game code",
    "measures": {
-    "fuzzy_match_percent": 1.5152,
+    "fuzzy_match_percent": 1.5978,
     "total_code": 383756,
-    "matched_code": 2500,
-    "matched_code_percent": 0.6515,
+    "matched_code": 2796,
+    "matched_code_percent": 0.7286,
     "total_data": 0,
     "matched_data": 0,
     "matched_data_percent": 0.0,
     "total_functions": 1355,
-    "matched_functions": 77,
-    "matched_functions_percent": 5.6827,
-    "complete_code": 2500,
-    "complete_code_percent": 0.6515,
+    "matched_functions": 83,
+    "matched_functions_percent": 6.1255,
+    "complete_code": 2796,
+    "complete_code_percent": 0.7286,
     "complete_data": 0,
     "complete_data_percent": 0.0
    }
