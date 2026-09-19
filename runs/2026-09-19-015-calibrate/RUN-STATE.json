@@ -1,0 +1,33 @@
+{
+  "run_id": "2026-09-19-015-calibrate",
+  "step_id": "S2",
+  "step_type": "calibrate",
+  "override": true,
+  "proposed": "match-batch",
+  "proposed_reason": "1234 game function(s) still asm/wip; batch size 12",
+  "reason": "named in chat: perform calibrate, not match-batch; run 014 F-4/F-6 identify two toolchain-drift boundaries (vtable dispatch t9 vs v0; float-to-int cvt.w.s vs fptosi helper) that cap 449 dispatch sites and 36 conversion functions below 100 under the pinned build",
+  "target": "stretch-panic-usa",
+  "started": "2026-09-19T14:26:17Z",
+  "finished": "2026-09-19T14:48:06Z",
+  "stage": "done",
+  "position": {},
+  "outcome": "complete",
+  "commit": null,
+  "notes": [
+    "external lane: 24 runner batch(es), 93 matched, $4.11 in state/runner-steps.jsonl (never a step of a run)",
+    "runner batch(es) named by a wip/<fn>/runner.json but with no record in state/runner-steps.jsonl: 2026-09-19-016 — the batch died before it finalised, so its end-of-batch rebuild never ran: verify check.json and repair (S9) if red",
+    "1 function(s) at runner state=error, the runner could not work them: func_00178B30 — select_batch ranks them last; check the function has a glabel block in asm/"
+  ],
+  "ledger_at_start": {
+    "functions": 2027,
+    "matched": 121,
+    "wip": 47,
+    "asm": 1187,
+    "library": 672,
+    "skipped-data": 0,
+    "external_matched": 74,
+    "runner_batches": 24
+  },
+  "updated": "2026-09-19T14:45:33Z",
+  "summary": "re-calibrated with non-leaf candidates: the pin stands (mwcps2-2.3.3-000906, -O3,p -sdatathreshold 0), the vtable-dispatch boundary is a C++ virtual call and byte-matches under the pinned build, the float-to-int boundary is not a build difference"
+}

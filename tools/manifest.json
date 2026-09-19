@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "created": "2026-09-17T03:41:50Z",
+  "created": "2026-09-19T14:27:43Z",
   "slug": "stretch-panic-usa",
   "tools": {
     "venv": {
@@ -79,6 +79,132 @@
       "url": "https://github.com/decompme/compilers/releases/download/compilers/ee-gcc2.96.tar.xz",
       "version": "ee-gcc2.96 (SDK library compiler; reference only)",
       "sha256": "0590d2ca9da8f5903889d66761220d14b47a8d14ba987ca53db84a1650a1fd0a"
+    },
+    "mwcps2-3.0.1-020123": {
+      "path": "tools/compilers/mwcps2-3.0.1-020123",
+      "kind": "compiler",
+      "url": "https://github.com/decompme/compilers/releases/download/compilers/mwcps2-3.0.1-020123.tar.gz",
+      "version": "mwcps2-3.0.1-020123",
+      "sha256": "72d823d85943c92ca13378e93d56ac1870298ccbfda0ef8a2efb9650692e968c"
+    },
+    "mwcps2-3.0.1b103-040528": {
+      "path": "tools/compilers/mwcps2-3.0.1b103-040528",
+      "kind": "compiler",
+      "url": "https://github.com/decompme/compilers/releases/download/compilers/mwcps2-3.0.1b103-040528.tar.gz",
+      "version": "mwcps2-3.0.1b103-040528",
+      "sha256": "a6db36760445e18da840bda70f3e7b97dc563ba421d13651c121e8867013c0c9"
+    },
+    "mwcps2-3.0.1b119-040914": {
+      "path": "tools/compilers/mwcps2-3.0.1b119-040914",
+      "kind": "compiler",
+      "url": "https://github.com/decompme/compilers/releases/download/compilers/mwcps2-3.0.1b119-040914.tar.gz",
+      "version": "mwcps2-3.0.1b119-040914",
+      "sha256": "5c6984d5d52f21b62b6bc9161749bde7bb14e136fbee41f0f4df7fcee7b06c13"
+    },
+    "mwcps2-3.0.1b145-050209": {
+      "path": "tools/compilers/mwcps2-3.0.1b145-050209",
+      "kind": "compiler",
+      "url": "https://github.com/decompme/compilers/releases/download/compilers/mwcps2-3.0.1b145-050209.tar.gz",
+      "version": "mwcps2-3.0.1b145-050209",
+      "sha256": "d021f7d02ab63da770c13dc246637276141321ca08221ee2333a7acadf82482b"
+    },
+    "mwcps2-3.0.1b151-050317": {
+      "path": "tools/compilers/mwcps2-3.0.1b151-050317",
+      "kind": "compiler",
+      "url": "https://github.com/decompme/compilers/releases/download/compilers/mwcps2-3.0.1b151-050317.tar.gz",
+      "version": "mwcps2-3.0.1b151-050317",
+      "sha256": "5050a211954f0828cf1c0f56333943407d20f7e85bc68b23e3c539bb5d8ee947"
+    },
+    "mwcps2-3.0.1b198-051011": {
+      "path": "tools/compilers/mwcps2-3.0.1b198-051011",
+      "kind": "compiler",
+      "url": "https://github.com/decompme/compilers/releases/download/compilers/mwcps2-3.0.1b198-051011.tar.gz",
+      "version": "mwcps2-3.0.1b198-051011",
+      "sha256": "436af8060249e7ea0aa2dfa98a86b4667ee3716b3384cca577c52c5b68e4934a"
+    },
+    "mwcps2-3.0.1b205-051227": {
+      "path": "tools/compilers/mwcps2-3.0.1b205-051227",
+      "kind": "compiler",
+      "url": "https://github.com/decompme/compilers/releases/download/compilers/mwcps2-3.0.1b205-051227.tar.gz",
+      "version": "mwcps2-3.0.1b205-051227",
+      "sha256": "456cdfc1894f20bcaecc627ff674222888f093c3ec37c91e4f0fe6baae3b5a9d"
+    },
+    "mwcps2-3.0.1b210-060308": {
+      "path": "tools/compilers/mwcps2-3.0.1b210-060308",
+      "kind": "compiler",
+      "url": "https://github.com/decompme/compilers/releases/download/compilers/mwcps2-3.0.1b210-060308.tar.gz",
+      "version": "mwcps2-3.0.1b210-060308",
+      "sha256": "456746b70862a744a0be75585a4e163a142111843661cbb7e483230dd85502c5"
+    },
+    "mwcps2-3.0.1b44-030325": {
+      "path": "tools/compilers/mwcps2-3.0.1b44-030325",
+      "kind": "compiler",
+      "url": "https://github.com/decompme/compilers/releases/download/compilers/mwcps2-3.0.1b44-030325.tar.gz",
+      "version": "mwcps2-3.0.1b44-030325",
+      "sha256": "90d99e3e6272369215b317548fe2626694aa1ead57cec0251f7343d266d9b0ed"
+    },
+    "mwcps2-3.0.1b51-030512": {
+      "path": "tools/compilers/mwcps2-3.0.1b51-030512",
+      "kind": "compiler",
+      "url": "https://github.com/decompme/compilers/releases/download/compilers/mwcps2-3.0.1b51-030512.tar.gz",
+      "version": "mwcps2-3.0.1b51-030512",
+      "sha256": "985fce55737848ce46c145cd357df247a3cd12d1c944d8cc325cfe46cde5a124"
+    },
+    "mwcps2-3.0.1b74-030811": {
+      "path": "tools/compilers/mwcps2-3.0.1b74-030811",
+      "kind": "compiler",
+      "url": "https://github.com/decompme/compilers/releases/download/compilers/mwcps2-3.0.1b74-030811.tar.gz",
+      "version": "mwcps2-3.0.1b74-030811",
+      "sha256": "5c14bea69f68cf46498a4eab3e18ea89aff289e6e12c613c55ff2d05b06dd23c"
+    },
+    "mwcps2-3.0.1b75-030916": {
+      "path": "tools/compilers/mwcps2-3.0.1b75-030916",
+      "kind": "compiler",
+      "url": "https://github.com/decompme/compilers/releases/download/compilers/mwcps2-3.0.1b75-030916.tar.gz",
+      "version": "mwcps2-3.0.1b75-030916",
+      "sha256": "f665dc6ce76f3551097a87cd1c36672d93cd23b10021ca412fbd23d38e3444d8"
+    },
+    "mwcps2-3.0.1b87-031208": {
+      "path": "tools/compilers/mwcps2-3.0.1b87-031208",
+      "kind": "compiler",
+      "url": "https://github.com/decompme/compilers/releases/download/compilers/mwcps2-3.0.1b87-031208.tar.gz",
+      "version": "mwcps2-3.0.1b87-031208",
+      "sha256": "3718581319518c9a3cece4ded2951a5e7828123c069c9bbc4d854e8b1c46b718"
+    },
+    "mwcps2-3.0.1b95-040309": {
+      "path": "tools/compilers/mwcps2-3.0.1b95-040309",
+      "kind": "compiler",
+      "url": "https://github.com/decompme/compilers/releases/download/compilers/mwcps2-3.0.1b95-040309.tar.gz",
+      "version": "mwcps2-3.0.1b95-040309",
+      "sha256": "6f9357a1e74b48e43466c8bcb7af9b1b3d69fa870eb9b37269708cd579351bbc"
+    },
+    "mwcps2-3.0.3-020716": {
+      "path": "tools/compilers/mwcps2-3.0.3-020716",
+      "kind": "compiler",
+      "url": "https://github.com/decompme/compilers/releases/download/compilers/mwcps2-3.0.3-020716.tar.gz",
+      "version": "mwcps2-3.0.3-020716",
+      "sha256": "63f89baae691403294724178efbcfc9e1b9ac48151536b6a321b17eb8f9970e5"
+    },
+    "mwcps2-3.0b38-030307": {
+      "path": "tools/compilers/mwcps2-3.0b38-030307",
+      "kind": "compiler",
+      "url": "https://github.com/decompme/compilers/releases/download/compilers/mwcps2-3.0b38-030307.tar.gz",
+      "version": "mwcps2-3.0b38-030307",
+      "sha256": "db3d0606c77d4335d2ad884a1285a4bc3b9e68cdd6161dd46d6e2a2cd3313276"
+    },
+    "mwcps2-3.0b50-030527": {
+      "path": "tools/compilers/mwcps2-3.0b50-030527",
+      "kind": "compiler",
+      "url": "https://github.com/decompme/compilers/releases/download/compilers/mwcps2-3.0b50-030527.tar.gz",
+      "version": "mwcps2-3.0b50-030527",
+      "sha256": "74afc8c7cc13d129d3da205ebaed749a3f5eb789a321c7a669709f11d3d7c653"
+    },
+    "mwcps2-3.0b52-030722": {
+      "path": "tools/compilers/mwcps2-3.0b52-030722",
+      "kind": "compiler",
+      "url": "https://github.com/decompme/compilers/releases/download/compilers/mwcps2-3.0b52-030722.tar.gz",
+      "version": "mwcps2-3.0b52-030722",
+      "sha256": "5c2f5f96c0a360cc6d4fc866226768f7ab9b290777bcd5cadeeba030b1d596a5"
     }
   },
   "assembler": {

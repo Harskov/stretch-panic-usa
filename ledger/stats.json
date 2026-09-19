@@ -1,11 +1,11 @@
 {
-  "at": "2026-09-19T12:40:20Z",
+  "at": "2026-09-19T14:45:21Z",
   "functions": 2027,
   "by_status": {
-    "asm": 1191,
+    "asm": 1185,
     "library": 672,
-    "wip": 51,
-    "matched": 113
+    "wip": 49,
+    "matched": 121
   },
   "by_segment": {
     "crt0": {
@@ -39,17 +39,17 @@
       "library": 123
     },
     "game_00": {
-      "asm": 560,
-      "wip": 1,
+      "asm": 558,
+      "wip": 3,
       "matched": 2
     },
     "game_memcard": {
       "asm": 74
     },
     "game_01": {
-      "asm": 553,
-      "matched": 111,
-      "wip": 50
+      "asm": 549,
+      "matched": 119,
+      "wip": 46
     }
   },
   "matched_not_linked": [],

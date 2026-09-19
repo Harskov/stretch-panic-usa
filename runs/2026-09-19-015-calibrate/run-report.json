@@ -1,0 +1,26 @@
+{
+  "at": "2026-09-19T14:48:38Z",
+  "run_id": "2026-09-19-015-calibrate",
+  "lines": 64,
+  "max_lines": 80,
+  "friction_severities": {
+    "major": 4,
+    "minor": 1,
+    "blocker": 1
+  },
+  "fields": {
+    "run_id": "2026-09-19-015-calibrate",
+    "step_type": "calibrate",
+    "step_id": "S2",
+    "target": "stretch-panic-usa",
+    "override_note": " — **override**: named in chat",
+    "started": "2026-09-19T14:26:17Z",
+    "finished": "2026-09-19T14:48:06Z",
+    "commit": "the commit whose message starts `run 2026-09-19-015-calibrate:` (git log --grep)",
+    "what_changed": "- Ledger: wip 47 → 49 (+2), asm 1187 → 1185 (-2).\n- config/compiler.json: `mwcps2-2.3.3-000906` flags `-O3,p -sdatathreshold 0`, calibrated: True, 4 of 12 candidate functions byte-matched.\n- The step ",
+    "build_check": "`check.json`: ok = **True**, checked 2026-09-19T14:47:58Z, regime `full`; image 0x00100000–0x0069F800, rebuilt 5896192 of 5896192 bytes; first diff None, 0 differing byte(s). Segments: crt0 ok; mw_run",
+    "step_table": "# Calibration table — every (compiler, flags) x function cell, every score (2026-09-19T14:44:18Z)\n\nCell = objdiff match % (B = .text bytes identical to the target; err = compile error). Judgment is a ",
+    "next_step": "S6 match-batch — 1234 game function(s) still asm/wip; batch size 12\n- note: external lane: 24 runner batch(es), 93 matched, $4.11 in state/runner-steps.jsonl (never a step of a run)\n- note: runner bat",
+    "friction_summary": "6 entries (blocker 1, major 4, minor 1); stages attested: E, R, S, V, X; export: FRICTION-REPORT.md\n- F-1 [major/tool-gap] candidates finds only leaf functions, which cannot separate compiler builds o"
+  }
+}
