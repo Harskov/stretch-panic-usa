@@ -1,0 +1,41 @@
+{
+  "function": "func_0016C260",
+  "provider": "deepseek",
+  "model": "deepseek-flash",
+  "prompt_version": "ds-v1",
+  "prompt_sha": "e23a92141f1bb052e9548e71965a5fbf72919420efe1bc5dfe9599dbf4e97f80",
+  "started": "2026-09-18T22:25:25Z",
+  "state": "matched",
+  "attempts": [
+    {
+      "n": 1,
+      "at": "2026-09-18T22:25:29Z",
+      "kind": "matched",
+      "score": 100.0,
+      "bytes_equal": true,
+      "tokens": 18759,
+      "prompt_tokens": 18646,
+      "cached_tokens": 17024,
+      "completion_tokens": 113,
+      "usd": 0.00036217,
+      "latency": 1.73,
+      "prompt_sha": "e23a92141f1bb052e9548e71965a5fbf72919420efe1bc5dfe9599dbf4e97f80",
+      "finish_reason": "stop",
+      "path": "wip/func_0016C260/attempt-1.c",
+      "try_elapsed": 0.58
+    }
+  ],
+  "usd": 0.00036217,
+  "tokens": 18759,
+  "updated": "2026-09-18T22:25:29Z",
+  "batch_run_id": "2026-09-18-006",
+  "batch_start_n": 1,
+  "best_score": 100.0,
+  "best_attempt": "wip/func_0016C260/attempt-1.c",
+  "mark_enabled": true,
+  "marked_from": "wip/func_0016C260/attempt-1.c",
+  "note": "marked from wip/func_0016C260/attempt-1.c",
+  "note_rc": 0,
+  "finished": "2026-09-18T22:25:29Z",
+  "elapsed": 4.1
+}

@@ -1,10 +1,11 @@
 {
-  "at": "2026-09-18T21:00:29Z",
-  "proposed": "match-batch",
-  "step_id": "S6",
-  "reason": "1322 game function(s) still asm/wip; batch size 12",
+  "at": "2026-09-19T03:58:44Z",
+  "proposed": "consolidate",
+  "step_id": "S8",
+  "reason": "44 matches since the last consolidate (threshold 25)",
   "notes": [
-    "external lane: 4 runner batch(es), 20 matched, $0.09 in state/runner-steps.jsonl (never a step of a run)"
+    "external lane: 15 runner batch(es), 64 matched, $0.71 in state/runner-steps.jsonl (never a step of a run)",
+    "11 runner batch(es) newer than the last commit (2026-09-18T21:39:42Z): 2026-09-18-005, 2026-09-18-006, 2026-09-18-007, 2026-09-18-008, 2026-09-18-009, 2026-09-19-001, 2026-09-19-002, 2026-09-19-003, 2026-09-19-004, 2026-09-19-005, 2026-09-19-006 — commit them at RESUME before --start-run: `git_mount.sh <repo> add -A && commit -m \"runner 2026-09-18-005, 2026-09-18-006, 2026-09-18-007, 2026-09-18-008, 2026-09-18-009, 2026-09-19-001, 2026-09-19-002, 2026-09-19-003, 2026-09-19-004, 2026-09-19-005, 2026-09-19-006: match-batch-external — 44 matched\"`"
   ],
   "never_auto_selected": [
     "ghidra-hints"

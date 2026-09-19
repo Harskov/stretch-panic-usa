@@ -26,17 +26,19 @@ them from the user's disc.
 | sdk_libc | libc | 123 | 0 | 0 | 0 | 123 | 0 (0.0%) |
 | game_00 | game | 563 | 2 | 1 | 560 | 0 | 144 (0.1%) |
 | game_memcard | game | 74 | 0 | 0 | 74 | 0 | 0 (0.0%) |
-| game_01 | game | 714 | 31 | 12 | 671 | 0 | 1052 (0.5%) |
+| game_01 | game | 714 | 75 | 34 | 605 | 0 | 2356 (1.1%) |
 | data_vu | data | 0 | 0 | 0 | 0 | 0 | 0 |
 | data_sdk | data | 0 | 0 | 0 | 0 | 0 | 0 |
 | data_game | data | 0 | 0 | 0 | 0 | 0 | 0 |
 | rodata_00 | rodata | 0 | 0 | 0 | 0 | 0 | 0 |
 | main_bss | bss | 0 | 0 | 0 | 0 | 0 | 0 |
-| **total** | | 2027 | 33 | 13 | 1309 | 672 | 1196 / 510776 |
+| **total** | | 2027 | 77 | 35 | 1243 | 672 | 2500 / 510776 |
 
-Matched by the operator: 13; by the external lane (MatchRunner): 20 in 4 batch(es) (last 2026-09-18-004).
+Matched functions whose C still carries a layout cast flagged by `lint_c.py` (byte-identical, not final source; rewritten at consolidate): 3 — func_00159820, func_0016D240, func_00172410.
 
-Steps run: 7; last run: 2026-09-17-007-match-batch; build check: ok; compiler: mwcps2-2.3.3-000906; regenerated 2026-09-18T21:00:12Z.
+Matched by the operator: 13; by the external lane (MatchRunner): 64 in 14 batch(es) (last 2026-09-19-005).
+
+Steps run: 8; last run: 2026-09-18-008-consolidate; build check: ok; compiler: mwcps2-2.3.3-000906; regenerated 2026-09-19T03:22:51Z.
 <!-- progress-table:end -->
 
 ## Building and verifying

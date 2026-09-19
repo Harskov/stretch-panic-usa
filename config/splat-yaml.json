@@ -1,5 +1,5 @@
 {
-  "at": "2026-09-18T20:58:34Z",
+  "at": "2026-09-19T03:21:49Z",
   "mode": "from-segments",
   "basename": "SLUS_201.82",
   "load": {
@@ -176,6 +176,16 @@
       "name": "game_01_8"
     },
     {
+      "offset": "0x00059BA0",
+      "type": "c",
+      "name": "game_01/func_00159820"
+    },
+    {
+      "offset": "0x00059BD4",
+      "type": "asm",
+      "name": "game_01_9"
+    },
+    {
       "offset": "0x0005A1A0",
       "type": "c",
       "name": "game_01/func_00159E20"
@@ -183,7 +193,7 @@
     {
       "offset": "0x0005A1F8",
       "type": "asm",
-      "name": "game_01_9"
+      "name": "game_01_10"
     },
     {
       "offset": "0x0005A290",
@@ -193,7 +203,7 @@
     {
       "offset": "0x0005A298",
       "type": "asm",
-      "name": "game_01_10"
+      "name": "game_01_11"
     },
     {
       "offset": "0x0005A2A0",
@@ -203,7 +213,7 @@
     {
       "offset": "0x0005A2AC",
       "type": "asm",
-      "name": "game_01_11"
+      "name": "game_01_12"
     },
     {
       "offset": "0x0005B880",
@@ -213,7 +223,7 @@
     {
       "offset": "0x0005B8B4",
       "type": "asm",
-      "name": "game_01_12"
+      "name": "game_01_13"
     },
     {
       "offset": "0x0005BD80",
@@ -223,7 +233,7 @@
     {
       "offset": "0x0005BDF8",
       "type": "asm",
-      "name": "game_01_13"
+      "name": "game_01_14"
     },
     {
       "offset": "0x0005D890",
@@ -233,7 +243,7 @@
     {
       "offset": "0x0005D898",
       "type": "asm",
-      "name": "game_01_14"
+      "name": "game_01_15"
     },
     {
       "offset": "0x0005D8A0",
@@ -243,7 +253,7 @@
     {
       "offset": "0x0005D8A8",
       "type": "asm",
-      "name": "game_01_15"
+      "name": "game_01_16"
     },
     {
       "offset": "0x0005D8B0",
@@ -253,7 +263,7 @@
     {
       "offset": "0x0005D8B8",
       "type": "asm",
-      "name": "game_01_16"
+      "name": "game_01_17"
     },
     {
       "offset": "0x0005D8C0",
@@ -263,7 +273,7 @@
     {
       "offset": "0x0005D8C8",
       "type": "asm",
-      "name": "game_01_17"
+      "name": "game_01_18"
     },
     {
       "offset": "0x00062B10",
@@ -273,7 +283,7 @@
     {
       "offset": "0x00062B2C",
       "type": "asm",
-      "name": "game_01_18"
+      "name": "game_01_19"
     },
     {
       "offset": "0x000637F0",
@@ -283,7 +293,7 @@
     {
       "offset": "0x000637F8",
       "type": "asm",
-      "name": "game_01_19"
+      "name": "game_01_20"
     },
     {
       "offset": "0x00063800",
@@ -293,7 +303,7 @@
     {
       "offset": "0x00063808",
       "type": "asm",
-      "name": "game_01_20"
+      "name": "game_01_21"
     },
     {
       "offset": "0x00063A40",
@@ -303,7 +313,7 @@
     {
       "offset": "0x00063A90",
       "type": "asm",
-      "name": "game_01_21"
+      "name": "game_01_22"
     },
     {
       "offset": "0x00065200",
@@ -313,7 +323,7 @@
     {
       "offset": "0x00065258",
       "type": "asm",
-      "name": "game_01_22"
+      "name": "game_01_23"
     },
     {
       "offset": "0x00065750",
@@ -323,7 +333,7 @@
     {
       "offset": "0x000657A0",
       "type": "asm",
-      "name": "game_01_23"
+      "name": "game_01_24"
     },
     {
       "offset": "0x00068760",
@@ -333,7 +343,7 @@
     {
       "offset": "0x00068768",
       "type": "asm",
-      "name": "game_01_24"
+      "name": "game_01_25"
     },
     {
       "offset": "0x000689B0",
@@ -343,7 +353,7 @@
     {
       "offset": "0x000689FC",
       "type": "asm",
-      "name": "game_01_25"
+      "name": "game_01_26"
     },
     {
       "offset": "0x000691A0",
@@ -353,7 +363,7 @@
     {
       "offset": "0x000691A8",
       "type": "asm",
-      "name": "game_01_26"
+      "name": "game_01_27"
     },
     {
       "offset": "0x00069910",
@@ -363,7 +373,7 @@
     {
       "offset": "0x00069918",
       "type": "asm",
-      "name": "game_01_27"
+      "name": "game_01_28"
     },
     {
       "offset": "0x00069A30",
@@ -373,7 +383,7 @@
     {
       "offset": "0x00069A38",
       "type": "asm",
-      "name": "game_01_28"
+      "name": "game_01_29"
     },
     {
       "offset": "0x00069A40",
@@ -383,7 +393,7 @@
     {
       "offset": "0x00069A48",
       "type": "asm",
-      "name": "game_01_29"
+      "name": "game_01_30"
     },
     {
       "offset": "0x00069DC0",
@@ -393,7 +403,7 @@
     {
       "offset": "0x00069DC8",
       "type": "asm",
-      "name": "game_01_30"
+      "name": "game_01_31"
     },
     {
       "offset": "0x00069DD0",
@@ -403,7 +413,432 @@
     {
       "offset": "0x00069DD8",
       "type": "asm",
-      "name": "game_01_31"
+      "name": "game_01_32"
+    },
+    {
+      "offset": "0x00069DE0",
+      "type": "c",
+      "name": "game_01/func_00169A60"
+    },
+    {
+      "offset": "0x00069DE8",
+      "type": "asm",
+      "name": "game_01_33"
+    },
+    {
+      "offset": "0x00069DF0",
+      "type": "c",
+      "name": "game_01/func_00169A70"
+    },
+    {
+      "offset": "0x00069DF8",
+      "type": "asm",
+      "name": "game_01_34"
+    },
+    {
+      "offset": "0x00069E00",
+      "type": "c",
+      "name": "game_01/func_00169A80"
+    },
+    {
+      "offset": "0x00069E08",
+      "type": "asm",
+      "name": "game_01_35"
+    },
+    {
+      "offset": "0x0006BA00",
+      "type": "c",
+      "name": "game_01/func_0016B680"
+    },
+    {
+      "offset": "0x0006BA08",
+      "type": "asm",
+      "name": "game_01_36"
+    },
+    {
+      "offset": "0x0006BA10",
+      "type": "c",
+      "name": "game_01/func_0016B690"
+    },
+    {
+      "offset": "0x0006BA18",
+      "type": "asm",
+      "name": "game_01_37"
+    },
+    {
+      "offset": "0x0006BA20",
+      "type": "c",
+      "name": "game_01/func_0016B6A0"
+    },
+    {
+      "offset": "0x0006BA28",
+      "type": "asm",
+      "name": "game_01_38"
+    },
+    {
+      "offset": "0x0006C170",
+      "type": "c",
+      "name": "game_01/func_0016BDF0"
+    },
+    {
+      "offset": "0x0006C188",
+      "type": "asm",
+      "name": "game_01_39"
+    },
+    {
+      "offset": "0x0006C200",
+      "type": "c",
+      "name": "game_01/func_0016BE80"
+    },
+    {
+      "offset": "0x0006C218",
+      "type": "asm",
+      "name": "game_01_40"
+    },
+    {
+      "offset": "0x0006C220",
+      "type": "c",
+      "name": "game_01/func_0016BEA0"
+    },
+    {
+      "offset": "0x0006C228",
+      "type": "asm",
+      "name": "game_01_41"
+    },
+    {
+      "offset": "0x0006C5E0",
+      "type": "c",
+      "name": "game_01/func_0016C260"
+    },
+    {
+      "offset": "0x0006C618",
+      "type": "asm",
+      "name": "game_01_42"
+    },
+    {
+      "offset": "0x0006CA90",
+      "type": "c",
+      "name": "game_01/func_0016C710"
+    },
+    {
+      "offset": "0x0006CA98",
+      "type": "asm",
+      "name": "game_01_43"
+    },
+    {
+      "offset": "0x0006CB00",
+      "type": "c",
+      "name": "game_01/func_0016C780"
+    },
+    {
+      "offset": "0x0006CB08",
+      "type": "asm",
+      "name": "game_01_44"
+    },
+    {
+      "offset": "0x0006D5C0",
+      "type": "c",
+      "name": "game_01/func_0016D240"
+    },
+    {
+      "offset": "0x0006D5C8",
+      "type": "asm",
+      "name": "game_01_45"
+    },
+    {
+      "offset": "0x0006D9E0",
+      "type": "c",
+      "name": "game_01/func_0016D660"
+    },
+    {
+      "offset": "0x0006D9E8",
+      "type": "asm",
+      "name": "game_01_46"
+    },
+    {
+      "offset": "0x0006D9F0",
+      "type": "c",
+      "name": "game_01/func_0016D670"
+    },
+    {
+      "offset": "0x0006D9F8",
+      "type": "asm",
+      "name": "game_01_47"
+    },
+    {
+      "offset": "0x0006DA00",
+      "type": "c",
+      "name": "game_01/func_0016D680"
+    },
+    {
+      "offset": "0x0006DA08",
+      "type": "asm",
+      "name": "game_01_48"
+    },
+    {
+      "offset": "0x0006DA10",
+      "type": "c",
+      "name": "game_01/func_0016D690"
+    },
+    {
+      "offset": "0x0006DA28",
+      "type": "asm",
+      "name": "game_01_49"
+    },
+    {
+      "offset": "0x0006DC80",
+      "type": "c",
+      "name": "game_01/func_0016D900"
+    },
+    {
+      "offset": "0x0006DC88",
+      "type": "asm",
+      "name": "game_01_50"
+    },
+    {
+      "offset": "0x0006DFB0",
+      "type": "c",
+      "name": "game_01/func_0016DC30"
+    },
+    {
+      "offset": "0x0006DFB8",
+      "type": "asm",
+      "name": "game_01_51"
+    },
+    {
+      "offset": "0x0006E000",
+      "type": "c",
+      "name": "game_01/func_0016DC80"
+    },
+    {
+      "offset": "0x0006E050",
+      "type": "c",
+      "name": "game_01/func_0016DCD0"
+    },
+    {
+      "offset": "0x0006E064",
+      "type": "asm",
+      "name": "game_01_52"
+    },
+    {
+      "offset": "0x0006E710",
+      "type": "c",
+      "name": "game_01/func_0016E390"
+    },
+    {
+      "offset": "0x0006E71C",
+      "type": "asm",
+      "name": "game_01_53"
+    },
+    {
+      "offset": "0x0006EAC0",
+      "type": "c",
+      "name": "game_01/func_0016E740"
+    },
+    {
+      "offset": "0x0006EAD4",
+      "type": "asm",
+      "name": "game_01_54"
+    },
+    {
+      "offset": "0x0006EAE0",
+      "type": "c",
+      "name": "game_01/func_0016E760"
+    },
+    {
+      "offset": "0x0006EAF4",
+      "type": "asm",
+      "name": "game_01_55"
+    },
+    {
+      "offset": "0x0006EB00",
+      "type": "c",
+      "name": "game_01/func_0016E780"
+    },
+    {
+      "offset": "0x0006EB08",
+      "type": "asm",
+      "name": "game_01_56"
+    },
+    {
+      "offset": "0x0006FD70",
+      "type": "c",
+      "name": "game_01/func_0016F9F0"
+    },
+    {
+      "offset": "0x0006FD78",
+      "type": "asm",
+      "name": "game_01_57"
+    },
+    {
+      "offset": "0x0006FD80",
+      "type": "c",
+      "name": "game_01/func_0016FA00"
+    },
+    {
+      "offset": "0x0006FD8C",
+      "type": "asm",
+      "name": "game_01_58"
+    },
+    {
+      "offset": "0x0006FD90",
+      "type": "c",
+      "name": "game_01/func_0016FA10"
+    },
+    {
+      "offset": "0x0006FD98",
+      "type": "asm",
+      "name": "game_01_59"
+    },
+    {
+      "offset": "0x0006FDA0",
+      "type": "c",
+      "name": "game_01/func_0016FA20"
+    },
+    {
+      "offset": "0x0006FDAC",
+      "type": "asm",
+      "name": "game_01_60"
+    },
+    {
+      "offset": "0x0006FDB0",
+      "type": "c",
+      "name": "game_01/func_0016FA30"
+    },
+    {
+      "offset": "0x0006FDB8",
+      "type": "asm",
+      "name": "game_01_61"
+    },
+    {
+      "offset": "0x0006FDC0",
+      "type": "c",
+      "name": "game_01/func_0016FA40"
+    },
+    {
+      "offset": "0x0006FDC8",
+      "type": "asm",
+      "name": "game_01_62"
+    },
+    {
+      "offset": "0x00070F60",
+      "type": "c",
+      "name": "game_01/func_00170BE0"
+    },
+    {
+      "offset": "0x00070F78",
+      "type": "asm",
+      "name": "game_01_63"
+    },
+    {
+      "offset": "0x00070F80",
+      "type": "c",
+      "name": "game_01/func_00170C00"
+    },
+    {
+      "offset": "0x00070F94",
+      "type": "asm",
+      "name": "game_01_64"
+    },
+    {
+      "offset": "0x00072790",
+      "type": "c",
+      "name": "game_01/func_00172410"
+    },
+    {
+      "offset": "0x0007281C",
+      "type": "asm",
+      "name": "game_01_65"
+    },
+    {
+      "offset": "0x00072DC0",
+      "type": "c",
+      "name": "game_01/func_00172A40"
+    },
+    {
+      "offset": "0x00072DFC",
+      "type": "asm",
+      "name": "game_01_66"
+    },
+    {
+      "offset": "0x00072E00",
+      "type": "c",
+      "name": "game_01/func_00172A80"
+    },
+    {
+      "offset": "0x00072E18",
+      "type": "asm",
+      "name": "game_01_67"
+    },
+    {
+      "offset": "0x00072F70",
+      "type": "c",
+      "name": "game_01/func_00172BF0"
+    },
+    {
+      "offset": "0x00072F78",
+      "type": "asm",
+      "name": "game_01_68"
+    },
+    {
+      "offset": "0x00073740",
+      "type": "c",
+      "name": "game_01/func_001733C0"
+    },
+    {
+      "offset": "0x000737C0",
+      "type": "asm",
+      "name": "game_01_69"
+    },
+    {
+      "offset": "0x00073F80",
+      "type": "c",
+      "name": "game_01/func_00173C00"
+    },
+    {
+      "offset": "0x00074034",
+      "type": "asm",
+      "name": "game_01_70"
+    },
+    {
+      "offset": "0x00074530",
+      "type": "c",
+      "name": "game_01/func_001741B0"
+    },
+    {
+      "offset": "0x000745E4",
+      "type": "asm",
+      "name": "game_01_71"
+    },
+    {
+      "offset": "0x000772B0",
+      "type": "c",
+      "name": "game_01/func_00176F30"
+    },
+    {
+      "offset": "0x000772B8",
+      "type": "asm",
+      "name": "game_01_72"
+    },
+    {
+      "offset": "0x000772C0",
+      "type": "c",
+      "name": "game_01/func_00176F40"
+    },
+    {
+      "offset": "0x000772C8",
+      "type": "asm",
+      "name": "game_01_73"
+    },
+    {
+      "offset": "0x000772D0",
+      "type": "c",
+      "name": "game_01/func_00176F50"
+    },
+    {
+      "offset": "0x000772D8",
+      "type": "asm",
+      "name": "game_01_74"
     },
     {
       "offset": "0x0007F280",
