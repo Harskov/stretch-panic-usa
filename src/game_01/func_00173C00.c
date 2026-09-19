@@ -1,45 +1,16 @@
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned int u32;
-typedef unsigned long long u64;
-typedef signed char s8;
-typedef short s16;
-typedef int s32;
-typedef long long s64;
-typedef float f32;
-typedef unsigned __int128 u128;
+#include "game_01/obj50.h"
 
-typedef struct {
-    u8 pad0[0x50];
-    f32 x50;
-    f32 x54;
-    f32 x58;
-    f32 x5C;
-    f32 x60;
-    f32 x64;
-    f32 x68;
-    f32 x6C;
-    f32 x70;
-    f32 x74;
-    f32 x78;
-    f32 x7C;
-    f32 x80;
-    u8 pad84[0x18];
-    f32 x9C;
-    f32 xA0;
-} Obj;
-
-s32 func_00173C00(Obj *arg0) {
-    register f32 *v;
-    register f32 *p;
+s32 func_00173C00(Obj50 *arg0) {
+    register Vec *v;
+    register Vec *p;
     f32 t;
     s32 r;
 
-    arg0->x70 = arg0->x70 * arg0->x74;
-    arg0->x74 = arg0->x74 * arg0->x78;
+    arg0->unk_70 = arg0->unk_70 * arg0->unk_74;
+    arg0->unk_74 = arg0->unk_74 * arg0->unk_78;
 
-    p = &arg0->x50;
-    v = &arg0->x60;
+    p = &arg0->pos;
+    v = &arg0->vel;
     asm {
         lqc2 vf1, 0(p)
         lqc2 vf2, 0(v)
@@ -47,16 +18,16 @@ s32 func_00173C00(Obj *arg0) {
         sqc2 vf1, 0(p)
     }
 
-    t = arg0->xA0;
-    arg0->x9C = arg0->x9C + t;
+    t = arg0->unk_A0;
+    arg0->unk_9C = arg0->unk_9C + t;
 
-    if (!(arg0->xA0 <= 0.0f) && !(arg0->x9C <= 1.0f)) {
-        arg0->x9C = 1.0f;
-        arg0->xA0 = 0.0f;
+    if (!(arg0->unk_A0 <= 0.0f) && !(arg0->unk_9C <= 1.0f)) {
+        arg0->unk_9C = 1.0f;
+        arg0->unk_A0 = 0.0f;
     }
 
     r = 1;
-    if (arg0->x9C <= 0.0f) {
+    if (arg0->unk_9C <= 0.0f) {
         r = 0;
     }
     return r;
