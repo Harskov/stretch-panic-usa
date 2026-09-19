@@ -46,3 +46,9 @@ sceSifGetReg = 0x00105670; // type:func size:0x10
 Deci2Call = 0x00105690; // type:func size:0x10
 RFU116_SetSyscall = 0x00105EA8; // type:func size:0x10
 RFU091 = 0x00105F00; // type:func size:0x10
+// run 2026-09-19-013-repair: splat ended neither symbol itself — func_00178B10 is a 5-instruction
+// virtual-dispatch thunk whose tail is `jr $t9`, not `jr $ra`, so the boundary heuristic ran it to
+// 0x2A8 and demoted the jal target 0x00178B30 (own prologue: addiu $sp,-0x70; sq $ra,0x60($sp);
+// jal at asm/game_01_107.s:614) to an alabel. Sizes are the ledger's.
+func_00178B10 = 0x00178B10; // type:func size:0x14
+func_00178B30 = 0x00178B30; // type:func size:0x288

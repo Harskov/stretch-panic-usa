@@ -5,7 +5,7 @@
   "prompt_version": "ds-v1",
   "prompt_sha": "0d9bb441e13f1f1b77e4b62a9654fed885d9767ec40131dd0d34264d83b2618d",
   "started": "2026-09-19T03:01:12Z",
-  "state": "running",
+  "state": "parked",
   "attempts": [
     {
       "n": 1,
@@ -2125,7 +2125,7 @@
   "batch_start_n": 99,
   "best_score": 98.5,
   "best_attempt": "wip/func_00172F60/attempt-65.c",
-  "note": "dsstep 0.1.0: attempt cap 10 reached; best objdiff 98.5 at wip/func_00172F60/attempt-65.c",
+  "note": "dsstep 0.1.0: batch 2026-09-19-016 aborted on a truncated HTTP response at attempt 108 (http.client.IncompleteRead); attempts 99-107 stand, best objdiff 98.5 at wip/func_00172F60/attempt-65.c. State set parked by run 2026-09-19-013-repair: the batch is dead (no state/runner.lock, no runs/runner/2026-09-19-016/, no 2026-09-19-016 record in state/runner-steps.jsonl) and state=running kept it out of select_batch's escalation set.",
   "note_rc": 0,
   "finished": "2026-09-19T12:19:16Z",
   "elapsed": 47.3,

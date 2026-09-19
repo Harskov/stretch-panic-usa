@@ -1,11 +1,10 @@
 {
-  "at": "2026-09-19T12:31:27Z",
+  "at": "2026-09-19T12:47:10Z",
   "proposed": "match-batch",
   "step_id": "S6",
   "reason": "1242 game function(s) still asm/wip; batch size 12",
   "notes": [
-    "external lane: 24 runner batch(es), 93 matched, $4.11 in state/runner-steps.jsonl (never a step of a run)",
-    "5 runner batch(es) newer than the last commit (2026-09-19T09:15:23Z): 2026-09-19-011, 2026-09-19-012, 2026-09-19-013, 2026-09-19-014, 2026-09-19-015 — commit them at RESUME before --start-run: `git_mount.sh <repo> add -A && commit -m \"runner 2026-09-19-011, 2026-09-19-012, 2026-09-19-013, 2026-09-19-014, 2026-09-19-015: match-batch-external — 8 matched\"`"
+    "external lane: 24 runner batch(es), 93 matched, $4.11 in state/runner-steps.jsonl (never a step of a run)"
   ],
   "never_auto_selected": [
     "ghidra-hints"

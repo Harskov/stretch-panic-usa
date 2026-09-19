@@ -1,0 +1,24 @@
+{
+  "at": "2026-09-19T12:47:30Z",
+  "run_id": "2026-09-19-013-repair",
+  "lines": 58,
+  "max_lines": 80,
+  "friction_severities": {
+    "major": 3
+  },
+  "fields": {
+    "run_id": "2026-09-19-013-repair",
+    "step_type": "repair",
+    "step_id": "S9",
+    "target": "stretch-panic-usa",
+    "override_note": " — proposed by next_step.py",
+    "started": "2026-09-19T12:41:20Z",
+    "finished": "2026-09-19T12:46:52Z",
+    "commit": "the commit whose message starts `run 2026-09-19-013-repair:` (git log --grep)",
+    "what_changed": "- Ledger: no status changes.\n- The red check was never a byte disagreement: check.json carried diff_count 0 and rebuilt_size == original_size == 5896192, and its reason was unlinked_matches [func_0014",
+    "build_check": "`check.json`: ok = **True**, checked 2026-09-19T12:45:08Z, regime `full`; image 0x00100000–0x0069F800, rebuilt 5896192 of 5896192 bytes; first diff None, 0 differing byte(s). Segments: crt0 ok; mw_run",
+    "step_table": "# Repair note — run 2026-09-19-013-repair\n\n## Cause\n\nThe external MatchRunner batch `2026-09-19-016` aborted mid-function on a truncated HTTP\nresponse from the provider (`http.client.IncompleteRead(0 ",
+    "next_step": "S6 match-batch — 1242 game function(s) still asm/wip; batch size 12\n- note: external lane: 24 runner batch(es), 93 matched, $4.11 in state/runner-steps.jsonl (never a step of a run)",
+    "friction_summary": "3 entries (major 3); stages attested: E, R, S, V, X; export: FRICTION-REPORT.md\n- F-1 [major/environment] external MatchRunner batch 2026-09-19-016 aborted on a truncated HTTP response, leaving check."
+  }
+}

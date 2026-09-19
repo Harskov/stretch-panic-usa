@@ -11,7 +11,7 @@
   "usd": 0.0,
   "tokens": 0,
   "updated": "2026-09-19T12:19:58Z",
-  "note": "prepare failed: ERROR: func_00178B30: asm not found in asm/*.s",
+  "note": "prepare failed: ERROR: func_00178B30: asm not found in asm/*.s | Cause repaired by run 2026-09-19-013-repair: func_00178B10/func_00178B30 pinned with explicit sizes in config/symbol_addrs.txt, so splat now emits 'glabel func_00178B30' (asm/game_01_95.s:1027) and match.py prepare succeeds (target.s 162 insns, target.o 1892 bytes). State left as dsstep wrote it; the next batch will overwrite it.",
   "finished": "2026-09-19T12:19:58Z",
   "elapsed": 1.7
 }
