@@ -1,0 +1,63 @@
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned int u32;
+typedef unsigned long long u64;
+typedef signed char s8;
+typedef short s16;
+typedef int s32;
+typedef long long s64;
+typedef float f32;
+typedef unsigned __int128 u128;
+
+typedef struct Vec {
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 w;
+} Vec;
+
+typedef struct Src {
+    u8 pad0[0x140];
+    u128 v140;
+    u8 pad1[0x100];
+    u128 v250;
+    u128 v260;
+    u128 v270;
+    u8 pad2[0x200];
+    u8 b414;
+    u8 pad3[0x5B];
+    f32 f470;
+    f32 f474;
+    f32 f478;
+    f32 f47C;
+    s32 i480;
+} Src;
+
+typedef struct Dst {
+    Vec v0;
+    Vec v10;
+    Vec v20;
+    Vec v30;
+    u8 pad0[0x10];
+    f32 f50;
+    f32 f54;
+    f32 f58;
+    f32 f5C;
+    s32 i60;
+} Dst;
+
+void func_00152380(Src *arg0, Dst *arg1) {
+    arg0->b414 = 0;
+    arg1->f50 = arg0->f470;
+    arg1->f54 = arg0->f474;
+    arg1->f58 = arg0->f478;
+    arg1->f5C = arg0->f47C;
+    arg1->i60 = arg0->i480;
+    arg1->v30 = *(Vec *)(arg0->pad0 + 0x140);
+    arg1->v0 = *(Vec *)(arg0->pad0 + 0x250);
+    arg1->v10 = *(Vec *)(arg0->pad0 + 0x260);
+    arg1->v20 = *(Vec *)(arg0->pad0 + 0x270);
+    arg1->v20.x = -arg1->v20.x;
+    arg1->v20.y = -arg1->v20.y;
+    arg1->v20.z = -arg1->v20.z;
+}

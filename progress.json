@@ -1,22 +1,25 @@
 {
-  "generated": "2026-09-19T08:55:22Z",
+  "generated": "2026-09-19T12:25:20Z",
   "totals": {
     "functions": 2027,
     "bytes_total": 510776,
-    "bytes_matched": 3480,
-    "matched": 104,
-    "wip": 40,
-    "asm": 1211,
+    "bytes_matched": 4092,
+    "matched": 112,
+    "wip": 52,
+    "asm": 1191,
     "library": 672,
     "skipped-data": 0,
     "unassigned": 0,
     "game_functions": 1355,
-    "game_matched": 104,
-    "game_matched_pct": 7.68,
-    "external_matched": 85,
+    "game_matched": 112,
+    "game_matched_pct": 8.27,
+    "external_matched": 93,
     "operator_matched": 19,
-    "matched_with_lint": 0,
-    "lint_flagged": []
+    "matched_with_lint": 2,
+    "lint_flagged": [
+      "func_0014E460",
+      "func_00152600"
+    ]
   },
   "segments": [
     {
@@ -180,10 +183,10 @@
       "kind": "game",
       "functions": 714,
       "bytes_total": 220924,
-      "bytes_matched": 3336,
-      "matched": 102,
-      "wip": 39,
-      "asm": 573,
+      "bytes_matched": 3948,
+      "matched": 110,
+      "wip": 51,
+      "asm": 553,
       "library": 0,
       "skipped-data": 0,
       "unassigned": 0
@@ -254,16 +257,16 @@
       "unassigned": 0
     }
   ],
-  "steps_run": 11,
-  "last_run": "2026-09-19-011-match-batch",
+  "steps_run": 12,
+  "last_run": "2026-09-19-012-consolidate",
   "build_check_ok": true,
   "link_regime": "full",
   "compiler_id": "mwcps2-2.3.3-000906",
   "calibrated": true,
   "runner": {
-    "batches": 19,
-    "matched": 85,
-    "cost_usd": 1.6019,
-    "last_batch": "2026-09-19-010"
+    "batches": 23,
+    "matched": 93,
+    "cost_usd": 3.4469,
+    "last_batch": "2026-09-19-014"
   }
 }

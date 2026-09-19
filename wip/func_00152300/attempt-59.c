@@ -1,0 +1,77 @@
+typedef unsigned char u8;
+typedef unsigned short u16;
+typedef unsigned int u32;
+typedef unsigned long long u64;
+typedef signed char s8;
+typedef short s16;
+typedef int s32;
+typedef long long s64;
+typedef float f32;
+typedef unsigned __int128 u128;
+
+typedef struct Vec {
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 w;
+} Vec;
+
+typedef struct Src {
+    u8 pad0[0x250];
+    u128 q0;
+    u128 q1;
+    u128 q2;
+    u8 pad280[0x314 - 0x280];
+    u8 f314;
+    u8 pad315[0x370 - 0x315];
+    f32 f370;
+    f32 f374;
+    f32 f378;
+    f32 f37C;
+    s32 f380;
+    f32 f384;
+} Src;
+
+typedef struct Dst {
+    u128 q0;
+    u128 q1;
+    u128 q2;
+    u8 pad30[0x50 - 0x30];
+    f32 f50;
+    f32 f54;
+    f32 f58;
+    f32 f5C;
+    s32 f60;
+    f32 f64;
+    s32 f68;
+    s32 f6C;
+    s32 f70;
+} Dst;
+
+void func_00152300(Src *src, Dst *dst) {
+    f32 x;
+    f32 y;
+    f32 z;
+    f32 w;
+
+    src->f314 = 0;
+    x = src->f370;
+    y = src->f374;
+    z = src->f378;
+    w = src->f37C;
+    dst->q0 = src->q0;
+    dst->q1 = src->q1;
+    dst->q2 = src->q2;
+    dst->f50 = x;
+    dst->f54 = y;
+    dst->f58 = z;
+    dst->f5C = w;
+    ((Vec *)&dst->q2)->x = -((Vec *)&dst->q2)->x;
+    ((Vec *)&dst->q2)->y = -((Vec *)&dst->q2)->y;
+    ((Vec *)&dst->q2)->z = -((Vec *)&dst->q2)->z;
+    dst->f60 = src->f380;
+    dst->f64 = src->f384;
+    dst->f68 = 0;
+    dst->f6C = 0;
+    dst->f70 = 0;
+}
