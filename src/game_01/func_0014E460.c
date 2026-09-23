@@ -1,22 +1,13 @@
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned int u32;
-typedef unsigned long long u64;
-typedef signed char s8;
-typedef short s16;
-typedef int s32;
-typedef long long s64;
-typedef float f32;
+#include "common.h"
+#include "game_01/obj530.h"
 
-extern void func_0014E460();
-
-void func_0014E460(char *arg0) {
+void func_0014E460(Obj530 *arg0) {
     s32 i;
 
     i = 0;
     do {
-        *(s32 *)(arg0 + i * 4 + 0x530) = 0;
-        *(u8 *)(arg0 + i + 0x538) = 0;
+        arg0->unk_530[i] = 0;
+        arg0->unk_538[i] = 0;
         i += 1;
     } while (i < 2);
 }

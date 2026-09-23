@@ -1,7 +1,7 @@
 #include "common.h"
 
 /* The 16 bytes at +0x20 of the destination are copied whole and then negated
-   lane by lane, so the field is a union (K1 §8, include/game_01/obj430.h). */
+   lane by lane, so the field is a union. */
 typedef union Quad {
     u128 q;
     Vec v;

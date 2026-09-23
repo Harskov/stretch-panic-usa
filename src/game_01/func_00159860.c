@@ -1,15 +1,5 @@
 #include "common.h"
-
-typedef struct Info {
-    u8 unk_00[0x54];
-    s32 unk_54;
-} Info;
-
-typedef struct Actor {
-    u8 unk_00[0x80];
-    u8 unk_80[0x44];
-    Info *unk_C4;
-} Actor;
+#include "game_01/actorC4.h"
 
 typedef struct Obj {
     u8 unk_00[0x10];

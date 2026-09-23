@@ -10,8 +10,7 @@
 
    The 16 bytes at +0x420 are reached at two widths, so the field is a union:
    func_00151460 writes the four words separately (0, 0, 0, 1.0f) and
-   func_001514A0 copies all sixteen at once with lq/sq, which the pinned compiler
-   emits only for a 128-bit type (K1 §8). This is a noted conflict, not a second
+   func_001514A0 copies all sixteen at once as one 128-bit quadword (lq/sq). This is a noted conflict, not a second
    struct laid over the first.
 
    func_001522E0 also reads +0x410, as an f32 rather than the s32 stored here,

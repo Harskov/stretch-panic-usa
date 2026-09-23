@@ -1,40 +1,15 @@
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned int u32;
-typedef signed char s8;
-typedef short s16;
-typedef int s32;
-typedef float f32;
-typedef unsigned __int128 u128;
+#include "common.h"
+#include "game_01/obj2F8.h"
 
-typedef struct Vec {
-    f32 x;
-    f32 y;
-    f32 z;
-    f32 w;
-} Vec;
+void func_0016E760(Obj2F8 *arg0);
 
-typedef struct Ent {
-    u8 pad0[0x178];
-    s32 i178;
-    u8 pad17C[0x180 - 0x17C];
-    s32 i180;
-    u8 pad184[0x2B0 - 0x184];
-    s32 i2B0;
-    s32 i2B4;
-    s32 i2B8;
-    s32 i2BC;
-} Ent;
-
-void func_0016E760();
-
-void func_0017A3D0(Ent *arg0)
+void func_0017A3D0(Obj2F8 *arg0)
 {
-    arg0->i2B0 = 4;
-    arg0->i178 = 8;
-    arg0->i180 = 0x3F800000;
-    arg0->i2BC = 0;
-    arg0->i2B8 = 0;
-    arg0->i2B4 = 0;
-    func_0016E760();
+    arg0->unk_2B0 = 4;
+    arg0->unk_178 = 8;
+    arg0->unk_180 = 0x3F800000;
+    arg0->unk_2BC = 0;
+    arg0->unk_2B8 = 0;
+    arg0->unk_2B4 = 0;
+    func_0016E760(arg0);
 }

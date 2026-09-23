@@ -1,13 +1,8 @@
+#include "common.h"
+
 #include "game_01/obj1F0.h"
 
-typedef struct Out {
-    f32 x;
-    f32 y;
-    f32 z;
-    f32 w;
-} Out;
-
-void func_0015B500(Obj1F0 *arg0, Out *arg1) {
+void func_0015B500(Obj1F0 *arg0, Vec *arg1) {
     f32 f0;
     f32 f1;
     f32 f2;

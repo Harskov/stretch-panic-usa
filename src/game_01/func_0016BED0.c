@@ -1,24 +1,10 @@
 #include "common.h"
-
-typedef struct Entry {
-    s32 unk_00;
-    s32 unk_04;
-    s32 unk_08;
-    s32 unk_0C;
-    u8  unk_10[0x8];
-    f32 unk_18;
-    u8  unk_1C[0x4];
-} Entry;
-
-typedef struct Obj {
-    u8 unk_00[0x60];
-    Entry *unk_60;
-} Obj;
+#include "game_01/obj530.h"
 
 extern s32 *D_006A6D10;
 extern s32 func_0013DF50(s32, s32, s32, s32, s32, s32);
 
-void func_0016BED0(s32 mode, u32 flags, Obj *o, s32 idx, f32 v)
+void func_0016BED0(s32 mode, u32 flags, Holder *o, s32 idx, f32 v)
 {
     s32 sel;
     u8 big;
