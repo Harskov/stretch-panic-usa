@@ -59,7 +59,26 @@ RULES = [
     ("inline-asm", "error", re.compile(r"(?<![\w.])(?:__asm__|__asm|asm)\s*(?:volatile\s*)?\(")),
     ("volatile", "advisory", re.compile(r"\bvolatile\b")),
     ("goto", "advisory", re.compile(r"\bgoto\b")),
+    # community-alignment rules (remediation 20): the shapes the decomp community names as
+    # machine-made C (zeldaret/tww "Avoid Ghidra-isms"; permuter debris)
+    ("do-while-zero", "error", re.compile(r"\bwhile\s*\(\s*0\s*\)")),
+    ("register-local", "advisory", re.compile(r"^\s*register\b")),
+    ("assign-in-condition", "advisory", re.compile(r"\b(?:if|while)\s*\((?:[^()]|\([^()]*\))*?(?<![=!<>+\-*/%&|^])=(?!=)")),
 ]
+
+# A basic type re-declared in a source file instead of taken from include/types.h
+# (remediation 20: 27 matched files carried their own `typedef unsigned char u8;` block).
+TYPEDEF_REDECLARE = re.compile(r"^\s*typedef\s+[\w\s]+?\s+(u8|u16|u32|u64|u128|s8|s16|s32|s64|s128|f32|f64)\s*;", re.M)
+# A comment that narrates the pipeline instead of the code: run and round ids, knowledge-file
+# sections, friction ids, calibration candidates, tool names (remediation 20; the community
+# asks that machine output stay out of comments — doldecomp/melee CONTRIBUTING).
+PROCESS_COMMENT = re.compile(r"\brun \d{3}\b|\bruns?/|\bK[1-8]\s*§?\s*\d|\bcalibration candidate\b|\bremediation\b"
+                             r"|\bF-\d+\b|\bRUN-|\b(?:ledger|match|lint_c|next_step|select_batch)\.py\b|\bpermuter\b|\battempt-\d|\bMatchRunner\b"
+                             r"|\bre-?tried\b|\bobjdiff\b|\bscor(?:e|ed) \d", re.I)
+COMMENT = re.compile(r"/\*.*?\*/|//[^\n]*", re.S)
+FUNC_DEF = re.compile(r"\b([A-Za-z_]\w*)\s*\([^;{}()]*(?:\([^()]*\)[^;{}()]*)*\)\s*\{")
+EXTERN_FUNC = re.compile(r"^\s*extern\b[^;]*?\b([A-Za-z_]\w*)\s*\(", re.M)
+NOT_FUNCS = {"if", "while", "for", "switch", "return", "sizeof", "do", "else"}
 
 # CodeWarrior's block form, `asm { ... }` (the paren form above is GNU's, which the
 # pinned mwccps2 does not accept). The block is one finding on its opening line.
@@ -282,7 +301,26 @@ def lint_text(text, path=""):
             hits = [h for h in hits if h[0] != "overlay-cast"]
         for rule, sev in hits:
             findings.append({"path": path, "line": lineno, "rule": rule, "severity": sev, "source": line.strip()})
+    if not str(path).endswith("types.h"):
+        for m in TYPEDEF_REDECLARE.finditer(stripped):
+            findings.append({"path": path, "line": stripped.count("\n", 0, m.start()) + 1, "rule": "typedef-redeclare",
+                             "severity": "error", "source": f"{m.group(0).strip()}  [use include/types.h]"})
+    defined = {m.group(1) for m in FUNC_DEF.finditer(stripped)} - NOT_FUNCS
+    for m in EXTERN_FUNC.finditer(stripped):
+        if m.group(1) in defined:
+            findings.append({"path": path, "line": stripped.count("\n", 0, m.start()) + 1, "rule": "self-extern",
+                             "severity": "advisory", "source": f"extern declaration of {m.group(1)}, which this file defines"})
+    for m in COMMENT.finditer(text):
+        pm = PROCESS_COMMENT.search(m.group(0))
+        if pm:
+            ln = text.count("\n", 0, m.start() + pm.start()) + 1
+            findings.append({"path": path, "line": ln, "rule": "process-comment", "severity": "error",
+                             "source": " ".join(m.group(0).split())[:100] + "  [a comment says what the code does, not how it was matched]"})
     findings.extend(member_offset_findings(text, path))
+    if any(f["rule"] in ("vu0-asm", "fpu-asm", "inline-asm") for f in findings):
+        # an asm block's operands are `register` locals by necessity (the VU0 exception,
+        # K1 §6 item 11): register-local says nothing new there
+        findings = [f for f in findings if f["rule"] != "register-local"]
     findings.sort(key=lambda f: (f["line"], f["rule"]))
     return findings
 
