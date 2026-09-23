@@ -12,7 +12,9 @@ through a pointer cast; inline asm). Default scope: src/**/*.c, src/**/*.cp (C++
 the extension is what selects CodeWarrior's C++ front end) and include/**/*.h;
 FILE arguments narrow it (a wip attempt before `mark`, say).
 
-Rules (error): overlay-cast, byte-offset, reinterpret-lvalue, inline-asm.
+Rules (error): overlay-cast, byte-offset, reinterpret-lvalue, inline-asm, member-offset
+(a struct member named for an offset, `unk_1EC`, that its declaration puts elsewhere;
+remediation 19).
 Rules (advisory, need an evidence note in the ledger): volatile, goto, vu0-asm, fpu-asm.
 
 The one asm form that is not an error is a VU0 macro-mode block (remediation 10,
@@ -103,6 +105,156 @@ def strip_comments(text):
     return re.sub(r"//[^\n]*", "", text)
 
 
+# --- member-offset (remediation 19, fate run 2026-09-23-016 F-1) --------------------
+# A struct member whose name states its offset (`unk_1EC`, `unk1EC`, `pad_1E8`) and whose
+# declared position puts it somewhere else is C that tells the reader a wrong layout, and
+# it is how a high-scoring wrong layout survives: objdiff scores instruction shape, so a
+# member one word off still reads as a near-miss. func_001A04B0's parked runner attempt
+# (98.4 after 76 attempts) declared unk1E0, unk1E4, unk1EC, unk1F4 back to back, so
+# unk1EC sat at 0x1E8 and unk1F4 at 0x1EC; the same statements over a struct with its
+# members at their named offsets matched on the first try. The layout below is
+# CodeWarrior's for the EE (K1 §1): natural alignment, 16 for the 128-bit types. A struct
+# holding anything it cannot size (an unknown type, a bitfield, a nested anonymous
+# aggregate) is skipped whole, so the rule reports only what it can prove.
+SCALAR_LAYOUT = {
+    "char": 1, "signed char": 1, "unsigned char": 1, "s8": 1, "u8": 1, "bool": 1, "_Bool": 1,
+    "short": 2, "unsigned short": 2, "signed short": 2, "s16": 2, "u16": 2,
+    "int": 4, "unsigned": 4, "unsigned int": 4, "signed int": 4, "signed": 4, "long": 4,
+    "unsigned long": 4, "s32": 4, "u32": 4, "f32": 4, "float": 4, "size_t": 4,
+    "long long": 8, "unsigned long long": 8, "s64": 8, "u64": 8, "double": 8, "f64": 8,
+    "u128": 16, "s128": 16, "__int128": 16, "unsigned __int128": 16,
+}
+OFFSET_NAME = re.compile(r"^_?unk_?(?:0x)?([0-9A-Fa-f]+)$")
+AGGREGATE = re.compile(r"\b(typedef\s+)?(struct|union)\s*(\w+)?\s*\{")
+
+
+def _body_end(text, i):
+    depth = 0
+    while i < len(text):
+        if text[i] == "{":
+            depth += 1
+        elif text[i] == "}":
+            depth -= 1
+            if depth == 0:
+                return i
+        i += 1
+    return -1
+
+
+def _const(expr):
+    """An array dimension: a decimal or hex literal, or + - * / of them in parentheses
+    (`[0x540 - 0x1F8]`). Anything else (a macro, sizeof) is None: not sized here."""
+    if not re.fullmatch(r"[\s0-9A-Fa-fxX()+\-*/]+", expr):
+        return None
+    try:
+        v = eval(re.sub(r"\b0[xX]([0-9A-Fa-f]+)|\b(\d+)\b",
+                        lambda m: str(int(m.group(1), 16)) if m.group(1) else m.group(2), expr).replace("/", "//"),
+                 {"__builtins__": {}}, {})
+    except Exception:
+        return None
+    return v if isinstance(v, int) and v >= 0 else None
+
+
+def _dims(s):
+    n = 1
+    for d in re.findall(r"\[([^\]]*)\]", s):
+        v = _const(d.strip())
+        if v is None:
+            return None
+        n *= v
+    return n
+
+
+def struct_layouts(text):
+    """{name: (size, align)} for every aggregate in `text` it can size, plus a list of
+    (struct name, line, [(member, offset)]) for the structs, in order of appearance."""
+    known = dict((k, (v, v)) for k, v in SCALAR_LAYOUT.items())
+    for m in re.finditer(r"\btypedef\s+([A-Za-z_][\w ]*?)\s+(\w+)\s*;", text):
+        base = " ".join(m.group(1).split())
+        if base in known:
+            known[m.group(2)] = known[base]
+    structs = []
+    for m in AGGREGATE.finditer(text):
+        end = _body_end(text, m.end() - 1)
+        if end < 0:
+            continue
+        body = text[m.end():end]
+        tail = re.match(r"\s*(\w+)?\s*;", text[end + 1:])
+        names = [n for n in (m.group(3), tail.group(1) if (tail and m.group(1)) else None) if n]
+        if "{" in body or ":" in re.sub(r"::", "", body):
+            continue  # nested aggregate or bitfield: not sized here
+        members, off, align, ok = [], 0, 1, True
+        for decl in body.split(";"):
+            decl = " ".join(decl.split())
+            if not decl:
+                continue
+            fp = re.match(r"^[\w\s\*]+\(\s*\*\s*(\w+)\s*\)\s*\(.*\)(\s*\[.*\])?$", decl)
+            if fp:
+                items = [(fp.group(1), (4, 4), _dims(fp.group(2) or ""))]
+            else:
+                items = []
+                parts = [p.strip() for p in decl.split(",")]
+                hm = re.match(r"^(.*[^\w])(\w+)\s*((?:\[[^\]]*\]\s*)*)$", parts[0])
+                if not hm:
+                    ok = False
+                    break
+                base_raw = hm.group(1)
+                stars0 = base_raw.count("*")
+                base = " ".join(w for w in base_raw.replace("*", " ").split() if w not in ("const", "volatile", "struct", "union"))
+                decls = [(stars0, hm.group(2), hm.group(3))]
+                for p in parts[1:]:
+                    pm = re.match(r"^(\**)\s*(\w+)\s*((?:\[[^\]]*\]\s*)*)$", p)
+                    if not pm:
+                        ok = False
+                        break
+                    decls.append((len(pm.group(1)), pm.group(2), pm.group(3)))
+                for stars, nm, dims in decls:
+                    if stars:
+                        lay = (4, 4)
+                    elif base.startswith("enum "):
+                        lay = (4, 4)
+                    elif base in known:
+                        lay = known[base]
+                    else:
+                        ok = False
+                        break
+                    items.append((nm, lay, _dims(dims)))
+            if not ok:
+                break
+            for name, (sz, al), n in items:
+                if n is None:
+                    ok = False
+                    break
+                off = (off + al - 1) // al * al
+                members.append((name, off))
+                off += sz * n
+                align = max(align, al)
+            if not ok:
+                break
+        if not ok or not members:
+            continue
+        if m.group(2) == "union":
+            continue  # a union's members all sit at 0: nothing to check, and not sized here
+        size = (off + align - 1) // align * align
+        for n in names:
+            known[n] = (size, align)
+            known["struct " + n] = (size, align)
+        structs.append((names[-1] if names else "<anonymous>", text.count("\n", 0, m.start()) + 1, members))
+    return known, structs
+
+
+def member_offset_findings(text, path=""):
+    out = []
+    _, structs = struct_layouts(strip_comments(text))
+    for sname, line, members in structs:
+        for name, off in members:
+            mm = OFFSET_NAME.match(name)
+            if mm and int(mm.group(1), 16) != off:
+                out.append({"path": path, "line": line, "rule": "member-offset", "severity": "error",
+                            "source": f"struct {sname}: {name} is at 0x{off:X}, its name says 0x{int(mm.group(1), 16):X}"})
+    return out
+
+
 def lint_text(text, path=""):
     findings = []
     stripped = strip_comments(text)
@@ -130,6 +282,7 @@ def lint_text(text, path=""):
             hits = [h for h in hits if h[0] != "overlay-cast"]
         for rule, sev in hits:
             findings.append({"path": path, "line": lineno, "rule": rule, "severity": sev, "source": line.strip()})
+    findings.extend(member_offset_findings(text, path))
     findings.sort(key=lambda f: (f["line"], f["rule"]))
     return findings
 
