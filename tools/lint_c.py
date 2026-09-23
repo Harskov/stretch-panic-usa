@@ -8,11 +8,12 @@ the C reads as the original could have been written. The first is `ledger.py mar
 gate. This script is the check for the second, on the constructs the community
 rejects as "fakematching" (a cast of an element address to a second, overlapping
 struct; byte arithmetic on a pointer to reach a field; reinterpreting an lvalue
-through a pointer cast; inline asm). Default scope: src/**/*.c and include/**/*.h;
+through a pointer cast; inline asm). Default scope: src/**/*.c, src/**/*.cp (C++ —
+the extension is what selects CodeWarrior's C++ front end) and include/**/*.h;
 FILE arguments narrow it (a wip attempt before `mark`, say).
 
 Rules (error): overlay-cast, byte-offset, reinterpret-lvalue, inline-asm.
-Rules (advisory, need an evidence note in the ledger): volatile, goto, vu0-asm.
+Rules (advisory, need an evidence note in the ledger): volatile, goto, vu0-asm, fpu-asm.
 
 The one asm form that is not an error is a VU0 macro-mode block (remediation 10,
 stretch-panic-usa run 007 F-2): a CodeWarrior `asm { ... }` block whose every
@@ -20,6 +21,14 @@ instruction is a COP2 instruction (`lqc2`, `sqc2`, `cfc2`, `ctc2`, `qmfc2`, `qmt
 the `v*` vector ops). The pinned compiler has no C spelling for those instructions —
 the block over `register` pointer locals is the only source form it accepts (K1 §6
 item 11) — so such a block is reported as `vu0-asm` (advisory) on its first line.
+The second such form is a COP1 float-to-int block (remediation 17, run
+2026-09-19-015 F-4): a block whose every instruction is in the conversion set
+(`cvt.w.s`, `cvt.s.w`, `trunc.w.s`, `round.w.s`, `ceil.w.s`, `floor.w.s`, and the
+`mfc1`/`mtc1` that move the value in and out). The pinned 2.3.3 build compiles every
+C spelling of `(int)f` to a `jal` to the `fptosi` helper — seven spellings across
+seven flag sets, and C++ too — while the image inlines `0x46000024` at all 31 of its
+conversion sites, so the block is the only source form that reaches those bytes under
+the pinned build (K1 §6.20). Reported as `fpu-asm` (advisory).
 A block with any other instruction inside, a GNU `asm(...)` / `__asm__(...)`
 statement, and a CodeWarrior `asm` function are `inline-asm` (error).
 
@@ -57,6 +66,12 @@ ASM_BLOCK = re.compile(r"(?<![\w.])(?:__asm__|__asm|asm)\s*(?:volatile\s*)?\{")
 ASM_FUNC = re.compile(r"(?<![\w.])asm\s+[A-Za-z_][\w\s\*]*\b[A-Za-z_]\w*\s*\(")
 # COP2 (VU0 macro mode): the vector-unit loads/stores and moves, and every `v*` op
 COP2_MNEMONIC = re.compile(r"^(?:lqc2|sqc2|cfc2|ctc2|qmfc2|qmtc2|v[a-z0-9]+(?:\.[xyzw]{1,4})?)$", re.I)
+# COP1 float<->int conversion (remediation 17): the conversion itself, plus the moves
+# that carry the value between an FPU register and a GPR. `mfc1`/`mtc1` alone are NOT a
+# conversion block — COP1_CONV_ONLY is what makes one of these a conversion rather than
+# a hand-written register shuffle, which stays `inline-asm` (error).
+COP1_CONV_ONLY = re.compile(r"^(?:cvt\.[ws]\.[ws]|trunc\.w\.[sd]|round\.w\.[sd]|ceil\.w\.[sd]|floor\.w\.[sd])$", re.I)
+COP1_CONV_MNEMONIC = re.compile(r"^(?:cvt\.[ws]\.[ws]|trunc\.w\.[sd]|round\.w\.[sd]|ceil\.w\.[sd]|floor\.w\.[sd]|mfc1|mtc1)$", re.I)
 
 
 def asm_blocks(text):
@@ -95,8 +110,14 @@ def lint_text(text, path=""):
     for lineno, mnemonics in asm_blocks(stripped):
         src = lines[lineno - 1].strip() if lineno <= len(lines) else "asm {"
         foreign = [x for x in mnemonics if not COP2_MNEMONIC.match(x)]
+        foreign_fpu = [x for x in mnemonics if not COP1_CONV_MNEMONIC.match(x)]
         if mnemonics and not foreign:
             findings.append({"path": path, "line": lineno, "rule": "vu0-asm", "severity": "advisory",
+                             "source": f"{src}  [{', '.join(mnemonics)}]"})
+        elif mnemonics and not foreign_fpu and any(COP1_CONV_ONLY.match(x) for x in mnemonics):
+            # a float-to-int conversion block: no C spelling reaches the inline
+            # 0x46000024 under the pinned 2.x build (K1 §6.20, remediation 17)
+            findings.append({"path": path, "line": lineno, "rule": "fpu-asm", "severity": "advisory",
                              "source": f"{src}  [{', '.join(mnemonics)}]"})
         else:
             findings.append({"path": path, "line": lineno, "rule": "inline-asm", "severity": "error",
@@ -130,7 +151,8 @@ def main():
     if a.files:
         paths = [Path(f) if Path(f).is_absolute() else repo / f for f in a.files]
     else:
-        paths = sorted((repo / "src").rglob("*.c")) + sorted((repo / "include").rglob("*.h"))
+        paths = (sorted((repo / "src").rglob("*.c")) + sorted((repo / "src").rglob("*.cp"))
+                 + sorted((repo / "include").rglob("*.h")))
     findings = []
     for p in paths:
         if not p.is_file():
