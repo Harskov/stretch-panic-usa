@@ -19,10 +19,17 @@ Rules (advisory, need an evidence note in the ledger): volatile, goto, vu0-asm, 
 
 The one asm form that is not an error is a VU0 macro-mode block (remediation 10,
 stretch-panic-usa run 007 F-2): a CodeWarrior `asm { ... }` block whose every
-instruction is a COP2 instruction (`lqc2`, `sqc2`, `cfc2`, `ctc2`, `qmfc2`, `qmtc2`,
-the `v*` vector ops). The pinned compiler has no C spelling for those instructions —
-the block over `register` pointer locals is the only source form it accepts (K1 §6
-item 11) — so such a block is reported as `vu0-asm` (advisory) on its first line.
+instruction is a COP2 instruction (`lqc2`, `sqc2`, `cfc2`, `ctc2`, `qmfc2`, `qmtc2` —
+the four transfers also with the interlock suffix `.ni`/`.i` the assembler prints,
+remediation 22 — and the `v*` vector ops). The pinned compiler has no C spelling for
+those instructions — the block over `register` locals is the only source form it
+accepts (K1 §6 item 11) — so such a block is reported as `vu0-asm` (advisory) on its
+first line. One COP1 transfer per scalar belongs to that form (remediation 22,
+stretch-panic-usa run 018 F-3): `mfc1 <gpr>, <f32>` whose GPR a later `qmtc2 <gpr>,
+vfN` in the same block moves into VU0 (the libvu0 scale shape), and its mirror,
+`mtc1 <gpr>, <f32>` whose GPR an earlier `qmfc2 <gpr>, vfN` took out of it. An
+`mfc1`/`mtc1` whose GPR is no such transfer's operand in the block, or is written again
+in between, stays foreign.
 The second such form is a COP1 float-to-int block (remediation 17, run
 2026-09-19-015 F-4): a block whose every instruction is in the conversion set
 (`cvt.w.s`, `cvt.s.w`, `trunc.w.s`, `round.w.s`, `ceil.w.s`, `floor.w.s`, and the
@@ -77,7 +84,12 @@ PROCESS_COMMENT = re.compile(r"\brun \d{3}\b|\bruns?/|\bK[1-8]\s*§?\s*\d|\bcali
                              r"|\bre-?tried\b|\bobjdiff\b|\bscor(?:e|ed) \d", re.I)
 COMMENT = re.compile(r"/\*.*?\*/|//[^\n]*", re.S)
 FUNC_DEF = re.compile(r"\b([A-Za-z_]\w*)\s*\([^;{}()]*(?:\([^()]*\)[^;{}()]*)*\)\s*\{")
-EXTERN_FUNC = re.compile(r"^\s*extern\b[^;]*?\b([A-Za-z_]\w*)\s*\(", re.M)
+# `extern` the storage class on a function this file defines — not the C++ linkage
+# specification `extern "C"`, which a .cp function needs to keep its symbol unmangled,
+# on the definition or on a declaration before it (K1 §12; remediation 22, run 018 F-5).
+# `[ \t]*`, not `\s*`: `\s` let the match start on a blank line above and put the
+# finding one line early.
+EXTERN_FUNC = re.compile(r'^[ \t]*extern\b(?![ \t]*"C(?:\+\+)?")[^;]*?\b([A-Za-z_]\w*)\s*\(', re.M)
 NOT_FUNCS = {"if", "while", "for", "switch", "return", "sizeof", "do", "else"}
 
 # CodeWarrior's block form, `asm { ... }` (the paren form above is GNU's, which the
@@ -85,8 +97,17 @@ NOT_FUNCS = {"if", "while", "for", "switch", "return", "sizeof", "do", "else"}
 ASM_BLOCK = re.compile(r"(?<![\w.])(?:__asm__|__asm|asm)\s*(?:volatile\s*)?\{")
 # a CodeWarrior asm function: `asm void f(...)` / `asm int f(...)`
 ASM_FUNC = re.compile(r"(?<![\w.])asm\s+[A-Za-z_][\w\s\*]*\b[A-Za-z_]\w*\s*\(")
-# COP2 (VU0 macro mode): the vector-unit loads/stores and moves, and every `v*` op
-COP2_MNEMONIC = re.compile(r"^(?:lqc2|sqc2|cfc2|ctc2|qmfc2|qmtc2|v[a-z0-9]+(?:\.[xyzw]{1,4})?)$", re.I)
+# COP2 (VU0 macro mode): the vector-unit loads/stores and moves, and every `v*` op. The
+# four GPR<->VU0 transfers take the interlock suffix the assembler prints (`qmtc2.ni`,
+# `ctc2.i`): 153 of stretch-panic-usa's 291 COP2 functions and 16 of fate's 28 carry one
+# (remediation 22, run 018 F-2). match.py imports this definition.
+COP2_MNEMONIC = re.compile(r"^(?:lqc2|sqc2|(?:cfc2|ctc2|qmfc2|qmtc2)(?:\.n?i)?|v[a-z0-9]+(?:\.[xyzw]{1,4})?)$", re.I)
+# the scalar transfer (remediation 22, run 018 F-3): an FPU value reaches a VU0 register
+# only through a GPR, so the block carries one COP1 move per scalar, paired with a
+# quadword transfer through that GPR
+QMTC2 = re.compile(r"^qmtc2(?:\.n?i)?$", re.I)
+QMFC2 = re.compile(r"^qmfc2(?:\.n?i)?$", re.I)
+GPR_WRITERS = re.compile(r"^(?:mfc1|(?:qmfc2|cfc2)(?:\.n?i)?)$", re.I)
 # COP1 float<->int conversion (remediation 17): the conversion itself, plus the moves
 # that carry the value between an FPU register and a GPR. `mfc1`/`mtc1` alone are NOT a
 # conversion block — COP1_CONV_ONLY is what makes one of these a conversion rather than
@@ -95,8 +116,9 @@ COP1_CONV_ONLY = re.compile(r"^(?:cvt\.[ws]\.[ws]|trunc\.w\.[sd]|round\.w\.[sd]|
 COP1_CONV_MNEMONIC = re.compile(r"^(?:cvt\.[ws]\.[ws]|trunc\.w\.[sd]|round\.w\.[sd]|ceil\.w\.[sd]|floor\.w\.[sd]|mfc1|mtc1)$", re.I)
 
 
-def asm_blocks(text):
-    """(line_no, [mnemonics]) for every `asm { ... }` block in comment-stripped text."""
+def asm_statements(text):
+    """(line_no, [(mnemonic, [operand, ...])]) for every `asm { ... }` block in
+    comment-stripped text; operands lower-cased, a leading `$` dropped."""
     out = []
     for m in ASM_BLOCK.finditer(text):
         depth, i = 0, m.end() - 1
@@ -109,14 +131,44 @@ def asm_blocks(text):
                     break
             i += 1
         body = text[m.end():i]
-        mnemonics = []
+        stmts = []
         for stmt in re.split(r"[;\n]", body):
             stmt = stmt.strip()
             if not stmt or stmt.endswith(":"):  # empty, or a label
                 continue
-            mnemonics.append(stmt.split()[0])
-        out.append((text.count("\n", 0, m.start()) + 1, mnemonics))
+            parts = stmt.split(None, 1)
+            ops = [o.strip().lstrip("$").lower() for o in parts[1].split(",")] if len(parts) > 1 else []
+            stmts.append((parts[0], [o for o in ops if o]))
+        out.append((text.count("\n", 0, m.start()) + 1, stmts))
     return out
+
+
+def asm_blocks(text):
+    """(line_no, [mnemonics]) for every `asm { ... }` block in comment-stripped text."""
+    return [(ln, [mn for mn, _ in stmts]) for ln, stmts in asm_statements(text)]
+
+
+def scalar_transfers(stmts):
+    """Indices of the `mfc1`/`mtc1` statements of one asm block that carry a scalar
+    between the FPU and VU0 through a GPR (K1 §6.11; remediation 22, run 018 F-3): an
+    `mfc1 g, f` whose `g` a later `qmtc2 g, vfN` moves into VU0, or an `mtc1 g, f` whose
+    `g` an earlier `qmfc2 g, vfN` took out of it, with nothing writing `g` in between.
+    `stmts` is one block from asm_statements()."""
+    paired = set()
+    for i, (mn, ops) in enumerate(stmts):
+        low = mn.lower()
+        if len(ops) != 2 or low not in ("mfc1", "mtc1"):
+            continue
+        g = ops[0]
+        rng, want = (range(i + 1, len(stmts)), QMTC2) if low == "mfc1" else (range(i - 1, -1, -1), QMFC2)
+        for j in rng:
+            mn2, ops2 = stmts[j]
+            if want.match(mn2) and ops2[:1] == [g]:
+                paired.add(i)
+                break
+            if GPR_WRITERS.match(mn2) and ops2[:1] == [g]:
+                break  # g is rewritten before the transfer reads it (or after the one that set it)
+    return paired
 
 
 def strip_comments(text):
@@ -278,9 +330,11 @@ def lint_text(text, path=""):
     findings = []
     stripped = strip_comments(text)
     lines = stripped.splitlines()
-    for lineno, mnemonics in asm_blocks(stripped):
+    for lineno, stmts in asm_statements(stripped):
+        mnemonics = [mn for mn, _ in stmts]
         src = lines[lineno - 1].strip() if lineno <= len(lines) else "asm {"
-        foreign = [x for x in mnemonics if not COP2_MNEMONIC.match(x)]
+        scalar = scalar_transfers(stmts)
+        foreign = [mn for i, (mn, _) in enumerate(stmts) if not COP2_MNEMONIC.match(mn) and i not in scalar]
         foreign_fpu = [x for x in mnemonics if not COP1_CONV_MNEMONIC.match(x)]
         if mnemonics and not foreign:
             findings.append({"path": path, "line": lineno, "rule": "vu0-asm", "severity": "advisory",
@@ -291,8 +345,12 @@ def lint_text(text, path=""):
             findings.append({"path": path, "line": lineno, "rule": "fpu-asm", "severity": "advisory",
                              "source": f"{src}  [{', '.join(mnemonics)}]"})
         else:
+            hint = ""
+            if any(x.lower() in ("mfc1", "mtc1") for x in foreign) and any(COP2_MNEMONIC.match(x) for x in mnemonics):
+                hint = ("; an mfc1/mtc1 is part of a VU0 block only as the scalar transfer whose GPR a qmtc2/qmfc2"
+                        " in the same block moves (K1 §6.11)")
             findings.append({"path": path, "line": lineno, "rule": "inline-asm", "severity": "error",
-                             "source": f"{src}  [not COP2: {', '.join(foreign) or 'empty block'}]"})
+                             "source": f"{src}  [not COP2: {', '.join(foreign) or 'empty block'}{hint}]"})
     for lineno, line in enumerate(lines, 1):
         if ASM_FUNC.search(line):
             findings.append({"path": path, "line": lineno, "rule": "inline-asm", "severity": "error", "source": line.strip()})
