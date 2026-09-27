@@ -8,7 +8,8 @@
    The flag word at +0x60 takes bit 0x80000 in all three callers' families; it is u32
    because func_00159E20 and func_0015BA00 only ever OR into it. Two vtables reach this
    layout (D_0069CA00 slot +0x20 and D_0069CA40 slots +0x18/+0x20), so it is the shared
-   part of a base class, not one class's object. */
+   part of a base class, not one class's object. func_00159400, the function in
+   D_0069CA00 slot +0x20, calls func_00159E20 only while the owner's word at +0xC0 is 0. */
 typedef struct Sub54 {
     unsigned char unk_00[0x54];
     int unk_54;
@@ -17,7 +18,9 @@ typedef struct Sub54 {
 typedef struct Owner1F0 {
     unsigned char unk_00[0x80];
     f32 unk_80;
-    unsigned char unk_84[0x44];
+    unsigned char unk_84[0x3C];
+    s32 unk_C0;
+    unsigned char unk_C4[4];
     Sub54 *unk_C8;
 } Owner1F0;
 

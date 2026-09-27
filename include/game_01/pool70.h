@@ -4,8 +4,8 @@
    func_00157650, func_001578C0, func_001580D0 and func_00157E60: the in-use byte at
    +0x0 of a slot (tested by func_00157650 and func_00157E60, cleared by func_001578C0
    and func_001580D0), and the interleaved position/velocity floats at +0x20..+0x37
-   (integrated by func_001578C0 and func_001580D0). The owner's first 0x70 bytes are
-   not reached by any matched function. */
+   (integrated by func_001578C0 and func_001580D0). Of the owner's first 0x70 bytes
+   only the byte at +0x50 is reached: func_00157DF0 tests it before walking the slots. */
 typedef struct Slot40 {
     unsigned char active;
     unsigned char unk_01[0x1F];
@@ -19,7 +19,9 @@ typedef struct Slot40 {
 } Slot40;
 
 typedef struct Pool70 {
-    unsigned char unk_00[0x70];
+    unsigned char unk_00[0x50];
+    unsigned char unk_50;
+    unsigned char unk_51[0x1F];
     Slot40 slots[8];
 } Pool70;
 #endif
