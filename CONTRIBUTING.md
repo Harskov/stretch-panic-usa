@@ -8,6 +8,42 @@ clean-ups and fixes.
 Pinned: compiler `mwcps2-2.3.3-000906` with flags `-O3,p -sdatathreshold 0`. Every function is compiled with exactly these; they change
 only when the calibration is redone, and this line is updated with them.
 
+## Where to start
+
+The current milestone selects from 26 functions labelled platform (no labels yet: game functions within 1 call(s) of 480 SDK/library anchor(s)). The smallest 26, which are the easiest place to start:
+
+| Function | Address | Size | Segment |
+|---|---|---|---|
+| `func_00123520` | 0x00123520 | 100 | game_00 |
+| `func_001211E0` | 0x001211E0 | 108 | game_00 |
+| `func_00146D00` | 0x00146D00 | 120 | game_memcard |
+| `func_0013C250` | 0x0013C250 | 136 | game_00 |
+| `func_00123370` | 0x00123370 | 140 | game_00 |
+| `func_00146C60` | 0x00146C60 | 148 | game_memcard |
+| `func_00100008` | 0x00100008 | 160 | crt0 |
+| `func_00145F00` | 0x00145F00 | 180 | game_memcard |
+| `func_001468E0` | 0x001468E0 | 200 | game_memcard |
+| `func_00146B90` | 0x00146B90 | 208 | game_memcard |
+| `func_001463F0` | 0x001463F0 | 220 | game_memcard |
+| `func_00146700` | 0x00146700 | 220 | game_memcard |
+| `func_001469B0` | 0x001469B0 | 220 | game_memcard |
+| `func_001216E0` | 0x001216E0 | 224 | game_00 |
+| `func_0013DBF0` | 0x0013DBF0 | 224 | game_00 |
+| `func_00146600` | 0x00146600 | 244 | game_memcard |
+| `func_001467E0` | 0x001467E0 | 244 | game_memcard |
+| `func_00146A90` | 0x00146A90 | 244 | game_memcard |
+| `func_00146500` | 0x00146500 | 248 | game_memcard |
+| `func_0013C2E0` | 0x0013C2E0 | 312 | game_00 |
+| `func_00120A70` | 0x00120A70 | 392 | game_00 |
+| `func_00121250` | 0x00121250 | 408 | game_00 |
+| `func_00120E70` | 0x00120E70 | 648 | game_00 |
+| `func_0011FA50` | 0x0011FA50 | 1016 | game_00 |
+| `func_0011F5E0` | 0x0011F5E0 | 1044 | game_00 |
+| `func_00127FD0` | 0x00127FD0 | 2908 | game_00 |
+
+Build the repository first (README, "Building"); objdiff then shows each file's diff
+against the original.
+
 ## A matched function
 
 - The object compiled from your C has `.text` byte-identical to the original function
@@ -35,11 +71,13 @@ request and in a short comment above the function. Without evidence the systemat
 
 ## How a pull request is handled
 
-The maintainer's pipeline rebuilds every function in the pull request with the pinned
+`ninja` runs the whole-executable check on your machine before you open the pull request.
+The maintainer's pipeline then rebuilds every function in the pull request with the pinned
 compiler, records the result, and rebuilds and compares the whole executable. A pull
-request is merged as a match when both are byte-identical. `README.md`, `CONTRIBUTING.md`
-and `progress/report.json` are generated from the pipeline's records, so please do not
-edit them by hand; open an issue if something in them is wrong.
+request is merged as a match when both are byte-identical. `README.md`, `CONTRIBUTING.md`,
+`ROADMAP.md`, `PLATFORM.md`, `symbols/` and `progress/report.json` are generated from the
+pipeline's records, so please do not edit them by hand; open an issue if something in them
+is wrong.
 
 ## AI-assisted contributions
 

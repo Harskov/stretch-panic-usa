@@ -12,10 +12,11 @@ copy of the game is required.
 
 ## AI disclosure
 
-This decompilation is produced with language models. Claude (Anthropic) writes most of
-the C; a second, cheaper model proposes matches for simpler functions through a local
-tool. Every commit that adds or changes C names the model that wrote it in a credit line
-(`Co-Authored-By: Claude` or `Assisted-by: <model>`). A function counts as matched only
+This decompilation is produced with language models. Claude (Anthropic) writes the C.
+For part of September 2026 a second, cheaper model also proposed matches for simpler
+functions through a local tool; that lane is retired. Every commit that adds or changes C
+names the model that wrote it in a credit line (`Co-Authored-By: Claude` or
+`Assisted-by: <model>`). A function counts as matched only
 when the pinned compiler rebuilds it byte-identical to the original, and the whole
 executable is rebuilt and compared after every change. Names are given only with cited
 evidence (a referenced string, an SDK call pattern, a named caller); without it the
@@ -29,24 +30,53 @@ systematic name (`func_00123456`, `D_0052ABCD`) stays, and struct fields stay `u
 
 ## Progress
 
-**143 of 1355** game functions are matched (2.04 % of the game code by size), and 0 game functions carry a name backed by evidence. 672 SDK and runtime-library functions are identified as library code and are not counted.
+**7,836 of 383,756 bytes of game code are matched (2.04 %)**: 143 of 1355 game functions. 0 game functions and 46 of 672 SDK and runtime functions carry a name backed by evidence; 20 structs are typed in shared headers. SDK and runtime-library code is identified as such and not counted as game code.
+
+| Milestone | Status | Exit judged on |
+|---|---|---|
+| M1 Contributable | current | public build not recorded (no layout, never); 143 matched function(s) still in per-function files; units map absent |
+| M2 Identified | pending | 0 complete name-pass run(s); 0 of 1355 game functions labelled |
+| M3 Platform boundary | pending | 0 of 0 function(s) labelled platform matched (0 of 0 bytes); PLATFORM.md present — no function carries the label yet (a name-pass labels them) |
+| M4 Core | pending | 0 of 0 function(s) labelled core matched (0 of 0 bytes); FORMATS.md missing — no function carries the label yet (a name-pass labels them) |
+| M5 Gameplay | pending | 0 of 0 function(s) labelled gameplay matched (0 of 0 bytes) — no function carries the label yet (a name-pass labels them) |
+| M6 Complete | pending | 7836 of 383756 game bytes matched; check ok |
+
+The milestones and why they come in this order: [ROADMAP.md](ROADMAP.md).
 
 The per-function report is on [decomp.dev](https://decomp.dev/Harskov/stretch-panic-usa).
 
 ## Building
 
-A standalone build (`configure.py` + `ninja`) is not published in this repository yet;
-the full build currently runs in the maintainer's pipeline, which rebuilds the whole
-executable after every change and compares it with the original. Until the build is
-here, any function can be checked on its own:
+You need Linux x86-64 (WSL2 on Windows works), Python 3.8 or newer, git, and your own
+copy of the game.
 
-1. Copy `SLUS_201.82` from your disc to `orig/SLUS_201.82/SLUS_201.82` and check it:
-   `sha1sum -c config/SLUS_201.82/checksum.sha1`.
-2. Compile the function's file under `src/` with the pinned compiler and flags
-   (compiler `mwcps2-2.3.3-000906` with flags `-O3,p -sdatathreshold 0`), for example on [decomp.me](https://decomp.me), and diff the
-   object against the function in your executable with
-   [objdiff](https://github.com/encounter/objdiff). The splat configuration in
-   `config/SLUS_201.82/` gives every function's address and segment.
+1. Copy `SLUS_201.82` from your disc to `orig/SLUS_201.82/SLUS_201.82`.
+2. `python3 -m pip install -r requirements.txt` installs splat and ninja.
+3. `python3 configure.py` checks your copy against `config/SLUS_201.82/checksum.sha1`,
+   downloads the pinned tools into `tools/` (each checked against the sha256 in
+   `config/SLUS_201.82/build.json`), splits the executable into `asm/` with splat, and
+   writes `build.ninja` and `objdiff.json`.
+4. `ninja` compiles every matched C file with the pinned compiler (compiler `mwcps2-2.3.3-000906` with flags `-O3,p -sdatathreshold 0`),
+   assembles the rest, links, and checks that the rebuilt executable's loaded image
+   equals the original's byte for byte.
+
+To work on a function, open the repository folder in
+[objdiff](https://github.com/encounter/objdiff): `objdiff.json` pairs every C file with
+splat's disassembly of the same range. [decomp.me](https://decomp.me) has the same
+compiler for trying a single function.
+
+## Symbols and documentation
+
+Generated from the match records at every change, never edited by hand:
+
+- `symbols/SLUS_201.82.txt`: every function's name and address, for Ghidra's
+  `ImportSymbolsScript.py`; `symbols/SLUS_201.82.sym`: the same for the PCSX2 debugger;
+  `symbols/SLUS_201.82.subsystems.tsv`: each function's subsystem label.
+- `config/SLUS_201.82/symbols-evidence.tsv`: the evidence behind every name.
+- [PLATFORM.md](PLATFORM.md): the SDK functions, IOP modules, VU microprograms and
+  hardware registers the game uses, and the functions that use them.
+- [ROADMAP.md](ROADMAP.md): the milestones, why they come in this order, and where the
+  project stands.
 
 ## Contributing
 
@@ -58,10 +88,12 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Pull requests with plain, readable C are
 |---|---|
 | `src/` | matched C, one folder per segment of the executable |
 | `include/` | shared headers and types |
-| `config/SLUS_201.82/` | splat configuration, `symbol_addrs.txt`, `checksum.sha1` |
+| `config/SLUS_201.82/` | splat configuration, `symbol_addrs.txt`, `checksum.sha1`, the tool pins (`build.json`), `symbols-evidence.tsv` |
 | `orig/SLUS_201.82/` | where your copy of the executable goes (gitignored) |
+| `configure.py`, `requirements.txt` | the build set-up |
+| `tools/` | `dps2build.py` (the build graph), `download_tool.py`, `check.py`, and `lint_c.py`, the readability check every matched file passes; the downloaded tools land here too (gitignored) |
+| `symbols/` | the symbol map for Ghidra and PCSX2, and the subsystem labels |
 | `progress/report.json` | the objdiff progress report uploaded to decomp.dev |
-| `tools/lint_c.py` | the readability check every matched file passes |
 
 ## License
 

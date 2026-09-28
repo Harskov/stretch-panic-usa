@@ -1,0 +1,32 @@
+{
+  "serial": "SLUS_201.82",
+  "basename": "SLUS_201.82",
+  "compiler": {
+    "id": "mwcps2-2.3.3-000906",
+    "flags": "-O3,p -sdatathreshold 0",
+    "url": "https://github.com/decompme/compilers/releases/download/compilers/mwcps2-2.3.3-000906.tar.gz",
+    "sha256": "c2a4e463f8f7b324350d6bfb26d6daed83f4d5cb46df8b20dcfec8617b22ad5d"
+  },
+  "assembler": {
+    "as_flags": "-EL -march=r5900 -mabi=eabi -no-pad-sections -G0"
+  },
+  "tools": {
+    "wibo": {
+      "url": "https://github.com/decompals/wibo/releases/download/1.2.0/wibo-x86_64",
+      "sha256": "13f86a2d618f0dbe67179d349625345eabf9b46450295cb4c904e49f6aff85af",
+      "version": "1.2.0"
+    },
+    "binutils": {
+      "url": "http://deb.debian.org/debian/pool/main/b/binutils-mipsen/binutils-mipsel-linux-gnu_2.35.2-2cross2_amd64.deb",
+      "sha256": "ed53bf5cfeee0ed4dd718842ed5557e6dabcd883af6af3a0d5f7caf2a42da82f",
+      "version": "2.35.2-2cross2",
+      "bin_prefix": "usr/bin/mipsel-linux-gnu-",
+      "lib": "usr/lib/x86_64-linux-gnu"
+    },
+    "objdiff": {
+      "url": "https://github.com/encounter/objdiff/releases/download/v3.7.3/objdiff-cli-linux-x86_64",
+      "sha256": "1c8a7564970e86b548f0921908d36e5b54646fe72f86e5c82b8c0eba64020cea",
+      "version": "v3.7.3"
+    }
+  }
+}

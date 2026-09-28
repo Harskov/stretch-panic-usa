@@ -13,6 +13,9 @@
 /expected/
 /tools/*
 !/tools/lint_c.py
+!/tools/dps2build.py
+!/tools/download_tool.py
+!/tools/check.py
 # generated per machine
 build.ninja
 .ninja_*
