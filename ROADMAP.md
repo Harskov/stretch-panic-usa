@@ -15,31 +15,31 @@ The end goal is recompilation, which needs a complete matching decompilation. Un
 
 The public repository builds from a clean clone, uses the translation-unit layout, and ships objdiff.json.
 
-Now: public build ok (per-function, 2026-09-28T21:38:49Z); 14 matched function(s) still in per-function files; units map present.
+Now: public build ok (per-function, 2026-09-28T23:42:12Z); 14 matched function(s) still in per-function files; units map present.
 
 ## M2 Identified
 
 SDK library functions named by signature, a whole-program naming pass run, every game function labelled with its subsystem, a public symbol map exported.
 
-Now: 0 complete name-pass run(s); 0 of 1355 game functions labelled.
+Now: 1 complete name-pass run(s); 1355 of 1355 game functions labelled.
 
 ## M3 Platform boundary
 
 The game's wrappers over the SDK and hardware matched and typed: GS/DMA/VIF packet building, VU0 macro mode and COP2, VU1 microprogram uploads, CD and file streaming, pad, memory card, sound, IOP RPC.
 
-Now: 0 of 0 function(s) labelled platform matched (0 of 0 bytes); PLATFORM.md present — no function carries the label yet (a name-pass labels them).
+Now: 6 of 294 function(s) labelled platform matched (912 of 145972 bytes); PLATFORM.md present.
 
 ## M4 Core
 
 Boot and main loop, the scene or state machine, memory allocators, the file and archive loader, decompression, text and font.
 
-Now: 0 of 0 function(s) labelled core matched (0 of 0 bytes); FORMATS.md missing — no function carries the label yet (a name-pass labels them).
+Now: 0 of 54 function(s) labelled core matched (0 of 13784 bytes); FORMATS.md missing.
 
 ## M5 Gameplay
 
 Gameplay subsystem by subsystem, most-called first, with data migrated alongside.
 
-Now: 0 of 0 function(s) labelled gameplay matched (0 of 0 bytes) — no function carries the label yet (a name-pass labels them).
+Now: 137 of 1007 function(s) labelled gameplay matched (6924 of 224000 bytes).
 
 ## M6 Complete
 

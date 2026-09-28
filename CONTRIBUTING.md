@@ -10,36 +10,50 @@ only when the calibration is redone, and this line is updated with them.
 
 ## Where to start
 
-The current milestone selects from 26 functions labelled platform (no labels yet: game functions within 1 call(s) of 480 SDK/library anchor(s)). The smallest 26, which are the easiest place to start:
+The current milestone selects from 288 functions labelled platform (labels platform (ledger)). The smallest 40, which are the easiest place to start:
 
 | Function | Address | Size | Segment |
 |---|---|---|---|
+| `func_0012EE10` | 0x0012EE10 | 20 | game_00 |
+| `func_00122460` | 0x00122460 | 24 | game_00 |
+| `func_0012EDF0` | 0x0012EDF0 | 24 | game_00 |
+| `func_0012E850` | 0x0012E850 | 28 | game_00 |
+| `func_0012EE50` | 0x0012EE50 | 28 | game_00 |
+| `func_0012E950` | 0x0012E950 | 32 | game_00 |
+| `func_0012E9A0` | 0x0012E9A0 | 32 | game_00 |
+| `func_0012E9C0` | 0x0012E9C0 | 32 | game_00 |
+| `func_0012E9E0` | 0x0012E9E0 | 32 | game_00 |
+| `func_0012EA00` | 0x0012EA00 | 32 | game_00 |
+| `func_0012EE30` | 0x0012EE30 | 32 | game_00 |
+| `func_0012EE70` | 0x0012EE70 | 32 | game_00 |
+| `func_0012C810` | 0x0012C810 | 36 | game_00 |
+| `func_0012E870` | 0x0012E870 | 36 | game_00 |
+| `func_0012E970` | 0x0012E970 | 36 | game_00 |
+| `func_0012EA50` | 0x0012EA50 | 36 | game_00 |
+| `func_0012EE90` | 0x0012EE90 | 36 | game_00 |
+| `func_0012E820` | 0x0012E820 | 40 | game_00 |
+| `func_0012E920` | 0x0012E920 | 40 | game_00 |
+| `func_0012CA30` | 0x0012CA30 | 44 | game_00 |
+| `func_0012CA60` | 0x0012CA60 | 44 | game_00 |
+| `func_0016D9F0` | 0x0016D9F0 | 44 | game_01 |
+| `func_0012EA20` | 0x0012EA20 | 48 | game_00 |
+| `func_0013BD20` | 0x0013BD20 | 52 | game_00 |
+| `func_0012E8A0` | 0x0012E8A0 | 56 | game_00 |
+| `func_0012E8E0` | 0x0012E8E0 | 56 | game_00 |
+| `func_0016DFF0` | 0x0016DFF0 | 72 | game_01 |
+| `func_0016E270` | 0x0016E270 | 96 | game_01 |
 | `func_00123520` | 0x00123520 | 100 | game_00 |
+| `func_0012C950` | 0x0012C950 | 100 | game_00 |
+| `func_0012C9C0` | 0x0012C9C0 | 100 | game_00 |
+| `func_0017C3C0` | 0x0017C3C0 | 100 | game_01 |
+| `func_0017C4A0` | 0x0017C4A0 | 100 | game_01 |
+| `func_0013FCB0` | 0x0013FCB0 | 104 | game_00 |
+| `func_0015E000` | 0x0015E000 | 104 | game_01 |
+| `func_0016E040` | 0x0016E040 | 104 | game_01 |
+| `func_0016E0B0` | 0x0016E0B0 | 104 | game_01 |
+| `func_00179D80` | 0x00179D80 | 104 | game_01 |
 | `func_001211E0` | 0x001211E0 | 108 | game_00 |
-| `func_00146D00` | 0x00146D00 | 120 | game_memcard |
-| `func_0013C250` | 0x0013C250 | 136 | game_00 |
-| `func_00123370` | 0x00123370 | 140 | game_00 |
-| `func_00146C60` | 0x00146C60 | 148 | game_memcard |
-| `func_00100008` | 0x00100008 | 160 | crt0 |
-| `func_00145F00` | 0x00145F00 | 180 | game_memcard |
-| `func_001468E0` | 0x001468E0 | 200 | game_memcard |
-| `func_00146B90` | 0x00146B90 | 208 | game_memcard |
-| `func_001463F0` | 0x001463F0 | 220 | game_memcard |
-| `func_00146700` | 0x00146700 | 220 | game_memcard |
-| `func_001469B0` | 0x001469B0 | 220 | game_memcard |
-| `func_001216E0` | 0x001216E0 | 224 | game_00 |
-| `func_0013DBF0` | 0x0013DBF0 | 224 | game_00 |
-| `func_00146600` | 0x00146600 | 244 | game_memcard |
-| `func_001467E0` | 0x001467E0 | 244 | game_memcard |
-| `func_00146A90` | 0x00146A90 | 244 | game_memcard |
-| `func_00146500` | 0x00146500 | 248 | game_memcard |
-| `func_0013C2E0` | 0x0013C2E0 | 312 | game_00 |
-| `func_00120A70` | 0x00120A70 | 392 | game_00 |
-| `func_00121250` | 0x00121250 | 408 | game_00 |
-| `func_00120E70` | 0x00120E70 | 648 | game_00 |
-| `func_0011FA50` | 0x0011FA50 | 1016 | game_00 |
-| `func_0011F5E0` | 0x0011F5E0 | 1044 | game_00 |
-| `func_00127FD0` | 0x00127FD0 | 2908 | game_00 |
+| `func_00128C40` | 0x00128C40 | 108 | game_00 |
 
 Build the repository first (README, "Building"); objdiff then shows each file's diff
 against the original.
