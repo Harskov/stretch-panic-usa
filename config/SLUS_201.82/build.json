@@ -28,5 +28,9 @@
       "sha256": "1c8a7564970e86b548f0921908d36e5b54646fe72f86e5c82b8c0eba64020cea",
       "version": "v3.7.3"
     }
+  },
+  "mwccgap": {
+    "url": "https://github.com/mkst/mwccgap.git",
+    "commit": "147598b36b198f267e80adbe04dd5804d070dbb3"
   }
 }

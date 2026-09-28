@@ -121,16 +121,34 @@ _GAP_FIX = [
 ]
 
 
+# Fix v3 (run 2026-09-28-018-tu-migrate, F-1): step 3 of process_c_file writes its temporary C
+# file beside the unit (dir=c_file.parent) and deletes it on close. On the project's mount a delete
+# is refused ("[Errno 1] Operation not permitted"), so every INCLUDE_ASM unit failed there; the
+# round-23 experiments ran only in VM scratch. The file goes to the system temp directory, where
+# the compiler's own temporary objects already go; every header a unit includes resolves through
+# `-i include`, so the directory of the temporary source changes no include lookup.
+_GAP_FIX_V3 = [
+    ('    with tempfile.NamedTemporaryFile(suffix=".c", dir=c_file.parent) as temp_c_file:\n        temp_c_file.write(',
+     '    with tempfile.NamedTemporaryFile(suffix=".c") as temp_c_file:  # dps2 fix v3: not beside the unit (the mount refuses the delete)\n        temp_c_file.write('),
+]
+
+
 def patch_mwccgap(root):
-    """Apply the fix above to a checkout of mwccgap at MWCCGAP_COMMIT: 'patched', or 'already'
-    when it is in place. BuildError when the file is not the pinned one (nothing is written)."""
+    """Apply the fixes above to a checkout of mwccgap at MWCCGAP_COMMIT: 'patched', or 'already'
+    when they are in place. A checkout carrying only fix v2 gets fix v3 on top. BuildError when
+    the file is not the pinned one (nothing is written)."""
     p = Path(root) / "mwccgap" / "mwccgap.py"
     t = p.read_text(encoding="utf-8")
-    if "dps2 fix v2" in t:
+    if "dps2 fix v3" in t:
         return "already"
-    if hashlib.sha256(t.encode("utf-8")).hexdigest() != MWCCGAP_PY_SHA256 or any(t.count(old) != 1 for old, _new in _GAP_FIX):
-        raise BuildError(f"{p} is not mwccgap {MWCCGAP_COMMIT[:7]}'s; the jump-table label fix does not apply")
-    for old, new in _GAP_FIX:
+    if "dps2 fix v2" not in t:
+        if hashlib.sha256(t.encode("utf-8")).hexdigest() != MWCCGAP_PY_SHA256 or any(t.count(old) != 1 for old, _new in _GAP_FIX):
+            raise BuildError(f"{p} is not mwccgap {MWCCGAP_COMMIT[:7]}'s; the jump-table label fix does not apply")
+        for old, new in _GAP_FIX:
+            t = t.replace(old, new, 1)
+    if any(t.count(old) != 1 for old, _new in _GAP_FIX_V3):
+        raise BuildError(f"{p} is not mwccgap {MWCCGAP_COMMIT[:7]}'s; the temp-file fix does not apply")
+    for old, new in _GAP_FIX_V3:
         t = t.replace(old, new, 1)
     p.write_text(t, encoding="utf-8")
     return "patched"
