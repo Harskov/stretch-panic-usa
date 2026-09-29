@@ -23,6 +23,8 @@ void func_0016E760(Obj2F8 *arg0);
 
 void func_0017AFC0();
 
+void func_0016E760(Obj2F8 *);
+
 void func_00179E20(Obj *o)
 {
     f32 zero;
@@ -64,7 +66,17 @@ void func_00179F40(Obj2F8 *arg0)
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00179E20", func_00179F90);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00179E20", func_0017A220);
+void func_0017A220(Obj2F8 *arg0)
+{
+    arg0->unk_2B0 = 3;
+    arg0->unk_178 = 0;
+    arg0->unk_180 = 0x3F400000;
+    arg0->unk_2BC = 0;
+    arg0->unk_2B8 = 0;
+    arg0->unk_2B4 = 0;
+    func_0016E760(arg0);
+    arg0->unk_504 = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00179E20", func_0017A270);
 

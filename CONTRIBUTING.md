@@ -100,6 +100,15 @@ made with AI assistance are welcome on the same terms as any other: say so in th
 request, name the tool, and make sure you can explain every change. The byte match is the
 gate; readable C and evidence-backed names are what make it done.
 
+## Two markers you may see
+
+A `register` local kept only so the compiler allocates the way the original did, and a
+body marked `// !FAKE: <what a programmer would have written>` — C kept only because it
+matches — are readability debt, not finished source. `tools/lint_c.py` reports both
+(`register-pin`, `fake-body`), the maintainer's pipeline publishes their counts in
+`ROADMAP.md`, and a pull request that replaces one with plain C that still matches is
+welcome. A `// !FAKE:` without its reason fails the lint.
+
 ## Never commit
 
 The disc, the executable, extracted files, disassembly, compiled objects or build

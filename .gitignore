@@ -16,6 +16,7 @@
 !/tools/dps2build.py
 !/tools/download_tool.py
 !/tools/check.py
+!/tools/audit_public.py
 # generated per machine
 build.ninja
 .ninja_*

@@ -20,6 +20,7 @@ typedef struct Obj {
 
 extern s32 func_00131B30(Obj *arg0, void *arg1, f32 *arg2, Actor *arg3, void *arg4);
 
+
 void *func_00159F10(char *p) {
     return p + 0x10;
 }

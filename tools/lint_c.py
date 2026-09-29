@@ -23,7 +23,7 @@ instruction is a COP2 instruction (`lqc2`, `sqc2`, `cfc2`, `ctc2`, `qmfc2`, `qmt
 the four transfers also with the interlock suffix `.ni`/`.i` the assembler prints,
 remediation 22 — and the `v*` vector ops). The pinned compiler has no C spelling for
 those instructions — the block over `register` locals is the only source form it
-accepts (K1 §6 item 11) — so such a block is reported as `vu0-asm` (advisory) on its
+accepts (K9 C3) — so such a block is reported as `vu0-asm` (advisory) on its
 first line. One COP1 transfer per scalar belongs to that form (remediation 22,
 stretch-panic-usa run 018 F-3): `mfc1 <gpr>, <f32>` whose GPR a later `qmtc2 <gpr>,
 vfN` in the same block moves into VU0 (the libvu0 scale shape), and its mirror,
@@ -37,9 +37,20 @@ The second such form is a COP1 float-to-int block (remediation 17, run
 C spelling of `(int)f` to a `jal` to the `fptosi` helper — seven spellings across
 seven flag sets, and C++ too — while the image inlines `0x46000024` at all 31 of its
 conversion sites, so the block is the only source form that reaches those bytes under
-the pinned build (K1 §6.20). Reported as `fpu-asm` (advisory).
+the pinned build (K9 C12). Reported as `fpu-asm` (advisory).
 A block with any other instruction inside, a GNU `asm(...)` / `__asm__(...)`
 statement, and a CodeWarrior `asm` function are `inline-asm` (error).
+
+Readability debt at bank time (round 26, WP8; BFM's inversions in this project's terms):
+`register-pin` (advisory) — a function whose body keeps a `register` declaration, or an
+`asm { }` block of nothing but register-to-register moves and `nop`s, used only to force
+the allocation order; reported once per function, on the function's line, with the pinned
+lines listed. `fake-body` (advisory) — the `// !FAKE: <why>` marker above or inside a
+function whose body is kept only because it matches (the convention, K2 §4b: the reason
+after the colon names what a programmer would have written); `fake-body-unexplained`
+(error) when the reason is missing. `readability_debt(text)` returns the pinned and the
+fake function names; `progress.py` publishes them as `pinned_functions` / `fake_bodies`.
+Nothing is unbanked over either: it is a published debt, counted.
 
 Prints `path:line: rule: source line`; exit 0 clean, 1 error findings, 2 usage.
 `ledger.py mark` runs the error rules on the C it accepts and records the findings on
@@ -150,7 +161,7 @@ def asm_blocks(text):
 
 def scalar_transfers(stmts):
     """Indices of the `mfc1`/`mtc1` statements of one asm block that carry a scalar
-    between the FPU and VU0 through a GPR (K1 §6.11; remediation 22, run 018 F-3): an
+    between the FPU and VU0 through a GPR (K9 C3; remediation 22, run 018 F-3): an
     `mfc1 g, f` whose `g` a later `qmtc2 g, vfN` moves into VU0, or an `mtc1 g, f` whose
     `g` an earlier `qmfc2 g, vfN` took out of it, with nothing writing `g` in between.
     `stmts` is one block from asm_statements()."""
@@ -341,14 +352,14 @@ def lint_text(text, path=""):
                              "source": f"{src}  [{', '.join(mnemonics)}]"})
         elif mnemonics and not foreign_fpu and any(COP1_CONV_ONLY.match(x) for x in mnemonics):
             # a float-to-int conversion block: no C spelling reaches the inline
-            # 0x46000024 under the pinned 2.x build (K1 §6.20, remediation 17)
+            # 0x46000024 under the pinned 2.x build (K9 C12, remediation 17)
             findings.append({"path": path, "line": lineno, "rule": "fpu-asm", "severity": "advisory",
                              "source": f"{src}  [{', '.join(mnemonics)}]"})
         else:
             hint = ""
             if any(x.lower() in ("mfc1", "mtc1") for x in foreign) and any(COP2_MNEMONIC.match(x) for x in mnemonics):
                 hint = ("; an mfc1/mtc1 is part of a VU0 block only as the scalar transfer whose GPR a qmtc2/qmfc2"
-                        " in the same block moves (K1 §6.11)")
+                        " in the same block moves (K9 C3)")
             findings.append({"path": path, "line": lineno, "rule": "inline-asm", "severity": "error",
                              "source": f"{src}  [not COP2: {', '.join(foreign) or 'empty block'}{hint}]"})
     for lineno, line in enumerate(lines, 1):
@@ -375,12 +386,82 @@ def lint_text(text, path=""):
             findings.append({"path": path, "line": ln, "rule": "process-comment", "severity": "error",
                              "source": " ".join(m.group(0).split())[:100] + "  [a comment says what the code does, not how it was matched]"})
     findings.extend(member_offset_findings(text, path))
+    findings.extend(readability_debt(text, path)[0])
     if any(f["rule"] in ("vu0-asm", "fpu-asm", "inline-asm") for f in findings):
         # an asm block's operands are `register` locals by necessity (the VU0 exception,
-        # K1 §6 item 11): register-local says nothing new there
+        # K9 C3): register-local says nothing new there
         findings = [f for f in findings if f["rule"] != "register-local"]
     findings.sort(key=lambda f: (f["line"], f["rule"]))
     return findings
+
+
+# --- readability debt (round 26, WP8) ---------------------------------------------------
+FAKE_MARK = re.compile(r"//[ \t]*!FAKE:?[ \t]*([^\n]*)")
+MOVE_MNEMONIC = re.compile(r"^(?:move|nop|or|addu|daddu|dmove)$", re.I)
+
+
+def function_spans(stripped):
+    """[(name, start_line, end_line)] for every function definition in comment-stripped text."""
+    spans = []
+    for m in FUNC_DEF.finditer(stripped):
+        if m.group(1) in NOT_FUNCS:
+            continue
+        end = _body_end(stripped, m.end() - 1)
+        spans.append((m.group(1), stripped.count("\n", 0, m.start()) + 1, stripped.count("\n", 0, end) + 1))
+    return spans
+
+
+def _function_at(spans, line):
+    for name, a, b in spans:
+        if a <= line <= b:
+            return name
+    return None
+
+
+def readability_debt(text, path=""):
+    """(findings, pinned, fake): the register-pin / fake-body findings for one file and the
+    names of the functions they sit in."""
+    stripped = strip_comments(text)
+    spans = function_spans(stripped)
+    lines = stripped.splitlines()
+    pins = {}
+    for lineno, line in enumerate(lines, 1):
+        if re.match(r"^\s*register\b", line):
+            fn = _function_at(spans, lineno)
+            if fn:
+                pins.setdefault(fn, []).append(lineno)
+    necessary = set()          # functions whose `register` locals feed a VU0 / FPU block (K9 C3, C12)
+    for lineno, stmts in asm_statements(stripped):
+        mnemonics = [mn for mn, _ in stmts]
+        fn = _function_at(spans, lineno)
+        if mnemonics and all(MOVE_MNEMONIC.match(mn) for mn in mnemonics):
+            if fn:
+                pins.setdefault(fn, []).append(lineno)
+        elif mnemonics and all(COP2_MNEMONIC.match(mn) or COP1_CONV_MNEMONIC.match(mn) for mn in mnemonics):
+            if fn:
+                necessary.add(fn)
+    for fn in necessary:
+        pins.pop(fn, None)
+    findings = []
+    for name, a, _b in spans:
+        if name in pins:
+            findings.append({"path": path, "line": a, "rule": "register-pin", "severity": "advisory",
+                             "source": f"{name}: register pin at line(s) {', '.join(map(str, pins[name]))}"})
+    fake = []
+    for m in FAKE_MARK.finditer(text):
+        ln = text.count("\n", 0, m.start()) + 1
+        # the marker sits above the function (its line is before the definition) or inside it
+        fn = _function_at(spans, ln) or next((n for n, a, _b in spans if a > ln), None)
+        why = m.group(1).strip()
+        if not why:
+            findings.append({"path": path, "line": ln, "rule": "fake-body-unexplained", "severity": "error",
+                             "source": "// !FAKE: without a reason — say what a programmer would have written"})
+        else:
+            findings.append({"path": path, "line": ln, "rule": "fake-body", "severity": "advisory",
+                             "source": f"{fn or '?'}: !FAKE: {why[:80]}"})
+        if fn:
+            fake.append(fn)
+    return findings, sorted(pins), sorted(set(fake))
 
 
 def lint_file(p, rel=None):
