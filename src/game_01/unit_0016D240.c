@@ -10,10 +10,6 @@ typedef struct ObjA0 {
     u8 unk_A0;
 } ObjA0;
 
-typedef struct Quad {
-    u128 q;
-} Quad;
-
 typedef struct {
     unsigned char pad[0x60];
     int flags;
