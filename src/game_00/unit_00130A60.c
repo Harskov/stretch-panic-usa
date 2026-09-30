@@ -52,6 +52,10 @@ int func_00131380(void) {
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00130A60", func_00131390);
+int func_00131390(void) {
+    return 0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00130A60", func_001313A0);
+int func_001313A0(void) {
+    return 0;
+}

@@ -12,9 +12,12 @@ struct Obj_00140F10 {
 
 extern "C" void func_00140F10(Obj_00140F10 *arg0);
 
+extern "C" void func_001401F0(void);
+
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00140070", func_00140070);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00140070", func_001401F0);
+void func_001401F0(void) {
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00140070", func_00140200);
 

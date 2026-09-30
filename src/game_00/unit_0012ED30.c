@@ -61,7 +61,21 @@ void func_0012EE70(register Vec *a, register Vec *b, register Vec *out, register
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012ED30", func_0012EE90);
+void func_0012EE90(register Vec *a, register Vec *b, register Vec *out, register f32 t)
+{
+    asm {
+        lqc2 vf1, 0(a)
+        lqc2 vf2, 0(b)
+        vsub.xyzw vf4, vf2, vf1
+        .set noreorder
+        mfc1 v0, t
+        qmtc2.ni v0, vf3
+        .set reorder
+        vmulx.xyzw vf4, vf4, vf3x
+        vadd.xyzw vf1, vf1, vf4
+        sqc2 vf1, 0(out)
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012ED30", func_0012EEC0);
 
