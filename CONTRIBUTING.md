@@ -10,22 +10,15 @@ only when the calibration is redone, and this line is updated with them.
 
 ## Where to start
 
-The current milestone selects from 288 functions labelled platform (labels platform (ledger)). The smallest 40, which are the easiest place to start:
+The current milestone selects from 279 functions labelled platform (labels platform (ledger)). The smallest 40, which are the easiest place to start:
 
 | Function | Address | Size | Segment |
 |---|---|---|---|
-| `func_0012EE10` | 0x0012EE10 | 20 | game_00 |
-| `func_00122460` | 0x00122460 | 24 | game_00 |
-| `func_0012EDF0` | 0x0012EDF0 | 24 | game_00 |
 | `func_0012E850` | 0x0012E850 | 28 | game_00 |
-| `func_0012EE50` | 0x0012EE50 | 28 | game_00 |
 | `func_0012E950` | 0x0012E950 | 32 | game_00 |
 | `func_0012E9A0` | 0x0012E9A0 | 32 | game_00 |
 | `func_0012E9C0` | 0x0012E9C0 | 32 | game_00 |
 | `func_0012E9E0` | 0x0012E9E0 | 32 | game_00 |
-| `func_0012EA00` | 0x0012EA00 | 32 | game_00 |
-| `func_0012EE30` | 0x0012EE30 | 32 | game_00 |
-| `func_0012EE70` | 0x0012EE70 | 32 | game_00 |
 | `func_0012C810` | 0x0012C810 | 36 | game_00 |
 | `func_0012E870` | 0x0012E870 | 36 | game_00 |
 | `func_0012E970` | 0x0012E970 | 36 | game_00 |
@@ -36,7 +29,6 @@ The current milestone selects from 288 functions labelled platform (labels platf
 | `func_0012CA30` | 0x0012CA30 | 44 | game_00 |
 | `func_0012CA60` | 0x0012CA60 | 44 | game_00 |
 | `func_0016D9F0` | 0x0016D9F0 | 44 | game_01 |
-| `func_0012EA20` | 0x0012EA20 | 48 | game_00 |
 | `func_0013BD20` | 0x0013BD20 | 52 | game_00 |
 | `func_0012E8A0` | 0x0012E8A0 | 56 | game_00 |
 | `func_0012E8E0` | 0x0012E8E0 | 56 | game_00 |
@@ -54,6 +46,14 @@ The current milestone selects from 288 functions labelled platform (labels platf
 | `func_00179D80` | 0x00179D80 | 104 | game_01 |
 | `func_001211E0` | 0x001211E0 | 108 | game_00 |
 | `func_00128C40` | 0x00128C40 | 108 | game_00 |
+| `func_0016E2D0` | 0x0016E2D0 | 108 | game_01 |
+| `func_0017C430` | 0x0017C430 | 108 | game_01 |
+| `func_00121A60` | 0x00121A60 | 112 | game_00 |
+| `func_00123400` | 0x00123400 | 116 | game_00 |
+| `func_0012C840` | 0x0012C840 | 116 | game_00 |
+| `func_0012CA90` | 0x0012CA90 | 116 | game_00 |
+| `func_00146D00` | 0x00146D00 | 120 | game_memcard |
+| `func_0015D9C0` | 0x0015D9C0 | 120 | game_01 |
 
 Build the repository first (README, "Building"); objdiff then shows each file's diff
 against the original.

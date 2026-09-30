@@ -155,6 +155,18 @@ def patch_mwccgap(root):
 
 
 ACC_OPERAND_RE = re.compile(r"(?<![$\w])ACC(?=\s*(?:,|$))")
+# The VU0 special registers Q, I and R are bare in the same sources (`vdiv Q, $vf0w, $vf2x`,
+# `vaddq.x $vf1, $vf0, Q`), which GNU as rejects as well; rewritten on VU0 instructions only.
+VU_SPECIAL_OPERAND_RE = re.compile(r"(?<![$\w])([QIR])(?=\s*(?:,|$))")
+VU_INSN_RE = re.compile(r"\*/\s+v\w")
+
+
+def _fix_vu_operands(ln):
+    ln = ACC_OPERAND_RE.sub("$ACC", ln)
+    if VU_INSN_RE.search(ln):
+        head, sep, ops = ln.partition("*/")
+        ln = head + sep + VU_SPECIAL_OPERAND_RE.sub(r"$\1", ops)
+    return ln
 
 
 def fix_nonmatchings(root):
@@ -167,7 +179,7 @@ def fix_nonmatchings(root):
     d = Path(root) / "asm" / "nonmatchings"
     for p in sorted(d.rglob("*.s")) if d.is_dir() else []:
         t = p.read_text(encoding="utf-8")
-        new = "\n".join(ACC_OPERAND_RE.sub("$ACC", ln) if "*/" in ln and not ln.lstrip().startswith((".", "glabel", "jlabel", "dlabel")) else ln
+        new = "\n".join(_fix_vu_operands(ln) if "*/" in ln and not ln.lstrip().startswith((".", "glabel", "jlabel", "dlabel")) else ln
                         for ln in t.split("\n"))
         if new != t:
             p.write_text(new, encoding="utf-8")

@@ -21,6 +21,8 @@ typedef struct Obj {
 extern s32 func_00131B30(Obj *arg0, void *arg1, f32 *arg2, Actor *arg3, void *arg4);
 
 
+void func_0015BA00(Obj1F0 *arg0, Owner1F0 *arg1);
+
 void *func_00159F10(char *p) {
     return p + 0x10;
 }
@@ -43,7 +45,14 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_00159F10", func_0015AC70);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00159F10", func_0015ACA0);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00159F10", func_0015AD30);
+void func_0015AD30(Obj1F0 *arg0, Owner1F0 *arg1)
+{
+    switch (arg1->unk_C0) {
+    case 0:
+        func_0015BA00(arg0, arg1);
+        break;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00159F10", func_0015AD60);
 
