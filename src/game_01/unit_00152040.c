@@ -36,7 +36,8 @@ typedef struct Src_00152380 {
     u128 unk_250;
     u128 unk_260;
     u128 unk_270;
-    u8 unk_280[0x194];
+    u8 unk_280[0x190];
+    f32 unk_410;
     u8 unk_414;
     u8 unk_415[0x5B];
     Vec unk_470;
@@ -84,10 +85,11 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_00152040", func_00152040);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00152040", func_00152160);
 
-void func_001522E0(char *arg0, char *arg1) {
-    *(u128 *)(arg1 + 0x0) = *(u128 *)(arg0 + 0x140);
-    *(u128 *)(arg1 + 0x10) = *(u128 *)(arg0 + 0x270);
-    *(f32 *)(arg1 + 0x20) = *(f32 *)(arg0 + 0x410) * *(f32 *)(arg0 + 0x410);
+void func_001522E0(Src_00152380 *s, Dst_00152380 *d)
+{
+    d->unk_00 = s->unk_140;
+    d->unk_10 = s->unk_270;
+    d->unk_20.v.x = s->unk_410 * s->unk_410;
 }
 
 void func_00152300(Src *s, Dst *d)
