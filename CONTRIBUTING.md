@@ -74,7 +74,8 @@ against the original.
   `python3 tools/lint_c.py --repo . <file>` exits 0 on it. The exceptions are the four
   instruction forms the compiler has no other source form for: a VU0 macro-mode block
   (`asm { }` of `lqc2`/`v*`/`sqc2` over `register` locals, with the `mfc1`/`qmtc2` pair
-  that moves a float into it, and a `nop` or `.set noreorder`/`.set reorder` where the
+  that moves a float into it, the `lq`/`pextlw`/`pextuw`/`pcpyld`/`pcpyud` matrix transpose
+  whose rows a `qmtc2` moves into it, and a `nop` or `.set noreorder`/`.set reorder` where the
   original has no hazard nop); a VU0 function that returns a float, written whole as a
   CodeWarrior asm function (`asm f32 f(...) { ... qmfc2 a0, vf2 / jr ra / mtc1 a0, f0 }`,
   because a block's `mtc1` never reaches the return's delay slot); an inline float-to-int

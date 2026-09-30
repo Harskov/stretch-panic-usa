@@ -122,9 +122,9 @@ _GAP_FIX = [
 
 
 # Fix v3 (run 2026-09-28-018-tu-migrate, F-1): step 3 of process_c_file writes its temporary C
-# file beside the unit (dir=c_file.parent) and deletes it on close. On the project's mount a delete
-# is refused ("[Errno 1] Operation not permitted"), so every INCLUDE_ASM unit failed there; the
-# round-23 experiments ran only in VM scratch. The file goes to the system temp directory, where
+# file beside the unit (dir=c_file.parent) and deletes it on close. On the Cowork mount, the
+# runtime until 2026-09-30, a delete was refused ("[Errno 1] Operation not permitted"), so every
+# INCLUDE_ASM unit failed there; the round-23 experiments ran only in VM scratch. The file goes to the system temp directory, where
 # the compiler's own temporary objects already go; every header a unit includes resolves through
 # `-i include`, so the directory of the temporary source changes no include lookup.
 _GAP_FIX_V3 = [

@@ -41,7 +41,12 @@ vfN` in the same block moves into VU0 (the libvu0 scale shape), and its mirror,
 in between, stays foreign. A `nop`, and `.set noreorder` / `.set reorder` around the
 scalar transfer, belong to the block as well (remediation 28, stretch-panic-usa run
 2026-09-30-023 F-1: without the directive pair the pinned assembler adds a hazard nop the
-target does not have); the block still needs a COP2 instruction.
+target does not have); the block still needs a COP2 instruction. So does the MMI transpose
+(remediation 34, stretch-panic-usa run 2026-09-30-029 F-1): a `pextlw`/`pextuw`/`pcpyld`/
+`pcpyud` whose result a later `qmtc2` in the block moves into VU0 — directly or through
+another of the four — and an `lq` that loads a row one of them reads. The pinned 2.3.3 has
+no C spelling for them (`_pextlw` is a `jal`; K1 §6 item 12). An `lq` straight into a
+`qmtc2`, an MMI op whose result is stored with `sq`, and any other MMI op stay foreign.
 The second such form is a COP1 float-to-int block (remediation 17, run
 2026-09-19-015 F-4): a block whose every instruction is in the conversion set
 (`cvt.w.s`, `cvt.s.w`, `trunc.w.s`, `round.w.s`, `ceil.w.s`, `floor.w.s`, and the
@@ -152,6 +157,9 @@ COP2_MNEMONIC = re.compile(r"^(?:lqc2|sqc2|(?:cfc2|ctc2|qmfc2|qmtc2)(?:\.n?i)?|v
 QMTC2 = re.compile(r"^qmtc2(?:\.n?i)?$", re.I)
 QMFC2 = re.compile(r"^qmfc2(?:\.n?i)?$", re.I)
 GPR_WRITERS = re.compile(r"^(?:mfc1|(?:qmfc2|cfc2)(?:\.n?i)?)$", re.I)
+# the four EE MMI ops of the sceVu0 matrix transpose (remediation 34, stretch-panic-usa run
+# 2026-09-30-029 F-1): part of a VU0 block only on their way into a qmtc2 (mmi_transfers)
+MMI_TRANSPOSE = re.compile(r"^(?:pextlw|pextuw|pcpyld|pcpyud)$", re.I)
 # COP1 float<->int conversion (remediation 17): the conversion itself, plus the moves
 # that carry the value between an FPU register and a GPR. `mfc1`/`mtc1` alone are NOT a
 # conversion block — COP1_CONV_ONLY is what makes one of these a conversion rather than
@@ -270,6 +278,39 @@ def scalar_transfers(stmts):
             if GPR_WRITERS.match(mn2) and ops2[:1] == [g]:
                 break  # g is rewritten before the transfer reads it (or after the one that set it)
     return paired
+
+
+def mmi_transfers(stmts):
+    """Indices of the statements of one asm block that transpose rows in GPRs on their way into
+    VU0 (remediation 34, stretch-panic-usa run 2026-09-30-029 F-1: func_0012C950 and func_0012C9C0,
+    100 as one block, 0.0 with the `_pextlw` intrinsics): a `pextlw`/`pextuw`/`pcpyld`/`pcpyud`
+    whose result a later `qmtc2` moves into VU0, directly or through another of the four, and an
+    `lq` that loads a row one of them reads. Found backwards from each `qmtc2` operand; a GPR
+    written again in between ends its chain. `stmts` is one block from asm_statements()."""
+    to_vu0, to_mmi, keep = set(), set(), set()
+    for i in range(len(stmts) - 1, -1, -1):
+        mn, ops = stmts[i]
+        if not ops:
+            continue
+        g = ops[0]
+        if QMTC2.match(mn):
+            to_vu0.add(g)
+        elif MMI_TRANSPOSE.match(mn) and len(ops) == 3:
+            feeds = g in to_vu0 or g in to_mmi
+            to_vu0.discard(g)
+            to_mmi.discard(g)
+            if feeds:
+                keep.add(i)
+                to_mmi.update(ops[1:])   # after the destination is retired: `pextlw t0, t1, t0` reads t0
+        elif mn.lower() == "lq" and len(ops) == 2:
+            if g in to_mmi:
+                keep.add(i)
+            to_vu0.discard(g)
+            to_mmi.discard(g)
+        elif GPR_WRITERS.match(mn):
+            to_vu0.discard(g)
+            to_mmi.discard(g)
+    return keep
 
 
 def strip_comments(text):
@@ -464,7 +505,7 @@ def lint_text(text, path=""):
     for lineno, stmts in asm_statements(stripped):
         mnemonics = [mn for mn, _ in stmts]
         src = lines[lineno - 1].strip() if lineno <= len(lines) else "asm {"
-        scalar = scalar_transfers(stmts)
+        scalar = scalar_transfers(stmts) | mmi_transfers(stmts)
         foreign = [mn for i, (mn, ops) in enumerate(stmts)
                    if not COP2_MNEMONIC.match(mn) and i not in scalar and not vu0_neutral(mn, ops)]
         foreign_fpu = [x for x in mnemonics if not COP1_CONV_MNEMONIC.match(x)]
@@ -485,6 +526,9 @@ def lint_text(text, path=""):
             if any(x.lower() in ("mfc1", "mtc1") for x in foreign) and any(COP2_MNEMONIC.match(x) for x in mnemonics):
                 hint = ("; an mfc1/mtc1 is part of a VU0 block only as the scalar transfer whose GPR a qmtc2/qmfc2"
                         " in the same block moves (K9 C3)")
+            elif any(MMI_TRANSPOSE.match(x) or x.lower() in ("lq", "sq") for x in foreign) and any(COP2_MNEMONIC.match(x) for x in mnemonics):
+                hint = ("; pextlw/pextuw/pcpyld/pcpyud and the lq of their rows are part of a VU0 block only as the"
+                        " transpose whose result a qmtc2 in the same block moves (K1 §6 item 12)")
             findings.append({"path": path, "line": lineno, "rule": "inline-asm", "severity": "error",
                              "source": f"{src}  [not COP2: {', '.join(foreign) or 'empty block'}{hint}]"})
     vu0_fn = {ln: stmts for ln, stmts in asm_function_statements(stripped) if vu0_float_return(stmts)}
