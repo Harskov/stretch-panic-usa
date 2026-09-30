@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """lint_c.py — flag C that matches but is not what a programmer writes (remediation 7).
 
-    lint_c.py --repo R [FILE ...] [--json]
+    python3 tools/lint_c.py --repo . [FILE ...] [--json]      (from a target or public repository's root)
+    python3 .claude/skills/dps2-toolkit/scripts/lint_c.py --repo targets/<slug> [FILE ...] [--json]   (from the project folder)
 
 A matching decompilation is judged by two things: the object is byte-identical, and
 the C reads as the original could have been written. The first is `ledger.py mark`'s
