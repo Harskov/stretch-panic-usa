@@ -5,7 +5,7 @@
     python3 configure.py                           # tools, split, build.ninja, objdiff.json
     ninja                                          # build, then check against the original
 
-Needs Linux x86-64 (WSL2 on Windows works), Python 3.8 or newer, and your own copy of the
+Needs Linux x86-64 (WSL2 on Windows works), Python 3.9 or newer, and your own copy of the
 game's executable at orig/<SERIAL>/<SERIAL> (config/<SERIAL>/checksum.sha1 names it).
 configure.py downloads the pinned tools into tools/ the first time (config/<SERIAL>/build.json
 lists each URL and its sha256): wibo, the pinned Metrowerks compiler, the MIPS binutils, and
@@ -140,9 +140,9 @@ def main():
     # disassembly), which the default target does not build
     objdiff = {"$schema": "https://raw.githubusercontent.com/encounter/objdiff/main/config.schema.json",
                "custom_make": "ninja", "build_target": True, "build_base": True,
-               "watch_patterns": ["*.c", "*.cp", "*.h", "*.s"], "units": units}
+               "watch_patterns": ["*.c", "*.cp", "*.cpp", "*.cc", "*.h", "*.s"], "units": units}
     (ROOT / "objdiff.json").write_text(json.dumps(objdiff, indent=2) + "\n", encoding="utf-8")
-    n_c = sum(1 for o in objs if o.endswith(".c.o"))
+    n_c = sum(1 for o in objs if o.endswith((".c.o", ".cp.o", ".cpp.o", ".cc.o")))
     print(f"build.ninja: {len(objs) - n_c} assembly and {n_c} C object(s); objdiff.json: {len(units)} unit(s)")
     print("next: ninja   (builds, then checks the image against the original)")
     return 0

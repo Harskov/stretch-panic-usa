@@ -38,7 +38,7 @@ systematic name (`func_00123456`, `D_0052ABCD`) stays, and struct fields stay `u
 
 | Milestone | Status | Exit judged on |
 |---|---|---|
-| M1 Contributable | done | public build ok (translation-unit, 2026-09-30T15:53:41Z); 0 matched function(s) still in per-function files; units map present |
+| M1 Contributable | done | public build ok (translation-unit, 2026-09-30T16:56:12Z); 0 matched function(s) still in per-function files; units map present |
 | M2 Identified | done | 2 complete name-pass run(s); 1355 of 1355 game functions labelled |
 | M3 Platform boundary | current | 15 of 294 function(s) labelled platform matched (1272 of 145972 bytes); PLATFORM.md present |
 | M4 Core | pending | 0 of 54 function(s) labelled core matched (0 of 13784 bytes); FORMATS.md missing |
@@ -51,7 +51,7 @@ The per-function report is on [decomp.dev](https://decomp.dev/Harskov/stretch-pa
 
 ## Building
 
-You need Linux x86-64 (WSL2 on Windows works), Python 3.8 or newer, git, and your own
+You need Linux x86-64 (WSL2 on Windows works), Python 3.9 or newer, git, and your own
 copy of the game.
 
 1. Copy `SLUS_201.82` from your disc to `orig/SLUS_201.82/SLUS_201.82`.

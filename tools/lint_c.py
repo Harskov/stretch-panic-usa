@@ -8,13 +8,18 @@ the C reads as the original could have been written. The first is `ledger.py mar
 gate. This script is the check for the second, on the constructs the community
 rejects as "fakematching" (a cast of an element address to a second, overlapping
 struct; byte arithmetic on a pointer to reach a field; reinterpreting an lvalue
-through a pointer cast; inline asm). Default scope: src/**/*.c, src/**/*.cp (C++ —
-the extension is what selects CodeWarrior's C++ front end) and include/**/*.h;
+through a pointer cast; inline asm). Default scope: every C and C++ source under src/
+(`.c`, and `.cp`, `.cpp`, `.cc` — the extension is what selects CodeWarrior's C++ front
+end; a C++ translation unit is `unit_<ADDR>.cpp`, remediation 30) and include/**/*.h;
 FILE arguments narrow it (a wip attempt before `mark`, say).
 
 Rules (error): overlay-cast, byte-offset, reinterpret-lvalue, inline-asm, member-offset
 (a struct member named for an offset, `unk_1EC`, that its declaration puts elsewhere;
-remediation 19).
+remediation 19). byte-offset has two spellings: the cast on the expression,
+`(u8 *)p + 0x1c`, and the cast on the declaration, `*(s32 *)(p + 0x5D0)` with `p`
+declared `char *` / `u8 *` / `void *` in the function or at file scope — m2c's seed for
+an argument it cannot type (remediation 30, fate-unlimited-codes-jp run
+2026-09-30-024 F-2).
 Rules (advisory, need an evidence note in the ledger): volatile, goto, vu0-asm, fpu-asm,
 kernel-asm.
 
@@ -74,6 +79,17 @@ from pathlib import Path
 
 CAST_TYPE = r"\(\s*(?:const\s+)?(?:struct\s+)?[A-Za-z_]\w*\s*\*+\s*\)"
 BYTE_TYPE = r"\(\s*(?:const\s+)?(?:u8|s8|char|unsigned\s+char|signed\s+char)\s*\*\s*\)"
+# every C and C++ source the build compiles (dps2_common.CPP_SUFFIXES; this file ships
+# alone as tools/lint_c.py, so it carries its own copy)
+SOURCE_SUFFIXES = (".c", ".cp", ".cpp", ".cc")
+# byte-offset, the declaration spelling (remediation 30, fate run 2026-09-30-024 F-2): a name
+# declared a byte pointer (`char *p`, `u8 *arg0`, `void *q`; not `char **`, not `char *f(`)...
+BYTE_DECL = re.compile(r"(?<![\w*])(?:const\s+)?(?:u8|s8|char|unsigned\s+char|signed\s+char|void)\s*\*\s*"
+                       r"(?:const\s+)?([A-Za-z_]\w*)\b(?!\s*\()")
+# ...then read as another type at a byte count from it: `(T *)(p + 0x5D0)`, `(T *)(p - n)`
+BYTE_PTR_USE = re.compile(r"\(\s*(?:const\s+)?(?:struct\s+)?([A-Za-z_]\w*)\s*\*+\s*\)\s*\(\s*([A-Za-z_]\w*)\s*[+-]\s*"
+                          r"(?:0[xX][0-9A-Fa-f]+|\d+|[A-Za-z_]\w*)")
+BYTE_CASTS = {"u8", "s8", "char", "void"}  # a cast back to bytes reinterprets nothing
 
 RULES = [
     # ((Ent *)&D_x[i])->f  — an element address re-typed as a different, overlapping struct
@@ -359,6 +375,36 @@ def member_offset_findings(text, path=""):
     return out
 
 
+def _strip_parens(text):
+    """File-scope text with every parenthesised group emptied, so a prototype's parameter
+    names do not read as file-scope declarations."""
+    prev = None
+    while prev != text:
+        prev, text = text, re.sub(r"\([^()]*\)", "()", text)
+    return text
+
+
+def byte_pointer_findings(stripped, path=""):
+    """byte-offset, the declaration spelling: `(T *)(p + N)` where `p` is declared a byte
+    pointer in the enclosing function (parameters and locals) or at file scope."""
+    lines = stripped.splitlines()
+    scope = {}
+    for _name, a, b in function_spans(stripped):
+        names = set(BYTE_DECL.findall("\n".join(lines[a - 1:b])))
+        for ln in range(a, b + 1):
+            scope[ln] = names
+    file_names = set(BYTE_DECL.findall(_strip_parens("\n".join(l for i, l in enumerate(lines, 1) if i not in scope))))
+    out = []
+    for lineno, line in enumerate(lines, 1):
+        names = file_names | scope.get(lineno, set())
+        for m in BYTE_PTR_USE.finditer(line) if names else ():
+            if m.group(1) not in BYTE_CASTS and m.group(2) in names:
+                out.append({"path": path, "line": lineno, "rule": "byte-offset", "severity": "error",
+                            "source": f"{line.strip()}  [{m.group(2)} is declared a byte pointer]"})
+                break
+    return out
+
+
 def lint_text(text, path=""):
     findings = []
     stripped = strip_comments(text)
@@ -397,6 +443,8 @@ def lint_text(text, path=""):
             hits = [h for h in hits if h[0] != "overlay-cast"]
         for rule, sev in hits:
             findings.append({"path": path, "line": lineno, "rule": rule, "severity": sev, "source": line.strip()})
+    cast_spelled = {f["line"] for f in findings if f["rule"] == "byte-offset"}
+    findings.extend(f for f in byte_pointer_findings(stripped, path) if f["line"] not in cast_spelled)
     if not str(path).endswith("types.h"):
         for m in TYPEDEF_REDECLARE.finditer(stripped):
             findings.append({"path": path, "line": stripped.count("\n", 0, m.start()) + 1, "rule": "typedef-redeclare",
@@ -509,7 +557,7 @@ def main():
     if a.files:
         paths = [Path(f) if Path(f).is_absolute() else repo / f for f in a.files]
     else:
-        paths = (sorted((repo / "src").rglob("*.c")) + sorted((repo / "src").rglob("*.cp"))
+        paths = (sorted(p for p in (repo / "src").rglob("*") if p.suffix in SOURCE_SUFFIXES and p.is_file())
                  + sorted((repo / "include").rglob("*.h")))
     findings = []
     for p in paths:

@@ -149,7 +149,8 @@ def ensure_all(tools, specs, compiler, mwccgap=None, offline=False):
 
 
 def uses_include_asm(src):
-    for p in list(src.rglob("*.c")) if src.is_dir() else []:
+    # every C and C++ unit: a C++ translation unit is unit_<ADDR>.cpp
+    for p in [q for q in src.rglob("*") if q.suffix in (".c", ".cp", ".cpp", ".cc")] if src.is_dir() else []:
         if "INCLUDE_ASM(" in p.read_text(encoding="utf-8", errors="replace"):
             return True
     return False
