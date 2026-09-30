@@ -15,7 +15,7 @@ The end goal is recompilation, which needs a complete matching decompilation. Un
 
 The public repository builds from a clean clone, uses the translation-unit layout, and ships objdiff.json.
 
-Now: public build ok (translation-unit, 2026-09-30T00:52:42Z); 0 matched function(s) still in per-function files; units map present.
+Now: public build ok (translation-unit, 2026-09-30T15:05:45Z); 0 matched function(s) still in per-function files; units map present.
 
 ## M2 Identified
 

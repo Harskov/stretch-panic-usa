@@ -68,12 +68,13 @@ against the original.
 - Write it the way a person would have: no second struct laid over an element address, no
   byte arithmetic to reach a field, no `*(int *)&x`, no inline asm, no `do { } while (0)`,
   no permuter output left as it came out, no comments about how the match was found.
-  `python3 tools/lint_c.py --repo . <file>` exits 0 on it. The exceptions are the two
+  `python3 tools/lint_c.py --repo . <file>` exits 0 on it. The exceptions are the three
   instruction forms the compiler has no other source form for: a VU0 macro-mode block
   (`asm { }` of `lqc2`/`v*`/`sqc2` over `register` locals, with the `mfc1`/`qmtc2` pair
-  that moves a float into it) and an inline float-to-int conversion (`asm { cvt.w.s f, f
-  / mfc1 i, f }`). The lint reports both as advisory, and a comment above the block
-  names the operation.
+  that moves a float into it, and a `nop` or `.set noreorder`/`.set reorder` where the
+  original has no hazard nop), an inline float-to-int conversion (`asm { cvt.w.s f, f
+  / mfc1 i, f }`), and the SDK's `ExitHandler()`/`EI()`/`DI()` (`asm { sync / ei }`).
+  The lint reports them as advisory, and a comment above the block names the operation.
 - Format with the repository's `.clang-format`.
 
 ## Names and types

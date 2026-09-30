@@ -15,7 +15,8 @@ FILE arguments narrow it (a wip attempt before `mark`, say).
 Rules (error): overlay-cast, byte-offset, reinterpret-lvalue, inline-asm, member-offset
 (a struct member named for an offset, `unk_1EC`, that its declaration puts elsewhere;
 remediation 19).
-Rules (advisory, need an evidence note in the ledger): volatile, goto, vu0-asm, fpu-asm.
+Rules (advisory, need an evidence note in the ledger): volatile, goto, vu0-asm, fpu-asm,
+kernel-asm.
 
 The one asm form that is not an error is a VU0 macro-mode block (remediation 10,
 stretch-panic-usa run 007 F-2): a CodeWarrior `asm { ... }` block whose every
@@ -29,7 +30,14 @@ stretch-panic-usa run 018 F-3): `mfc1 <gpr>, <f32>` whose GPR a later `qmtc2 <gp
 vfN` in the same block moves into VU0 (the libvu0 scale shape), and its mirror,
 `mtc1 <gpr>, <f32>` whose GPR an earlier `qmfc2 <gpr>, vfN` took out of it. An
 `mfc1`/`mtc1` whose GPR is no such transfer's operand in the block, or is written again
-in between, stays foreign.
+in between, stays foreign. A `nop`, and `.set noreorder` / `.set reorder` around the
+scalar transfer, belong to the block as well (remediation 28, stretch-panic-usa run
+2026-09-30-023 F-1: without the directive pair the pinned assembler adds a hazard nop the
+target does not have); the block still needs a COP2 instruction.
+The third form is the EE kernel macro block (remediation 28, fate-unlimited-codes-jp run
+2026-09-30-022 F-1): `sync` (`.l`/`.p`), `ei`, `di` and nothing else — the SDK's
+ExitHandler() at the end of an interrupt handler, and EI()/DI(). Reported as `kernel-asm`
+(advisory).
 The second such form is a COP1 float-to-int block (remediation 17, run
 2026-09-19-015 F-4): a block whose every instruction is in the conversion set
 (`cvt.w.s`, `cvt.s.w`, `trunc.w.s`, `round.w.s`, `ceil.w.s`, `floor.w.s`, and the
@@ -125,6 +133,20 @@ GPR_WRITERS = re.compile(r"^(?:mfc1|(?:qmfc2|cfc2)(?:\.n?i)?)$", re.I)
 # a hand-written register shuffle, which stays `inline-asm` (error).
 COP1_CONV_ONLY = re.compile(r"^(?:cvt\.[ws]\.[ws]|trunc\.w\.[sd]|round\.w\.[sd]|ceil\.w\.[sd]|floor\.w\.[sd])$", re.I)
 COP1_CONV_MNEMONIC = re.compile(r"^(?:cvt\.[ws]\.[ws]|trunc\.w\.[sd]|round\.w\.[sd]|ceil\.w\.[sd]|floor\.w\.[sd]|mfc1|mtc1)$", re.I)
+# EE kernel macro instructions (remediation 28, fate-unlimited-codes-jp run 2026-09-30-022 F-1):
+# the SDK's ExitHandler() (`sync; ei`) at the end of an INTC handler, and EI()/DI(). No C
+# spelling emits them, so a block of nothing else is reported as `kernel-asm` (advisory).
+KERNEL_MNEMONIC = re.compile(r"^(?:sync(?:\.[lp])?|ei|di)$", re.I)
+
+
+def vu0_neutral(mn, ops):
+    """A statement a VU0 block may carry besides COP2 instructions and the scalar transfer
+    (remediation 28, stretch-panic-usa run 2026-09-30-023 F-1): `nop` (padding the target
+    carries, 112 of 112 bytes on func_00121A60 with it) and `.set noreorder` / `.set reorder`,
+    which keep the pinned assembler from putting a hazard nop between `mfc1 g, f` and
+    `qmtc2 g, vfN` (36 of 36 bytes on func_0012EE90 and func_0012EA50 with the pair scoped)."""
+    low = mn.lower()
+    return low == "nop" or (low == ".set" and ops in (["reorder"], ["noreorder"]))
 
 
 def asm_statements(text):
@@ -345,15 +367,20 @@ def lint_text(text, path=""):
         mnemonics = [mn for mn, _ in stmts]
         src = lines[lineno - 1].strip() if lineno <= len(lines) else "asm {"
         scalar = scalar_transfers(stmts)
-        foreign = [mn for i, (mn, _) in enumerate(stmts) if not COP2_MNEMONIC.match(mn) and i not in scalar]
+        foreign = [mn for i, (mn, ops) in enumerate(stmts)
+                   if not COP2_MNEMONIC.match(mn) and i not in scalar and not vu0_neutral(mn, ops)]
         foreign_fpu = [x for x in mnemonics if not COP1_CONV_MNEMONIC.match(x)]
-        if mnemonics and not foreign:
+        if mnemonics and not foreign and any(COP2_MNEMONIC.match(x) for x in mnemonics):
             findings.append({"path": path, "line": lineno, "rule": "vu0-asm", "severity": "advisory",
                              "source": f"{src}  [{', '.join(mnemonics)}]"})
         elif mnemonics and not foreign_fpu and any(COP1_CONV_ONLY.match(x) for x in mnemonics):
             # a float-to-int conversion block: no C spelling reaches the inline
             # 0x46000024 under the pinned 2.x build (K9 C12, remediation 17)
             findings.append({"path": path, "line": lineno, "rule": "fpu-asm", "severity": "advisory",
+                             "source": f"{src}  [{', '.join(mnemonics)}]"})
+        elif mnemonics and all(KERNEL_MNEMONIC.match(x) for x in mnemonics):
+            # the SDK's ExitHandler() / EI() / DI(): no C spelling (remediation 28)
+            findings.append({"path": path, "line": lineno, "rule": "kernel-asm", "severity": "advisory",
                              "source": f"{src}  [{', '.join(mnemonics)}]"})
         else:
             hint = ""
@@ -387,7 +414,7 @@ def lint_text(text, path=""):
                              "source": " ".join(m.group(0).split())[:100] + "  [a comment says what the code does, not how it was matched]"})
     findings.extend(member_offset_findings(text, path))
     findings.extend(readability_debt(text, path)[0])
-    if any(f["rule"] in ("vu0-asm", "fpu-asm", "inline-asm") for f in findings):
+    if any(f["rule"] in ("vu0-asm", "fpu-asm", "kernel-asm", "inline-asm") for f in findings):
         # an asm block's operands are `register` locals by necessity (the VU0 exception,
         # K9 C3): register-local says nothing new there
         findings = [f for f in findings if f["rule"] != "register-local"]
@@ -437,7 +464,8 @@ def readability_debt(text, path=""):
         if mnemonics and all(MOVE_MNEMONIC.match(mn) for mn in mnemonics):
             if fn:
                 pins.setdefault(fn, []).append(lineno)
-        elif mnemonics and all(COP2_MNEMONIC.match(mn) or COP1_CONV_MNEMONIC.match(mn) for mn in mnemonics):
+        elif mnemonics and all(COP2_MNEMONIC.match(mn) or COP1_CONV_MNEMONIC.match(mn) or vu0_neutral(mn, ops)
+                               for mn, ops in stmts):
             if fn:
                 necessary.add(fn)
     for fn in necessary:
