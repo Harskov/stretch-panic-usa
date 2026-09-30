@@ -14,7 +14,8 @@ through a pointer cast; inline asm). Default scope: every C and C++ source under
 end; a C++ translation unit is `unit_<ADDR>.cpp`, remediation 30) and include/**/*.h;
 FILE arguments narrow it (a wip attempt before `mark`, say).
 
-Rules (error): overlay-cast, byte-offset, reinterpret-lvalue, inline-asm, member-offset
+Rules (error): overlay-cast, byte-offset, reinterpret-lvalue, inline-asm, do-while-zero,
+typedef-redeclare, process-comment, fake-body-unexplained, member-offset
 (a struct member named for an offset, `unk_1EC`, that its declaration puts elsewhere;
 remediation 19). byte-offset has two spellings: the cast on the expression,
 `(u8 *)p + 0x1c`, and the cast on the declaration, `*(s32 *)(p + 0x5D0)` with `p`
@@ -22,7 +23,8 @@ declared `char *` / `u8 *` / `void *` in the function or at file scope — m2c's
 an argument it cannot type (remediation 30, fate-unlimited-codes-jp run
 2026-09-30-024 F-2).
 Rules (advisory, need an evidence note in the ledger): volatile, goto, vu0-asm, fpu-asm,
-kernel-asm.
+kernel-asm, register-local, assign-in-condition, self-extern, register-pin, fake-body
+(the full list with severities is RULES below and lint_text(); remediation 33, audit K33-8).
 
 The one asm form that is not an error is a VU0 macro-mode block (remediation 10,
 stretch-panic-usa run 007 F-2): a CodeWarrior `asm { ... }` block whose every
@@ -40,10 +42,6 @@ in between, stays foreign. A `nop`, and `.set noreorder` / `.set reorder` around
 scalar transfer, belong to the block as well (remediation 28, stretch-panic-usa run
 2026-09-30-023 F-1: without the directive pair the pinned assembler adds a hazard nop the
 target does not have); the block still needs a COP2 instruction.
-The third form is the EE kernel macro block (remediation 28, fate-unlimited-codes-jp run
-2026-09-30-022 F-1): `sync` (`.l`/`.p`), `ei`, `di` and nothing else — the SDK's
-ExitHandler() at the end of an interrupt handler, and EI()/DI(). Reported as `kernel-asm`
-(advisory).
 The second such form is a COP1 float-to-int block (remediation 17, run
 2026-09-19-015 F-4): a block whose every instruction is in the conversion set
 (`cvt.w.s`, `cvt.s.w`, `trunc.w.s`, `round.w.s`, `ceil.w.s`, `floor.w.s`, and the
@@ -52,8 +50,18 @@ C spelling of `(int)f` to a `jal` to the `fptosi` helper — seven spellings acr
 seven flag sets, and C++ too — while the image inlines `0x46000024` at all 31 of its
 conversion sites, so the block is the only source form that reaches those bytes under
 the pinned build (K9 C12). Reported as `fpu-asm` (advisory).
+The third form is the EE kernel macro block (remediation 28, fate-unlimited-codes-jp run
+2026-09-30-022 F-1): `sync` (`.l`/`.p`), `ei`, `di` and nothing else — the SDK's
+ExitHandler() at the end of an interrupt handler, and EI()/DI(). Reported as `kernel-asm`
+(advisory).
+The one asm FUNCTION that is not an error is the VU0 float return (remediation 33,
+stretch-panic-usa run 2026-09-30-027 F-1): `asm f32 f(...) { ... }` whose body is the VU0
+form above and ends `jr ra` with the result's `mtc1 g, f0` in the delay slot, paired with an
+earlier `qmfc2 g, vfN`. The pinned compiler keeps a block's `mtc1` ahead of the `jr` and puts
+a `nop` in the slot, so no block or C spelling reaches those bytes (K1 §6 item 11). Reported as
+`vu0-asm` (advisory).
 A block with any other instruction inside, a GNU `asm(...)` / `__asm__(...)`
-statement, and a CodeWarrior `asm` function are `inline-asm` (error).
+statement, and any other CodeWarrior `asm` function are `inline-asm` (error).
 
 Readability debt at bank time (round 26, WP8; BFM's inversions in this project's terms):
 `register-pin` (advisory) — a function whose body keeps a `register` declaration, or an
@@ -180,17 +188,60 @@ def asm_statements(text):
                 if depth == 0:
                     break
             i += 1
-        body = text[m.end():i]
-        stmts = []
-        for stmt in re.split(r"[;\n]", body):
-            stmt = stmt.strip()
-            if not stmt or stmt.endswith(":"):  # empty, or a label
-                continue
-            parts = stmt.split(None, 1)
-            ops = [o.strip().lstrip("$").lower() for o in parts[1].split(",")] if len(parts) > 1 else []
-            stmts.append((parts[0], [o for o in ops if o]))
-        out.append((text.count("\n", 0, m.start()) + 1, stmts))
+        out.append((text.count("\n", 0, m.start()) + 1, _statements(text[m.end():i])))
     return out
+
+
+def _statements(body):
+    """[(mnemonic, [operand, ...])] for one asm body; operands lower-cased, a leading `$` dropped."""
+    stmts = []
+    for stmt in re.split(r"[;\n]", body):
+        stmt = stmt.strip()
+        if not stmt or stmt.endswith(":"):  # empty, or a label
+            continue
+        parts = stmt.split(None, 1)
+        ops = [o.strip().lstrip("$").lower() for o in parts[1].split(",")] if len(parts) > 1 else []
+        stmts.append((parts[0], [o for o in ops if o]))
+    return stmts
+
+
+def asm_function_statements(text):
+    """(line_no, [(mnemonic, [operand, ...])]) for every CodeWarrior asm function definition,
+    `asm f32 f(Vec *a, Vec *b) { ... }`, in comment-stripped text; a prototype has no body and is skipped."""
+    out = []
+    for m in ASM_FUNC.finditer(text):
+        i, depth = m.end(), 1
+        while i < len(text) and depth:
+            depth += {"(": 1, ")": -1}.get(text[i], 0)
+            i += 1
+        while i < len(text) and text[i].isspace():
+            i += 1
+        end = _body_end(text, i) if i < len(text) and text[i] == "{" else -1
+        if end >= 0:
+            out.append((text.count("\n", 0, m.start()) + 1, _statements(text[i + 1:end])))
+    return out
+
+
+def vu0_float_return(stmts):
+    """True for an asm function body that is a VU0 macro-mode sequence returning a float
+    (remediation 33, stretch-panic-usa run 2026-09-30-027 F-1): COP2 instructions, scalar
+    transfers and neutral statements, ending `jr ra` with the `mtc1 g, f0` in its delay slot
+    that moves the result an earlier `qmfc2 g, vfN` took out of VU0. The pinned compiler keeps an
+    `asm { }` block's `mtc1` ahead of the `jr` and fills the slot with a `nop` (80.0-84.0 on
+    func_0012E970/E950/E920/E870, 100 as the function), so the function form is the only one
+    that reaches those bytes (K1 §6 item 11). Any other asm function stays `inline-asm` (error)."""
+    body = list(stmts)
+    while body and body[-1][0].lower() == ".set":
+        body.pop()                                   # a closing `.set reorder`
+    if len(body) < 3:
+        return False
+    (jr, jops), (slot, sops) = body[-2], body[-1]
+    if jr.lower() != "jr" or jops not in (["ra"], ["31"]) or slot.lower() != "mtc1" or sops[1:] != ["f0"]:
+        return False
+    scalar = scalar_transfers(body)
+    rest = [(mn, ops) for i, (mn, ops) in enumerate(body[:-2]) if i not in scalar]
+    return (len(body) - 1 in scalar and any(COP2_MNEMONIC.match(mn) for mn, _ in rest)
+            and all(COP2_MNEMONIC.match(mn) or vu0_neutral(mn, ops) for mn, ops in rest))
 
 
 def asm_blocks(text):
@@ -436,8 +487,13 @@ def lint_text(text, path=""):
                         " in the same block moves (K9 C3)")
             findings.append({"path": path, "line": lineno, "rule": "inline-asm", "severity": "error",
                              "source": f"{src}  [not COP2: {', '.join(foreign) or 'empty block'}{hint}]"})
+    vu0_fn = {ln: stmts for ln, stmts in asm_function_statements(stripped) if vu0_float_return(stmts)}
     for lineno, line in enumerate(lines, 1):
-        if ASM_FUNC.search(line):
+        if ASM_FUNC.search(line) and lineno in vu0_fn:
+            # the VU0 float return: the one asm function that reaches its bytes (K1 §6 item 11, remediation 33)
+            findings.append({"path": path, "line": lineno, "rule": "vu0-asm", "severity": "advisory",
+                             "source": f"{line.strip()}  [asm function, VU0 float return: {', '.join(mn for mn, _ in vu0_fn[lineno])}]"})
+        elif ASM_FUNC.search(line):
             findings.append({"path": path, "line": lineno, "rule": "inline-asm", "severity": "error", "source": line.strip()})
         hits = [(rule, sev) for rule, sev, rx in RULES if rx.search(line)]
         if ("reinterpret-lvalue", "error") in hits:  # `*(T *)&x[0]` is one finding, not two
