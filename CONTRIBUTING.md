@@ -63,8 +63,11 @@ against the original.
 - The object compiled from your C has `.text` byte-identical to the original function
   (objdiff score 100). A 99 % is work in progress: open an issue or a draft pull request
   with the score and a decomp.me link instead.
-- Put the C with the segment's other functions under `src/<segment>/` and use the shared
-  types in `include/` (`common.h`, `types.h`) instead of re-declaring them.
+- Put the C in place of the function's `INCLUDE_ASM(...)` line when a translation unit under
+  `src/<segment>/` holds it (`unit_<ADDR>.c`, or `.cpp` for C++); a function no unit file
+  holds yet goes in a new `src/<segment>/<function>.c`, and the maintainer's next run moves it
+  into its unit. Use the shared types in `include/` (`common.h`, `types.h`) instead of
+  re-declaring them.
 - Write it the way a person would have: no second struct laid over an element address, no
   byte arithmetic to reach a field, no `*(int *)&x`, no inline asm, no `do { } while (0)`,
   no permuter output left as it came out, no comments about how the match was found.

@@ -15,13 +15,13 @@ The end goal is recompilation, which needs a complete matching decompilation. Un
 
 The public repository builds from a clean clone, uses the translation-unit layout, and ships objdiff.json.
 
-Now: public build ok (translation-unit, 2026-09-30T15:31:08Z); 0 matched function(s) still in per-function files; units map present.
+Now: public build ok (translation-unit, 2026-09-30T15:53:41Z); 0 matched function(s) still in per-function files; units map present.
 
 ## M2 Identified
 
 SDK library functions named by signature, a whole-program naming pass run, every game function labelled with its subsystem, a public symbol map exported.
 
-Now: 1 complete name-pass run(s); 1355 of 1355 game functions labelled.
+Now: 2 complete name-pass run(s); 1355 of 1355 game functions labelled.
 
 ## M3 Platform boundary
 

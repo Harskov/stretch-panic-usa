@@ -2,7 +2,7 @@
 """dps2build.py — the build graph of this decompilation: how splat's linker script becomes
 build.ninja, and how the rebuilt executable is checked against the original. It is ONE
 module shared by the public repository's configure.py and the maintainer's pipeline
-(skills/dps2-toolkit/scripts/configure.py imports it from templates/public-repo/tools/), so
+(.claude/skills/dps2-toolkit/scripts/configure.py imports it from templates/public-repo/tools/), so
 the build a contributor runs and the build every change is verified with cannot drift apart
 (operator brief 2026-09-28, WP1). Standard library only.
 
@@ -95,8 +95,8 @@ def uses_include_asm(path):
         return False
 
 
-# mwccgap (github.com/mkst/mwccgap, MIT) at the pinned commit 147598b, and the one fix this
-# project applies to it after checkout (round 23, WP2, 08-wp2-migrate-fate-unlimited-codes-jp.txt):
+# mwccgap (github.com/mkst/mwccgap, MIT) at the pinned commit 147598b, and the two fixes this
+# project applies to it after checkout (v2 jump-table labels, v3 the temporary file) (round 23, WP2, 08-wp2-migrate-fate-unlimited-codes-jp.txt):
 # when it copies an included function's .text relocations into the unit's object it keeps each
 # relocation symbol's section index from the assembled object, and only .rodata relocations are
 # repointed. A global label inside the function -- a `jlabel` that a jump table in another object

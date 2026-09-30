@@ -138,7 +138,7 @@ def ensure_all(tools, specs, compiler, mwccgap=None, offline=False):
             print(f"download: mwccgap {mwccgap['commit'][:10]}")
             subprocess.run(["git", "clone", "-q", mwccgap["url"], str(gdir)], check=True)
             subprocess.run(["git", "-C", str(gdir), "checkout", "-q", mwccgap["commit"]], check=True)
-        # the one fix the build applies to mwccgap (dps2build.patch_mwccgap: jump-table labels)
+        # the two fixes the build applies to mwccgap (dps2build.patch_mwccgap: v2 jump-table labels, v3 the temporary file)
         import dps2build
         try:
             dps2build.patch_mwccgap(gdir)
