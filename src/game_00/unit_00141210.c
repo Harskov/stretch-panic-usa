@@ -17,11 +17,15 @@ void func_00142A70(void) {
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00141210", func_00142A80);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00141210", func_00142E30);
+void func_00142E30(void) {
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00141210", func_00142E40);
+int func_00142E40(void) {
+    return 0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00141210", func_00142E50);
+void func_00142E50(void) {
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00141210", func_00142E60);
 

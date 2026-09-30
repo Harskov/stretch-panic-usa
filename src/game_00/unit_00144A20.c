@@ -23,9 +23,11 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00144A20", func_00144FA0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00144A20", func_00144FD0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00144A20", func_00145140);
+void func_00145140(void) {
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00144A20", func_00145150);
+void func_00145150(void) {
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00144A20", func_00145160);
 
@@ -46,6 +48,9 @@ void func_00145A10(Obj *o, M128 *dst) {
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00144A20", func_00145A40);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00144A20", func_00145A70);
+void func_00145A70(void) {
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00144A20", func_00145A80);
+int func_00145A80(void) {
+    return 0;
+}

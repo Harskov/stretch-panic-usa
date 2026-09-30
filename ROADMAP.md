@@ -15,7 +15,7 @@ The end goal is recompilation, which needs a complete matching decompilation. Un
 
 The public repository builds from a clean clone, uses the translation-unit layout, and ships objdiff.json.
 
-Now: public build ok (translation-unit, 2026-09-30T20:59:39Z); 0 matched function(s) still in per-function files; units map present.
+Now: public build ok (translation-unit, 2026-09-30T21:39:59Z); 0 matched function(s) still in per-function files; units map present.
 
 ## M2 Identified
 
@@ -27,7 +27,7 @@ Now: 2 complete name-pass run(s); 1355 of 1355 game functions labelled.
 
 The game's wrappers over the SDK and hardware matched and typed: GS/DMA/VIF packet building, VU0 macro mode and COP2, VU1 microprogram uploads, CD and file streaming, pad, memory card, sound, IOP RPC.
 
-Now: 23 of 294 function(s) labelled platform matched (1588 of 145972 bytes); PLATFORM.md present.
+Now: 33 of 294 function(s) labelled platform matched (2056 of 145972 bytes); PLATFORM.md present.
 
 ## M4 Core
 
@@ -39,26 +39,26 @@ Now: 0 of 54 function(s) labelled core matched (0 of 13784 bytes); FORMATS.md mi
 
 Gameplay subsystem by subsystem, most-called first, with data migrated alongside.
 
-Now: 189 of 1007 function(s) labelled gameplay matched (7784 of 224000 bytes).
+Now: 198 of 1007 function(s) labelled gameplay matched (7856 of 224000 bytes).
 
 ## M6 Complete
 
 Every game function matched and the data migrated.
 
-Now: 9372 of 383756 game bytes matched; check ok.
+Now: 9912 of 383756 game bytes matched; check ok.
 
 ## Bank rate by function size
 
-2,343 of 95,939 game-code instruction words are matched. Matching gets harder with size; the table says where the project stands on that curve.
+2,478 of 95,939 game-code instruction words are matched. Matching gets harder with size; the table says where the project stands on that curve.
 
 | Size (instructions) | Functions | Matched | Bank rate |
 |---|---|---|---|
-| 0-50 | 794 | 208 | 26.2 % |
+| 0-50 | 794 | 227 | 28.6 % |
 | 51-120 | 320 | 4 | 1.2 % |
 | 121-200 | 144 | 0 | 0.0 % |
 | >200 | 97 | 0 | 0.0 % |
 
-Pool realization — of the instructions a match batch drew, the share it banked: 63.7 %, 93.9 %, 85.4 %, 87.2 %, 77.9 % over the last 5 batches (latest 2026-09-30).
+Pool realization — of the instructions a match batch drew, the share it banked: 93.9 %, 85.4 %, 87.2 %, 100.0 %, 73.0 % over the last 5 batches (latest 2026-09-30).
 
 Readability debt: 0 matched function(s) keep a `register` pin and 0 carry a `// !FAKE:` body (see CONTRIBUTING.md); a pull request that replaces one with plain C that still matches is welcome.
 

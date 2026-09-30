@@ -10,11 +10,46 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012DF10", func_0012E500);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012DF10", func_0012E6D0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012DF10", func_0012E820);
+asm f32 func_0012E820(Vec *a)
+{
+    .set noreorder
+    lqc2 vf1, 0(a0)
+    vmul.xyz vf2, vf1, vf1
+    vaddy.x vf2, vf2, vf2y
+    vaddz.x vf2, vf2, vf2z
+    vsqrt Q, vf2x
+    vwaitq
+    vaddq.x vf1, vf0, Q
+    qmfc2.ni a0, vf1
+    jr ra
+    mtc1 a0, f0
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012DF10", func_0012E850);
+asm f32 func_0012E850(Vec *a)
+{
+    .set noreorder
+    lqc2 vf1, 0(a0)
+    vmul.xyz vf2, vf1, vf1
+    vaddy.x vf2, vf2, vf2y
+    vaddz.x vf2, vf2, vf2z
+    qmfc2.ni a0, vf2
+    jr ra
+    mtc1 a0, f0
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012DF10", func_0012E870);
+asm f32 func_0012E870(Vec *a, Vec *b)
+{
+    .set noreorder
+    lqc2 vf1, 0(a0)
+    lqc2 vf2, 0(a1)
+    vsub.xyz vf1, vf1, vf2
+    vmul.xyz vf2, vf1, vf1
+    vaddy.x vf2, vf2, vf2y
+    vaddz.x vf2, vf2, vf2z
+    qmfc2.ni a0, vf2
+    jr ra
+    mtc1 a0, f0
+}
 
 f32 func_0012E8A0(register Vec *a)
 {
@@ -60,11 +95,47 @@ f32 func_0012E8E0(register Vec *a, register Vec *out)
     return r;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012DF10", func_0012E920);
+asm f32 func_0012E920(Vec *a)
+{
+    .set noreorder
+    lqc2 vf1, 0(a0)
+    vmul.xyz vf2, vf1, vf1
+    vaddy.x vf2, vf2, vf2y
+    vaddz.x vf2, vf2, vf2z
+    vrsqrt Q, vf0w, vf2x
+    vwaitq
+    vaddq.x vf1, vf0, Q
+    qmfc2.ni a0, vf1
+    jr ra
+    mtc1 a0, f0
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012DF10", func_0012E950);
+asm f32 func_0012E950(Vec *a, Vec *b)
+{
+    .set noreorder
+    lqc2 vf1, 0(a0)
+    lqc2 vf2, 0(a1)
+    vmul.xyz vf2, vf1, vf2
+    vaddy.x vf2, vf2, vf2y
+    vaddz.x vf2, vf2, vf2z
+    qmfc2.ni a0, vf2
+    jr ra
+    mtc1 a0, f0
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012DF10", func_0012E970);
+asm f32 func_0012E970(Vec *a, Vec *b)
+{
+    .set noreorder
+    lqc2 vf1, 0(a0)
+    lqc2 vf2, 0(a1)
+    vmul.xyzw vf2, vf1, vf2
+    vaddy.x vf2, vf2, vf2y
+    vaddw.z vf2, vf2, vf2w
+    vaddz.x vf2, vf2, vf2z
+    qmfc2.ni a0, vf2
+    jr ra
+    mtc1 a0, f0
+}
 
 void func_0012E9A0(register Vec *a, register Vec *b, register Vec *out, register f32 t)
 {

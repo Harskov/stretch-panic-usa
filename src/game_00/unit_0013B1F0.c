@@ -1,5 +1,12 @@
 #include "common.h"
 
+typedef struct Obj0013BD20 {
+    u8 pad0[0x10];
+    Vec pos;
+    Vec delta;
+    Vec rot[3];
+} Obj0013BD20;
+
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013B1F0", func_0013B1F0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013B1F0", func_0013B220);
@@ -35,4 +42,22 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013B1F0", func_0013BB20);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013B1F0", func_0013BC80);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013B1F0", func_0013BD20);
+void func_0013BD20(Obj0013BD20 *o, register Vec *m)
+{
+    register Vec *p;
+
+    p = &o->pos;
+    asm {
+        lqc2 vf1, 0x30(m)
+        lqc2 vf2, 0(p)
+        vsub.xyz vf2, vf1, vf2
+        lqc2 vf3, 0(m)
+        lqc2 vf4, 0x10(m)
+        lqc2 vf5, 0x20(m)
+        sqc2 vf1, 0(p)
+        sqc2 vf2, 0x10(p)
+        sqc2 vf3, 0x20(p)
+        sqc2 vf4, 0x30(p)
+        sqc2 vf5, 0x40(p)
+    }
+}
