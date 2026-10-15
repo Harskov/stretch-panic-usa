@@ -1,6 +1,12 @@
 {
   "serial": "SLUS_201.82",
   "basename": "SLUS_201.82",
+  "version": "us",
+  "primary": true,
+  "region": "USA",
+  "release_title": "Stretch Panic",
+  "asm_root": "asm",
+  "build_root": "build",
   "compiler": {
     "id": "mwcps2-2.3.3-000906",
     "flags": "-O3,p -sdatathreshold 0",

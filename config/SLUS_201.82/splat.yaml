@@ -1,5 +1,5 @@
-# splat configuration for Stretch Panic (USA) SLUS_201.82
-name: stretch-panic-usa
+# splat configuration for Stretch Panic (SLUS_201.82)
+name: stretch-panic
 sha1: 0a330e76424b7254e4096d8809b2a927603d3581
 options:
   make_full_disasm_for_code: true

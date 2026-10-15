@@ -1,105 +1,96 @@
-# Stretch Panic (USA)
+# Stretch Panic
 
-[![Progress report](https://github.com/Harskov/stretch-panic-usa/actions/workflows/report.yml/badge.svg)](https://github.com/Harskov/stretch-panic-usa/actions/workflows/report.yml)
 [![Audit](https://github.com/Harskov/stretch-panic-usa/actions/workflows/audit.yml/badge.svg)](https://github.com/Harskov/stretch-panic-usa/actions/workflows/audit.yml)
-[![Code](https://decomp.dev/Harskov/stretch-panic-usa.svg?mode=shield&measure=code&label=Code)](https://decomp.dev/Harskov/stretch-panic-usa)
 
-A work-in-progress matching decompilation of *Stretch Panic* for the PlayStation 2
-(NTSC-U, `SLUS_201.82`): C source that the game's original compiler, Metrowerks
-CodeWarrior for PS2, turns back into the same machine code.
+A decompilation of Stretch Panic (PlayStation 2). It builds any of the following releases from the same source:
 
-This repository does **not** contain any game assets or assembly whatsoever. An existing
-copy of the game is required. The `Audit` workflow runs `tools/audit_public.py` on every
-push and pull request and fails when a tracked file is game-derived — by its path or
-extension, by its first bytes, by a SHA-1 recorded in `config/SLUS_201.82/checksum.sha1`,
-or by a size no source file reaches.
+| Release | Region | Executable | SHA-1 | Size |
+|---|---|---|---|---|
+| Stretch Panic | USA | `SLUS_201.82` | `0a330e76424b7254e4096d8809b2a927603d3581` | 5898360 bytes |
+| Freak Out | Europe | `SLES_503.10` | `fe80cf507bb438e5cf51cc55f7865ec962125e6a` | 5899384 bytes |
+| Hippa Linda | Japan | `SLPM_621.09` | `14fb5cef008dc24b7826492cccdef7fe7d6cbdd3` | 6191480 bytes |
 
-## AI disclosure
-
-This decompilation is produced with language models. Claude (Anthropic) writes the C.
-For part of September 2026 a second, cheaper model also proposed matches for simpler
-functions through a local tool; that lane is retired. Every commit that adds or changes C
-names the model that wrote it in a credit line (`Co-Authored-By: Claude` or
-`Assisted-by: <model>`). A function counts as matched only
-when the pinned compiler rebuilds it byte-identical to the original, and the whole
-executable is rebuilt and compared after every change. Names are given only with cited
-evidence (a referenced string, an SDK call pattern, a named caller); without it the
-systematic name (`func_00123456`, `D_0052ABCD`) stays, and struct fields stay `unk_XX`.
-
-## Supported versions
-
-| Version | Executable | SHA-1 |
-|---|---|---|
-| NTSC-U | `SLUS_201.82` | `0a330e76424b7254e4096d8809b2a927603d3581` |
-
-## Progress
-
-**9,912 of 383,756 bytes of game code are matched (2.58 %)**: 231 of 1355 game functions. 3 game functions and 450 of 672 SDK and runtime functions carry a name backed by evidence; 20 structs are typed in shared headers. SDK and runtime-library code is identified as such and not counted as game code.
-
-| Milestone | Status | Exit judged on |
-|---|---|---|
-| M1 Contributable | done | public build ok (translation-unit, 2026-09-30T21:54:50Z); 0 matched function(s) still in per-function files; units map present |
-| M2 Identified | done | 2 complete name-pass run(s); 1355 of 1355 game functions labelled |
-| M3 Platform boundary | current | 33 of 294 function(s) labelled platform matched (2056 of 145972 bytes); PLATFORM.md present |
-| M4 Core | pending | 0 of 54 function(s) labelled core matched (0 of 13784 bytes); FORMATS.md missing |
-| M5 Gameplay | pending | 198 of 1007 function(s) labelled gameplay matched (7856 of 224000 bytes) |
-| M6 Complete | pending | 9912 of 383756 game bytes matched; check ok |
-
-The milestones and why they come in this order: [ROADMAP.md](ROADMAP.md).
-
-The per-function report is on [decomp.dev](https://decomp.dev/Harskov/stretch-panic-usa).
+**This repository contains no game assets**: no original file, no extracted asset, no decompiler output and no reference
+P-code or assembly. Building it needs your own copy of the game. The source was written function by function, much of it
+with AI assistance, and accepted only when the pinned toolchain rebuilt it to match the original; see
+[How the source was made](#how-the-source-was-made-and-the-ai-disclosure).
 
 ## Building
 
-You need Linux x86-64 (WSL2 on Windows works), Python 3.9 or newer, git, and your own
-copy of the game.
+You need Linux x86-64 (WSL2 on Windows works), Python 3.9 or newer, git, and your own copy of the game.
 
-1. Copy `SLUS_201.82` from your disc to `orig/SLUS_201.82/SLUS_201.82`.
-2. `python3 -m pip install -r requirements.txt` installs splat and ninja.
-3. `python3 configure.py` checks your copy against `config/SLUS_201.82/checksum.sha1`,
-   downloads the pinned tools into `tools/` (each checked against the sha256 in
-   `config/SLUS_201.82/build.json`), splits the executable into `asm/` with splat, and
-   writes `build.ninja` and `objdiff.json`.
-4. `ninja` compiles every matched C file with the pinned compiler (compiler `mwcps2-2.3.3-000906` with flags `-O3,p -sdatathreshold 0`),
-   assembles the rest, links, and checks that the rebuilt executable's loaded image
-   equals the original's byte for byte.
+1. Clone this repository.
+2. Copy the executable the table names from your disc (it sits beside `SYSTEM.CNF`) to `orig/<SERIAL>/<SERIAL>`, for example `orig/SLUS_201.82/SLUS_201.82`; its SHA-1 must be the one in the table. Any listed release builds, and several can sit side by side.
+3. `python3 -m pip install -r requirements.txt` installs splat and ninja.
+4. `python3 configure.py` checks each copy it finds against `config/<SERIAL>/checksum.sha1`, downloads the pinned tools into `tools/` (each checked against the sha256 in `config/<SERIAL>/build.json`), splits each executable with splat, and writes `build.ninja` and `objdiff.json`.
+5. `ninja` compiles every matched C file with the pinned compiler (`mwcps2-2.3.3-000906` with `-O3,p -sdatathreshold 0`), assembles the rest, links, and checks that each rebuilt executable's loaded image equals the original's byte for byte (`check: OK`).
 
-To work on a function, open the repository folder in
-[objdiff](https://github.com/encounter/objdiff): `objdiff.json` pairs every C file with
-splat's disassembly of the same range. [decomp.me](https://decomp.me) has the same
-compiler for trying a single function.
+## Progress
 
-## Symbols and documentation
+**231 of 1355 game functions are matched** (2,478 of 95,939 instructions, 2.58 %). 3 functions carry a name backed by evidence; 1355 carry a subsystem label.
 
-Generated from the match records at every change, never edited by hand:
+| Milestone | Status | Exit judged on |
+|---|---|---|
+| M1 Contributable | done | public-build.json ok=True; matched outside their unit: 0 |
+| M2 Identified | current | name pass closed: True; unlabelled game functions: 0; review pending: 50 |
+| M3 Platform boundary | later | 33/294 platform functions matched; PLATFORM.md present |
+| M4 Core | later | 0/54 core functions matched; FORMATS.md missing |
+| M5 Gameplay | later | 198/1007 gameplay functions matched |
+| M6 Complete | later | 231/1355 game functions matched; check ok=True |
+| M7 Documented | later | docs.py check ok=None (never run) |
+| M8 Behaviour-verified | later | last behaviour compare ok=None at never |
 
-- `symbols/SLUS_201.82.txt`: every function's name and address, for Ghidra's
-  `ImportSymbolsScript.py`; `symbols/SLUS_201.82.sym`: the same for the PCSX2 debugger;
-  `symbols/SLUS_201.82.subsystems.tsv`: each function's subsystem label.
-- `config/SLUS_201.82/symbols-evidence.tsv`: the evidence behind every name.
-- [PLATFORM.md](PLATFORM.md): the SDK functions, IOP modules, VU microprograms and
-  hardware registers the game uses, and the functions that use them.
-- [ROADMAP.md](ROADMAP.md): the milestones, why they come in this order, and where the
-  project stands.
+The milestones and why they come in this order: [ROADMAP.md](ROADMAP.md).
+
+## How the source was made, and the AI disclosure
+
+The source here was written function by function and accepted only when the pinned toolchain rebuilt it to match the
+original under the project's criterion (the compiled code must be byte for byte the original's). Much of it was drafted with AI assistance (Claude, and the
+batch lane's models); every accepted function was rebuilt and compared by the tooling on the maintainer's machine, and
+the commit that adds a function carries a credit line naming who wrote it (`Co-Authored-By: Claude <noreply@anthropic.com>`
+for the operator's model, `Assisted-by: <model> (batch)` for the batch lane). Names are given only with cited evidence (a
+string, a caller, a frame label, a field); otherwise the systematic placeholder stays. A function marked `// !FAKE:` matches
+through an implausible form and is listed as readability debt in [ROADMAP.md](ROADMAP.md).
+
+## Platform: PlayStation 2 (Metrowerks CodeWarrior)
+
+The game is a PS2 executable for the Emotion Engine (a MIPS R5900). The source under `src/` is C (C++ where the original
+was) that the game's own compiler, Metrowerks CodeWarrior for PS2 (`mwcps2-2.3.3-000906` with `-O3,p -sdatathreshold 0`), compiles back to the same machine
+code; a function not yet written stays an `INCLUDE_ASM` line that pulls in splat's disassembly of it, split from your own
+copy at build time. A function is accepted when its compiled `.text` is byte for byte the original's, and the whole
+executable is rebuilt and its loaded image compared after every change.
+
+One source tree builds every listed release. The releases share most of their code; where one differs, the source says so with a preprocessor conditional on the release (`VERSION_US`, `VERSION_EU`, `VERSION_JP`) around the differing lines, and a function only one release has is guarded the same way. The USA release splits into `asm/` and builds into `build/`; every other release into `asm/<id>/` and `build/<id>/`, at its own addresses.
+
+To work on a function, open the repository folder in [objdiff](https://github.com/encounter/objdiff): `objdiff.json`
+pairs every C file with splat's disassembly of the same range. [decomp.me](https://decomp.me) has the same compiler for
+trying a single function.
+
+Generated from the match records at every change, never edited by hand: `symbols/<SERIAL>.txt` (every function's name
+and address, for Ghidra's `ImportSymbolsScript.py`), `symbols/<SERIAL>.sym` (the same for the PCSX2 debugger) and
+`symbols/<SERIAL>.subsystems.tsv` (each function's subsystem label), one set per release at that release's addresses;
+`config/<SERIAL>/symbols-evidence.tsv` (the evidence behind every name); [PLATFORM.md](PLATFORM.md) (the SDK functions,
+IOP modules, VU microprograms and hardware registers the game uses, and the functions that use them).
+
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Pull requests with plain, readable C are welcome.
+See [CONTRIBUTING.md](CONTRIBUTING.md): the layout, the toolchain, the naming rule, the readability lint and what the
+maintainer's tooling does with a merged pull request.
 
 ## Layout
 
-| Path | Holds |
-|---|---|
-| `src/` | matched C, one folder per segment of the executable |
-| `include/` | shared headers and types |
-| `config/SLUS_201.82/` | splat configuration, `symbol_addrs.txt`, `checksum.sha1`, the tool pins (`build.json`), `symbols-evidence.tsv` |
-| `orig/SLUS_201.82/` | where your copy of the executable goes (gitignored) |
-| `configure.py`, `requirements.txt` | the build set-up |
-| `tools/` | `dps2build.py` (the build graph), `download_tool.py`, `check.py`, `audit_public.py` (the game-derived-file audit the `Audit` workflow runs), and `lint_c.py`, the readability check every matched file passes; the downloaded tools land here too (gitignored) |
-| `symbols/` | the symbol map for Ghidra and PCSX2, and the subsystem labels |
-| `progress/report.json` | the objdiff progress report uploaded to decomp.dev |
+`src/` the source in the layout the toolchain consumes (one file per unit; a function not yet accepted is a reference
+line) · `docs/` the architecture, the subsystem pages and the code map · `config/<SERIAL>/` each release's splat configuration, symbol map, checksums and tool pins · `include/` the shared headers and types · `orig/<SERIAL>/` where your copy of the executable goes (gitignored) · `symbols/` the symbol map with its evidence · `tools/` the contributor copies of the lint and the check ·
+`progress/report.json` the progress report.
 
 ## License
 
-The C source, headers and configuration are under the MIT License (`LICENSE`). The game
-remains the property of its rightsholders and is not distributed here.
+The source in this repository is dedicated to the public domain under CC0 1.0 Universal (see LICENSE). The game itself is not
+covered: nothing of it is here.
+
+## Acknowledgements
+
+Thanks to decomp.dev and to the broader decompilation community for the work they put into their own decompilations and
+into the resources for newcomers, which let a fresh face come into the scene with a strong grounding. The website was an
+invaluable resource, and the maintainer is grateful to the people behind it.

@@ -1,7 +1,14 @@
-# Nothing from the game enters this repository: your copy of the executable goes in
-# orig/<SERIAL>/, and everything built or extracted from it stays out.
-/orig/*/*
-!/orig/*/.gitkeep
+# your own copy of the game goes here and never into git
+orig/*
+!orig/.gitkeep
+build/
+tools/*
+!tools/check.py
+!tools/audit_public.py
+!tools/lint_*.py
+reference/
+__pycache__/
+*.pyc
 *.iso
 *.bin
 *.cue
@@ -9,21 +16,12 @@
 *.o
 /asm/
 /assets/
-/build/
 /expected/
-/tools/*
-!/tools/lint_c.py
+/nonmatchings/
 !/tools/dps2build.py
 !/tools/download_tool.py
-!/tools/check.py
-!/tools/audit_public.py
-# generated per machine
 build.ninja
 .ninja_*
 objdiff.json
 ctx.c
 permuter_settings.toml
-/nonmatchings/
-__pycache__/
-*.pyc
-.DS_Store

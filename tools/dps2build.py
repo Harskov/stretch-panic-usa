@@ -1,10 +1,18 @@
 #!/usr/bin/env python3
 """dps2build.py — the build graph of this decompilation: how splat's linker script becomes
 build.ninja, and how the rebuilt executable is checked against the original. It is ONE
-module shared by the public repository's configure.py and the maintainer's pipeline
-(.claude/skills/dps2-toolkit/scripts/configure.py imports it from templates/public-repo/tools/), so
-the build a contributor runs and the build every change is verified with cannot drift apart
-(operator brief 2026-09-28, WP1). Standard library only.
+module shared by the public repository's configure.py and the maintainer's pipeline (the
+PS2 pack's build verb imports it from its public template), so the build a contributor runs
+and the build every change is verified with cannot drift apart. Standard library only.
+
+One source tree builds every supported version of the game. The primary version splits
+into asm/ and builds into build/; a sibling version (another region or revision) splits
+into asm/<id>/ and builds into build/<id>/, its symbols named after the primary's
+(config/<SERIAL>/symbol_addrs.txt maps each to the sibling's address). Before a sibling
+compiles a C file, `vsrc` writes the file as that version sees it: its INCLUDE_ASM paths
+pointed at asm/<id>/, and every `#if`/`#ifdef` on a VERSION_<ID> macro resolved, because
+mwccgap reads INCLUDE_ASM lines as text and would otherwise take the other version's
+assembly too.
 
 What it knows, each learned the hard way (the maintainer's K1/K2):
   * splat's linker script says SUBALIGN(16); both assemblers' .text carry sh_addralign 16,
@@ -57,10 +65,10 @@ def objects_from_ld(ld_text):
     return sorted(set(re.findall(r"(build/[^\s()*]+\.o)\b", ld_text)))
 
 
-def source_for_object(root, obj):
-    """(source path, is_cpp) for build/<path>.o: a `.c` object whose `.c` is absent but whose
+def source_for_object(root, obj, build_root="build"):
+    """(source path, is_cpp) for <build_root>/<path>.o: a `.c` object whose `.c` is absent but whose
     `.cp`/`.cpp`/`.cc` exists is C++."""
-    src = obj[len("build/"):-2]
+    src = obj[len(build_root) + 1:-2]
     if src.endswith(".c") and not (Path(root) / src).is_file():
         for suf in CPP_SUFFIXES:
             alt = src[:-2] + suf
@@ -70,11 +78,11 @@ def source_for_object(root, obj):
     return src, Path(src).suffix.lower() in CPP_SUFFIXES
 
 
-def missing_bss_stubs(root, yaml_text, ld_text):
+def missing_bss_stubs(root, yaml_text, ld_text, build_root="build"):
     """Write the `.s` splat did not for a bss subsegment; returns the paths written. Raises
     BuildError when several are missing and their sizes cannot be told apart."""
     root = Path(root)
-    missing = [o for o in objects_from_ld(ld_text) if o.endswith(".bss.s.o") and not (root / o[len("build/"):-2]).is_file()]
+    missing = [o for o in objects_from_ld(ld_text) if o.endswith(".bss.s.o") and not (root / o[len(build_root) + 1:-2]).is_file()]
     if not missing:
         return []
     sizes, subs = BSS_SIZE_RE.findall(yaml_text), BSS_SUB_RE.findall(yaml_text)
@@ -82,7 +90,7 @@ def missing_bss_stubs(root, yaml_text, ld_text):
         raise BuildError(f"{len(missing)} bss subsegment file(s) missing after splat "
                          f"({', '.join(o[len('build/'):-2] for o in missing)}) but the YAML has {len(subs)} bss "
                          f"subsegment(s) and {len(sizes)} bss_size: the size of each reservation is ambiguous")
-    src = root / missing[0][len("build/"):-2]
+    src = root / missing[0][len(build_root) + 1:-2]
     src.parent.mkdir(parents=True, exist_ok=True)
     src.write_text(f".section .bss\n.space {sizes[0]}\n", encoding="utf-8")
     return [str(src.relative_to(root)).replace("\\", "/")]
@@ -169,14 +177,14 @@ def _fix_vu_operands(ln):
     return ln
 
 
-def fix_nonmatchings(root):
+def fix_nonmatchings(root, asm_root="asm"):
     """splat writes the INCLUDE_ASM sources of C segments (asm/nonmatchings/) with rabbitizer's
     GNU mode off, so a VU0 macro instruction's accumulator operand reads `ACC`, which GNU as
     rejects ("invalid operands `vopmula.xyz ACC,$vf1,$vf2'"); the asm segments carry `$ACC`
     (round 23 WP2, 08-wp2-migrate-stretch-panic-usa.txt). Rewritten after every split;
     idempotent. Returns the number of files changed."""
     n = 0
-    d = Path(root) / "asm" / "nonmatchings"
+    d = Path(root) / asm_root / "nonmatchings"
     for p in sorted(d.rglob("*.s")) if d.is_dir() else []:
         t = p.read_text(encoding="utf-8")
         new = "\n".join(_fix_vu_operands(ln) if "*/" in ln and not ln.lstrip().startswith((".", "glabel", "jlabel", "dlabel")) else ln
@@ -205,8 +213,88 @@ def mwccgap_command(*, python, mwccgap, wibo, mwcc, as_path, as_flags, cflags):
             f"--macro-inc-path=include/macro.inc $in $out {cflags} -nostdinc -stderr -i include")
 
 
+VERSION_IF = re.compile(r"^\s*#\s*(if|ifdef|ifndef|elif|else|endif)\b(.*)$")
+VERSION_COND = re.compile(r"^(?:defined\s*\(?\s*VERSION_([A-Z0-9_]+)\s*\)?|VERSION_([A-Z0-9_]+))$")
+
+
+def _version_truth(kind, cond, vid):
+    """True/False for a condition on VERSION_<ID> macros alone (`#ifdef VERSION_EU`, `#if VERSION_EU || VERSION_JP`,
+    `#if !defined(VERSION_US)`), None for any other condition (left to the compiler)."""
+    want = vid.upper()
+    if kind in ("ifdef", "ifndef"):
+        m = re.fullmatch(r"\s*VERSION_([A-Z0-9_]+)\s*", cond)
+        if not m:
+            return None
+        hit = m.group(1) == want
+        return hit if kind == "ifdef" else not hit
+    terms = [x.strip() for x in re.split(r"\|\|", cond.strip())]
+    vals = []
+    for term in terms:
+        neg = term.startswith("!")
+        term = term.lstrip("!").strip().strip("()").strip()
+        m = VERSION_COND.fullmatch(term)
+        if not m:
+            return None
+        hit = (m.group(1) or m.group(2)) == want
+        vals.append(not hit if neg else hit)
+    return any(vals)
+
+
+def version_source(text, vid, asm_root="asm"):
+    """A C file as version `vid` sees it: a conditional on VERSION_<ID> macros resolved (the lines of the other branches
+    blanked, so line numbers stay), any other preprocessor line kept for the compiler, and the INCLUDE_ASM / INCLUDE_RODATA
+    paths under asm/ pointed at `asm_root` (asm/<id> for a sibling)."""
+    out, stack = [], []          # stack of [handled: None|bool(any branch taken), active: bool, ours: bool]
+    for ln in text.split("\n"):
+        m = VERSION_IF.match(ln)
+        live = all(f[1] for f in stack)
+        if m:
+            kind, cond = m.group(1), m.group(2)
+            if kind in ("if", "ifdef", "ifndef"):
+                truth = _version_truth(kind, cond, vid)
+                if truth is None:
+                    stack.append([None, True, False])
+                    out.append(ln)
+                else:
+                    stack.append([truth, truth, True])
+                    out.append("")
+                continue
+            if not stack:
+                out.append(ln)
+                continue
+            top = stack[-1]
+            if not top[2]:
+                if kind == "endif":
+                    stack.pop()
+                out.append(ln)
+                continue
+            if kind == "elif":
+                truth = _version_truth("if", cond, vid)
+                if truth is None:
+                    raise BuildError(f"#elif {cond.strip()} mixes a VERSION_ condition with another: write it as its own #if")
+                top[1] = (not top[0]) and truth
+                top[0] = top[0] or truth
+            elif kind == "else":
+                top[1] = not top[0]
+                top[0] = True
+            elif kind == "endif":
+                stack.pop()
+            out.append("")
+            continue
+        if not live:
+            out.append("")
+            continue
+        if asm_root != "asm" and ("INCLUDE_ASM" in ln or "INCLUDE_RODATA" in ln):
+            ln = re.sub(r'(INCLUDE_(?:ASM|RODATA)\(\s*")asm/', lambda mm: mm.group(1) + asm_root + "/", ln)
+        out.append(ln)
+    if stack:
+        raise BuildError("an #if on a VERSION_ macro is not closed")
+    return "\n".join(out)
+
+
 def ninja_text(root, basename, objs, *, as_path, as_flags, ld_path, cc_prefix, env_prefix="", ld_scripts=(),
-               header="", mwccgap=None, check=None, expected=None):
+               header="", mwccgap=None, check=None, expected=None, build_root="build", version=None, vsrc_cmd=None, rules=True,
+               asm_root=None):
     """build.ninja for one executable.
 
     as_path/ld_path    the MIPS assembler and linker; env_prefix goes before both
@@ -219,6 +307,14 @@ def ninja_text(root, basename, objs, *, as_path, as_flags, ld_path, cc_prefix, e
     check              {"cmd": ..., "out": ...}: a check edge after the link, made the default
     expected           [(object, asm source)] assembled for objdiff only, never linked
 
+    build_root         build/ for the primary, build/<id> for a sibling version
+    version, vsrc_cmd  a sibling version: every C file is first written as that version sees it
+                       (`vsrc_cmd` with $in, $out, $version and $asmroot: tools/dps2build.py vsrc)
+                       under <build_root>/vsrc/, and compiled from there
+    asm_root           the sibling's asm folder (asm/<id>)
+    rules              False when another version's text already defined the rules (one
+                       build.ninja holding several versions)
+
     Every compiled object is merged with `ld -r` before the link: mwccps2 emits one .text
     section per function, each with sh_addralign 16, and the linker script's SUBALIGN(4)
     (patch_subalign) would pack a multi-function object's sections 4-aligned. `ld -r`
@@ -230,8 +326,14 @@ def ninja_text(root, basename, objs, *, as_path, as_flags, ld_path, cc_prefix, e
     root = Path(root)
     no_cc = "echo 'no compiler pinned (run calibrate)'; false"
     merge = f" && {env_prefix}{shlex.quote(str(ld_path))} -EL -r -o $out $out.sections.o"
-    lines = [header or f"# build.ninja for {basename}; do not edit, re-run configure.py",
-             f"asflags = {as_flags}",
+    ldtag = f"ld_{version}" if version else "ld"
+    lines = [header or f"# build.ninja for {basename}; do not edit, re-run configure.py"] if rules else [f"# {basename} ({version or 'primary'})"]
+    if not rules:
+        lines += _version_edges(root, basename, objs, build_root=build_root, version=version, vsrc_cmd=vsrc_cmd, mwccgap=mwccgap,
+                                ld_scripts=ld_scripts, check=check, expected=expected, env_prefix=env_prefix, ld_path=ld_path, ldtag=ldtag,
+                                asm_root=asm_root)
+        return "\n".join(lines) + "\n"
+    lines += [f"asflags = {as_flags}",
              "rule as",
              f"  command = {env_prefix}{shlex.quote(str(as_path))} $asflags -I include -o $out $in",
              "  description = as $in",
@@ -255,17 +357,33 @@ def ninja_text(root, basename, objs, *, as_path, as_flags, ld_path, cc_prefix, e
         lines += ["rule ccgapp", f"  command = {env_prefix}{gap_cmd} -lang c++ " + " ".join(CPP_FLAGS) + merge,
                   "  description = c++ (INCLUDE_ASM) $in"]
     lines += ["rule ld",
-              f"  command = {env_prefix}{shlex.quote(str(ld_path))} -EL -T build/{basename}.ld $ldscripts -Map build/{basename}.map -o $out",
-              "  description = ld $out"]
-    if check:
-        lines += ["rule check", f"  command = {check['cmd']}", "  description = check $in"]
+              f"  command = {env_prefix}{shlex.quote(str(ld_path))} -EL -T $ldscript $ldscripts -Map $ldmap -o $out",
+              "  description = ld $out",
+              "rule check", "  command = $checkcmd", "  description = check $in"]
+    if vsrc_cmd:
+        lines += ["rule vsrc", f"  command = {vsrc_cmd}", "  description = vsrc $in"]
     lines.append("")
-    gap_missing = []
+    lines += _version_edges(root, basename, objs, build_root=build_root, version=version, vsrc_cmd=vsrc_cmd, mwccgap=mwccgap,
+                            ld_scripts=ld_scripts, check=check, expected=expected, env_prefix=env_prefix, ld_path=ld_path, ldtag=ldtag,
+                            asm_root=asm_root)
+    return "\n".join(lines) + "\n"
+
+
+def _version_edges(root, basename, objs, *, build_root, version, vsrc_cmd, mwccgap, ld_scripts, check, expected, env_prefix,
+                   ld_path, ldtag, asm_root=None):
+    """The build edges of one version: every object, the link, the check, the default target."""
+    lines, gap_missing = [], []
     for o in objs:
-        src, is_cpp = source_for_object(root, o)
+        src, is_cpp = source_for_object(root, o, build_root)
         if src.endswith(".s"):
             lines.append(f"build {o}: as {src}")
-        elif uses_include_asm(root / src):
+            continue
+        gap = uses_include_asm(root / src)
+        if version and vsrc_cmd:
+            vs = f"{build_root}/vsrc/{src}"
+            lines += [f"build {vs}: vsrc {src}", f"  version = {version}", f"  asmroot = {asm_root or 'asm/' + version}"]
+            src = vs
+        if gap:
             if mwccgap:
                 lines.append(f"build {o}: {'ccgapp' if is_cpp else 'ccgap'} {src}")
             else:
@@ -277,20 +395,23 @@ def ninja_text(root, basename, objs, *, as_path, as_flags, ld_path, cc_prefix, e
             lines.append(f"build {o}: cc {src}")
     if gap_missing:
         raise BuildError(f"{len(gap_missing)} C file(s) carry INCLUDE_ASM but no mwccgap is configured: {', '.join(gap_missing[:4])}")
-    ld_extra = [p for p in ld_scripts]
-    elf = f"build/{basename}.elf"
-    lines.append(f"build {elf}: ld {' '.join(objs)} | build/{basename}.ld {' '.join(ld_extra)}")
+    ld_extra = list(ld_scripts)
+    elf = f"{build_root}/{basename}.elf"
+    lines.append(f"build {elf}: ld {' '.join(objs)} | {build_root}/{basename}.ld {' '.join(ld_extra)}")
+    lines.append(f"  ldscript = {build_root}/{basename}.ld")
+    lines.append(f"  ldmap = {build_root}/{basename}.map")
     lines.append("  ldscripts = " + " ".join(f"-T {p}" for p in ld_extra))
     for obj, src in expected or ():
         lines.append(f"build {obj}: as {src}")
     if expected:
-        lines.append("build expected: phony " + " ".join(o for o, _s in expected))
+        lines.append(f"build expected{('_' + version) if version else ''}: phony " + " ".join(o for o, _s in expected))
     if check:
         lines.append(f"build {check['out']}: check {elf}")
+        lines.append(f"  checkcmd = {check['cmd']}")
         lines.append(f"default {check['out']}")
     else:
         lines.append(f"default {elf}")
-    return "\n".join(lines) + "\n"
+    return lines
 
 
 # ----------------------------------------------------------------------------- the check
@@ -353,3 +474,30 @@ def compare_images(built, original, limit=20):
 def image_sha1(path):
     """sha1 of an ELF's loaded image (what checksum.sha1's second line pins)."""
     return hashlib.sha1(image(load_segments(path))[2]).hexdigest()
+
+
+def main(argv=None):
+    """`python3 tools/dps2build.py vsrc --version ID [--asm-root asm/ID] IN OUT`: IN as version ID sees it (ninja runs it)."""
+    import argparse
+    ap = argparse.ArgumentParser(description="the build graph's command-line helpers")
+    sub = ap.add_subparsers(dest="cmd", required=True)
+    p = sub.add_parser("vsrc", help="write a C file as one version sees it")
+    p.add_argument("--version", required=True)
+    p.add_argument("--asm-root")
+    p.add_argument("src")
+    p.add_argument("out")
+    a = ap.parse_args(argv)
+    text = Path(a.src).read_text(encoding="utf-8")
+    try:
+        new = version_source(text, a.version, a.asm_root or f"asm/{a.version}")
+    except BuildError as e:
+        raise SystemExit(f"{a.src}: {e}")
+    Path(a.out).parent.mkdir(parents=True, exist_ok=True)
+    if not Path(a.out).is_file() or Path(a.out).read_text(encoding="utf-8") != new:
+        Path(a.out).write_text(new, encoding="utf-8")
+    return 0
+
+
+if __name__ == "__main__":
+    import sys
+    sys.exit(main())

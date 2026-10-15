@@ -1,12 +1,9 @@
 name: Audit
 
-# Nothing from the game may be tracked here. On every push and every pull request,
-# tools/audit_public.py walks the files git tracks and fails when one is an object,
-# executable, disc image or assembly file by name or by its first bytes, when its SHA-1 is
-# one recorded in config/SLUS_201.82/checksum.sha1 (the original executable or its loaded
-# image), or when it is larger than any source file can be. The self-test first plants
-# a game-shaped fixture and checks that the audit rejects it, so a silent audit is a
-# passing one, never a broken one.
+# Nothing from the game may be tracked here. On every push and every pull request, tools/audit_public.py walks the
+# files git tracks and fails when one is an original, an export, a render, an object or an archive by name or by its
+# first bytes, when its SHA-1 is one recorded in config/*/checksum.sha1 (the original file), or when it is larger
+# than any source file can be. The self-test first plants a game-shaped fixture and checks that the audit rejects it.
 on:
   push:
   pull_request:

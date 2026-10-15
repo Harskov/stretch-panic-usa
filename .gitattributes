@@ -1,13 +1,7 @@
-# normalise line endings: contributors work on Windows and Linux
 * text=auto eol=lf
-*.jsonl text eol=lf
-*.c text eol=lf
-*.h text eol=lf
-*.s text eol=lf
-*.md text eol=lf
-*.yaml text eol=lf
 *.json text eol=lf
-*.bin binary
-*.o binary
-*.elf binary
-*.iso binary
+*.md text eol=lf
+*.as text eol=lf
+*.tsv text eol=lf
+*.swf binary
+*.png binary

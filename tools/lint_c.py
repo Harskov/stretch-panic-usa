@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
-"""lint_c.py — flag C that matches but is not what a programmer writes (remediation 7).
+"""lint_c.py — flag C that matches but is not what a programmer writes (the PS2 pack's lint verb).
 
-    python3 tools/lint_c.py --repo . [FILE ...] [--json]      (from a target or public repository's root)
-    python3 .claude/skills/dps2-toolkit/scripts/lint_c.py --repo targets/<slug> [FILE ...] [--json]   (from the project folder)
+    python3 tools/lint_c.py --repo . [FILE ...] [--json]      (from a target or public repository's root: the contributor copy)
+    python3 platforms/ps2-mwcc/scripts/lint_c.py --target <slug> [FILE ...] [--json]   (from the project folder; the pack's verb)
+
+The shared rules every pack implements (platforms/CONTRACT.md): process-comment, trace-leftover (a printf-family call the
+function's draft beside it, wip/<fn>/draft.c or m2c.c, does not have), fake-body-unexplained, placeholder-left (TODO, FIXME,
+XXX, ??? in a comment; an m2c placeholder identifier M2C_*). Ported from the PS2 project's lint_c.py (remediation 7 and later
+rounds there; the K-numbers in its comments are that project's: K1 is this pack's knowledge/primer.md, K9 its cookbook.md).
 
 A matching decompilation is judged by two things: the object is byte-identical, and
 the C reads as the original could have been written. The first is `ledger.py mark`'s
@@ -121,6 +126,12 @@ RULES = [
     ("register-local", "advisory", re.compile(r"^\s*register\b")),
     ("assign-in-condition", "advisory", re.compile(r"\b(?:if|while)\s*\((?:[^()]|\([^()]*\))*?(?<![=!<>+\-*/%&|^])=(?!=)")),
 ]
+
+# the shared rules of the contract the PS2 project's lint did not carry (remediation 2026-10-14-remediation-16, the migration):
+# a placeholder a draft or an operator left, and a debug print the function's draft does not have
+PLACEHOLDER = re.compile(r"\b(?:TODO|FIXME|XXX)\b|\?\?\?")
+M2C_PLACEHOLDER = re.compile(r"\bM2C_[A-Z_]+\b")
+TRACE_CALL = re.compile(r"\b(?:printf|scePrintf|sceDevConsPrintf|puts|Kprintf)\s*\(")
 
 # A basic type re-declared in a source file instead of taken from include/types.h
 # (remediation 20: 27 matched files carried their own `typedef unsigned char u8;` block).
@@ -498,7 +509,7 @@ def byte_pointer_findings(stripped, path=""):
     return out
 
 
-def lint_text(text, path=""):
+def lint_text(text, path="", draft=None):
     findings = []
     stripped = strip_comments(text)
     lines = stripped.splitlines()
@@ -561,6 +572,15 @@ def lint_text(text, path=""):
             ln = text.count("\n", 0, m.start() + pm.start()) + 1
             findings.append({"path": path, "line": ln, "rule": "process-comment", "severity": "error",
                              "source": " ".join(m.group(0).split())[:100] + "  [a comment says what the code does, not how it was matched]"})
+    for m in COMMENT.finditer(text):
+        ph = PLACEHOLDER.search(m.group(0))
+        if ph:
+            findings.append({"path": path, "line": text.count("\n", 0, m.start() + ph.start()) + 1, "rule": "placeholder-left", "severity": "error",
+                             "source": " ".join(m.group(0).split())[:100] + "  [a placeholder left in accepted source]"})
+    for m in M2C_PLACEHOLDER.finditer(stripped):
+        findings.append({"path": path, "line": stripped.count("\n", 0, m.start()) + 1, "rule": "placeholder-left", "severity": "error",
+                         "source": f"{m.group(0)}  [an m2c placeholder: write what the instructions do]"})
+    findings.extend(trace_findings(text, stripped, path, draft))
     findings.extend(member_offset_findings(text, path))
     findings.extend(readability_debt(text, path)[0])
     if any(f["rule"] in ("vu0-asm", "fpu-asm", "kernel-asm", "inline-asm") for f in findings):
@@ -641,16 +661,50 @@ def readability_debt(text, path=""):
     return findings, sorted(pins), sorted(set(fake))
 
 
+def draft_beside(p):
+    """The draft a wip attempt was written from (wip/<fn>/draft.c, else m2c.c), or None: an accepted unit has none beside it."""
+    p = Path(p)
+    for name in ("draft.c", "m2c.c"):
+        d = p.parent / name
+        if d.is_file() and d.resolve() != p.resolve():
+            return d.read_text(encoding="utf-8", errors="replace")
+    return None
+
+
+def trace_findings(text, stripped, path, draft):
+    """trace-leftover: a printf-family call beyond the count in the function's draft; nothing without a draft."""
+    if draft is None:
+        return []
+    want = len(TRACE_CALL.findall(strip_comments(draft)))
+    hits = list(TRACE_CALL.finditer(stripped))
+    return [{"path": path, "line": stripped.count("\n", 0, m.start()) + 1, "rule": "trace-leftover", "severity": "error",
+             "source": f"{m.group(0)}  [a debug print the draft does not have]"} for m in hits[want:]]
+
+
 def lint_file(p, rel=None):
-    return lint_text(p.read_text(encoding="utf-8", errors="replace"), rel or str(p))
+    return lint_text(p.read_text(encoding="utf-8", errors="replace"), rel or str(p), draft_beside(p))
 
 
 def main():
-    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--repo", required=True)
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0], formatter_class=argparse.RawDescriptionHelpFormatter, epilog=__doc__)
+    ap.add_argument("--repo")
+    ap.add_argument("--target", help="a registered target (the pack's verb; reads the project's registry)")
     ap.add_argument("files", nargs="*")
     ap.add_argument("--json", action="store_true")
     a = ap.parse_args()
+    if a.target:
+        reg = Path(__file__).resolve().parents[3] / "targets" / "registry.json"
+        hit = [t for t in (json.loads(reg.read_text(encoding="utf-8")).get("targets") or []) if t.get("slug") == a.target] if reg.is_file() else []
+        if not hit:
+            print(f"{a.target!r} is not a registered target", file=sys.stderr)
+            return 2
+        a.repo = hit[0]["live"]
+    home = Path(__file__).resolve().parent.parent
+    if not a.repo and (home / "src").is_dir():
+        a.repo = str(home)   # the contributor copy at tools/lint_c.py lints the repository it sits in
+    if not a.repo:
+        print("--repo <path> or --target <slug> is required", file=sys.stderr)
+        return 2
     repo = Path(a.repo).resolve()
     if not repo.is_dir():
         print(f"no such repo: {repo}", file=sys.stderr)
@@ -668,8 +722,11 @@ def main():
         rel = str(p.relative_to(repo)) if p.is_relative_to(repo) else str(p)
         findings.extend(lint_file(p, rel))
     errors = [f for f in findings if f["severity"] == "error"]
+    for f in findings:   # the contract's finding shape beside this lint's own keys
+        f.setdefault("level", "error" if f["severity"] == "error" else "advisory")
+        f.setdefault("text", f["source"])
     if a.json:
-        print(json.dumps({"files": len(paths), "findings": findings, "errors": len(errors)}, indent=1))
+        print(json.dumps({"files": len(paths), "findings": findings, "errors": len(errors)}))
     else:
         for f in findings:
             print(f"{f['path']}:{f['line']}: {f['rule']}{'' if f['severity'] == 'error' else ' (advisory)'}: {f['source']}")

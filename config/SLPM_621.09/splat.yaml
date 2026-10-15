@@ -1,0 +1,120 @@
+# splat configuration for Hippa Linda (SLPM_621.09)
+name: stretch-panic-jp
+sha1: 14fb5cef008dc24b7826492cccdef7fe7d6cbdd3
+options:
+  make_full_disasm_for_code: true
+  create_c_files: false
+  basename: SLPM_621.09
+  target_path: orig/SLPM_621.09/SLPM_621.09
+  base_path: ../..
+  platform: ps2
+  compiler: MWCCPS2
+  asm_path: asm/jp
+  src_path: src
+  build_path: build/jp
+  ld_script_path: build/jp/SLPM_621.09.ld
+  symbol_addrs_path: config/SLPM_621.09/symbol_addrs.txt
+  undefined_funcs_auto_path: config/SLPM_621.09/undefined_funcs_auto.txt
+  undefined_syms_auto_path: config/SLPM_621.09/undefined_syms_auto.txt
+  find_file_boundaries: false
+  migrate_rodata_to_functions: false
+  asm_function_macro: glabel
+  asm_data_macro: dlabel
+  asm_jtbl_label_macro: jlabel
+  asm_inc_header: ".set noat      /* allow manual use of $at */\n.set noreorder /* don't insert nops after branches */\n\n"
+  section_order: [".text", ".data", ".rodata", ".bss"]
+  generated_c_preamble: "#include \"common.h\""
+  generated_s_preamble: ""
+  string_encoding: SHIFT-JIS
+  data_string_encoding: SHIFT-JIS
+  rodata_string_guesser_level: 0
+  data_string_guesser_level: 0
+  asm_emit_size_directive: false
+  symbol_name_format: $VRAM_$ROM
+  gp_value: 0x006EF0F0
+segments:
+  - name: main
+    type: code
+    start: 0x00000380
+    vram: 0x00100000
+    bss_size: 0x00014180
+    subalign: 16
+    subsegments:
+      - [0x00000380, asm, crt0]
+      - [0x00000470, asm, mw_runtime]
+      - [0x00002840, asm, sdk_libgraph]
+      - [0x00003D30, asm, sdk_libdma]
+      - [0x000044D0, asm, sdk_libkernel]
+      - [0x0000D020, asm, sdk_libpad]
+      - [0x0000E550, asm, sdk_libcdvd]
+      - [0x00011340, asm, sdk_libmc]
+      - [0x000129E0, asm, sdk_libm]
+      - [0x00015C80, asm, sdk_libc]
+      - [0x0001F960, asm, game_00]
+      - [0x00021D60, c, game_00/unit_001217C0]
+      - [0x000227F8, asm, game_00_1]
+      - [0x00022800, c, game_00/unit_00122260]
+      - [0x00022D50, asm, game_00_2]
+      - [0x0002B280, c, game_00/unit_0012AA40]
+      - [0x0002C2B8, asm, game_00_3]
+      - [0x0002C2C0, c, game_00/unit_0012BA80]
+      - [0x0002D048, asm, game_00_4]
+      - [0x0002D050, c, game_00/unit_0012C810]
+      - [0x0002E750, c, game_00/unit_0012DF10]
+      - [0x0002F570, c, game_00/unit_0012ED30]
+      - [0x0003004C, asm, game_00_5]
+      - [0x00031BC0, c, game_00/unit_001313B0]
+      - [0x00032010, asm, game_00_6]
+      - [0x00045960, c, game_00/unit_00144A20]
+      - [0x000469C8, asm, game_00_7]
+      - [0x000469D0, asm, game_memcard]
+      - [0x00049600, c, game_memcard/unit_00147EE0]
+      - [0x00049678, asm, game_memcard_1]
+      - [0x00049680, asm, game_01]
+      - [0x000586B0, c, game_01/unit_001569A0]
+      - [0x000599D0, c, game_01/unit_00157CC0]
+      - [0x0005A984, asm, game_01_1]
+      - [0x0005BC00, cpp, game_01/unit_00159EE0]
+      - [0x0005BC30, asm, game_01_2]
+      - [0x0005F220, cpp, game_01/unit_0015D4E0]
+      - [0x0005F250, c, game_01/unit_0015D510]
+      - [0x000608B0, asm, game_01_3]
+      - [0x00065EA0, c, game_01/unit_00164040]
+      - [0x00067024, asm, game_01_4]
+      - [0x00067030, c, game_01/unit_001651D0]
+      - [0x00068550, asm, game_01_5]
+      - [0x00069D40, c, game_01/unit_00167ED0]
+      - [0x0006AF90, c, game_01/unit_00169120]
+      - [0x0006BD30, c, game_01/unit_00169EC0]
+      - [0x0006DC5C, asm, game_01_6]
+      - [0x0006DC60, c, game_01/unit_0016BDF0]
+      - [0x0006E500, cpp, game_01/unit_0016C690]
+      - [0x0006E578, asm, game_01_7]
+      - [0x0006E580, c, game_01/unit_0016C710]
+      - [0x0006E588, asm, game_01_8]
+      - [0x0006E590, cpp, game_01/unit_0016C720]
+      - [0x0006E5E8, asm, game_01_9]
+      - [0x0006E5F0, c, game_01/unit_0016C780]
+      - [0x0006F03C, asm, game_01_10]
+      - [0x0006F040, cpp, game_01/unit_0016D1D0]
+      - [0x0006F0B0, asm, game_01_11]
+      - [0x0006F5D0, cpp, game_01/unit_0016D770]
+      - [0x0006F68C, asm, game_01_12]
+      - [0x0006F690, c, game_01/unit_0016D830]
+      - [0x0006FC90, c, game_01/unit_0016DE30]
+      - [0x000707F4, asm, game_01_13]
+      - [0x00074A60, c, game_01/unit_00172C00]
+      - [0x00075D9C, asm, game_01_14]
+      - [0x00075DA0, c, game_01/unit_00173F40]
+      - [0x000774A8, asm, game_01_15]
+      - [0x00078590, c, game_01/unit_00176730]
+      - [0x00078EE0, c, game_01/unit_00177080]
+      - [0x0007A300, cpp, game_01/unit_001784A0]
+      - [0x0007B220, c, game_01/unit_001793C0]
+      - [0x0007BC80, asm, game_01_16]
+      - [0x0008F280, data, data_vu]
+      - [0x0009BA80, data, data_sdk]
+      - [0x0009CC50, data, data_game]
+      - [0x005E1300, rodata, rodata_00]
+      - [0x005E7480, bss, main_bss]
+  - [0x005E7480]
