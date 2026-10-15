@@ -406,8 +406,10 @@ def _version_edges(root, basename, objs, *, build_root, version, vsrc_cmd, mwccg
     if expected:
         lines.append(f"build expected{('_' + version) if version else ''}: phony " + " ".join(o for o, _s in expected))
     if check:
+        # ninja expands an edge's own variables before $in and $out exist: the edge's paths go in literally
+        cmd = check["cmd"].replace("$in", elf).replace("$out", check["out"])
         lines.append(f"build {check['out']}: check {elf}")
-        lines.append(f"  checkcmd = {check['cmd']}")
+        lines.append(f"  checkcmd = {cmd}")
         lines.append(f"default {check['out']}")
     else:
         lines.append(f"default {elf}")
