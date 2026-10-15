@@ -21,8 +21,8 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016DE30", func_0016E2D0);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016DE30", func_0016E340);
 
-void func_0016E390(int a0, int a1, int a2) {
-    func_0016FBE0(a1, a2);
+void func_0016E390(int arg0, int arg1, int arg2) {
+    func_0016FBE0(arg1, arg2);
 }
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016DE30", func_0016E3A0);

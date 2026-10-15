@@ -1,5 +1,6 @@
 #include "common.h"
 #include "game_01/obj168.h"
+#include "game_01/scratchpad.h"
 
 /* +0x230, +0x240 and +0x250 are copied whole from +0x190..+0x1B0 and then have their
    fourth lane set to 1.0, and +0x270 is cleared lane by lane and then copied whole to
@@ -20,7 +21,6 @@ typedef struct Obj2F4 {
     u8 unk_2F4;
 } Obj2F4;
 
-#define SPR_QUAD ((Quad *)0x70000BE0)
 
 typedef struct Obj130 {
     u8 unk_00[0x10];

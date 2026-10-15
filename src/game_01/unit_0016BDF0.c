@@ -3,10 +3,10 @@
 #include "game_01/obj530.h"
 
 typedef struct Node {
-    unsigned char pad[0x60];
-    int flags;
-    unsigned char pad2[0x10];
-    struct Node *next;
+    unsigned char unk_00[0x60];
+    u32 unk_60;
+    unsigned char unk_64[0x10];
+    struct Node *unk_74;
 } Node;
 
 extern s32 *D_006A6D10;
@@ -91,12 +91,10 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016BDF0", func_0016C040);
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016BDF0", func_0016C150);
 
 void func_0016C260(void) {
-    Node *p = D_006A6C38;
-    if (p != 0) {
-        do {
-            p->flags |= 0x10000;
-            p = p->next;
-        } while (p != 0);
+    Node *p;
+
+    for (p = D_006A6C38; p != 0; p = p->unk_74) {
+        p->unk_60 |= 0x10000;
     }
 }
 

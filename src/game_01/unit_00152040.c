@@ -68,6 +68,11 @@ typedef struct Obj4A0 {
     Quad3 unk_4A0;
 } Obj4A0;
 
+typedef struct Obj70 {
+    u8 unk_00[0x70];
+    Vec unk_70;
+} Obj70;
+
 typedef struct Obj {
     u8 unk_00[0x2C0];
     Vec unk_2C0;
@@ -75,7 +80,7 @@ typedef struct Obj {
     Vec unk_3A0;
 } Obj;
 
-void func_0012E9E0();
+extern void func_0012E9E0(Vec *a, Vec *b, Vec *out, f32 t);
 
 extern Vec D_006AF4B0;
 
@@ -139,9 +144,10 @@ void func_00152600(Obj4A0 *d, Obj80 *s)
     d->unk_4A0 = s->unk_80;
 }
 
-void func_00152630(char *arg0) {
-    char *p = arg0 + 0x70;
-    func_0012E9E0(p, p, p);
+/* Scales the vector at +0x70 by 1 - t (func_0012E9E0 is out = a - b * t); both callers pass
+   t = 0.0625f. */
+void func_00152630(Obj70 *o, f32 t) {
+    func_0012E9E0(&o->unk_70, &o->unk_70, &o->unk_70, t);
 }
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00152040", func_00152640);

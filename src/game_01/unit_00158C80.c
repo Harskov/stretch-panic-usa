@@ -28,8 +28,8 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_00158C80", func_00158FD0);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00158C80", func_001591C0);
 
-void *func_00159330(char *p) {
-    return p + 0x1E0;
+void *func_00159330(Obj1F0 *o) {
+    return &o->unk_1E0;
 }
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00158C80", func_00159340);

@@ -35,7 +35,8 @@ typedef struct Obj1F0 {
     u8 unk_1D0;
     unsigned char unk_1D1[7];
     s32 unk_1D8;
-    unsigned char unk_1DC[0x14];
+    unsigned char unk_1DC[4];
+    u128 unk_1E0;
     u128 unk_1F0;
     u128 unk_200;
     unsigned char unk_210[0x20];

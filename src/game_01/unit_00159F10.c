@@ -23,8 +23,8 @@ extern s32 func_00131B30(Obj *arg0, void *arg1, f32 *arg2, Actor *arg3, void *ar
 
 void func_0015BA00(Obj1F0 *arg0, Owner1F0 *arg1);
 
-void *func_00159F10(char *p) {
-    return p + 0x10;
+void *func_00159F10(Obj1F0 *o) {
+    return &o->unk_10;
 }
 
 float func_00159F20(void) {

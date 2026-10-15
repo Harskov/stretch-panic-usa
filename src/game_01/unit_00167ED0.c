@@ -3,7 +3,7 @@
 
 typedef struct Obj {
     unsigned char unk_00[0x60];
-    int flags;
+    u32 unk_60;
     unsigned char unk_64[0x3C];
     float unk_A0;
     float unk_A4;
@@ -57,7 +57,7 @@ void func_00168630(Obj *o) {
     a = o->unk_A0;
     o->unk_A0 = a - b;
     if (a - b <= 0.0f) {
-        o->flags |= 0x10000;
+        o->unk_60 |= 0x10000;
     }
 }
 

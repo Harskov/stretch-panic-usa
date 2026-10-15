@@ -1,4 +1,5 @@
 #include "common.h"
+#include "game_01/scratchpad.h"
 
 typedef struct Obj {
     unsigned char unk_00[0x10];
@@ -125,6 +126,6 @@ int func_0016FA10(void) {
     return 0;
 }
 
-int func_0016FA20(void) {
-    return 0x70000BE0;
+Quad *func_0016FA20(void) {
+    return SPR_QUAD;
 }

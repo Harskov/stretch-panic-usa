@@ -696,20 +696,20 @@ Every function whose code carries COP2 instructions, matched or not. The matched
 | `src/game_01/unit_00162930.c` | 45 | COP2 |
 | `src/game_01/unit_00162930.c` | 46 | COP2 |
 | `src/game_01/unit_00162930.c` | 47 | COP2 |
-| `src/game_01/unit_0016D830.c` | 9 | u128 |
 | `src/game_01/unit_0016D830.c` | 10 | u128 |
 | `src/game_01/unit_0016D830.c` | 11 | u128 |
-| `src/game_01/unit_0016D830.c` | 18 | u128 |
-| `src/game_01/unit_0016E9A0.c` | 70 | inline asm |
-| `src/game_01/unit_0016E9A0.c` | 71 | COP2 |
+| `src/game_01/unit_0016D830.c` | 12 | u128 |
+| `src/game_01/unit_0016D830.c` | 19 | u128 |
+| `src/game_01/unit_0016E9A0.c` | 71 | inline asm |
 | `src/game_01/unit_0016E9A0.c` | 72 | COP2 |
 | `src/game_01/unit_0016E9A0.c` | 73 | COP2 |
 | `src/game_01/unit_0016E9A0.c` | 74 | COP2 |
-| `src/game_01/unit_0016E9A0.c` | 85 | inline asm |
-| `src/game_01/unit_0016E9A0.c` | 86 | COP2 |
+| `src/game_01/unit_0016E9A0.c` | 75 | COP2 |
+| `src/game_01/unit_0016E9A0.c` | 86 | inline asm |
 | `src/game_01/unit_0016E9A0.c` | 87 | COP2 |
 | `src/game_01/unit_0016E9A0.c` | 88 | COP2 |
 | `src/game_01/unit_0016E9A0.c` | 89 | COP2 |
+| `src/game_01/unit_0016E9A0.c` | 90 | COP2 |
 | `src/game_01/unit_00172C00.c` | 75 | inline asm |
 | `src/game_01/unit_00172C00.c` | 76 | COP2 |
 | `src/game_01/unit_00172C00.c` | 77 | COP2 |

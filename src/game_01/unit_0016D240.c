@@ -11,10 +11,10 @@ typedef struct ObjA0 {
 } ObjA0;
 
 typedef struct {
-    unsigned char pad[0x60];
-    int flags;
-    unsigned char pad2[0x108];
-    int field16C;
+    unsigned char unk_00[0x60];
+    u32 unk_60;
+    unsigned char unk_64[0x108];
+    int unk_16C;
 } Obj;
 
 extern Quad D_00601A40;
@@ -57,8 +57,8 @@ void func_0016D680(void) {
 }
 
 void func_0016D690(Obj *arg0) {
-    arg0->field16C = 0;
-    arg0->flags |= 0x10000;
+    arg0->unk_16C = 0;
+    arg0->unk_60 |= 0x10000;
 }
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016D240", func_0016D6B0);
