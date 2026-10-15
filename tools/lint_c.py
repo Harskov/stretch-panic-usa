@@ -28,7 +28,8 @@ declared `char *` / `u8 *` / `void *` in the function or at file scope — m2c's
 an argument it cannot type (remediation 30, fate-unlimited-codes-jp run
 2026-09-30-024 F-2).
 Rules (advisory, need an evidence note in the ledger): volatile, goto, vu0-asm, fpu-asm,
-kernel-asm, register-local, assign-in-condition, self-extern, register-pin, fake-body
+kernel-asm, register-local, assign-in-condition, self-extern, register-pin, fake-body,
+extern-redeclare (one data object declared twice in a file, spelled differently; remediation 2026-10-15-remediation-19)
 (the full list with severities is RULES below and lint_text(); remediation 33, audit K33-8).
 
 The one asm form that is not an error is a VU0 macro-mode block (remediation 10,
@@ -150,6 +151,7 @@ FUNC_DEF = re.compile(r"\b([A-Za-z_]\w*)\s*\([^;{}()]*(?:\([^()]*\)[^;{}()]*)*\)
 # `[ \t]*`, not `\s*`: `\s` let the match start on a blank line above and put the
 # finding one line early.
 EXTERN_FUNC = re.compile(r'^[ \t]*extern\b(?![ \t]*"C(?:\+\+)?")[^;]*?\b([A-Za-z_]\w*)\s*\(', re.M)
+EXTERN_DATA = re.compile(r'^[ \t]*extern\b(?![ \t]*"C(?:\+\+)?")([^;(]*?)\b([A-Za-z_]\w*)\s*((?:\[[^\]]*\]\s*)*);', re.M)
 NOT_FUNCS = {"if", "while", "for", "switch", "return", "sizeof", "do", "else"}
 
 # CodeWarrior's block form, `asm { ... }` (the paren form above is GNU's, which the
@@ -566,6 +568,15 @@ def lint_text(text, path="", draft=None):
         if m.group(1) in defined:
             findings.append({"path": path, "line": stripped.count("\n", 0, m.start()) + 1, "rule": "self-extern",
                              "severity": "advisory", "source": f"extern declaration of {m.group(1)}, which this file defines"})
+    # one data object declared twice, spelled differently (`extern int D_x[];` beside `extern s32 D_x[];`): one declaration
+    # per object (remediation 2026-10-15-remediation-19, fate run 031 F-5 and NEW-8)
+    first = {}
+    for m in EXTERN_DATA.finditer(stripped):
+        decl, ln = " ".join(m.group(0).split()), stripped.count("\n", 0, m.start()) + 1
+        if m.group(2) in first and first[m.group(2)][1] != decl:
+            findings.append({"path": path, "line": ln, "rule": "extern-redeclare", "severity": "advisory",
+                             "source": f"{decl}  [line {first[m.group(2)][0]} declares it as {first[m.group(2)][1]}]"})
+        first.setdefault(m.group(2), (ln, decl))
     for m in COMMENT.finditer(text):
         pm = PROCESS_COMMENT.search(m.group(0))
         if pm:

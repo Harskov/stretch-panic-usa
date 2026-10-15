@@ -205,12 +205,15 @@ def mwccgap_command(*, python, mwccgap, wibo, mwcc, as_path, as_flags, cflags):
     `~~`, and --as-flags takes `nargs="*"`: the assembler flags follow it as separate words
     and another `--` option must come next, or the list runs on into the positionals. One
     quoted `--as-flags='-EL -G0'` reaches the assembler as a single unknown option (round 23
-    WP2, 07-wp2-unit-experiment.txt: "unrecognized option '-EL -no-pad-sections -G0'")."""
+    WP2, 07-wp2-unit-experiment.txt: "unrecognized option '-EL -no-pad-sections -G0'").
+
+    The command closes its stdin: mwccgap reads the source from a stdin that is not a terminal,
+    which hangs a compile on an open pipe or, fed data, takes $in for the output file."""
     q = shlex.quote
     extra = [f for f in shlex.split(as_flags) if not f.startswith(("-march=", "-mabi="))]
     return (f"{q(str(python))} {q(str(mwccgap))} --use-wibo --wibo-path={q(str(wibo))} --mwcc-path={q(str(mwcc))} "
             f"--as-path={q(str(as_path))} --as-march=r5900 --as-mabi=eabi --as-flags {' '.join(q(f) for f in extra)} "
-            f"--macro-inc-path=include/macro.inc $in $out {cflags} -nostdinc -stderr -i include")
+            f"--macro-inc-path=include/macro.inc $in $out {cflags} -nostdinc -stderr -i include < /dev/null")
 
 
 VERSION_IF = re.compile(r"^\s*#\s*(if|ifdef|ifndef|elif|else|endif)\b(.*)$")

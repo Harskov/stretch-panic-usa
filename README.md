@@ -1,6 +1,8 @@
 # Stretch Panic
 
 [![Audit](https://github.com/Harskov/stretch-panic-usa/actions/workflows/audit.yml/badge.svg)](https://github.com/Harskov/stretch-panic-usa/actions/workflows/audit.yml)
+[![Code](https://bytematch.dev/Harskov/stretch-panic-usa.svg?label=Code&measure=matched_code_percent&category=game)](https://bytematch.dev/Harskov/stretch-panic-usa)
+[![Functions](https://bytematch.dev/Harskov/stretch-panic-usa.svg?label=Functions&measure=matched_functions&category=game)](https://bytematch.dev/Harskov/stretch-panic-usa)
 
 A decompilation of Stretch Panic (PlayStation 2). It builds any of the following releases from the same source:
 
@@ -41,6 +43,8 @@ You need Linux x86-64 (WSL2 on Windows works), Python 3.9 or newer, git, and you
 | M8 Behaviour-verified | later | last behaviour compare ok=None at never |
 
 The milestones and why they come in this order: [ROADMAP.md](ROADMAP.md).
+
+The same reports are tracked on [ByteMatch](https://bytematch.dev/Harskov/stretch-panic-usa): the report workflow uploads it on every push (`SLUS_201.82_report`).
 
 ## How the source was made, and the AI disclosure
 
