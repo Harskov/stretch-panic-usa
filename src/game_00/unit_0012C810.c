@@ -52,9 +52,69 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012C8C0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012C8F0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012C950);
+// m = 4x4 matrix rows, v = input/output vector
+void func_0012C950(register Vec *m, register Vec *v)
+{
+    asm {
+        lq t0, 0(m)
+        lq t1, 0x10(m)
+        lq t2, 0x20(m)
+        lq t3, 0x30(m)
+        pextlw t4, t1, t0
+        pextuw t5, t1, t0
+        pextlw t6, t3, t2
+        pextuw t7, t3, t2
+        pcpyld t0, t6, t4
+        pcpyud t1, t4, t6
+        pcpyld t2, t7, t5
+        pcpyud t3, t5, t7
+        qmtc2.ni t0, vf1
+        qmtc2.ni t1, vf2
+        qmtc2.ni t2, vf3
+        qmtc2.ni t3, vf4
+        lqc2 vf31, 0(v)
+        vmulax.xyzw ACC, vf1, vf31x
+        vmadday.xyzw ACC, vf2, vf31y
+        vmaddaz.xyzw ACC, vf3, vf31z
+        vmaddw.xyzw vf5, vf4, vf31w
+        vnop
+        vnop
+        sqc2 vf5, 0(v)
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012C9C0);
+/* Apply the 4x4 matrix at m to vector v, storing the result in out.
+   The MMI row-to-column transpose and VU0 multiply have no C spelling,
+   so the sequence is written as one asm block. */
+void func_0012C9C0(register Vec *m, register Vec *v, register Vec *out)
+{
+    asm {
+        lq t0, 0(m)
+        lq t1, 0x10(m)
+        lq t2, 0x20(m)
+        lq t3, 0x30(m)
+        pextlw t4, t1, t0
+        pextuw t5, t1, t0
+        pextlw t6, t3, t2
+        pextuw t7, t3, t2
+        pcpyld t0, t6, t4
+        pcpyud t1, t4, t6
+        pcpyld t2, t7, t5
+        pcpyud t3, t5, t7
+        qmtc2.ni t0, vf1
+        qmtc2.ni t1, vf2
+        qmtc2.ni t2, vf3
+        qmtc2.ni t3, vf4
+        lqc2 vf31, 0(v)
+        vmulax.xyzw ACC, vf1, vf31x
+        vmadday.xyzw ACC, vf2, vf31y
+        vmaddaz.xyzw ACC, vf3, vf31z
+        vmaddw.xyzw vf5, vf4, vf31w
+        vnop
+        vnop
+        sqc2 vf5, 0(out)
+    }
+}
 
 void func_0012CA30(register Vec *m, register Vec *v)
 {
