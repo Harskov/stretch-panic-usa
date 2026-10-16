@@ -141,6 +141,62 @@ _GAP_FIX_V3 = [
 ]
 
 
+INCLUDE_FILE_RE = re.compile(r'^\s*INCLUDE_(?:ASM|RODATA)\s*\(\s*"([^"]+)"\s*,\s*([A-Za-z_]\w*)\s*\)', re.M)
+LOCAL_INCLUDE_RE = re.compile(r'^\s*#\s*include\s+"([^"]+)"', re.M)
+
+
+def local_headers(root, src, include_dirs=("include",)):
+    """Every local header a C source includes (`#include "..."`), resolved against its own folder and then include/,
+    followed through the headers it includes: repo-relative paths, sorted. An object depends on them: a header edit changes
+    every unit that includes it."""
+    root = Path(root)
+    base_root = root.resolve()
+    seen, todo = set(), [root / src]
+    while todo:
+        p = todo.pop()
+        try:
+            text = p.read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            continue
+        for inc in LOCAL_INCLUDE_RE.findall(text):
+            for base in (p.parent, *(root / d for d in include_dirs)):
+                q = (base / inc).resolve()
+                if q.is_file():
+                    try:
+                        rel = q.relative_to(base_root).as_posix()
+                    except ValueError:
+                        break
+                    if rel not in seen:
+                        seen.add(rel)
+                        todo.append(q)
+                    break
+    return sorted(seen)
+
+
+def asm_stamp(root, src, stamp, asm_root="asm"):
+    """The stamp (repo-relative) of the .s files a source's INCLUDE_ASM / INCLUDE_RODATA lines name (pointed at `asm_root`
+    for a sibling release): their sha256s, written only when one changed; None for a source that names none. splat rewrites
+    every .s at each split, so a file's own time says nothing, and an object listing them would be rebuilt at every build;
+    the stamp moves only when an included function's assembly did. A callee's rename changes its callers' `jal`, and the
+    object compiled before it still called the old name at the link (fate run 2026-10-16-032 F-3)."""
+    root = Path(root)
+    text = (root / src).read_text(encoding="utf-8", errors="replace")
+    rows = []
+    for folder, name in INCLUDE_FILE_RE.findall(text):
+        if asm_root != "asm" and folder.startswith("asm/"):
+            folder = asm_root + folder[3:]
+        f = root / folder / f"{name}.s"
+        rows.append(f"{hashlib.sha256(f.read_bytes()).hexdigest() if f.is_file() else 'missing'}  {folder}/{name}.s")
+    if not rows:
+        return None
+    body = "\n".join(rows) + "\n"
+    sp = root / stamp
+    if not sp.is_file() or sp.read_text(encoding="utf-8") != body:
+        sp.parent.mkdir(parents=True, exist_ok=True)
+        sp.write_text(body, encoding="utf-8")
+    return stamp
+
+
 def patch_mwccgap(root):
     """Apply the fixes above to a checkout of mwccgap at MWCCGAP_COMMIT: 'patched', or 'already'
     when they are in place. A checkout carrying only fix v2 gets fix v3 on top. BuildError when
@@ -382,20 +438,27 @@ def _version_edges(root, basename, objs, *, build_root, version, vsrc_cmd, mwccg
             lines.append(f"build {o}: as {src}")
             continue
         gap = uses_include_asm(root / src)
+        # implicit inputs: the local headers and, for an INCLUDE_ASM unit, the stamp of the .s files it includes
+        deps = local_headers(root, src)
+        if gap:
+            st = asm_stamp(root, src, f"{build_root}/stamps/{src}.asm", asm_root or (f"asm/{version}" if version else "asm"))
+            if st:
+                deps.append(st)
+        imp = (" | " + " ".join(deps)) if deps else ""
         if version and vsrc_cmd:
             vs = f"{build_root}/vsrc/{src}"
             lines += [f"build {vs}: vsrc {src}", f"  version = {version}", f"  asmroot = {asm_root or 'asm/' + version}"]
             src = vs
         if gap:
             if mwccgap:
-                lines.append(f"build {o}: {'ccgapp' if is_cpp else 'ccgap'} {src}")
+                lines.append(f"build {o}: {'ccgapp' if is_cpp else 'ccgap'} {src}{imp}")
             else:
                 gap_missing.append(src)
-                lines.append(f"build {o}: {'ccp' if is_cpp else 'cc'} {src}")
+                lines.append(f"build {o}: {'ccp' if is_cpp else 'cc'} {src}{imp}")
         elif is_cpp:
-            lines.append(f"build {o}: ccp {src}")
+            lines.append(f"build {o}: ccp {src}{imp}")
         else:
-            lines.append(f"build {o}: cc {src}")
+            lines.append(f"build {o}: cc {src}{imp}")
     if gap_missing:
         raise BuildError(f"{len(gap_missing)} C file(s) carry INCLUDE_ASM but no mwccgap is configured: {', '.join(gap_missing[:4])}")
     ld_extra = list(ld_scripts)
