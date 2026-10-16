@@ -1,7 +1,9 @@
 #include "common.h"
 
 typedef struct Obj_00122460 {
-    u8 unk_0[0x20];
+    u8 unk_0[0x10];
+    /* 0x10 */ u8 unk_10;
+    u8 unk_11[0xF];
     /* 0x20 */ Vec unk_20;
 } Obj_00122460;
 
@@ -42,12 +44,15 @@ void func_00122460(Obj_00122460 *o, register Vec *d)
     }
 }
 
-void *func_00122480(char *p) {
-    return p + 0x10;
+/* func_00122460, func_00122480 and func_00122490 are slots of one function-pointer
+   table (D_0069C200), so all three are called on the same object. Only the address
+   of +0x10 is taken, so its type is not known. */
+void *func_00122480(Obj_00122460 *o) {
+    return &o->unk_10;
 }
 
-void *func_00122490(char *p) {
-    return p + 0x20;
+Vec *func_00122490(Obj_00122460 *o) {
+    return &o->unk_20;
 }
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00122260", func_001224A0);

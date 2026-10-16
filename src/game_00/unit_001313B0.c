@@ -16,6 +16,11 @@ typedef struct Ctx {
     /* 0x10 */ E64 *unk_10;
 } Ctx;
 
+typedef struct Obj_00131620 {
+    unsigned char unk_00[0xC];
+    u8 unk_C;
+} Obj_00131620;
+
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001313B0", func_001313B0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001313B0", func_00131410);
@@ -57,16 +62,20 @@ void func_00131580(void) {
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001313B0", func_00131590);
 
-void *func_00131620(char *p) {
-    return p + 0xC;
+/* A slot of the function-pointer table D_0069C420. Only the member's address is
+   taken, so its type is not known. */
+void *func_00131620(Obj_00131620 *o) {
+    return &o->unk_C;
 }
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001313B0", func_00131630);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001313B0", func_001316B0);
 
-void *func_00131730(char *p) {
-    return p + 0xC;
+/* Shares the function-pointer table D_0069C450 with func_00131740, so both are
+   called on the same object. */
+int *func_00131730(Ctx *c) {
+    return &c->count;
 }
 
 void func_00131740(Ctx *c) {

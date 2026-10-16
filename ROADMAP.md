@@ -8,12 +8,12 @@ The project serves four purposes — preservation, recompilation, porting and le
 | M2 | Identified | done | name pass closed: True; unlabelled game functions: 0; review pending: 0 |
 | M3 | Platform boundary | current | 33/294 platform functions matched; PLATFORM.md present |
 | M4 | Core | later | 0/54 core functions matched; FORMATS.md missing |
-| M5 | Gameplay | later | 198/1007 gameplay functions matched |
-| M6 | Complete | later | 231/1355 game functions matched; check ok=True |
+| M5 | Gameplay | later | 199/1007 gameplay functions matched |
+| M6 | Complete | later | 232/1355 game functions matched; check ok=True |
 | M7 | Documented | later | docs.py check ok=None (never run) |
 | M8 | Behaviour-verified | not required | last behaviour compare ok=None at never |
-| M9 | Reverse-engineered | later | names without checked evidence: 7; matches since the last name pass: 0; named types with two layouts: 0 |
+| M9 | Reverse-engineered | later | names without checked evidence: 7; matches since the last name pass: 1; named types with two layouts: 0 |
 
-Readability debt: 0 function(s) carry a `// !FAKE:` body and 2 carry a lint finding (see CONTRIBUTING.md); a pull request that replaces one with plain source that still matches is welcome.
+Readability debt: 0 function(s) carry a `// !FAKE:` body and 0 carry a lint finding (see CONTRIBUTING.md); a pull request that replaces one with plain source that still matches is welcome.
 
 Reverse-engineering debt: 7 name(s) wait for a fact a script can check (M9); [docs/NAMES.md](docs/NAMES.md) lists every name with its evidence.

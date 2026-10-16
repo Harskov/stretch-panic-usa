@@ -1,7 +1,8 @@
 #include "common.h"
+#include "game_00/obj90.h"
 
-void *func_0012BA80(char *p) {
-    return p + 0xA0;
+void *func_0012BA80(Obj90 *o) {
+    return &o->unk_A0;
 }
 
 void func_0012BA90(void) {

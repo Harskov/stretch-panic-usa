@@ -1,29 +1,31 @@
 #include "common.h"
+
 #include "game_01/obj50.h"
 
 extern s32 D_00601BD0[];
 
 extern s32 D_006B3580[];
 
-extern s32 D_006B3700[];
+/* List heads: func_0016C690 walks the 0x5F lists of D_006B3700 and func_0016C720 the
+   list at D_006B3880, each through its own unit's object class; here they are only
+   cleared, so the element type stays incomplete. */
+typedef struct Node Node;
 
-extern s32 D_006B3880;
+extern Node *D_006B3700[];
+
+extern Node *D_006B3880;
 
 extern s32 D_006B3888;
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172C00", func_00172C00);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00172CC0);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172C00", func_00172C60);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00172D10);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172C00", func_00172CC0);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00172D50);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172C00", func_00172D10);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00172DA0);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172C00", func_00172D50);
-
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172C00", func_00172DA0);
-
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172C00", func_00172E80);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00172E80);
 
 void func_00172F60(void)
 {
@@ -50,13 +52,13 @@ void func_00172F60(void)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172C00", func_00173070);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00173070);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172C00", func_00173120);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00173120);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172C00", func_00173180);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00173180);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172C00", func_00173360);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00173360);
 
 s32 func_001733C0(Obj50 *arg0) {
     register Vec *v;
@@ -86,11 +88,11 @@ s32 func_001733C0(Obj50 *arg0) {
     return r;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172C00", func_00173440);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00173440);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172C00", func_00173990);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00173990);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172C00", func_00173BA0);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00173BA0);
 
 s32 func_00173C00(Obj50 *arg0) {
     register Vec *v;
@@ -125,4 +127,4 @@ s32 func_00173C00(Obj50 *arg0) {
     return r;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172C00", func_00173CC0);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00173CC0);

@@ -29,7 +29,7 @@ You need Linux x86-64 (WSL2 on Windows works), Python 3.9 or newer, git, and you
 
 ## Progress
 
-**231 of 1355 game functions are matched** (2,478 of 95,939 instructions, 2.58 %). 0 of the matched and 3 of all game functions carry a name whose evidence a script checked; so do 3 of 92 types, 15 of 304 members the matched code reaches, 0 of 24 globals the matched code reaches; 1355 functions carry a subsystem label. Every name and its evidence: [docs/NAMES.md](docs/NAMES.md).
+**232 of 1355 game functions are matched** (2,499 of 95,939 instructions, 2.6 %). 0 of the matched and 3 of all game functions carry a name whose evidence a script checked; so do 3 of 96 types, 15 of 311 members the matched code reaches, 0 of 24 globals the matched code reaches; 1355 functions carry a subsystem label. Every name and its evidence: [docs/NAMES.md](docs/NAMES.md).
 
 | Milestone | Status | Exit judged on |
 |---|---|---|
@@ -37,11 +37,11 @@ You need Linux x86-64 (WSL2 on Windows works), Python 3.9 or newer, git, and you
 | M2 Identified | done | name pass closed: True; unlabelled game functions: 0; review pending: 0 |
 | M3 Platform boundary | current | 33/294 platform functions matched; PLATFORM.md present |
 | M4 Core | later | 0/54 core functions matched; FORMATS.md missing |
-| M5 Gameplay | later | 198/1007 gameplay functions matched |
-| M6 Complete | later | 231/1355 game functions matched; check ok=True |
+| M5 Gameplay | later | 199/1007 gameplay functions matched |
+| M6 Complete | later | 232/1355 game functions matched; check ok=True |
 | M7 Documented | later | docs.py check ok=None (never run) |
 | M8 Behaviour-verified | not required | last behaviour compare ok=None at never |
-| M9 Reverse-engineered | later | names without checked evidence: 7; matches since the last name pass: 0; named types with two layouts: 0 |
+| M9 Reverse-engineered | later | names without checked evidence: 7; matches since the last name pass: 1; named types with two layouts: 0 |
 
 The milestones and why they come in this order: [ROADMAP.md](ROADMAP.md).
 

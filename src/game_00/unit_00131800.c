@@ -1,7 +1,14 @@
 #include "common.h"
 
-void *func_00131800(char *p) {
-    return p + 0x10;
+typedef struct Obj_00131800 {
+    unsigned char unk_00[0x10];
+    u8 unk_10;
+} Obj_00131800;
+
+/* A slot of the function-pointer table D_0069C480. Only the member's address is
+   taken, so its type is not known. */
+void *func_00131800(Obj_00131800 *o) {
+    return &o->unk_10;
 }
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00131800", func_00131810);

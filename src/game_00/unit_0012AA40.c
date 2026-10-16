@@ -1,4 +1,5 @@
 #include "common.h"
+#include "game_00/obj90.h"
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012AA40", func_0012AA40);
 
@@ -35,6 +36,6 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012AA40", func_0012B800);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012AA40", func_0012B930);
 
-void *func_0012BA70(char *p) {
-    return p + 0x90;
+void *func_0012BA70(Obj90 *o) {
+    return &o->unk_90;
 }
