@@ -145,10 +145,11 @@ TYPEDEF_REDECLARE = re.compile(r"^\s*typedef\s+[\w\s]+?\s+(u8|u16|u32|u64|u128|s
 # asks that machine output stay out of comments — doldecomp/melee CONTRIBUTING).
 # the pipeline in a comment: a run, an attempt, a score, a knowledge file (K1-K9), a script or project file, a tool name
 # (remediation 2026-10-16-remediation-24, fate run 2026-10-16-032 F-7: an evidence sentence carried "the pack's synonym" and
-# "sce-symbol-scanner data via PS2Recomp" into source; K9 escaped `K[1-8]`)
+# "sce-symbol-scanner data via PS2Recomp" into source; K9 escaped `K[1-8]`). `retried` is not on it: the game's own loops
+# retry a load (stretch-panic run 2026-10-16-038 F-1), and the one narration that used it also named its run
 PROCESS_COMMENT = re.compile(r"\brun \d{3}\b|\bruns?/|\bwip/|\b\d{4}-\d{2}-\d{2}-\d{3}\b|\bK[1-9]\s*§?\s*\d|\bcalibration candidate\b|\bremediation\b"
                              r"|\bF-\d+\b|\bRUN-|\b[A-Za-z_]\w*\.py\b|\bpermuter\b|\battempt-\d|\bMatchRunner\b"
-                             r"|\bre-?tried\b|\bobjdiff\b|\bscor(?:e|ed) \d|\breference/|\b(?:MANIFEST|pack)\.json\b|\bthe pack'?s\b"
+                             r"|\bobjdiff\b|\bscor(?:e|ed) \d|\breference/|\b(?:MANIFEST|pack)\.json\b|\bthe pack'?s\b"
                              r"|\bGhidra\b|\bPS2Recomp\b|\bsce-symbol-scanner\b|\bm2c\b|\bmwccgap\b", re.I)
 COMMENT = re.compile(r"/\*.*?\*/|//[^\n]*", re.S)
 FUNC_DEF = re.compile(r"\b([A-Za-z_]\w*)\s*\([^;{}()]*(?:\([^()]*\)[^;{}()]*)*\)\s*\{")
