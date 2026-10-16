@@ -1,18 +1,18 @@
 #include "common.h"
 
-typedef struct PadBuf {
-    unsigned short b[9];
-} PadBuf;
+typedef struct Obj_0011F5E0 {
+    /* 0x00 */ unsigned short unk_0[9];
+} Obj_0011F5E0;
 
-typedef struct PadState {
+typedef struct Obj_0011F5E0_2 {
     unsigned char unk_00[0x18];
-    unsigned short now;
-    unsigned short pressed;
-    unsigned short changed;
-    unsigned short released;
-    PadBuf old;
-    PadBuf cur;
-} PadState;
+    /* 0x18 */ unsigned short unk_18;
+    /* 0x1A */ unsigned short unk_1A;
+    /* 0x1C */ unsigned short unk_1C;
+    /* 0x1E */ unsigned short unk_1E;
+    /* 0x20 */ Obj_0011F5E0 unk_20;
+    /* 0x32 */ Obj_0011F5E0 unk_32;
+} Obj_0011F5E0_2;
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_0011F5E0);
 
@@ -38,14 +38,14 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_001202B0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_001202F0);
 
-void func_00120340(PadState *p) {
+void func_00120340(Obj_0011F5E0_2 *p) {
     u16 cur;
-    cur = p->cur.b[0];
-    p->changed = p->old.b[0] ^ cur;
-    p->pressed = p->changed & cur;
-    p->released = p->changed ^ p->pressed;
-    p->now = cur;
-    p->old = p->cur;
+    cur = p->unk_32.unk_0[0];
+    p->unk_1C = p->unk_20.unk_0[0] ^ cur;
+    p->unk_1A = p->unk_1C & cur;
+    p->unk_1E = p->unk_1C ^ p->unk_1A;
+    p->unk_18 = cur;
+    p->unk_20 = p->unk_32;
 }
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_001203A0);

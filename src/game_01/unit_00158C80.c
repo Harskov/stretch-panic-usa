@@ -18,9 +18,9 @@ typedef struct Obj {
     u8 unk_290[0x10];
 } Obj;
 
-void func_00159E20(Obj1F0 *arg0, Owner1F0 *arg1);
+void func_00159E20(Obj1F0 *arg0, ObjCC *arg1);
 
-extern s32 func_00131B30(Obj *arg0, void *arg1, s32 *arg2, Actor *arg3, void *arg4);
+extern s32 func_00131B30(Obj *arg0, void *arg1, s32 *arg2, ObjC8 *arg3, void *arg4);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00158C80", func_00158C80);
 
@@ -36,7 +36,7 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_00158C80", func_00159340);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00158C80", func_00159370);
 
-void func_00159400(Obj1F0 *arg0, Owner1F0 *arg1)
+void func_00159400(Obj1F0 *arg0, ObjCC *arg1)
 {
     switch (arg1->unk_C0) {
     case 0:
@@ -73,7 +73,7 @@ void func_00159820(Obj1F0 *a0, f32 *a1) {
     (void)f3;
 }
 
-s32 func_00159860(Obj *arg0, Actor *arg1)
+s32 func_00159860(Obj *arg0, ObjC8 *arg1)
 {
     s32 tmp;
 
@@ -98,7 +98,7 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_00158C80", func_00159B10);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00158C80", func_00159BF0);
 
-void func_00159E20(Obj1F0 *arg0, Owner1F0 *arg1) {
+void func_00159E20(Obj1F0 *arg0, ObjCC *arg1) {
     if (arg0->unk_1D0 != 0) {
         arg0->unk_60 |= 0x80000;
     } else if (arg1->unk_C8->unk_54 == 4) {

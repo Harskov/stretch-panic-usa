@@ -12,8 +12,8 @@
    +0x90..+0x9B. */
 typedef struct Obj50 {
     unsigned char unk_00[0x50];
-    Vec pos;
-    Vec vel;
+    /* 0x50 */ Vec unk_50;
+    /* 0x60 */ Vec unk_60;
     f32 unk_70;
     f32 unk_74;
     f32 unk_78;

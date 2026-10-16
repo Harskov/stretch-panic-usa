@@ -6,14 +6,14 @@ typedef struct E64 {
 
 typedef struct Src {
     unsigned char unk_00[4];
-    E64 *arr;
+    /* 0x04 */ E64 *unk_4;
 } Src;
 
 typedef struct Ctx {
     unsigned char unk_00[8];
-    Src *src;
+    /* 0x08 */ Src *unk_8;
     int count;
-    E64 *dst;
+    /* 0x10 */ E64 *unk_10;
 } Ctx;
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001313B0", func_001313B0);
@@ -73,7 +73,7 @@ void func_00131740(Ctx *c) {
     int i;
 
     for (i = 0; i < c->count; i++) {
-        c->dst[i] = c->src->arr[i];
+        c->unk_10[i] = c->unk_8->unk_4[i];
     }
 }
 

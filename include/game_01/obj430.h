@@ -18,13 +18,13 @@
    offset with a conflicting type is not evidence of the same object, so that
    function keeps its own view until a caller links them. */
 typedef union Quad420 {
-    u128 q;
+    /* 0x00 */ u128 unk_0;
     struct {
         s32 unk_00;
         s32 unk_04;
         s32 unk_08;
         f32 unk_0C;
-    } w;
+    /* 0x00 */ } w0;
 } Quad420;
 
 typedef struct Obj430 {

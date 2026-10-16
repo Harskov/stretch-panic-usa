@@ -6,7 +6,7 @@ typedef struct Obj {
     Vec v10;
 } Obj;
 
-typedef struct Inner {
+typedef struct Obj_0016E9A0 {
     s32 unk_00;
     s32 unk_04;
     s32 unk_08;
@@ -14,16 +14,16 @@ typedef struct Inner {
     f32 unk_10;
     f32 unk_14;
     f32 unk_18;
-} Inner;
+} Obj_0016E9A0;
 
-typedef struct Mid {
+typedef struct Obj_0016E9A0_2 {
     u8 unk_00[0x60];
-    Inner *unk_60;
-} Mid;
+    Obj_0016E9A0 *unk_60;
+} Obj_0016E9A0_2;
 
 typedef struct Obj_0016F850 {
     u8 unk_00[0x10C];
-    Mid *unk_10C;
+    Obj_0016E9A0_2 *unk_10C;
 } Obj_0016F850;
 
 extern Vec D_006AEE40;
@@ -100,7 +100,7 @@ s32 func_0016F790(Obj *o, Vec *src, s32 *state)
 
 void func_0016F850(Obj_0016F850 *o)
 {
-    Mid *m;
+    Obj_0016E9A0_2 *m;
 
     o->unk_10C->unk_60->unk_10 = 12566371.0f;
     o->unk_10C->unk_60->unk_14 = 1000.0f;

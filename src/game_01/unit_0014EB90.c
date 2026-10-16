@@ -9,7 +9,7 @@ typedef struct Obj {
     u8 pad154[0x2B0 - 0x154];
     u128 unk_2B0;
     u8 pad2C0[0x378 - 0x2C0];
-    s32 unk_378;
+    /* 0x378 */ s32 flags;
     u8 pad37C[0x3A0 - 0x37C];
     u128 unk_3A0;
     u128 unk_3B0;
@@ -69,7 +69,7 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_0014EB90", func_0014EF80);
 void func_0014F060(Obj *arg0, Vec *arg1) {
     arg0->unk_3A0 = arg0->unk_2B0;
     arg0->unk_3B0 = arg0->unk_30;
-    if (arg0->unk_378 & 2) {
+    if (arg0->flags & 2) {
         arg0->unk_3C4 = arg0->unk_150;
         arg0->unk_3D0 = 2;
     } else {

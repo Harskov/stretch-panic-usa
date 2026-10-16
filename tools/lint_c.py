@@ -29,7 +29,10 @@ an argument it cannot type (remediation 30, fate-unlimited-codes-jp run
 2026-09-30-024 F-2).
 Rules (advisory, need an evidence note in the ledger): volatile, goto, vu0-asm, fpu-asm,
 kernel-asm, register-local, assign-in-condition, self-extern, register-pin, fake-body,
-extern-redeclare (one data object declared twice in a file, spelled differently; remediation 2026-10-15-remediation-19)
+extern-redeclare (one data object declared twice in a file, spelled differently; remediation 2026-10-15-remediation-19),
+comment-named-field (a comment above a struct says what an offset holds while its member keeps the placeholder;
+remediation 2026-10-15-remediation-20). byte-offset's third spelling, the escape: a byte pointer plus or minus a
+constant returned, assigned or passed on (`return p + 0x10;`), unless the function subscripts it or steps it.
 (the full list with severities is RULES below and lint_text(); remediation 33, audit K33-8).
 
 The one asm form that is not an error is a VU0 macro-mode block (remediation 10,
@@ -140,7 +143,7 @@ TYPEDEF_REDECLARE = re.compile(r"^\s*typedef\s+[\w\s]+?\s+(u8|u16|u32|u64|u128|s
 # A comment that narrates the pipeline instead of the code: run and round ids, knowledge-file
 # sections, friction ids, calibration candidates, tool names (remediation 20; the community
 # asks that machine output stay out of comments — doldecomp/melee CONTRIBUTING).
-PROCESS_COMMENT = re.compile(r"\brun \d{3}\b|\bruns?/|\bK[1-8]\s*§?\s*\d|\bcalibration candidate\b|\bremediation\b"
+PROCESS_COMMENT = re.compile(r"\brun \d{3}\b|\bruns?/|\bwip/|\b\d{4}-\d{2}-\d{2}-\d{3}\b|\bK[1-8]\s*§?\s*\d|\bcalibration candidate\b|\bremediation\b"
                              r"|\bF-\d+\b|\bRUN-|\b(?:ledger|match|lint_c|next_step|select_batch)\.py\b|\bpermuter\b|\battempt-\d|\bMatchRunner\b"
                              r"|\bre-?tried\b|\bobjdiff\b|\bscor(?:e|ed) \d", re.I)
 COMMENT = re.compile(r"/\*.*?\*/|//[^\n]*", re.S)
@@ -490,24 +493,93 @@ def _strip_parens(text):
     return text
 
 
+# byte-offset, the escape spelling (remediation 2026-10-15-remediation-20; Stretch Panic's `void *func_00122480(char *p)
+# { return p + 0x10; }` passed every rule): a byte pointer plus or minus a constant that leaves the expression whole —
+# returned, assigned to another name, or passed as an argument — is a member's address spelled as bytes. A pointer the
+# function subscripts (`p[i]`) is a buffer, and `p = p + 1` steps a cursor: neither is reported.
+BYTE_ESCAPE = re.compile(r"(?:\breturn\s+|(?:\b(?P<lhs>[A-Za-z_]\w*)\s*)?(?<![=!<>+\-*/%&|^])=\s*|[(,]\s*)\(?\s*(?P<name>[A-Za-z_]\w*)\s*[+-]\s*"
+                         r"(?P<k>0[xX][0-9A-Fa-f]+|[1-9]\d*)\s*\)?\s*(?=[;,)])")
+
+
 def byte_pointer_findings(stripped, path=""):
     """byte-offset, the declaration spelling: `(T *)(p + N)` where `p` is declared a byte
-    pointer in the enclosing function (parameters and locals) or at file scope."""
+    pointer in the enclosing function (parameters and locals) or at file scope; and the escape
+    spelling, `return p + N;` / `q = p + N;` / `f(p + N)`."""
     lines = stripped.splitlines()
     scope = {}
+    buffers = {}
     for _name, a, b in function_spans(stripped):
-        names = set(BYTE_DECL.findall("\n".join(lines[a - 1:b])))
+        body = "\n".join(lines[a - 1:b])
+        names = set(BYTE_DECL.findall(body))
+        subscripted = {n for n in names if re.search(r"\b" + re.escape(n) + r"\s*\[", body)}
         for ln in range(a, b + 1):
             scope[ln] = names
+            buffers[ln] = subscripted
     file_names = set(BYTE_DECL.findall(_strip_parens("\n".join(l for i, l in enumerate(lines, 1) if i not in scope))))
     out = []
     for lineno, line in enumerate(lines, 1):
         names = file_names | scope.get(lineno, set())
+        hit = False
         for m in BYTE_PTR_USE.finditer(line) if names else ():
             if m.group(1) not in BYTE_CASTS and m.group(2) in names:
                 out.append({"path": path, "line": lineno, "rule": "byte-offset", "severity": "error",
                             "source": f"{line.strip()}  [{m.group(2)} is declared a byte pointer]"})
+                hit = True
                 break
+        if hit or lineno not in scope:
+            continue
+        for m in BYTE_ESCAPE.finditer(line) if names else ():
+            nm = m.group("name")
+            if nm in names and nm not in buffers.get(lineno, set()) and m.group("lhs") != nm:
+                out.append({"path": path, "line": lineno, "rule": "byte-offset", "severity": "error",
+                            "source": f"{line.strip()}  [{nm} is a byte pointer: {nm} {m.group(0).strip()[-12:]} is a member's address "
+                                      "spelled in bytes; `&o->unk_N` on the struct that holds it is the plain spelling]"})
+                break
+    return out
+
+
+# --- comment-named-field (remediation 2026-10-15-remediation-20) ------------------------------------
+# A comment above a struct that says what an offset holds ("the flag word at +0x4") while that member
+# keeps its placeholder: the analysis is done and stranded in prose. Advisory: name the member through
+# `ledger.py rename --kind field` with the facts the comment cites, or let the comment say less.
+CITED_OFFSET = re.compile(r"\+\s*0x([0-9A-Fa-f]+)\b|\bat\s+0x([0-9A-Fa-f]+)\b|\boffset\s+0x([0-9A-Fa-f]+)\b", re.I)
+SYSTEMATIC_MEMBER = re.compile(r"^(?:unk|field|f|i|v|x|vec)_?(?:0x)?([0-9A-Fa-f]+)$")
+
+
+def comment_field_findings(text, path=""):
+    out = []
+    stripped = strip_comments(text)
+    for m in AGGREGATE.finditer(stripped):
+        before = text[:m.start()].rstrip()
+        if before.endswith("*/"):
+            start = before.rfind("/*")
+            comment = before[start:] if start >= 0 else ""
+        else:
+            tail = []
+            for ln in reversed(before.splitlines()):
+                if ln.strip().startswith("//"):
+                    tail.append(ln)
+                else:
+                    break
+            comment = "\n".join(reversed(tail))
+        cited = {int(next(g for g in c if g), 16) for c in CITED_OFFSET.findall(comment)}
+        if not cited:
+            continue
+        end = _body_end(stripped, m.end() - 1)
+        if end < 0:
+            continue
+        body_start = m.end()
+        for decl in re.finditer(r"[^;{}]+;", stripped[body_start:end]):
+            nm = re.search(r"([A-Za-z_]\w*)\s*(?:\[[^\]]*\]\s*)*;$", decl.group(0).strip())
+            if not nm:
+                continue
+            sm = SYSTEMATIC_MEMBER.match(nm.group(1))
+            if sm and int(sm.group(1), 16) in cited:
+                lead = decl.group(0)[:len(decl.group(0)) - len(decl.group(0).lstrip())]      # the newlines before the member
+                ln = stripped.count("\n", 0, body_start + decl.start()) + 1 + lead.count("\n")
+                out.append({"path": path, "line": ln, "rule": "comment-named-field", "severity": "advisory",
+                            "source": f"{nm.group(1)}: the comment above says what +0x{int(sm.group(1), 16):X} holds; name the member "
+                                      "through ledger.py rename --kind field with those facts, or say less in the comment"})
     return out
 
 
@@ -593,6 +665,7 @@ def lint_text(text, path="", draft=None):
                          "source": f"{m.group(0)}  [an m2c placeholder: write what the instructions do]"})
     findings.extend(trace_findings(text, stripped, path, draft))
     findings.extend(member_offset_findings(text, path))
+    findings.extend(comment_field_findings(text, path))
     findings.extend(readability_debt(text, path)[0])
     if any(f["rule"] in ("vu0-asm", "fpu-asm", "kernel-asm", "inline-asm") for f in findings):
         # an asm block's operands are `register` locals by necessity (the VU0 exception,

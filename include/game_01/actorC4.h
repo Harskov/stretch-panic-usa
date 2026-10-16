@@ -9,9 +9,9 @@ typedef struct Info {
     s32 unk_54;
 } Info;
 
-typedef struct Actor {
+typedef struct ObjC8 {
     u8 unk_00[0x80];
     u8 unk_80[0x44];
     Info *unk_C4;
-} Actor;
+} ObjC8;
 #endif

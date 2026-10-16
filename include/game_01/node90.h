@@ -7,13 +7,13 @@
    the flag word at +0x60). func_0014DF80 tests that bit and sets the state word at
    +0x364 from the float at +0x4D0; func_0014EB30 calls func_0014EAF0 with its object,
    clears +0x364 and sets bits in +0x64/+0x68: the same object. */
-typedef struct ListNode {
+typedef struct Obj4E0 {
     u8 unk_00[0x60];
     s32 flags;
     u32 unk_64;
     u32 unk_68;
     u8 unk_6C[0x24];
-    struct ListNode *next;
+    struct Obj4E0 *next;
     u8 unk_94[4];
     u8 unk_98;
     u8 unk_99[7];
@@ -24,9 +24,9 @@ typedef struct ListNode {
     s32 unk_364;
     u8 unk_368[0x168];
     f32 unk_4D0;
-} ListNode;
+} Obj4E0;
 
-extern ListNode *D_006AF4C8;
+extern Obj4E0 *D_006AF4C8;
 
-void func_0014EAF0(ListNode *arg0);
+void func_0014EAF0(Obj4E0 *arg0);
 #endif

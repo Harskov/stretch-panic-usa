@@ -72,12 +72,12 @@ int func_00157650(Slot_00157650 *s) {
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001569A0", func_00157690);
 
-void func_001578C0(Pool70 *p, int i) {
-    p->slots[i].pos_x += p->slots[i].vel_x;
-    p->slots[i].pos_y += p->slots[i].vel_y;
-    p->slots[i].pos_z += p->slots[i].vel_z;
-    if (p->slots[i].pos_z < 0.0f) {
-        p->slots[i].active = 0;
+void func_001578C0(Obj270 *p, int i) {
+    p->unk_70[i].unk_20 += p->unk_70[i].unk_24;
+    p->unk_70[i].unk_28 += p->unk_70[i].unk_2C;
+    p->unk_70[i].unk_30 += p->unk_70[i].unk_34;
+    if (p->unk_70[i].unk_30 < 0.0f) {
+        p->unk_70[i].unk_0 = 0;
     }
 }
 

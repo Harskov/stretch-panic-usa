@@ -3,15 +3,15 @@
 
 typedef struct Node {
     u8 pad[0x10];
-    u128 v;
+    /* 0x10 */ u128 unk_10;
 } Node;
 
 typedef struct Holder {
     u8 pad[0xD0];
-    Node *n0;
-    Node *n1;
+    /* 0xD0 */ Node *unk_D0;
+    /* 0xD4 */ Node *unk_D4;
     u8 pad2[8];
-    u128 v;
+    /* 0xE0 */ u128 unk_E0;
 } Holder;
 
 typedef struct Src {
@@ -47,15 +47,15 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_001793C0", func_00179690);
 
 void func_00179870(u128 *out, Holder *h)
 {
-    Node *n = h->n0;
+    Node *n = h->unk_D0;
     if (n != 0) {
-        *out = n->v;
+        *out = n->unk_10;
     } else {
-        n = h->n1;
+        n = h->unk_D4;
         if (n != 0) {
             *out = *(u128 *)n;
         } else {
-            *out = h->v;
+            *out = h->unk_E0;
         }
     }
 }

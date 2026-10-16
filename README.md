@@ -29,7 +29,7 @@ You need Linux x86-64 (WSL2 on Windows works), Python 3.9 or newer, git, and you
 
 ## Progress
 
-**231 of 1355 game functions are matched** (2,478 of 95,939 instructions, 2.58 %). 3 functions carry a name backed by evidence; 1355 carry a subsystem label.
+**231 of 1355 game functions are matched** (2,478 of 95,939 instructions, 2.58 %). 0 of the matched and 3 of all game functions carry a name whose evidence a script checked; so do 3 of 92 types, 15 of 304 members the matched code reaches, 0 of 24 globals the matched code reaches; 1355 functions carry a subsystem label. Every name and its evidence: [docs/NAMES.md](docs/NAMES.md).
 
 | Milestone | Status | Exit judged on |
 |---|---|---|
@@ -40,7 +40,8 @@ You need Linux x86-64 (WSL2 on Windows works), Python 3.9 or newer, git, and you
 | M5 Gameplay | later | 198/1007 gameplay functions matched |
 | M6 Complete | later | 231/1355 game functions matched; check ok=True |
 | M7 Documented | later | docs.py check ok=None (never run) |
-| M8 Behaviour-verified | later | last behaviour compare ok=None at never |
+| M8 Behaviour-verified | not required | last behaviour compare ok=None at never |
+| M9 Reverse-engineered | later | names without checked evidence: 7; matches since the last name pass: 0; named types with two layouts: 0 |
 
 The milestones and why they come in this order: [ROADMAP.md](ROADMAP.md).
 
@@ -52,8 +53,11 @@ The source here was written function by function and accepted only when the pinn
 original under the project's criterion (the compiled code must be byte for byte the original's). Much of it was drafted with AI assistance (Claude, and the
 batch lane's models); every accepted function was rebuilt and compared by the tooling on the maintainer's machine, and
 the commit that adds a function carries a credit line naming who wrote it (`Co-Authored-By: Claude <noreply@anthropic.com>`
-for the operator's model, `Assisted-by: <model> (batch)` for the batch lane). Names are given only with cited evidence (a
-string, a caller, a frame label, a field); otherwise the systematic placeholder stays. A function marked `// !FAKE:` matches
+for the operator's model, `Assisted-by: <model> (batch)` for the batch lane). A name — of a function, a type, a struct member
+or a global — is written only after a script has checked each fact it cites against the code (a string, an SDK prototype, a
+library symbol, a checked caller, what the matched code does with a member) and every word of the name against those facts;
+otherwise the systematic placeholder stays. [docs/NAMES.md](docs/NAMES.md) lists every name with its evidence, so each one can
+be checked again. A function marked `// !FAKE:` matches
 through an implausible form and is listed as readability debt in [ROADMAP.md](ROADMAP.md).
 
 ## Platform: PlayStation 2 (Metrowerks CodeWarrior)
@@ -85,7 +89,7 @@ maintainer's tooling does with a merged pull request.
 ## Layout
 
 `src/` the source in the layout the toolchain consumes (one file per unit; a function not yet accepted is a reference
-line) · `docs/` the architecture, the subsystem pages and the code map · `config/<SERIAL>/` each release's splat configuration, symbol map, checksums and tool pins · `include/` the shared headers and types · `orig/<SERIAL>/` where your copy of the executable goes (gitignored) · `symbols/` the symbol map with its evidence · `tools/` the contributor copies of the lint and the check ·
+line) · `docs/` the architecture, the subsystem pages, the code map and `NAMES.md` (every name and its evidence) · `config/<SERIAL>/` each release's splat configuration, symbol map, checksums and tool pins · `include/` the shared headers and types · `orig/<SERIAL>/` where your copy of the executable goes (gitignored) · `symbols/` the symbol map with its evidence · `tools/` the contributor copies of the lint and the check ·
 `progress/report.json` the progress report.
 
 ## License

@@ -2,7 +2,7 @@
 
 typedef struct Obj_00122460 {
     u8 unk_0[0x20];
-    Vec pos;
+    /* 0x20 */ Vec unk_20;
 } Obj_00122460;
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00122260", func_00122260);
@@ -33,7 +33,7 @@ void func_00122460(Obj_00122460 *o, register Vec *d)
 {
     register Vec *p;
 
-    p = &o->pos;
+    p = &o->unk_20;
     asm {
         lqc2 vf1, 0(p)
         lqc2 vf2, 0(d)

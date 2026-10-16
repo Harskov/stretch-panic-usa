@@ -4,8 +4,8 @@
    and its counter at +0x54. Only the Vec type is shared. */
 typedef struct Obj10 {
     unsigned char unk_00[0x10];
-    Vec pos;
-    Vec vel;
+    /* 0x10 */ Vec unk_10;
+    /* 0x20 */ Vec unk_20;
     unsigned char unk_30[0x24];
     f32 unk_54;
     f32 unk_58;
@@ -38,8 +38,8 @@ s32 func_001636C0(Obj10 *o) {
     f32 a;
     f32 b;
 
-    p = &o->pos;
-    v = &o->vel;
+    p = &o->unk_10;
+    v = &o->unk_20;
     asm {
         lqc2 vf1, 0(p)
         lqc2 vf2, 0(v)

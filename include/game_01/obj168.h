@@ -10,7 +10,7 @@
    function reaches both layouts, so they are kept apart. */
 typedef struct Obj168 {
     unsigned char unk_00[0x60];
-    u32 flags;
+    /* 0x60 */ u32 unk_60;
     unsigned char unk_64[0xD0];
     s32 unk_134;
     unsigned char unk_138[0x2C];

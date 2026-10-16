@@ -58,14 +58,14 @@ typedef struct Obj3A0 {
     u8 unk_00[0x314];
     u8 unk_314;
     u8 unk_315[0x8B];
-    Quad3 unk_3A0;
+    Obj30 unk_3A0;
 } Obj3A0;
 
 typedef struct Obj4A0 {
     u8 unk_00[0x414];
     u8 unk_414;
     u8 unk_415[0x8B];
-    Quad3 unk_4A0;
+    Obj30 unk_4A0;
 } Obj4A0;
 
 typedef struct Obj70 {
@@ -94,7 +94,7 @@ void func_001522E0(Src_00152380 *s, Dst_00152380 *d)
 {
     d->unk_00 = s->unk_140;
     d->unk_10 = s->unk_270;
-    d->unk_20.v.x = s->unk_410 * s->unk_410;
+    d->unk_20.vec0.x = s->unk_410 * s->unk_410;
 }
 
 void func_00152300(Src *s, Dst *d)
@@ -103,10 +103,10 @@ void func_00152300(Src *s, Dst *d)
     d->unk_50 = s->unk_370;
     d->unk_00 = s->unk_250;
     d->unk_10 = s->unk_260;
-    d->unk_20.q = s->unk_270;
-    d->unk_20.v.x = -d->unk_20.v.x;
-    d->unk_20.v.y = -d->unk_20.v.y;
-    d->unk_20.v.z = -d->unk_20.v.z;
+    d->unk_20.unk_0 = s->unk_270;
+    d->unk_20.vec0.x = -d->unk_20.vec0.x;
+    d->unk_20.vec0.y = -d->unk_20.vec0.y;
+    d->unk_20.vec0.z = -d->unk_20.vec0.z;
     d->unk_60 = s->unk_380;
     d->unk_64 = s->unk_384;
     d->unk_68 = 0;
@@ -122,10 +122,10 @@ void func_00152380(Src_00152380 *s, Dst_00152380 *d)
     d->unk_30 = s->unk_140;
     d->unk_00 = s->unk_250;
     d->unk_10 = s->unk_260;
-    d->unk_20.q = s->unk_270;
-    d->unk_20.v.x = -d->unk_20.v.x;
-    d->unk_20.v.y = -d->unk_20.v.y;
-    d->unk_20.v.z = -d->unk_20.v.z;
+    d->unk_20.unk_0 = s->unk_270;
+    d->unk_20.vec0.x = -d->unk_20.vec0.x;
+    d->unk_20.vec0.y = -d->unk_20.vec0.y;
+    d->unk_20.vec0.z = -d->unk_20.vec0.z;
 }
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00152040", func_00152400);

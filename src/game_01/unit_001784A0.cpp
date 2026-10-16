@@ -1,6 +1,6 @@
 #include "common.h"
 
-class Inner {
+class Obj_001784A0 {
 public:
     virtual void m0();
     virtual void m1();
@@ -9,7 +9,7 @@ public:
 
 struct Obj {
     unsigned char unk_00[0x50];
-    Inner *field_50;
+    Obj_001784A0 *field_50;
 };
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001784A0", func_001784A0);

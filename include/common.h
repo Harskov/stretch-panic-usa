@@ -25,7 +25,7 @@ typedef struct Vec {
 /* A quadword reached both whole (lq/sq: copied, or loaded from the scratchpad) and
    lane by lane as a Vec. */
 typedef union Quad {
-    u128 q;
-    Vec v;
+    /* 0x00 */ u128 unk_0;
+    /* 0x00 */ Vec vec0;
 } Quad;
 #endif

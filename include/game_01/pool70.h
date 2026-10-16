@@ -7,21 +7,21 @@
    (integrated by func_001578C0 and func_001580D0). Of the owner's first 0x70 bytes
    only the byte at +0x50 is reached: func_00157DF0 tests it before walking the slots. */
 typedef struct Slot40 {
-    unsigned char active;
+    /* 0x00 */ unsigned char unk_0;
     unsigned char unk_01[0x1F];
-    float pos_x;
-    float vel_x;
-    float pos_y;
-    float vel_y;
-    float pos_z;
-    float vel_z;
+    /* 0x20 */ float unk_20;
+    /* 0x24 */ float unk_24;
+    /* 0x28 */ float unk_28;
+    /* 0x2C */ float unk_2C;
+    /* 0x30 */ float unk_30;
+    /* 0x34 */ float unk_34;
     unsigned char unk_38[8];
 } Slot40;
 
-typedef struct Pool70 {
+typedef struct Obj270 {
     unsigned char unk_00[0x50];
     unsigned char unk_50;
     unsigned char unk_51[0x1F];
-    Slot40 slots[8];
-} Pool70;
+    /* 0x70 */ Slot40 unk_70[8];
+} Obj270;
 #endif

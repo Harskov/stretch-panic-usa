@@ -1,6 +1,6 @@
 #include "common.h"
 
-class Base {
+class Obj_0016D770 {
 public:
     virtual void m0();
     virtual void m1();
@@ -19,8 +19,8 @@ public:
 
 struct Obj {
     unsigned char unk_00[0xD8];
-    u32 unk_D8;
-    Base **unk_DC;
+    /* 0xD8 */ u32 count;
+    Obj_0016D770 **unk_DC;
 };
 
 extern "C" void func_0016D770(Obj *arg0)
@@ -28,9 +28,9 @@ extern "C" void func_0016D770(Obj *arg0)
     {
         u32 i;
         u32 n;
-        Base **list;
+        Obj_0016D770 **list;
 
-        n = arg0->unk_D8;
+        n = arg0->count;
         list = arg0->unk_DC;
         for (i = 0; i < n; i++) {
             if (list[i] != 0) {
@@ -41,9 +41,9 @@ extern "C" void func_0016D770(Obj *arg0)
     {
         u32 i;
         u32 n;
-        Base **list;
+        Obj_0016D770 **list;
 
-        n = arg0->unk_D8;
+        n = arg0->count;
         list = arg0->unk_DC;
         for (i = 0; i < n; i++) {
             if (list[i] != 0) {

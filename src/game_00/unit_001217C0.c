@@ -30,7 +30,7 @@ void func_00121880(Obj_001217C0 *o, Pair_001217C0 *s)
     register Vec *d;
     register Vec *c;
 
-    a = &o->unk_10.v;
+    a = &o->unk_10.vec0;
     b = &o->unk_20;
     asm {
         lqc2 vf1, 0(a)
@@ -46,10 +46,10 @@ void func_00121880(Obj_001217C0 *o, Pair_001217C0 *s)
         o->unk_40 = o->unk_44;
     }
     o->unk_30 = 0;
-    o->unk_38 = &o->unk_3C->v;
-    o->unk_10.q = o->unk_3C->q;
+    o->unk_38 = &o->unk_3C->vec0;
+    o->unk_10.unk_0 = o->unk_3C->unk_0;
     c = &o->unk_20;
-    d = &o->unk_10.v;
+    d = &o->unk_10.vec0;
     asm {
         lqc2 vf1, 0(c)
         lqc2 vf2, 0(d)

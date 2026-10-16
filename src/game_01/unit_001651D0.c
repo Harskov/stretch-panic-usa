@@ -2,13 +2,13 @@
 
 typedef struct Obj {
     unsigned char unk_00[0x50];
-    float speed;
-    float drag;
+    /* 0x50 */ float unk_50;
+    /* 0x54 */ float unk_54;
     unsigned char unk_58[4];
-    float fall;
+    /* 0x5C */ float unk_5C;
     unsigned char unk_60[0x30];
-    float pos;
-    float height;
+    /* 0x90 */ float unk_90;
+    /* 0x94 */ float unk_94;
 } Obj;
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001651D0", func_001651D0);
@@ -18,10 +18,10 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_001651D0", func_00165300);
 int func_001653D0(Obj *o) {
     int alive = 1;
 
-    o->speed = o->speed - o->speed * o->drag;
-    o->pos += o->speed;
-    o->height -= o->fall;
-    if (o->height <= 0.0f) {
+    o->unk_50 = o->unk_50 - o->unk_50 * o->unk_54;
+    o->unk_90 += o->unk_50;
+    o->unk_94 -= o->unk_5C;
+    if (o->unk_94 <= 0.0f) {
         alive = 0;
     }
     return alive;

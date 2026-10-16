@@ -15,14 +15,14 @@ typedef struct Sub54 {
     int unk_54;
 } Sub54;
 
-typedef struct Owner1F0 {
+typedef struct ObjCC {
     unsigned char unk_00[0x80];
     f32 unk_80;
     unsigned char unk_84[0x3C];
     s32 unk_C0;
     unsigned char unk_C4[4];
     Sub54 *unk_C8;
-} Owner1F0;
+} ObjCC;
 
 typedef struct Obj1F0 {
     unsigned char unk_00[0x10];
@@ -34,7 +34,7 @@ typedef struct Obj1F0 {
     unsigned char unk_64[0x16C];
     u8 unk_1D0;
     unsigned char unk_1D1[7];
-    s32 unk_1D8;
+    /* 0x1D8 */ s32 flags;
     unsigned char unk_1DC[4];
     u128 unk_1E0;
     u128 unk_1F0;

@@ -14,8 +14,8 @@ s32 func_001741B0(Obj50 *arg0) {
     arg0->unk_70 = arg0->unk_70 * arg0->unk_74;
     arg0->unk_74 = arg0->unk_74 * arg0->unk_78;
 
-    p = &arg0->pos;
-    v = &arg0->vel;
+    p = &arg0->unk_50;
+    v = &arg0->unk_60;
     asm {
         lqc2 vf1, 0(p)
         lqc2 vf2, 0(v)

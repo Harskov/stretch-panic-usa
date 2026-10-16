@@ -42,17 +42,17 @@ void func_0016D830(Obj2F4 *o)
 {
     func_0016D9F0(o);
     o->unk_2F4 = 0;
-    o->unk_270.v.x = 0.0f;
-    o->unk_270.v.y = 0.0f;
-    o->unk_270.v.z = 0.0f;
-    o->unk_270.v.w = 0.0f;
-    o->unk_280 = o->unk_270.q;
-    o->unk_230.q = o->unk_190;
-    o->unk_240.q = o->unk_1A0;
-    o->unk_250.q = o->unk_1B0;
-    o->unk_230.v.w = 1.0f;
-    o->unk_240.v.w = 1.0f;
-    o->unk_250.v.w = 1.0f;
+    o->unk_270.vec0.x = 0.0f;
+    o->unk_270.vec0.y = 0.0f;
+    o->unk_270.vec0.z = 0.0f;
+    o->unk_270.vec0.w = 0.0f;
+    o->unk_280 = o->unk_270.unk_0;
+    o->unk_230.unk_0 = o->unk_190;
+    o->unk_240.unk_0 = o->unk_1A0;
+    o->unk_250.unk_0 = o->unk_1B0;
+    o->unk_230.vec0.w = 1.0f;
+    o->unk_240.vec0.w = 1.0f;
+    o->unk_250.vec0.w = 1.0f;
 }
 
 void func_0016D8A0(Obj130 *arg0)
@@ -86,7 +86,7 @@ void func_0016DC30(Obj168 *arg0) {
 void func_0016DC40(Obj168 *arg0, s32 arg1) {
     arg0->unk_164 = arg1;
     arg0->unk_168 = func_00172A80(arg1);
-    arg0->flags |= 0x04000000;
+    arg0->unk_60 |= 0x04000000;
 }
 
 s32 func_0016DC80(Obj168 *arg0) {
@@ -94,7 +94,7 @@ s32 func_0016DC80(Obj168 *arg0) {
     if (v != 0) {
         arg0->unk_168 = v - 1;
         if (arg0->unk_168 == 0) {
-            arg0->flags &= 0xFBFFFFFF;
+            arg0->unk_60 &= 0xFBFFFFFF;
             arg0->unk_164 = 0;
         }
         return 1;

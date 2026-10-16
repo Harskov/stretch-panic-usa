@@ -1,6 +1,6 @@
 #include "common.h"
 
-class Base {
+class Obj_0016C720 {
 public:
     virtual void m0();
     virtual void m1();
@@ -9,7 +9,7 @@ public:
     virtual void m4(int);
 };
 
-class Node : public Base {
+class Node : public Obj_0016C720 {
 public:
     unsigned char pad[0x44];
     Node *next;

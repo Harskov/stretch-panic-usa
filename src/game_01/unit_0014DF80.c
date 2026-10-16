@@ -2,18 +2,18 @@
 #include "game_01/node90.h"
 #include "game_01/obj530.h"
 
-typedef struct Ctrl {
+typedef struct Obj_0014DF80 {
     u8 unk_00[0x60];
     u32 unk_60;
-} Ctrl;
+} Obj_0014DF80;
 
 extern s32 *D_006A6D10;
 
 extern s32 func_0013DF50(s32, s32, s32, s32, s32, s32);
 
-extern Ctrl *D_006AF4D8;
+extern Obj_0014DF80 *D_006AF4D8;
 
-void func_0014DF80(ListNode *arg0) {
+void func_0014DF80(Obj4E0 *arg0) {
     if (arg0->flags & 4) {
         if (arg0->unk_4D0 < 0.415625f) {
             arg0->unk_364 = 0xE;
@@ -117,7 +117,7 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_0014DF80", func_0014E650);
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0014DF80", func_0014E7D0);
 
 void func_0014EA70(s32 arg0, u128 *arg1) {
-    ListNode *p;
+    Obj4E0 *p;
     p = D_006AF4C8;
     while (p != 0) {
         p->unk_A0 = *arg1;
@@ -126,8 +126,8 @@ void func_0014EA70(s32 arg0, u128 *arg1) {
     }
 }
 
-void func_0014EAB0(ListNode *arg0, u128 *arg1) {
-    ListNode *p = D_006AF4C8;
+void func_0014EAB0(Obj4E0 *arg0, u128 *arg1) {
+    Obj4E0 *p = D_006AF4C8;
     while (p != 0) {
         *arg1 = p->unk_310;
         p = p->next;
@@ -135,15 +135,15 @@ void func_0014EAB0(ListNode *arg0, u128 *arg1) {
     }
 }
 
-void func_0014EAF0(ListNode *arg0) {
-    ListNode *p = D_006AF4C8;
+void func_0014EAF0(Obj4E0 *arg0) {
+    Obj4E0 *p = D_006AF4C8;
     while (p != 0) {
         p->flags |= 4;
         p = p->next;
     }
 }
 
-void func_0014EB30(ListNode *arg0)
+void func_0014EB30(Obj4E0 *arg0)
 {
     func_0014EAF0(arg0);
     arg0->unk_364 = 0;

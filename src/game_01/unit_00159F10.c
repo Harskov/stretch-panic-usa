@@ -10,7 +10,7 @@ typedef struct Obj {
     u8 unk_40[0x20];
     u32 unk_60;
     u8 unk_64[0x174];
-    u32 unk_1D8;
+    /* 0x1D8 */ u32 flags;
     u8 unk_1DC[0x14];
     u128 unk_1F0;
     u128 unk_200;
@@ -18,10 +18,10 @@ typedef struct Obj {
     u8 unk_250[0x10];
 } Obj;
 
-extern s32 func_00131B30(Obj *arg0, void *arg1, f32 *arg2, Actor *arg3, void *arg4);
+extern s32 func_00131B30(Obj *arg0, void *arg1, f32 *arg2, ObjC8 *arg3, void *arg4);
 
 
-void func_0015BA00(Obj1F0 *arg0, Owner1F0 *arg1);
+void func_0015BA00(Obj1F0 *arg0, ObjCC *arg1);
 
 void *func_00159F10(Obj1F0 *o) {
     return &o->unk_10;
@@ -45,7 +45,7 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_00159F10", func_0015AC70);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00159F10", func_0015ACA0);
 
-void func_0015AD30(Obj1F0 *arg0, Owner1F0 *arg1)
+void func_0015AD30(Obj1F0 *arg0, ObjCC *arg1)
 {
     switch (arg1->unk_C0) {
     case 0:
@@ -82,7 +82,7 @@ void func_0015B500(Obj1F0 *arg0, Vec *arg1) {
     (void)f3;
 }
 
-s32 func_0015B540(Obj *arg0, Actor *arg1)
+s32 func_0015B540(Obj *arg0, ObjC8 *arg1)
 {
     f32 tmp;
     f32 zero;
@@ -96,7 +96,7 @@ s32 func_0015B540(Obj *arg0, Actor *arg1)
             arg0->unk_60 |= 0x80000;
         }
         zero = 0.0f;
-        if (tmp != zero || (arg0->unk_1D8 & 2)) {
+        if (tmp != zero || (arg0->flags & 2)) {
             arg0->unk_60 |= 0x80000;
         }
         return 1;
@@ -110,7 +110,7 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_00159F10", func_0015B800);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00159F10", func_0015B8E0);
 
-void func_0015BA00(Obj1F0 *arg0, Owner1F0 *arg1) {
+void func_0015BA00(Obj1F0 *arg0, ObjCC *arg1) {
     f32 zero;
 
     arg0->unk_10 = arg0->unk_1F0;
@@ -119,7 +119,7 @@ void func_0015BA00(Obj1F0 *arg0, Owner1F0 *arg1) {
         arg0->unk_60 |= 0x80000;
     }
     zero = 0.0f;
-    if ((arg1->unk_80 != zero) || (arg0->unk_1D8 & 2)) {
+    if ((arg1->unk_80 != zero) || (arg0->flags & 2)) {
         arg0->unk_60 |= 0x80000;
     }
 }

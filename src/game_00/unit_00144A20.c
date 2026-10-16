@@ -6,9 +6,9 @@ typedef struct M128 {
 
 typedef struct Obj {
     unsigned char unk_00[0x90];
-    M128 m;
+    /* 0x90 */ M128 unk_90;
     unsigned char unk_110[0x3C];
-    unsigned char flag;
+    /* 0x14C */ unsigned char unk_14C;
 } Obj;
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00144A20", func_00144A20);
@@ -42,8 +42,8 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00144A20", func_00145800);
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00144A20", func_001459B0);
 
 void func_00145A10(Obj *o, M128 *dst) {
-    *dst = o->m;
-    o->flag = 0;
+    *dst = o->unk_90;
+    o->unk_14C = 0;
 }
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00144A20", func_00145A40);

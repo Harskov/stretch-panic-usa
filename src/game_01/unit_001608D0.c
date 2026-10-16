@@ -18,7 +18,7 @@ typedef struct Dst_00162900 {
     u8 unk_00[0x28C];
     u8 unk_28C;
     u8 unk_28D[0x83];
-    Quad3 unk_310;
+    Obj30 unk_310;
 } Dst_00162900;
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001608D0", func_001608D0);

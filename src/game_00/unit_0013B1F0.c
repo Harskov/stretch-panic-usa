@@ -2,7 +2,7 @@
 
 typedef struct Obj0013BD20 {
     u8 pad0[0x10];
-    Vec pos;
+    /* 0x10 */ Vec unk_10;
     Vec delta;
     Vec rot[3];
 } Obj0013BD20;
@@ -46,7 +46,7 @@ void func_0013BD20(Obj0013BD20 *o, register Vec *m)
 {
     register Vec *p;
 
-    p = &o->pos;
+    p = &o->unk_10;
     asm {
         lqc2 vf1, 0x30(m)
         lqc2 vf2, 0(p)

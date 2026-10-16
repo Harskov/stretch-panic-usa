@@ -1,6 +1,6 @@
 #include "common.h"
 
-extern void func_00100630(void *p);
+extern void __dl__FPv(void *p);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00127570", func_00127570);
 
@@ -32,7 +32,7 @@ void *func_00128B40(void *p, s16 flags)
 {
     if (p != 0) {
         if (flags > 0) {
-            func_00100630(p);
+            __dl__FPv(p);
         }
     }
     return p;
