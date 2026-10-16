@@ -16,9 +16,9 @@ typedef struct Holder {
 
 typedef struct Src {
     u128 v0;
-    u128 v1;
-    u128 v2;
-    u128 v3;
+    /* 0x10 */ u128 v10;
+    /* 0x20 */ u128 v20;
+    /* 0x30 */ u128 v30;
     f32 f40;
     s32 i44;
     s32 i48;
@@ -26,12 +26,12 @@ typedef struct Src {
 
 typedef struct Dst {
     u8 pad0[0x10];
-    u128 v0;
+    /* 0x10 */ u128 v10;
     u8 pad20[0x10];
-    u128 v1;
+    /* 0x30 */ u128 v30;
     u8 pad40[0x50];
-    u128 v2;
-    u128 v3;
+    /* 0x90 */ u128 v90;
+    /* 0xA0 */ u128 vA0;
     f32 fB0;
     s32 iB4;
     s32 iB8;
@@ -87,10 +87,10 @@ void func_00179D20(void)
 
 void func_00179D30(Dst *arg0, Src *arg1)
 {
-    arg0->v0 = arg1->v0;
-    arg0->v1 = arg1->v1;
-    arg0->v2 = arg1->v2;
-    arg0->v3 = arg1->v3;
+    arg0->v10 = arg1->v0;
+    arg0->v30 = arg1->v10;
+    arg0->v90 = arg1->v20;
+    arg0->vA0 = arg1->v30;
     arg0->fB0 = arg1->f40;
     arg0->iB4 = 1;
     arg0->iB8 = arg1->i44;

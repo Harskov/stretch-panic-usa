@@ -3770,7 +3770,7 @@
      }
     },
     {
-     "name": "func_0010E130",
+     "name": "_sceCd_cd_callback",
      "size": 160,
      "fuzzy_match_percent": 0.0,
      "metadata": {
@@ -4593,7 +4593,7 @@
      }
     },
     {
-     "name": "func_00114C30",
+     "name": "finitef",
      "size": 36,
      "fuzzy_match_percent": 0.0,
      "metadata": {

@@ -446,7 +446,7 @@ scePadSetWarningLevel 0x0010DFE0 f
 func_0010E048 0x0010E048 f
 sceCdDelayThread 0x0010E070 f
 sceCdCallback 0x0010E0D8 f
-func_0010E130 0x0010E130 f
+_sceCd_cd_callback 0x0010E130 f
 func_0010E1D0 0x0010E1D0 f
 func_0010E368 0x0010E368 f
 cmd_sem_init 0x0010E408 f
@@ -538,7 +538,7 @@ atanf 0x00114850 f
 func_00114AF8 0x00114AF8 f
 cosf 0x00114B28 f
 fabsf 0x00114C10 f
-func_00114C30 0x00114C30 f
+finitef 0x00114C30 f
 floorf 0x00114C58 f
 isnanf 0x00114D40 f
 scalbnf 0x00114D68 f
