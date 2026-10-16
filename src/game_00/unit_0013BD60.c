@@ -26,11 +26,11 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013BD60", func_0013BFB0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013BD60", func_0013C1C0);
 
-// initialize SIF RPC, bind to 0x534D5300, and clear globals once bound
+// binds the RPC client D_006AED50 to the IOP server 0x534D5300, retrying until the server answers.
+// D_006AED74 is 0x24 into D_006AED50, probably the client data's server pointer, which the bind fills
 int func_0013C250(void)
 {
     int i;
-    int *p;
 
     sceSifInitRpc(0);
     do {
@@ -38,13 +38,8 @@ int func_0013C250(void)
             return -1;
     } while (D_006AED74 == 0);
 
-    p = D_006AED40;
-    i = 0;
-    do {
-        i++;
-        *p = 0;
-        p++;
-    } while (i < 2);
+    for (i = 0; i < 2; i++)
+        D_006AED40[i] = 0;
 
     D_006AED48 = 0;
     return 0;

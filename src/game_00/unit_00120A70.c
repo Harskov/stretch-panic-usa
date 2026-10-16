@@ -11,9 +11,8 @@ typedef struct Obj_001211E0 {
     /* 0x1C */ s32 unk_1C;
 } Obj_001211E0;
 
-extern s32 D_006A66F8;
+extern Obj_001211E0 *D_006A66F8;
 
-s32 scePadInit(s32);
 
 void func_00121250(Obj_001211E0 *o);
 
@@ -62,10 +61,11 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00121100);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_001211C0);
 
-// set up the object: register it globally, initialize the pad library, clear fields and continue setup
+// probably the pad handler's constructor (it starts libpad): the one instance is published in D_006A66F8,
+// and a failed scePadInit hangs rather than returning
 Obj_001211E0 *func_001211E0(Obj_001211E0 *o)
 {
-    D_006A66F8 = (s32)o;
+    D_006A66F8 = o;
     if (scePadInit(0) == 0) {
         while (1) {}
     }

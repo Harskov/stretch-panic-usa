@@ -52,7 +52,7 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012C8C0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012C8F0);
 
-// m = 4x4 matrix rows, v = input/output vector
+// v = m * v in place, m as four rows: the MMI transpose turns them into the columns the VU0 multiply takes
 void func_0012C950(register Vec *m, register Vec *v)
 {
     asm {
@@ -83,9 +83,7 @@ void func_0012C950(register Vec *m, register Vec *v)
     }
 }
 
-/* Apply the 4x4 matrix at m to vector v, storing the result in out.
-   The MMI row-to-column transpose and VU0 multiply have no C spelling,
-   so the sequence is written as one asm block. */
+// out = m * v, m as four rows: the MMI transpose turns them into the columns the VU0 multiply takes
 void func_0012C9C0(register Vec *m, register Vec *v, register Vec *out)
 {
     asm {

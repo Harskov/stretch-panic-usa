@@ -512,36 +512,36 @@ Every function whose code carries COP2 instructions, matched or not. The matched
 | `src/game_00/unit_0012C810.c` | 78 | COP2 |
 | `src/game_00/unit_0012C810.c` | 79 | COP2 |
 | `src/game_00/unit_0012C810.c` | 82 | COP2 |
-| `src/game_00/unit_0012C810.c` | 91 | inline asm |
+| `src/game_00/unit_0012C810.c` | 89 | inline asm |
+| `src/game_00/unit_0012C810.c` | 102 | COP2 |
+| `src/game_00/unit_0012C810.c` | 103 | COP2 |
 | `src/game_00/unit_0012C810.c` | 104 | COP2 |
 | `src/game_00/unit_0012C810.c` | 105 | COP2 |
 | `src/game_00/unit_0012C810.c` | 106 | COP2 |
-| `src/game_00/unit_0012C810.c` | 107 | COP2 |
 | `src/game_00/unit_0012C810.c` | 108 | COP2 |
+| `src/game_00/unit_0012C810.c` | 109 | COP2 |
 | `src/game_00/unit_0012C810.c` | 110 | COP2 |
-| `src/game_00/unit_0012C810.c` | 111 | COP2 |
-| `src/game_00/unit_0012C810.c` | 112 | COP2 |
-| `src/game_00/unit_0012C810.c` | 115 | COP2 |
-| `src/game_00/unit_0012C810.c` | 121 | inline asm |
+| `src/game_00/unit_0012C810.c` | 113 | COP2 |
+| `src/game_00/unit_0012C810.c` | 119 | inline asm |
+| `src/game_00/unit_0012C810.c` | 120 | COP2 |
+| `src/game_00/unit_0012C810.c` | 121 | COP2 |
 | `src/game_00/unit_0012C810.c` | 122 | COP2 |
 | `src/game_00/unit_0012C810.c` | 123 | COP2 |
 | `src/game_00/unit_0012C810.c` | 124 | COP2 |
-| `src/game_00/unit_0012C810.c` | 125 | COP2 |
 | `src/game_00/unit_0012C810.c` | 126 | COP2 |
+| `src/game_00/unit_0012C810.c` | 127 | COP2 |
 | `src/game_00/unit_0012C810.c` | 128 | COP2 |
 | `src/game_00/unit_0012C810.c` | 129 | COP2 |
-| `src/game_00/unit_0012C810.c` | 130 | COP2 |
-| `src/game_00/unit_0012C810.c` | 131 | COP2 |
-| `src/game_00/unit_0012C810.c` | 137 | inline asm |
+| `src/game_00/unit_0012C810.c` | 135 | inline asm |
+| `src/game_00/unit_0012C810.c` | 136 | COP2 |
+| `src/game_00/unit_0012C810.c` | 137 | COP2 |
 | `src/game_00/unit_0012C810.c` | 138 | COP2 |
 | `src/game_00/unit_0012C810.c` | 139 | COP2 |
 | `src/game_00/unit_0012C810.c` | 140 | COP2 |
-| `src/game_00/unit_0012C810.c` | 141 | COP2 |
 | `src/game_00/unit_0012C810.c` | 142 | COP2 |
+| `src/game_00/unit_0012C810.c` | 143 | COP2 |
 | `src/game_00/unit_0012C810.c` | 144 | COP2 |
 | `src/game_00/unit_0012C810.c` | 145 | COP2 |
-| `src/game_00/unit_0012C810.c` | 146 | COP2 |
-| `src/game_00/unit_0012C810.c` | 147 | COP2 |
 | `src/game_00/unit_0012DF10.c` | 16 | COP2 |
 | `src/game_00/unit_0012DF10.c` | 17 | COP2 |
 | `src/game_00/unit_0012DF10.c` | 20 | COP2 |

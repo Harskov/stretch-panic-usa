@@ -1,6 +1,6 @@
 #include "common.h"
 
-extern s32 D_001A0970;
+extern s32 D_001A0970[];
 
 extern s32 D_006A6980;
 
@@ -10,13 +10,14 @@ extern s32 D_006A6998;
 
 s32 mwLoadOverlay(s32, s32);
 
-// if the overlay index changed, remember it and retry loading until the call returns non-zero
+// loads overlay D_006A6990 (an index into the table at D_001A0970) only when it is not the one D_006A6998
+// records as loaded; a failed load is repeated until it succeeds
 void func_00128C40(void)
 {
-    if ((D_006A6990 ^ D_006A6998) != 0) {
+    if (D_006A6990 ^ D_006A6998) {
         D_006A6998 = D_006A6990;
-        do {
-        } while (mwLoadOverlay((&D_001A0970)[D_006A6990], D_006A6980) == 0);
+        while (mwLoadOverlay(D_001A0970[D_006A6990], D_006A6980) == 0) {
+        }
     }
 }
 
