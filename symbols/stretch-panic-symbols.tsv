@@ -2026,3 +2026,38 @@ func_0017EB50	unit_0017DBF0	function	asm	gameplay/game_01.010	call-graph communi
 func_0017EC20	unit_0017DBF0	function	asm	gameplay/game_01.010	call-graph community of 7 function(s) from func_0017E3A0
 func_0017EC80	unit_0017DBF0	function	wip	platform	VU0 macro mode: lqc2, qmtc2.ni, sqc2, vadd.xyz
 func_0017ED50	unit_0017DBF0	function	asm	platform	VU0 macro mode: lqc2, qmtc2.ni, sqc2, vmulx.xyz
+func_00122258		function	skipped-data		
+func_0012BA78		function	skipped-data		
+func_0012C808		function	skipped-data		
+func_0012F80C		function	skipped-data		
+func_001313A8		function	skipped-data		
+func_0013BD54		function	skipped-data		
+func_0013DE64		function	skipped-data		
+func_00141204		function	skipped-data		
+func_00145A88		function	skipped-data		
+func_00146FC8		function	skipped-data		
+func_00147F58		function	skipped-data		
+func_001510BC		function	skipped-data		
+func_00152038		function	skipped-data		
+func_001530B8		function	skipped-data		
+func_00158C74		function	skipped-data		
+func_0015BD74		function	skipped-data		
+func_00162924		function	skipped-data		
+func_001651C4		function	skipped-data		
+func_00167EC8		function	skipped-data		
+func_0016BDEC		function	skipped-data		
+func_0016C708		function	skipped-data		
+func_0016C718		function	skipped-data		
+func_0016C778		function	skipped-data		
+func_0016D1CC		function	skipped-data		
+func_0016D764		function	skipped-data		
+func_0016D82C		function	skipped-data		
+func_0016E994		function	skipped-data		
+func_0016FA2C		function	skipped-data		
+func_00170BD4		function	skipped-data		
+func_00171F0C		function	skipped-data		
+func_00172BF8		function	skipped-data		
+func_00172CBC		function	skipped-data		
+func_00173F3C		function	skipped-data		
+func_00175648		function	skipped-data		
+func_0017C504		function	skipped-data		

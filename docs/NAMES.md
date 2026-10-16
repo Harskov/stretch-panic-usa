@@ -12,7 +12,7 @@ Classes of evidence:
 | Named with checked evidence | Count |
 |---|---|
 | Game functions | 3 of 1355 (1352 placeholders, 0 awaiting evidence) |
-| Functions, library included | 501 of 2027 (1526 placeholders, 0 awaiting evidence) |
+| Functions, library included | 501 of 2062 (1561 placeholders, 0 awaiting evidence) |
 | Types | 3 of 96 (93 placeholders, 0 awaiting evidence) |
 | Members the matched code reaches | 15 of 311 (296 placeholders, 0 awaiting evidence) |
 | Globals the matched code reaches | 0 of 24 (24 placeholders, 0 awaiting evidence) |

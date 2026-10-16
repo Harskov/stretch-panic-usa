@@ -426,13 +426,13 @@
    "name": "sdk_libgraph",
    "measures": {
     "fuzzy_match_percent": 0.0,
-    "total_code": 5324,
+    "total_code": 4428,
     "matched_code": 0,
     "matched_code_percent": 0.0,
     "total_data": 0,
     "matched_data": 0,
     "matched_data_percent": 0.0,
-    "total_functions": 21,
+    "total_functions": 14,
     "matched_functions": 0,
     "matched_functions_percent": 0.0,
     "complete_code": 0,
@@ -553,7 +553,36 @@
      "metadata": {
       "virtual_address": 1061648
      }
-    },
+    }
+   ],
+   "metadata": {
+    "complete": false,
+    "progress_categories": [
+     "sdk"
+    ],
+    "auto_generated": false
+   }
+  },
+  {
+   "name": "sdk_libdma",
+   "measures": {
+    "fuzzy_match_percent": 0.0,
+    "total_code": 2812,
+    "matched_code": 0,
+    "matched_code_percent": 0.0,
+    "total_data": 0,
+    "matched_data": 0,
+    "matched_data_percent": 0.0,
+    "total_functions": 19,
+    "matched_functions": 0,
+    "matched_functions_percent": 0.0,
+    "complete_code": 0,
+    "complete_code_percent": 0.0,
+    "complete_data": 0,
+    "complete_data_percent": 0.0
+   },
+   "sections": [],
+   "functions": [
     {
      "name": "memclr",
      "size": 52,
@@ -609,36 +638,7 @@
      "metadata": {
       "virtual_address": 1063304
      }
-    }
-   ],
-   "metadata": {
-    "complete": false,
-    "progress_categories": [
-     "sdk"
-    ],
-    "auto_generated": false
-   }
-  },
-  {
-   "name": "sdk_libdma",
-   "measures": {
-    "fuzzy_match_percent": 0.0,
-    "total_code": 1916,
-    "matched_code": 0,
-    "matched_code_percent": 0.0,
-    "total_data": 0,
-    "matched_data": 0,
-    "matched_data_percent": 0.0,
-    "total_functions": 12,
-    "matched_functions": 0,
-    "matched_functions_percent": 0.0,
-    "complete_code": 0,
-    "complete_code_percent": 0.0,
-    "complete_data": 0,
-    "complete_data_percent": 0.0
-   },
-   "sections": [],
-   "functions": [
+    },
     {
      "name": "sceDmaSend",
      "size": 216,
@@ -3489,13 +3489,13 @@
    "name": "sdk_libpad",
    "measures": {
     "fuzzy_match_percent": 0.0,
-    "total_code": 5356,
+    "total_code": 5008,
     "matched_code": 0,
     "matched_code_percent": 0.0,
     "total_data": 0,
     "matched_data": 0,
     "matched_data_percent": 0.0,
-    "total_functions": 34,
+    "total_functions": 31,
     "matched_functions": 0,
     "matched_functions_percent": 0.0,
     "complete_code": 0,
@@ -3752,7 +3752,36 @@
      "metadata": {
       "virtual_address": 1105992
      }
-    },
+    }
+   ],
+   "metadata": {
+    "complete": false,
+    "progress_categories": [
+     "sdk"
+    ],
+    "auto_generated": false
+   }
+  },
+  {
+   "name": "sdk_libcdvd",
+   "measures": {
+    "fuzzy_match_percent": 0.0,
+    "total_code": 12032,
+    "matched_code": 0,
+    "matched_code_percent": 0.0,
+    "total_data": 0,
+    "matched_data": 0,
+    "matched_data_percent": 0.0,
+    "total_functions": 51,
+    "matched_functions": 0,
+    "matched_functions_percent": 0.0,
+    "complete_code": 0,
+    "complete_code_percent": 0.0,
+    "complete_data": 0,
+    "complete_data_percent": 0.0
+   },
+   "sections": [],
+   "functions": [
     {
      "name": "sceCdDelayThread",
      "size": 104,
@@ -3776,36 +3805,7 @@
      "metadata": {
       "virtual_address": 1106224
      }
-    }
-   ],
-   "metadata": {
-    "complete": false,
-    "progress_categories": [
-     "sdk"
-    ],
-    "auto_generated": false
-   }
-  },
-  {
-   "name": "sdk_libcdvd",
-   "measures": {
-    "fuzzy_match_percent": 0.0,
-    "total_code": 11684,
-    "matched_code": 0,
-    "matched_code_percent": 0.0,
-    "total_data": 0,
-    "matched_data": 0,
-    "matched_data_percent": 0.0,
-    "total_functions": 48,
-    "matched_functions": 0,
-    "matched_functions_percent": 0.0,
-    "complete_code": 0,
-    "complete_code_percent": 0.0,
-    "complete_data": 0,
-    "complete_data_percent": 0.0
-   },
-   "sections": [],
-   "functions": [
+    },
     {
      "name": "func_0010E1D0",
      "size": 404,
