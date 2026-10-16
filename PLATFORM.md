@@ -463,11 +463,11 @@ Every function whose code carries COP2 instructions, matched or not. The matched
 | `src/game_00/unit_001217C0.c` | 55 | COP2 |
 | `src/game_00/unit_001217C0.c` | 56 | COP2 |
 | `src/game_00/unit_001217C0.c` | 57 | COP2 |
-| `src/game_00/unit_00122260.c` | 39 | inline asm |
-| `src/game_00/unit_00122260.c` | 40 | COP2 |
-| `src/game_00/unit_00122260.c` | 41 | COP2 |
-| `src/game_00/unit_00122260.c` | 42 | COP2 |
-| `src/game_00/unit_00122260.c` | 43 | COP2 |
+| `src/game_00/unit_00122260.c` | 48 | inline asm |
+| `src/game_00/unit_00122260.c` | 49 | COP2 |
+| `src/game_00/unit_00122260.c` | 50 | COP2 |
+| `src/game_00/unit_00122260.c` | 51 | COP2 |
+| `src/game_00/unit_00122260.c` | 52 | COP2 |
 | `src/game_00/unit_0012C810.c` | 5 | inline asm |
 | `src/game_00/unit_0012C810.c` | 6 | COP2 |
 | `src/game_00/unit_0012C810.c` | 7 | COP2 |

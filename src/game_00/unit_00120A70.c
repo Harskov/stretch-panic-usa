@@ -17,6 +17,31 @@ s32 scePadInit(s32);
 
 void func_00121250(Obj_001211E0 *o);
 
+typedef struct Sub_001216E0 {
+    /* 0x00 */ u8 unk_0[0x14];
+    /* 0x14 */ s32 unk_14;
+    /* 0x18 */ s32 unk_18;
+    /* 0x1C */ u8 unk_1C[0x20];
+    /* 0x3C */ s32 unk_3C;
+} Sub_001216E0;
+
+typedef struct Obj_001216E0 {
+    /* 0x00 */ s32 unk_0;
+    /* 0x04 */ u8 unk_4[0xC];
+    /* 0x10 */ s32 unk_10;
+    /* 0x14 */ Sub_001216E0 *unk_14;
+} Obj_001216E0;
+
+extern char D_0069B3C0[];
+
+s32 scePadInit(s32 mode);
+
+s32 scePadPortOpen(s32 port, s32 slot, s32 addr);
+
+s32 printf(const char *fmt, ...);
+
+void func_00120A50(Sub_001216E0 *e);
+
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00120A70);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00120C00);
@@ -70,4 +95,29 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00121640);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00121690);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_001216E0);
+/* When bit 0 of unk_0 is set: scePadInit, then scePadPortOpen for each of the
+   unk_10 entries, hanging on a failure; the bit is cleared afterwards. */
+void func_001216E0(Obj_001216E0 *o)
+{
+    s32 port;
+    s32 slot;
+    s32 i;
+
+    if (o->unk_0 & 1) {
+        if (scePadInit(0) == 0) {
+            while (1) {
+            }
+        }
+        for (i = 0; i < o->unk_10; i++) {
+            port = o->unk_14[i].unk_14;
+            slot = o->unk_14[i].unk_18;
+            func_00120A50(&o->unk_14[i]);
+            if (scePadPortOpen(port, slot, o->unk_14[i].unk_3C) == 0) {
+                printf(D_0069B3C0);
+                while (1) {
+                }
+            }
+        }
+        o->unk_0 &= ~1;
+    }
+}

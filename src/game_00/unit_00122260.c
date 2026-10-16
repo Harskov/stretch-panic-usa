@@ -17,11 +17,20 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00122260", func_00122380);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00122260", func_001223D0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00122260", func_001223F0);
+f32 func_001223F0(Obj_00122460 *o)
+{
+    return o->unk_20.x;
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00122260", func_00122400);
+f32 func_00122400(Obj_00122460 *o)
+{
+    return o->unk_20.y;
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00122260", func_00122410);
+f32 func_00122410(Obj_00122460 *o)
+{
+    return o->unk_20.z;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00122260", func_00122420);
 

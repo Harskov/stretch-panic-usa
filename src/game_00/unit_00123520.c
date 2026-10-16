@@ -1,5 +1,23 @@
 #include "common.h"
 
+typedef struct Obj_00123F70 {
+    /* 0x00 */ f32 unk_0;
+    /* 0x04 */ f32 unk_4;
+    /* 0x08 */ char *unk_8;
+    /* 0x0C */ s32 unk_C;
+    /* 0x10 */ struct Obj_00123F70 *unk_10;
+} Obj_00123F70;
+
+void *__nw__FUi(u32 size);
+
+void *func_001006F0(s32 size);
+
+s32 sprintf(char *s, const char *fmt, ...);
+
+extern char D_0069B3D8[];
+
+extern Obj_00123F70 *D_006A6738;
+
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_00123520);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_00123590);
@@ -18,7 +36,20 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_001238E0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_00123F50);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_00123F70);
+/* Allocates a node, formats arg2 into a fresh 16-byte buffer and pushes the
+   node on the D_006A6738 list. */
+void func_00123F70(f32 arg0, f32 arg1, f32 arg2)
+{
+    Obj_00123F70 *o = __nw__FUi(0x14);
+
+    o->unk_0 = arg0;
+    o->unk_4 = arg1;
+    o->unk_8 = func_001006F0(0x10);
+    o->unk_C = 1;
+    o->unk_10 = D_006A6738;
+    sprintf(o->unk_8, D_0069B3D8, arg2);
+    D_006A6738 = o;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_00124010);
 

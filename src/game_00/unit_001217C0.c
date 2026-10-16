@@ -10,7 +10,7 @@ typedef struct Obj_001217C0 {
     Quad unk_10;
     Vec unk_20;
     s32 unk_30;
-    u8 unk_34[0x4];
+    /* 0x34 */ f32 unk_34;
     Vec *unk_38;
     Quad *unk_3C;
     s32 unk_40;
@@ -76,7 +76,10 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_001217C0", func_00121D60);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001217C0", func_00121E50);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_001217C0", func_00121F20);
+void func_00121F20(Obj_001217C0 *o, f32 v)
+{
+    o->unk_34 = v;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001217C0", func_00121F30);
 

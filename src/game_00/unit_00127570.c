@@ -26,7 +26,12 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00127570", func_00127BA0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00127570", func_00127FD0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00127570", func_00128B30);
+/* Returns its argument; func_00127FD0 hands its address on as a callback
+   beside func_00128B40. */
+void *func_00128B30(void *p)
+{
+    return p;
+}
 
 void *func_00128B40(void *p, s16 flags)
 {
