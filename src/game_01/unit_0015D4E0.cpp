@@ -12,10 +12,11 @@ struct Obj {
 
 extern "C" void func_0015D4E0(Obj *arg0);
 
+// registers: sub = the object held at unk_114, called through its vtable
 void func_0015D4E0(Obj *arg0)
 {
-    Sub *temp_a0 = arg0->unk_114;
-    if (temp_a0 != 0) {
-        temp_a0->m0(1);
+    Sub *sub = arg0->unk_114;
+    if (sub != 0) {
+        sub->m0(1);
     }
 }

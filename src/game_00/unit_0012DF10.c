@@ -1,4 +1,5 @@
 #include "common.h"
+#include "game_00/unit_0012DF10.h"
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012DF10", func_0012DF10);
 

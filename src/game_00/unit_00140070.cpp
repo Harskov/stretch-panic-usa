@@ -31,11 +31,12 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00140070", func_00140D70);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00140070", func_00140E20);
 
+// registers: sub = the object held at unk_280, called through its vtable
 void func_00140F10(Obj_00140F10 *arg0)
 {
-    Sub_00140F10 *temp_a0 = arg0->unk_280;
-    if (temp_a0 != 0) {
-        temp_a0->m0(1);
+    Sub_00140F10 *sub = arg0->unk_280;
+    if (sub != 0) {
+        sub->m0(1);
     }
 }
 

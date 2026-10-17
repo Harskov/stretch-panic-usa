@@ -20,7 +20,7 @@ typedef struct Obj {
 
 void func_00159E20(Obj1F0 *arg0, ObjCC *arg1);
 
-extern s32 func_00131B30(Obj *arg0, void *arg1, s32 *arg2, ObjC8 *arg3, void *arg4);
+extern s32 func_00131B30(Obj *arg0, void *arg1, f32 *arg2, ObjC8 *arg3, void *arg4);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00158C80", func_00158C80);
 
@@ -75,7 +75,7 @@ void func_00159820(Obj1F0 *a0, f32 *a1) {
 
 s32 func_00159860(Obj *arg0, ObjC8 *arg1)
 {
-    s32 tmp;
+    f32 tmp;
 
     arg0->unk_230 = arg0->unk_10;
     arg0->unk_240 = arg0->unk_30;

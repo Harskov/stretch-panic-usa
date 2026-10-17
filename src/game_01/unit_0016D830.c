@@ -1,6 +1,7 @@
 #include "common.h"
 #include "game_01/obj168.h"
 #include "game_01/scratchpad.h"
+#include "game_00/unit_0012DF10.h"
 
 /* +0x230, +0x240 and +0x250 are copied whole from +0x190..+0x1B0 and then have their
    fourth lane set to 1.0, and +0x270 is cleared lane by lane and then copied whole to
@@ -34,8 +35,6 @@ typedef struct Obj130 {
 
 extern void func_0016D9F0(Obj2F4 *o);
 
-extern f32 func_0012E850(Quad *arg0);
-
 s32 func_00172A80(s32 arg0);
 
 void func_0016D830(Obj2F4 *o)
@@ -57,7 +56,7 @@ void func_0016D830(Obj2F4 *o)
 
 void func_0016D8A0(Obj130 *arg0)
 {
-    if (func_0012E850(&arg0->unk_10) >= arg0->unk_130) {
+    if (func_0012E850(&arg0->unk_10.vec0) >= arg0->unk_130) {
         arg0->unk_10 = arg0->unk_120;
         arg0->unk_30 = *SPR_QUAD;
     }

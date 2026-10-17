@@ -1,4 +1,5 @@
 #include "common.h"
+#include "game_00/obj_001211E0.h"
 
 typedef struct Obj_0011F5E0 {
     /* 0x00 */ unsigned short unk_0[9];
@@ -59,8 +60,6 @@ extern Obj_001972A0 D_001972A0;
 
 extern void *D_006A66E8;
 
-extern void *D_006A66F8;
-
 extern s32 D_006A6730;
 
 extern s32 *D_006A6D10;
@@ -100,8 +99,6 @@ void *__nw__FUi(u32 size);
 s32 func_0010C610(char *path, s32 arg1, s32 arg2);
 
 void func_00119AA0(u32 arg0);
-
-void *func_001211E0(void *o);
 
 void func_00121640(void *arg0, s32 arg1, s32 arg2, s32 arg3);
 

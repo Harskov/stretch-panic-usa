@@ -1,17 +1,5 @@
 #include "common.h"
-
-typedef struct Obj_001211E0 {
-    /* 0x00 */ s32 unk_0;
-    /* 0x04 */ u8  unk_4;
-    /* 0x08 */ s32 unk_8;
-    /* 0x0C */ s32 unk_C;
-    /* 0x10 */ s32 unk_10;
-    /* 0x14 */ s32 unk_14;
-    /* 0x18 */ s32 unk_18;
-    /* 0x1C */ s32 unk_1C;
-} Obj_001211E0;
-
-extern Obj_001211E0 *D_006A66F8;
+#include "game_00/obj_001211E0.h"
 
 
 void func_00121250(Obj_001211E0 *o);
