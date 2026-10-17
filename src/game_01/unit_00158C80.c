@@ -73,13 +73,14 @@ void func_00159820(Obj1F0 *a0, f32 *a1) {
     (void)f3;
 }
 
+// registers: out = the f32 func_00131B30 writes through its third argument
 s32 func_00159860(Obj *arg0, ObjC8 *arg1)
 {
-    f32 tmp;
+    f32 out;
 
     arg0->unk_230 = arg0->unk_10;
     arg0->unk_240 = arg0->unk_30;
-    if (func_00131B30(arg0, arg0->unk_290, &tmp, arg1, arg1->unk_80) != 0) {
+    if (func_00131B30(arg0, arg0->unk_290, &out, arg1, arg1->unk_80) != 0) {
         if (arg0->unk_1D0 != 0) {
             arg0->unk_60 |= 0x80000;
         } else if (arg1->unk_C4->unk_54 == 4) {

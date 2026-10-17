@@ -39,12 +39,13 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016D240", func_0016D510);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016D240", func_0016D560);
 
+// registers: copy = the local copy of D_00601A40 whose address is passed on
 void func_0016D620(void *arg0, s32 arg1)
 {
-    Quad tmp;
+    Quad copy;
 
-    tmp = D_00601A40;
-    func_0016EFC0(arg0, &tmp, arg1, 0, 0.75f, 0.0f);
+    copy = D_00601A40;
+    func_0016EFC0(arg0, &copy, arg1, 0, 0.75f, 0.0f);
 }
 
 void func_0016D660(void) {

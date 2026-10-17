@@ -82,21 +82,22 @@ void func_0015B500(Obj1F0 *arg0, Vec *arg1) {
     (void)f3;
 }
 
+// registers: out = the f32 func_00131B30 writes through its third argument, compared with zero
 s32 func_0015B540(Obj *arg0, ObjC8 *arg1)
 {
-    f32 tmp;
+    f32 out;
     f32 zero;
 
     arg0->unk_1F0 = arg0->unk_10;
     arg0->unk_200 = arg0->unk_30;
-    if (func_00131B30(arg0, arg0->unk_250, &tmp, arg1, arg1->unk_80) != 0) {
+    if (func_00131B30(arg0, arg0->unk_250, &out, arg1, arg1->unk_80) != 0) {
         arg0->unk_10 = arg0->unk_1F0;
         arg0->unk_30 = arg0->unk_200;
         if (arg1->unk_C4->unk_54 == 4) {
             arg0->unk_60 |= 0x80000;
         }
         zero = 0.0f;
-        if (tmp != zero || (arg0->flags & 2)) {
+        if (out != zero || (arg0->flags & 2)) {
             arg0->unk_60 |= 0x80000;
         }
         return 1;
