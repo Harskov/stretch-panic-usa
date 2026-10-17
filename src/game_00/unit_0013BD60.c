@@ -12,6 +12,8 @@ int sceSifInitRpc(int mode);
 
 int sceSifBindRpc(int *rd, unsigned int rpc_id, unsigned int mode);
 
+extern s32 D_006AEDD8;
+
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013BD60", func_0013BD60);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013BD60", func_0013BDF0);
@@ -61,7 +63,10 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013BD60", func_0013C7A0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013BD60", func_0013C7D0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013BD60", func_0013C820);
+void func_0013C820(s32 arg0)
+{
+    D_006AEDD8 = arg0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013BD60", func_0013C830);
 

@@ -19,7 +19,11 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012AA40", func_0012B1F0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012AA40", func_0012B260);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012AA40", func_0012B2D0);
+/* Copies the object's word at 0xE4 out through arg1. */
+void func_0012B2D0(Obj90 *o, s32 *arg1)
+{
+    *arg1 = o->unk_E4;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012AA40", func_0012B2E0);
 

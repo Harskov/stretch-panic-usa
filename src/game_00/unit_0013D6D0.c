@@ -22,11 +22,19 @@ void func_0013C420(s32 arg0, s32 arg1, s32 arg2);
 
 void func_0013DE10(s32 *args);
 
+typedef struct Obj_0013D940 {
+    /* 0x000 */ u8 pad_0[0x240];
+    /* 0x240 */ s32 unk_240;
+} Obj_0013D940;
+
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013D6D0", func_0013D6D0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013D6D0", func_0013D8C0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013D6D0", func_0013D940);
+void func_0013D940(Obj_0013D940 *o, s32 *arg1)
+{
+    *arg1 = o->unk_240;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013D6D0", func_0013D950);
 

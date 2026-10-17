@@ -25,9 +25,17 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00128C40", func_00128CB0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00128C40", func_00129010);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00128C40", func_00129050);
+/* Selects the overlay func_00128C40 loads next. */
+void func_00129050(s32 arg0)
+{
+    D_006A6990 = arg0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00128C40", func_00129060);
+/* Returns the overlay index D_006A6990 (func_00128C40 loads that overlay). */
+s32 func_00129060(void)
+{
+    return D_006A6990;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00128C40", func_00129070);
 

@@ -28,6 +28,14 @@ extern Obj14 D_006AEFE0;
 
 s32 func_00146500(char *path);
 
+extern s32 D_006AEF08;
+
+extern s32 D_006AEED8;
+
+extern s32 D_006AEEC8;
+
+extern s32 D_006AEED0;
+
 INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00146FD0);
 
 void func_00147070(void)
@@ -126,17 +134,35 @@ INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147520);
 
 INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147570);
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147B20);
+s32 func_00147B20(void)
+{
+    return D_006AEEC8;
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147B30);
+s32 func_00147B30(void)
+{
+    return D_006AEED0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147B40);
+void func_00147B40(s32 arg0)
+{
+    D_006AEED8 = arg0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147B50);
+s32 func_00147B50(void)
+{
+    return D_006AEEC8;
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147B60);
+s32 func_00147B60(void)
+{
+    return D_006AEED0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147B70);
+void func_00147B70(s32 arg0)
+{
+    D_006AEED8 = arg0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147B80);
 
@@ -146,7 +172,11 @@ INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147BC0);
 
 INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147BD0);
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147BE0);
+/* Clears the card state word D_006AEF08; the memory-card start-up, func_00145F00, calls it. */
+void func_00147BE0(void)
+{
+    D_006AEF08 = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147BF0);
 

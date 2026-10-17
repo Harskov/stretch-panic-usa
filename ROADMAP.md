@@ -6,13 +6,13 @@ The project serves four purposes — preservation, recompilation, porting and le
 |---|---|---|---|
 | M1 | Contributable | done | public-build.json ok=True; matched outside their unit: 0 |
 | M2 | Identified | done | name pass closed: True; unlabelled game functions: 0; review pending: 0 |
-| M3 | Platform boundary | current | 46/293 platform functions matched; PLATFORM.md present |
-| M4 | Core | later | 2/51 core functions matched; FORMATS.md missing |
-| M5 | Gameplay | later | 223/1007 gameplay functions matched |
-| M6 | Complete | later | 271/1351 game functions matched; check ok=True |
+| M3 | Platform boundary | current | 47/293 platform functions matched; PLATFORM.md present |
+| M4 | Core | later | 3/51 core functions matched; FORMATS.md missing |
+| M5 | Gameplay | later | 242/1007 gameplay functions matched |
+| M6 | Complete | later | 292/1351 game functions matched; check ok=True |
 | M7 | Documented | later | docs.py check ok=None (never run) |
 | M8 | Behaviour-verified | not required | last behaviour compare ok=None at never |
-| M9 | Reverse-engineered | later | names without checked evidence: 0; matches since the last name pass: 46; named types with two layouts: 0 |
+| M9 | Reverse-engineered | later | names without checked evidence: 0; matches since the last name pass: 67; named types with two layouts: 0 |
 
 Readability debt: 3 function(s) carry a `// !FAKE:` body and 0 carry a lint finding (see CONTRIBUTING.md); a pull request that replaces one with plain source that still matches is welcome.
 

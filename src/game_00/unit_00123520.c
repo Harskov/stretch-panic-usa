@@ -30,7 +30,11 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_00123850);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_001238B0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_001238D0);
+/* Empties the list func_00123F70 pushes nodes on; the nodes are not freed here. */
+void func_001238D0(void)
+{
+    D_006A6738 = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_001238E0);
 

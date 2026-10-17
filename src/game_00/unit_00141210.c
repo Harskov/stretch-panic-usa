@@ -2,7 +2,10 @@
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00141210", func_00141210);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00141210", func_00141B10);
+f32 func_00141B10(s32 arg0)
+{
+    return arg0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00141210", func_00141B20);
 
