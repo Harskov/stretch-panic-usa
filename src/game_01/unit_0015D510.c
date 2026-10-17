@@ -38,15 +38,3 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_0015D510", func_0015DA40);
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0015D510", func_0015DC70);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0015D510", func_0015DF00);
-
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0015D510", func_0015E000);
-
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0015D510", func_0015E070);
-
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0015D510", func_0015E160);
-
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0015D510", func_0015E340);
-
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0015D510", func_0015E520);
-
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0015D510", func_0015E9B0);

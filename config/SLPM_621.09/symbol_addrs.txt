@@ -1,5 +1,4 @@
 // symbol_addrs.txt for version jp: the primary's names at this release's addresses (versions.py map); every other symbol is named func_<vram>_<rom> by the release's YAML
-func_00100000 = 0x00100000; // type:func size:0x4
 entry = 0x00100008; // type:func size:0xA0
 func_001000A8 = 0x001000A8; // type:func size:0x8
 func_001000B0 = 0x001000B0; // type:func size:0x34
