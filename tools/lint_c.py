@@ -163,8 +163,12 @@ TYPEDEF_REDECLARE = re.compile(r"^\s*typedef\s+[\w\s]+?\s+(u8|u16|u32|u64|u128|s
 # the pipeline in a comment: a run, an attempt, a score, a knowledge file (K1-K9), a script or project file, a tool name
 # (remediation 2026-10-16-remediation-24, fate run 2026-10-16-032 F-7: an evidence sentence carried "the pack's synonym" and
 # "sce-symbol-scanner data via PS2Recomp" into source; K9 escaped `K[1-8]`). `retried` is not on it: the game's own loops
-# retry a load (stretch-panic run 2026-10-16-038 F-1), and the one narration that used it also named its run
+# retry a load (stretch-panic run 2026-10-16-038 F-1), and the one narration that used it also named its run. The core's
+# K1 §6 words `matched` and `normalizer` are on it ("no matched function reads either member" is the pipeline's state, not
+# the game's), and a K-file by name (`K4-schemas`); `matching arg1` and `unmatched` stay the game's words (remediation
+# 2026-10-17-remediation-37, redakai run 2026-10-17-043 F-3)
 PROCESS_COMMENT = re.compile(r"\brun \d{3}\b|\bruns?/|\bwip/|\b\d{4}-\d{2}-\d{2}-\d{3}\b|\bK[1-9]\s*§?\s*\d|\bcalibration candidate\b|\bremediation\b"
+                             r"|\bmatched\b|\bnormali[sz]ers?\b|\bK[1-9]-"
                              r"|\bF-\d+\b|\bRUN-|\b[A-Za-z_]\w*\.py\b|\bpermuter\b|\battempt[- ]#?\d|\bMatchRunner\b"
                              r"|\bobjdiff\b|\bscor(?:e|ed)(?: at)?\s*[:=]?\s*\d|\bmatch\w*\s+(?:at\s+)?\d{1,3}(?:\.\d+)?\s?%"
                              r"|\b\d{1,3}(?:\.\d+)?\s?%\s+match|\breference/|\b(?:MANIFEST|pack)\.json\b|\bthe pack'?s\b"
