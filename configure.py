@@ -161,7 +161,7 @@ def main():
             part = dps2build.ninja_text(ROOT, basename, objs, as_path=t["as"], as_flags=b0["assembler"]["as_flags"], ld_path=t["ld"],
                                         cc_prefix=cc, env_prefix=env, ld_scripts=ld_scripts, mwccgap=gap, check=check, expected=expected,
                                         build_root=broot, version=None if b["primary"] else b["version"],
-                                        vsrc_cmd=vsrc, rules=(i == 0), asm_root=aroot,
+                                        vsrc_cmd=vsrc, rules=(i == 0), asm_root=aroot, primary_version=b["version"] if b["primary"] else None,
                                         header=f"# build.ninja for {', '.join(x[1]['serial'] for x in chosen)}; written by configure.py, do not edit")
         except dps2build.BuildError as e:
             fail(str(e))

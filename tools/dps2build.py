@@ -280,6 +280,9 @@ def _version_truth(kind, cond, vid):
     """True/False for a condition on VERSION_<ID> macros alone (`#ifdef VERSION_EU`, `#if VERSION_EU || VERSION_JP`,
     `#if !defined(VERSION_US)`), None for any other condition (left to the compiler)."""
     want = vid.upper()
+    # a trailing comment is not part of the condition (`#if VERSION_EU /* Freak Out */`; remediation 2026-10-17-remediation-34,
+    # ps2-pack-8: it was left to a compiler that has no VERSION_ macro defined)
+    cond = re.sub(r"/\*.*?\*/", " ", re.sub(r"//.*$", "", cond)).strip()
     if kind in ("ifdef", "ifndef"):
         m = re.fullmatch(r"\s*VERSION_([A-Z0-9_]+)\s*", cond)
         if not m:
@@ -311,6 +314,9 @@ def version_source(text, vid, asm_root="asm"):
             kind, cond = m.group(1), m.group(2)
             if kind in ("if", "ifdef", "ifndef"):
                 truth = _version_truth(kind, cond, vid)
+                if truth is None and "VERSION_" in cond:
+                    # the compiler defines no VERSION_ macro, so it would take the wrong branch in silence (remediation-34)
+                    raise BuildError(f"#{kind} {cond.strip()} mixes a VERSION_ condition with another: write the VERSION_ test as its own #if")
                 if truth is None:
                     stack.append([None, True, False])
                     out.append(ln)
@@ -353,8 +359,8 @@ def version_source(text, vid, asm_root="asm"):
 
 def ninja_text(root, basename, objs, *, as_path, as_flags, ld_path, cc_prefix, env_prefix="", ld_scripts=(),
                header="", mwccgap=None, check=None, expected=None, build_root="build", version=None, vsrc_cmd=None, rules=True,
-               asm_root=None):
-    """build.ninja for one executable.
+               asm_root=None, primary_version=None):
+    """build.ninja for one executable (`primary_version`: the primary's release id, for its own VERSION_ conditionals).
 
     as_path/ld_path    the MIPS assembler and linker; env_prefix goes before both
                        (LD_LIBRARY_PATH for the Debian binutils' libbfd)
@@ -390,7 +396,7 @@ def ninja_text(root, basename, objs, *, as_path, as_flags, ld_path, cc_prefix, e
     if not rules:
         lines += _version_edges(root, basename, objs, build_root=build_root, version=version, vsrc_cmd=vsrc_cmd, mwccgap=mwccgap,
                                 ld_scripts=ld_scripts, check=check, expected=expected, env_prefix=env_prefix, ld_path=ld_path, ldtag=ldtag,
-                                asm_root=asm_root)
+                                asm_root=asm_root, primary_version=primary_version)
         return "\n".join(lines) + "\n"
     lines += [f"asflags = {as_flags}",
              "rule as",
@@ -424,12 +430,12 @@ def ninja_text(root, basename, objs, *, as_path, as_flags, ld_path, cc_prefix, e
     lines.append("")
     lines += _version_edges(root, basename, objs, build_root=build_root, version=version, vsrc_cmd=vsrc_cmd, mwccgap=mwccgap,
                             ld_scripts=ld_scripts, check=check, expected=expected, env_prefix=env_prefix, ld_path=ld_path, ldtag=ldtag,
-                            asm_root=asm_root)
+                            asm_root=asm_root, primary_version=primary_version)
     return "\n".join(lines) + "\n"
 
 
 def _version_edges(root, basename, objs, *, build_root, version, vsrc_cmd, mwccgap, ld_scripts, check, expected, env_prefix,
-                   ld_path, ldtag, asm_root=None):
+                   ld_path, ldtag, asm_root=None, primary_version=None):
     """The build edges of one version: every object, the link, the check, the default target."""
     lines, gap_missing = [], []
     for o in objs:
@@ -445,9 +451,12 @@ def _version_edges(root, basename, objs, *, build_root, version, vsrc_cmd, mwccg
             if st:
                 deps.append(st)
         imp = (" | " + " ".join(deps)) if deps else ""
-        if version and vsrc_cmd:
+        # the primary resolves its own VERSION_ conditionals too, in a source that has one (`#if VERSION_US` was false in the
+        # primary's build: remediation-34, ps2-pack-8); a source without one compiles as it is
+        vid = version or (primary_version if primary_version and "VERSION_" in (root / src).read_text(encoding="utf-8", errors="replace") else None)
+        if vid and vsrc_cmd:
             vs = f"{build_root}/vsrc/{src}"
-            lines += [f"build {vs}: vsrc {src}", f"  version = {version}", f"  asmroot = {asm_root or 'asm/' + version}"]
+            lines += [f"build {vs}: vsrc {src}", f"  version = {vid}", f"  asmroot = {asm_root or ('asm/' + version if version else 'asm')}"]
             src = vs
         if gap:
             if mwccgap:

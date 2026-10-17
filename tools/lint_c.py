@@ -20,7 +20,8 @@ end; a C++ translation unit is `unit_<ADDR>.cpp`, remediation 30) and include/**
 FILE arguments narrow it (a wip attempt before `mark`, say).
 
 Rules (error): overlay-cast, byte-offset, reinterpret-lvalue, inline-asm, do-while-zero,
-typedef-redeclare, process-comment, fake-body-unexplained, member-offset
+typedef-redeclare, process-comment, fake-body-unexplained, member-offset, register-name (a decompiler's
+register or stack temporary kept as a name: temp_v0, var_s0, phi_a1, saved_reg_s0, sp1C; remediation 2026-10-17-remediation-34)
 (a struct member named for an offset, `unk_1EC`, that its declaration puts elsewhere;
 remediation 19). byte-offset has two spellings: the cast on the expression,
 `(u8 *)p + 0x1c`, and the cast on the declaration, `*(s32 *)(p + 0x5D0)` with `p`
@@ -135,6 +136,11 @@ RULES = [
     ("do-while-zero", "error", re.compile(r"\bwhile\s*\(\s*0\s*\)")),
     ("register-local", "advisory", re.compile(r"^\s*register\b")),
     ("assign-in-condition", "advisory", re.compile(r"\b(?:if|while)\s*\((?:[^()]|\([^()]*\))*?(?<![=!<>+\-*/%&|^])=(?!=)")),
+    # a decompiler's register or stack temporary kept as a name (m2c's temp_v0, var_s0, phi_a1, saved_reg_s0, sp1C): the
+    # readability gate every pack carries (50-readability-gates; K1 §12), which this lint lacked (remediation 2026-10-17-
+    # remediation-34, ps2-pack-4: 13 such names stood in accepted stretch-panic and fate source)
+    ("register-name", "error", re.compile(r"\b(?:temp|var|phi|saved_reg)_(?:[avtsk][0-9]|at|ra|fp|gp|sp|lo|hi|f[0-9]{1,2})(?:_[0-9]+)?\b"
+                                          r"|\bsp[0-9A-F]{2,4}\b")),
 ]
 
 # the shared rules of the contract the PS2 project's lint did not carry (remediation 2026-10-14-remediation-16, the migration):
@@ -154,8 +160,9 @@ TYPEDEF_REDECLARE = re.compile(r"^\s*typedef\s+[\w\s]+?\s+(u8|u16|u32|u64|u128|s
 # "sce-symbol-scanner data via PS2Recomp" into source; K9 escaped `K[1-8]`). `retried` is not on it: the game's own loops
 # retry a load (stretch-panic run 2026-10-16-038 F-1), and the one narration that used it also named its run
 PROCESS_COMMENT = re.compile(r"\brun \d{3}\b|\bruns?/|\bwip/|\b\d{4}-\d{2}-\d{2}-\d{3}\b|\bK[1-9]\s*§?\s*\d|\bcalibration candidate\b|\bremediation\b"
-                             r"|\bF-\d+\b|\bRUN-|\b[A-Za-z_]\w*\.py\b|\bpermuter\b|\battempt-\d|\bMatchRunner\b"
-                             r"|\bobjdiff\b|\bscor(?:e|ed) \d|\breference/|\b(?:MANIFEST|pack)\.json\b|\bthe pack'?s\b"
+                             r"|\bF-\d+\b|\bRUN-|\b[A-Za-z_]\w*\.py\b|\bpermuter\b|\battempt[- ]#?\d|\bMatchRunner\b"
+                             r"|\bobjdiff\b|\bscor(?:e|ed)(?: at)?\s*[:=]?\s*\d|\bmatch\w*\s+(?:at\s+)?\d{1,3}(?:\.\d+)?\s?%"
+                             r"|\b\d{1,3}(?:\.\d+)?\s?%\s+match|\breference/|\b(?:MANIFEST|pack)\.json\b|\bthe pack'?s\b"
                              r"|\bGhidra\b|\bPS2Recomp\b|\bsce-symbol-scanner\b|\bm2c\b|\bmwccgap\b", re.I)
 COMMENT = re.compile(r"/\*.*?\*/|//[^\n]*", re.S)
 FUNC_DEF = re.compile(r"\b([A-Za-z_]\w*)\s*\([^;{}()]*(?:\([^()]*\)[^;{}()]*)*\)\s*\{")
