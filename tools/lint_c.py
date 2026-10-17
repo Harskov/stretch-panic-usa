@@ -54,8 +54,14 @@ target does not have); the block still needs a COP2 instruction. So does the MMI
 (remediation 34, stretch-panic-usa run 2026-09-30-029 F-1): a `pextlw`/`pextuw`/`pcpyld`/
 `pcpyud` whose result a later `qmtc2` in the block moves into VU0 — directly or through
 another of the four — and an `lq` that loads a row one of them reads. The pinned 2.3.3 has
-no C spelling for them (`_pextlw` is a `jal`; K1 §6 item 12). An `lq` straight into a
-`qmtc2`, an MMI op whose result is stored with `sq`, and any other MMI op stay foreign.
+no C spelling for them (`_pextlw` is a `jal`; K1 §6 item 12). Since remediation-32 (fate run
+2026-10-17-040 F-2, stretch-panic run 2026-10-17-039 F-2) the block's GPR side belongs to it as well:
+the `lw`/`lwu`/`ld` words and the `dsll32`/`or` that pack a vector into a `qmtc2`, the `dsrl32`/MMI
+unpack of a `qmfc2` result, the `sw`/`sd`/`sq` of a value on either path (the transposed rows
+included), a word copied through one GPR by a load and the store right after it, and `.set noat` /
+`.set at`. On fate's 3.0.1 the MMI intrinsics compile, but its target moves the vector through `$at`,
+which the compiler never allocates (the C spelling 32.48; the round's `probe/`). An `lq` straight
+into a `qmtc2` and any other GPR op stay foreign.
 The second such form is a COP1 float-to-int block (remediation 17, run
 2026-09-19-015 F-4): a block whose every instruction is in the conversion set
 (`cvt.w.s`, `cvt.s.w`, `trunc.w.s`, `round.w.s`, `ceil.w.s`, `floor.w.s`, and the
@@ -181,6 +187,15 @@ GPR_WRITERS = re.compile(r"^(?:mfc1|(?:qmfc2|cfc2)(?:\.n?i)?)$", re.I)
 # the four EE MMI ops of the sceVu0 matrix transpose (remediation 34, stretch-panic-usa run
 # 2026-09-30-029 F-1): part of a VU0 block only on their way into a qmtc2 (mmi_transfers)
 MMI_TRANSPOSE = re.compile(r"^(?:pextlw|pextuw|pcpyld|pcpyud)$", re.I)
+# the GPR side of a VU0 block (remediation 2026-10-17-remediation-32: fate run 2026-10-17-040 F-2, stretch-panic run
+# 2026-10-17-039 F-2): the words a vector is packed from on its way into a qmtc2 (`lwu` x3, `dsll32`/`or`, `pcpyld`), the
+# unpack of a qmfc2 result (`dsrl32`, `pcpyud`) and the stores of a vector's words or rows (vector_stores), and a word copied
+# through one GPR (word_copies)
+VEC_PACK = re.compile(r"^(?:dsll32|or)$", re.I)
+VEC_UNPACK = re.compile(r"^(?:dsrl32|pextlw|pextuw|pcpyld|pcpyud)$", re.I)
+WORD_LOAD = re.compile(r"^(?:lw|lwu|ld|lq)$", re.I)
+WORD_STORE = re.compile(r"^(?:sw|sd|sq)$", re.I)
+LOAD_STORE = {"lw": "sw", "lwu": "sw", "ld": "sd", "lq": "sq"}
 # COP1 float<->int conversion (remediation 17): the conversion itself, plus the moves
 # that carry the value between an FPU register and a GPR. `mfc1`/`mtc1` alone are NOT a
 # conversion block — COP1_CONV_ONLY is what makes one of these a conversion rather than
@@ -198,9 +213,10 @@ def vu0_neutral(mn, ops):
     (remediation 28, stretch-panic-usa run 2026-09-30-023 F-1): `nop` (padding the target
     carries, 112 of 112 bytes on func_00121A60 with it) and `.set noreorder` / `.set reorder`,
     which keep the pinned assembler from putting a hazard nop between `mfc1 g, f` and
-    `qmtc2 g, vfN` (36 of 36 bytes on func_0012EE90 and func_0012EA50 with the pair scoped)."""
+    `qmtc2 g, vfN` (36 of 36 bytes on func_0012EE90 and func_0012EA50 with the pair scoped), and `.set noat` / `.set at`
+    around a block that moves a vector through `$at` (fate's func_00302978, 100 with the pair; remediation-32)."""
     low = mn.lower()
-    return low == "nop" or (low == ".set" and ops in (["reorder"], ["noreorder"]))
+    return low == "nop" or (low == ".set" and ops in (["reorder"], ["noreorder"], ["at"], ["noat"]))
 
 
 def asm_statements(text):
@@ -306,7 +322,10 @@ def mmi_transfers(stmts):
     VU0 (remediation 34, stretch-panic-usa run 2026-09-30-029 F-1: func_0012C950 and func_0012C9C0,
     100 as one block, 0.0 with the `_pextlw` intrinsics): a `pextlw`/`pextuw`/`pcpyld`/`pcpyud`
     whose result a later `qmtc2` moves into VU0, directly or through another of the four, and an
-    `lq` that loads a row one of them reads. Found backwards from each `qmtc2` operand; a GPR
+    `lq` that loads a row one of them reads. Since remediation-32 the same chain packs a vector from
+    words (fate's func_00302978, 100: `lwu` x3, `dsll32`, `or`, `pcpyld`, `qmtc2`): a `dsll32`/`or`
+    on the chain and an `lw`/`lwu`/`ld` that loads a word it reads. A load straight into a `qmtc2`
+    stays foreign (`lqc2` is the VU0 load). Found backwards from each `qmtc2` operand; a GPR
     written again in between ends its chain. `stmts` is one block from asm_statements()."""
     to_vu0, to_mmi, keep = set(), set(), set()
     for i in range(len(stmts) - 1, -1, -1):
@@ -323,7 +342,14 @@ def mmi_transfers(stmts):
             if feeds:
                 keep.add(i)
                 to_mmi.update(ops[1:])   # after the destination is retired: `pextlw t0, t1, t0` reads t0
-        elif mn.lower() == "lq" and len(ops) == 2:
+        elif VEC_PACK.match(mn) and len(ops) == 3:
+            feeds = g in to_vu0 or g in to_mmi
+            to_vu0.discard(g)
+            to_mmi.discard(g)
+            if feeds:
+                keep.add(i)
+                to_mmi.update(ops[1:2] if mn.lower() == "dsll32" else ops[1:])   # dsll32's third operand is the shift
+        elif WORD_LOAD.match(mn) and len(ops) == 2:
             if g in to_mmi:
                 keep.add(i)
             to_vu0.discard(g)
@@ -331,6 +357,59 @@ def mmi_transfers(stmts):
         elif GPR_WRITERS.match(mn):
             to_vu0.discard(g)
             to_mmi.discard(g)
+    return keep
+
+
+def vector_stores(stmts, into=None):
+    """Indices of the statements of one asm block that take a vector's words out of VU0 or store a row on its way in
+    (remediation-32): the `dsrl32`/MMI unpack of a `qmfc2` result (every register it reads on that path) and an `sw`/`sd`/`sq`
+    of a value on it — a `qmfc2` result, an unpacked word, or a transposed row a `qmtc2` also moves (`into`, mmi_transfers):
+    fate's func_00302978 (`qmfc2`, `dsrl32`, `pcpyud`, three `sw`) and stretch-panic's func_0012CA90 (the rows of the
+    sceVu0InversMatrix transpose stored with `sq`), both 100 as one block. Found forwards; a GPR written again ends its value."""
+    into = mmi_transfers(stmts) if into is None else into
+    vec, keep = set(), set()
+    for i, (mn, ops) in enumerate(stmts):
+        if not ops:
+            continue
+        g = ops[0]
+        if WORD_STORE.match(mn) and len(ops) == 2:
+            if g in vec:
+                keep.add(i)
+        elif QMTC2.match(mn) or mn.lower().startswith(("ctc2", "sqc2", "lqc2")):
+            continue                                   # reads its GPR (or moves a vf register): writes no GPR
+        elif QMFC2.match(mn):
+            vec.add(g)
+        elif i in into and MMI_TRANSPOSE.match(mn):
+            vec.add(g)
+        elif VEC_UNPACK.match(mn) and len(ops) == 3 and all(o in vec for o in ops[1:] if not re.fullmatch(r"(?:0x)?[0-9a-f]+", o)):
+            keep.add(i)
+            vec.add(g)
+        else:
+            vec.discard(g)
+    return keep
+
+
+def word_copies(stmts):
+    """Indices of the load/store pairs of one asm block that copy a word through one GPR and nothing else (remediation-32,
+    stretch-panic run 2026-10-17-039 F-2: func_0012CA90's `lw t0, 0x40(m)` / `sw t0, 0x40(out)` ahead of the VU0 code, 100 in
+    the block, 99.66 with the copy in C, where the compiler picks v1): a load followed at once by the store of the same width
+    and register, whose register the block reads nowhere else before writing it again."""
+    keep = set()
+    for i in range(len(stmts) - 1):
+        (m1, o1), (m2, o2) = stmts[i], stmts[i + 1]
+        if len(o1) != 2 or len(o2) != 2 or LOAD_STORE.get(m1.lower()) != m2.lower() or o1[0] != o2[0]:
+            continue
+        g, clean = o1[0], True
+        for mn, ops in stmts[i + 2:]:
+            reads = any(o == g or o.endswith(f"({g})") for o in ops[1:]) or (
+                ops[:1] == [g] and (WORD_STORE.match(mn) or QMTC2.match(mn) or mn.lower().startswith("ctc2")))
+            if reads:
+                clean = False
+                break
+            if ops[:1] == [g]:
+                break                                  # written again: the copy's value is dead
+        if clean:
+            keep.update((i, i + 1))
     return keep
 
 
@@ -595,7 +674,8 @@ def lint_text(text, path="", draft=None):
     for lineno, stmts in asm_statements(stripped):
         mnemonics = [mn for mn, _ in stmts]
         src = lines[lineno - 1].strip() if lineno <= len(lines) else "asm {"
-        scalar = scalar_transfers(stmts) | mmi_transfers(stmts)
+        into = mmi_transfers(stmts)
+        scalar = scalar_transfers(stmts) | into | vector_stores(stmts, into) | word_copies(stmts)
         foreign = [mn for i, (mn, ops) in enumerate(stmts)
                    if not COP2_MNEMONIC.match(mn) and i not in scalar and not vu0_neutral(mn, ops)]
         foreign_fpu = [x for x in mnemonics if not COP1_CONV_MNEMONIC.match(x)]
@@ -617,8 +697,8 @@ def lint_text(text, path="", draft=None):
                 hint = ("; an mfc1/mtc1 is part of a VU0 block only as the scalar transfer whose GPR a qmtc2/qmfc2"
                         " in the same block moves (K9 C3)")
             elif any(MMI_TRANSPOSE.match(x) or x.lower() in ("lq", "sq") for x in foreign) and any(COP2_MNEMONIC.match(x) for x in mnemonics):
-                hint = ("; pextlw/pextuw/pcpyld/pcpyud and the lq of their rows are part of a VU0 block only as the"
-                        " transpose whose result a qmtc2 in the same block moves (K1 §6 item 12)")
+                hint = ("; pextlw/pextuw/pcpyld/pcpyud, the loads and dsll32/or they pack from, and the sw/sd/sq of their"
+                        " rows are part of a VU0 block only on the path of a qmtc2/qmfc2 in the same block (K1 §6 item 12)")
             findings.append({"path": path, "line": lineno, "rule": "inline-asm", "severity": "error",
                              "source": f"{src}  [not COP2: {', '.join(foreign) or 'empty block'}{hint}]"})
     vu0_fn = {ln: stmts for ln, stmts in asm_function_statements(stripped) if vu0_float_return(stmts)}
