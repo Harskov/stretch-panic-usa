@@ -21,7 +21,8 @@ FILE arguments narrow it (a wip attempt before `mark`, say).
 
 Rules (error): overlay-cast, byte-offset, reinterpret-lvalue, inline-asm, do-while-zero,
 typedef-redeclare, process-comment, fake-body-unexplained, member-offset, register-name (a decompiler's
-register or stack temporary kept as a name: temp_v0, var_s0, phi_a1, saved_reg_s0, sp1C; remediation 2026-10-17-remediation-34)
+register or stack temporary kept as a name: temp_v0, var_s0, phi_a1, saved_reg_s0, sp1C; remediation 2026-10-17-remediation-34; a local
+declared tmp or temp, remediation 2026-10-17-remediation-35)
 (a struct member named for an offset, `unk_1EC`, that its declaration puts elsewhere;
 remediation 19). byte-offset has two spellings: the cast on the expression,
 `(u8 *)p + 0x1c`, and the cast on the declaration, `*(s32 *)(p + 0x5D0)` with `p`
@@ -141,6 +142,10 @@ RULES = [
     # remediation-34, ps2-pack-4: 13 such names stood in accepted stretch-panic and fate source)
     ("register-name", "error", re.compile(r"\b(?:temp|var|phi|saved_reg)_(?:[avtsk][0-9]|at|ra|fp|gp|sp|lo|hi|f[0-9]{1,2})(?:_[0-9]+)?\b"
                                           r"|\bsp[0-9A-F]{2,4}\b")),
+    # a local declared `tmp` or `temp` (K1 §4: "tmp is not a name"); the declaration is the place to name it, and a string
+    # literal holding the word never matches (stretch-panic run 2026-10-17-042 F-1: 3 such locals in accepted source)
+    ("register-name", "error", re.compile(r"^\s*(?:(?:const|struct|unsigned|signed|static)\s+)*(?!(?:return|else|case|goto|do|sizeof)\b)[A-Za-z_]\w*\s*\**\s*"
+                                          r"\b(?:tmp|temp)[0-9]*\s*[;=,\[]")),
 ]
 
 # the shared rules of the contract the PS2 project's lint did not carry (remediation 2026-10-14-remediation-16, the migration):
@@ -719,7 +724,7 @@ def lint_text(text, path="", draft=None):
         hits = [(rule, sev) for rule, sev, rx in RULES if rx.search(line)]
         if ("reinterpret-lvalue", "error") in hits:  # `*(T *)&x[0]` is one finding, not two
             hits = [h for h in hits if h[0] != "overlay-cast"]
-        for rule, sev in hits:
+        for rule, sev in dict.fromkeys(hits):  # one finding per rule and line (register-name has two patterns)
             findings.append({"path": path, "line": lineno, "rule": rule, "severity": sev, "source": line.strip()})
     cast_spelled = {f["line"] for f in findings if f["rule"] == "byte-offset"}
     findings.extend(f for f in byte_pointer_findings(stripped, path) if f["line"] not in cast_spelled)
