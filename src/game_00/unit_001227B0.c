@@ -21,11 +21,21 @@ Sub_00123370 *sceDmaGetChan(s32 id);
 
 void *func_001006F0(s32 size);
 
+typedef struct Obj_00122870 {
+    /* 0x00 */ u8 pad_0[0x25];
+    /* 0x25 */ u8 unk_25;
+    /* 0x26 */ u8 unk_26;
+} Obj_00122870;
+
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_001227B0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_00122800);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_00122870);
+void func_00122870(Obj_00122870 *o)
+{
+    o->unk_25 = 0;
+    o->unk_26 = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_00122880);
 

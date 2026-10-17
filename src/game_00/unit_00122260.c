@@ -7,6 +7,8 @@ typedef struct Obj_00122460 {
     /* 0x20 */ Vec unk_20;
 } Obj_00122460;
 
+void func_0012E9A0(Vec *a, Vec *b, Vec *out, f32 t);
+
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00122260", func_00122260);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00122260", func_00122310);
@@ -38,7 +40,11 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00122260", func_00122430);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00122260", func_00122440);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00122260", func_00122450);
+/* Applies func_0012E9A0 to the vector at 0x20 in place, with b and t passed through. */
+void func_00122450(Obj_00122460 *o, Vec *b, f32 t)
+{
+    func_0012E9A0(&o->unk_20, b, &o->unk_20, t);
+}
 
 void func_00122460(Obj_00122460 *o, register Vec *d)
 {
