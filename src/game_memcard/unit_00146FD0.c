@@ -30,7 +30,10 @@ s32 func_00146500(char *path);
 
 INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00146FD0);
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147070);
+void func_00147070(void)
+{
+    func_00147B80(4);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147080);
 
@@ -38,7 +41,10 @@ INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147120);
 
 INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_001471C0);
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147250);
+void func_00147250(void)
+{
+    func_00147B80(6);
+}
 
 /* Builds the memory-card path "/BASLUS-20182SPANIC" "/" "s_panic.ico" and hands
    it to func_00146B90; its -1 and -2 both come back as -1. */
@@ -94,15 +100,27 @@ INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147380);
 
 INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_001473F0);
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147430);
+void func_00147430(void)
+{
+    func_00147B80(11);
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147440);
+void func_00147440(void)
+{
+    func_00147B80(12);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147450);
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147500);
+void func_00147500(void)
+{
+    func_00147B80(14);
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147510);
+void func_00147510(void)
+{
+    func_00147B80(15);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147520);
 

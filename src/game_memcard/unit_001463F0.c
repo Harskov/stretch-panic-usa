@@ -22,6 +22,8 @@ s32 sceMcFormat(s32 port, s32 slot);
 
 s32 printf(const char *fmt, ...);
 
+void func_00147B80(s32 arg0);
+
 /* The memory-card format step (it prints "[FORMAT]" when it issues sceMcFormat
    and "[FORMAT END]" once both state words read 0x10); the negative returns are
    status codes whose meaning is not yet known. */
@@ -82,4 +84,7 @@ INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_001463F0", func_00146EC0);
 
 INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_001463F0", func_00146EE0);
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_001463F0", func_00146FC0);
+void func_00146FC0(void)
+{
+    func_00147B80(2);
+}

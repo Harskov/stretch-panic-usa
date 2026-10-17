@@ -20,7 +20,10 @@ typedef struct Sub_001216E0 {
     /* 0x00 */ u8 unk_0[0x14];
     /* 0x14 */ s32 unk_14;
     /* 0x18 */ s32 unk_18;
-    /* 0x1C */ u8 unk_1C[0x20];
+    /* 0x1C */ s32 unk_1C;
+    /* 0x20 */ u16 unk_20;
+    /* 0x22 */ u16 unk_22;
+    /* 0x24 */ u8 unk_24[0x18];
     /* 0x3C */ s32 unk_3C;
 } Sub_001216E0;
 
@@ -41,7 +44,67 @@ s32 printf(const char *fmt, ...);
 
 void func_00120A50(Sub_001216E0 *e);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00120A70);
+s32 scePadGetState(s32 port, s32 slot);
+
+s32 scePadInfoMode(s32 port, s32 slot, s32 term, s32 offs);
+
+s32 scePadInfoPressMode(s32 port, s32 slot);
+
+s32 scePadRead(s32 port, s32 slot, u8 *rdata);
+
+extern char D_0069B380[];
+
+void func_0011FE50(Sub_001216E0 *e);
+
+void func_0011FEA0(Sub_001216E0 *e, u8 *rdata);
+
+/* Polls one pad: its libpad state, the terminal id of the connected controller
+   (0x41, 0x53, 0x73 or 0x79), then the button bytes; a failed scePadRead hangs. */
+void func_00120A70(Sub_001216E0 *e)
+{
+    u8 rdata[32];
+    s32 id;
+    s32 exid;
+
+    e->unk_1C = scePadGetState(e->unk_14, e->unk_18);
+    if (e->unk_1C == 0) {
+        e->unk_20 = 0;
+    } else if (e->unk_1C == 2) {
+        id = scePadInfoMode(e->unk_14, e->unk_18, 1, 0);
+        if (id != 0) {
+            exid = scePadInfoMode(e->unk_14, e->unk_18, 2, 0);
+            if (exid > 0) {
+                id = exid;
+            }
+        }
+        if (id == 4) {
+            e->unk_20 = 0x41;
+        } else if (id == 7) {
+            e->unk_20 = 0x53;
+        } else {
+            e->unk_20 = 0x41;
+        }
+    } else if (e->unk_1C == 6) {
+        if (scePadInfoPressMode(e->unk_14, e->unk_18) == 1) {
+            e->unk_20 = 0x79;
+        } else {
+            e->unk_20 = 0x73;
+        }
+    }
+
+    if (e->unk_1C == 2 || e->unk_1C == 6) {
+        if (scePadRead(e->unk_14, e->unk_18, rdata) == 0) {
+            printf(D_0069B380);
+            while (1) {
+            }
+        }
+        e->unk_22 = (rdata[0] << 8) | rdata[1];
+        func_0011FEA0(e, rdata);
+    } else {
+        e->unk_22 = 0;
+        func_0011FE50(e);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00120C00);
 

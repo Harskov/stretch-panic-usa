@@ -197,7 +197,7 @@ Every function whose code carries COP2 instructions, matched or not. The matched
 | `func_0012C9C0` | matched | platform | lqc2, qmtc2.ni, sqc2, vmadday.xyzw, vmaddaz.xyzw, vmaddw.xyzw … |
 | `func_0012CA30` | matched | platform | lqc2, sqc2, vmadday.xyzw, vmaddaz.xyzw, vmaddw.xyzw, vmulax.xyzw |
 | `func_0012CA60` | matched | platform | lqc2, sqc2, vmadday.xyzw, vmaddaz.xyzw, vmaddw.xyzw, vmulax.xyzw |
-| `func_0012CA90` | asm | platform | lqc2, qmfc2.ni, qmtc2.ni, sqc2, vmadday.xyz, vmaddz.xyz … |
+| `func_0012CA90` | wip | platform | lqc2, qmfc2.ni, qmtc2.ni, sqc2, vmadday.xyz, vmaddz.xyz … |
 | `func_0012DD20` | asm | platform | lqc2, sqc2, vadd.xyz, vaddy.x, vaddz.x, vmul.xyz … |
 | `func_0012DF10` | asm | platform | lqc2, sqc2, vopmsub.xyz, vopmula.xyz |
 | `func_0012E820` | matched | platform | lqc2, qmfc2.ni, vaddq.x, vaddy.x, vaddz.x, vmul.xyz … |
@@ -327,7 +327,7 @@ Every function whose code carries COP2 instructions, matched or not. The matched
 | `func_0015DA40` | asm | platform | lqc2, qmtc2.ni, sqc2, vmulx.xyz |
 | `func_0015DC70` | asm | platform | lqc2, qmtc2.ni, sqc2, vadd.xyz, vmulx.xyz |
 | `func_0015DF00` | asm | platform | lqc2, qmtc2.ni, sqc2, vmulx.xyz |
-| `func_0015E000` | asm | platform | lqc2, qmtc2.ni, sqc2, vmulx.xyz |
+| `func_0015E000` | wip | platform | lqc2, qmtc2.ni, sqc2, vmulx.xyz |
 | `func_0015E160` | asm | platform | lqc2, sqc2, vadd.xyz |
 | `func_0015E340` | asm | platform | lqc2, qmtc2.ni, sqc2, vadd.xyz, vmulx.xyz |
 | `func_0015E520` | asm | platform | lqc2, qmtc2.ni, sqc2, vmulx.xyz |
