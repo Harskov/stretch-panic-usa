@@ -1,4 +1,5 @@
 #include "common.h"
+#include "game_00/unit_0013BD60.h"
 
 extern int D_006AED40[2];
 

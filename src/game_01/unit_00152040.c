@@ -1,4 +1,5 @@
 #include "common.h"
+#include "game_00/unit_0012DF10.h"
 #include "game_01/obj80.h"
 
 /* The 16 bytes at +0x20 of the destination are copied whole and then negated
@@ -84,7 +85,6 @@ extern void func_0012E9E0(Vec *a, Vec *b, Vec *out, f32 t);
 
 extern Vec D_006AF4B0;
 
-extern void func_0012E9A0(Vec *a, Vec *b, Vec *out, f32 t);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00152040", func_00152040);
 

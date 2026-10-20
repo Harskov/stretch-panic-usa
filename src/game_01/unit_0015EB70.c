@@ -1,4 +1,5 @@
 #include "common.h"
+#include "game_00/unit_0012DF10.h"
 
 typedef struct Obj_0015ED00 {
     u8 unk_0[0x10];
@@ -10,7 +11,6 @@ typedef struct Obj_0015ED00 {
     /* 0x70 */ Vec unk_70;
 } Obj_0015ED00;
 
-void func_0012E9A0(Vec *a, Vec *b, Vec *out, f32 t);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0015EB70", func_0015EB70);
 

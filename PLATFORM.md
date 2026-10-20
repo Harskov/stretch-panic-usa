@@ -452,7 +452,7 @@ Every function whose code carries COP2 instructions, matched or not. The matched
 
 | File | Line | Kind |
 |---|---|---|
-| `src/game_00/unit_0011F5E0.c` | 19 | u128 |
+| `src/game_00/unit_0011FA00.c` | 22 | u128 |
 | `src/game_00/unit_001217C0.c` | 72 | inline asm |
 | `src/game_00/unit_001217C0.c` | 73 | COP2 |
 | `src/game_00/unit_001217C0.c` | 74 | COP2 |
@@ -688,20 +688,20 @@ Every function whose code carries COP2 instructions, matched or not. The matched
 | `src/game_00/unit_0013B1F0.c` | 73 | COP2 |
 | `src/game_00/unit_0013B1F0.c` | 74 | COP2 |
 | `src/game_00/unit_0013B1F0.c` | 75 | COP2 |
-| `src/game_00/unit_0013BD60.c` | 59 | inline asm |
-| `src/game_00/unit_0013BD60.c` | 63 | COP2 |
-| `src/game_00/unit_0013BD60.c` | 65 | COP2 |
-| `src/game_00/unit_0013BD60.c` | 67 | COP2 |
-| `src/game_00/unit_0013BD60.c` | 75 | COP2 |
+| `src/game_00/unit_0013BD60.c` | 60 | inline asm |
+| `src/game_00/unit_0013BD60.c` | 64 | COP2 |
+| `src/game_00/unit_0013BD60.c` | 66 | COP2 |
+| `src/game_00/unit_0013BD60.c` | 68 | COP2 |
 | `src/game_00/unit_0013BD60.c` | 76 | COP2 |
 | `src/game_00/unit_0013BD60.c` | 77 | COP2 |
-| `src/game_00/unit_0013BD60.c` | 79 | COP2 |
+| `src/game_00/unit_0013BD60.c` | 78 | COP2 |
 | `src/game_00/unit_0013BD60.c` | 80 | COP2 |
 | `src/game_00/unit_0013BD60.c` | 81 | COP2 |
 | `src/game_00/unit_0013BD60.c` | 82 | COP2 |
-| `src/game_00/unit_0013BD60.c` | 85 | COP2 |
-| `src/game_00/unit_0013BD60.c` | 87 | COP2 |
-| `src/game_00/unit_0013BD60.c` | 89 | COP2 |
+| `src/game_00/unit_0013BD60.c` | 83 | COP2 |
+| `src/game_00/unit_0013BD60.c` | 86 | COP2 |
+| `src/game_00/unit_0013BD60.c` | 88 | COP2 |
+| `src/game_00/unit_0013BD60.c` | 90 | COP2 |
 | `src/game_00/unit_00144A20.c` | 5 | u128 |
 | `src/game_01/unit_0014DF80.c` | 107 | inline asm |
 | `src/game_01/unit_0014DF80.c` | 138 | u128 |
@@ -718,18 +718,18 @@ Every function whose code carries COP2 instructions, matched or not. The matched
 | `src/game_01/unit_0014EB90.c` | 53 | COP2 |
 | `src/game_01/unit_0014EB90.c` | 54 | COP2 |
 | `src/game_01/unit_0014EB90.c` | 56 | COP2 |
-| `src/game_01/unit_00152040.c` | 8 | u128 |
 | `src/game_01/unit_00152040.c` | 9 | u128 |
 | `src/game_01/unit_00152040.c` | 10 | u128 |
-| `src/game_01/unit_00152040.c` | 20 | u128 |
+| `src/game_01/unit_00152040.c` | 11 | u128 |
 | `src/game_01/unit_00152040.c` | 21 | u128 |
-| `src/game_01/unit_00152040.c` | 34 | u128 |
-| `src/game_01/unit_00152040.c` | 36 | u128 |
+| `src/game_01/unit_00152040.c` | 22 | u128 |
+| `src/game_01/unit_00152040.c` | 35 | u128 |
 | `src/game_01/unit_00152040.c` | 37 | u128 |
 | `src/game_01/unit_00152040.c` | 38 | u128 |
-| `src/game_01/unit_00152040.c` | 48 | u128 |
+| `src/game_01/unit_00152040.c` | 39 | u128 |
 | `src/game_01/unit_00152040.c` | 49 | u128 |
-| `src/game_01/unit_00152040.c` | 51 | u128 |
+| `src/game_01/unit_00152040.c` | 50 | u128 |
+| `src/game_01/unit_00152040.c` | 52 | u128 |
 | `src/game_01/unit_00158C80.c` | 7 | u128 |
 | `src/game_01/unit_00158C80.c` | 9 | u128 |
 | `src/game_01/unit_00158C80.c` | 15 | u128 |
@@ -796,16 +796,16 @@ Every function whose code carries COP2 instructions, matched or not. The matched
 | `src/game_01/unit_0016E9A0.c` | 88 | COP2 |
 | `src/game_01/unit_0016E9A0.c` | 89 | COP2 |
 | `src/game_01/unit_0016E9A0.c` | 90 | COP2 |
-| `src/game_01/unit_00172CC0.c` | 119 | inline asm |
-| `src/game_01/unit_00172CC0.c` | 120 | COP2 |
+| `src/game_01/unit_00172CC0.c` | 120 | inline asm |
 | `src/game_01/unit_00172CC0.c` | 121 | COP2 |
 | `src/game_01/unit_00172CC0.c` | 122 | COP2 |
 | `src/game_01/unit_00172CC0.c` | 123 | COP2 |
-| `src/game_01/unit_00172CC0.c` | 150 | inline asm |
-| `src/game_01/unit_00172CC0.c` | 151 | COP2 |
+| `src/game_01/unit_00172CC0.c` | 124 | COP2 |
+| `src/game_01/unit_00172CC0.c` | 151 | inline asm |
 | `src/game_01/unit_00172CC0.c` | 152 | COP2 |
 | `src/game_01/unit_00172CC0.c` | 153 | COP2 |
 | `src/game_01/unit_00172CC0.c` | 154 | COP2 |
+| `src/game_01/unit_00172CC0.c` | 155 | COP2 |
 | `src/game_01/unit_00173F40.c` | 11 | u128 |
 | `src/game_01/unit_00173F40.c` | 17 | u128 |
 | `src/game_01/unit_00173F40.c` | 18 | u128 |

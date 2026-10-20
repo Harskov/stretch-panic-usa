@@ -1,4 +1,5 @@
 #include "common.h"
+#include "game_00/unit_0012DF10.h"
 
 typedef struct Obj_00122460 {
     u8 unk_0[0x10];
@@ -7,7 +8,6 @@ typedef struct Obj_00122460 {
     /* 0x20 */ Vec unk_20;
 } Obj_00122460;
 
-void func_0012E9A0(Vec *a, Vec *b, Vec *out, f32 t);
 
 extern s32 D_0069C1E0;
 

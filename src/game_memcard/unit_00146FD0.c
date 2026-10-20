@@ -1,4 +1,5 @@
 #include "common.h"
+#include "game_memcard/unit_001463F0.h"
 
 typedef struct Obj14 {
     /* 0x00 */ char unk_0[0x14];
@@ -14,7 +15,6 @@ char *strcat(char *dst, const char *src);
 
 void func_00147B80(s32 arg0);
 
-s32 func_00146B90(char *path);
 
 extern char D_0069BE50[];
 

@@ -151,6 +151,8 @@ void func_00124010(char *arg0, f32 arg1, f32 arg2)
     D_006A6738 = o;
 }
 
+/* Flips between two frame buffers: 0x12000070 and 0x12000090 are the GS's DISPFB1 and
+   DISPFB2 registers, whose low nine bits (FBP) give the displayed buffer's base. */
 void func_00124080(Obj_00124080 *arg0)
 {
     arg0->unk_364 = (u8)((arg0->unk_364 != 0) ^ 1);

@@ -15,14 +15,14 @@ typedef struct Elem_0012F440 {
     u8 unk_0[0x40];
 } Elem_0012F440;
 
-typedef struct List_0012F440 {
+typedef struct Obj_0012ED30 {
     s32 unk_0;
     Elem_0012F440 *unk_4;
-} List_0012F440;
+} Obj_0012ED30;
 
 typedef struct Obj_0012F440 {
     u8 pad_0[8];
-    List_0012F440 *unk_8;
+    Obj_0012ED30 *unk_8;
 } Obj_0012F440;
 
 f32 func_0012E970(Vec *a, Elem_0012F440 *b);

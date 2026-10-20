@@ -675,26 +675,26 @@ fptoui		function	library		renamed from func_0011F4A0
 __negsf2		function	library		renamed from func_0011F538
 __make_fp		function	library		renamed from func_0011F570
 fptodp		function	library		renamed from func_0011F5A0
-func_0011F5E0	unit_0011F5E0	function	wip	platform	calls sceGsSyncPath, sceGsSyncV
-func_0011FA00	unit_0011F5E0	function	matched	core	boot chain: called from func_0011F5E0, which crt0 calls
-func_0011FA50	unit_0011F5E0	function	matched	platform	calls func_0010C610, sceCdInit, sceCdMmode …
-func_0011FE50	unit_0011F5E0	function	wip	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
-func_0011FEA0	unit_0011F5E0	function	asm	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
-func_00120100	unit_0011F5E0	function	asm	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
-func_00120160	unit_0011F5E0	function	asm	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
-func_001201D0	unit_0011F5E0	function	matched	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
-func_00120230	unit_0011F5E0	function	wip	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
-func_00120270	unit_0011F5E0	function	wip	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
-func_001202B0	unit_0011F5E0	function	matched	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
-func_001202F0	unit_0011F5E0	function	wip	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
-func_00120340	unit_0011F5E0	function	matched	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
-func_001203A0	unit_0011F5E0	function	asm	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
-func_001207D0	unit_0011F5E0	function	wip	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
-func_00120830	unit_0011F5E0	function	asm	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
-func_001208A0	unit_0011F5E0	function	wip	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
-func_00120970	unit_0011F5E0	function	asm	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
-func_001209F0	unit_0011F5E0	function	matched	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
-func_00120A50	unit_0011F5E0	function	matched	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
+func_0011F5E0	unit_0011F5E0	function	matched	platform	calls sceGsSyncPath, sceGsSyncV
+func_0011FA00	unit_0011FA00	function	matched	core	boot chain: called from func_0011F5E0, which crt0 calls
+func_0011FA50	unit_0011FA00	function	matched	platform	calls func_0010C610, sceCdInit, sceCdMmode …
+func_0011FE50	unit_0011FA00	function	wip	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
+func_0011FEA0	unit_0011FA00	function	asm	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
+func_00120100	unit_0011FA00	function	asm	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
+func_00120160	unit_0011FA00	function	asm	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
+func_001201D0	unit_0011FA00	function	matched	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
+func_00120230	unit_0011FA00	function	wip	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
+func_00120270	unit_0011FA00	function	wip	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
+func_001202B0	unit_0011FA00	function	matched	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
+func_001202F0	unit_0011FA00	function	wip	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
+func_00120340	unit_0011FA00	function	matched	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
+func_001203A0	unit_0011FA00	function	asm	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
+func_001207D0	unit_0011FA00	function	wip	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
+func_00120830	unit_0011FA00	function	asm	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
+func_001208A0	unit_0011FA00	function	wip	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
+func_00120970	unit_0011FA00	function	asm	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
+func_001209F0	unit_0011FA00	function	matched	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
+func_00120A50	unit_0011FA00	function	matched	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
 func_00120A70	unit_00120A70	function	matched	platform	calls scePadGetState, scePadInfoMode, scePadInfoPressMode …
 func_00120C00	unit_00120A70	function	asm	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50
 func_00120CE0	unit_00120A70	function	matched	gameplay/game_00.001	call-graph community of 38 function(s) from func_0011FE50

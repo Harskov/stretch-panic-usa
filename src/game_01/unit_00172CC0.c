@@ -83,6 +83,7 @@ void func_00172F60(void)
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00173070);
 
+/* 0x70000B80 and 0x70000BA0 are addresses in the EE's scratchpad RAM. */
 void func_00173120(void)
 {
     func_0012C9C0(D_006A6730->unk_504, 0x70000B80, &D_006B3890);

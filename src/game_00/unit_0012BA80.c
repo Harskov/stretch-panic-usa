@@ -7,12 +7,12 @@ void func_001319D0();
 
 void __dl__FPv(void *);
 
-typedef union Mtx {
+typedef union Obj_0012BA80 {
     u128 q[4];
     f32 f[16];
-} Mtx;
+} Obj_0012BA80;
 
-extern Mtx D_001A09E0;
+extern Obj_0012BA80 D_001A09E0;
 
 extern f32 *D_006A6BA0;
 
@@ -104,7 +104,7 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012BA80", func_0012C6A0);
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012BA80", func_0012C6E0);
 
 void func_0012C710(f32 *arg0) {
-    Mtx m;
+    Obj_0012BA80 m;
     f32 *src;
     f32 v;
     s32 i;

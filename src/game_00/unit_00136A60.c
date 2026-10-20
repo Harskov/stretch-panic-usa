@@ -5,19 +5,19 @@ typedef struct Obj_001392C0 {
     u8 pad_4[0xC];
     /* 0x10 */ s32 *unk_10;
     u8 pad_14[0x30];
-    /* 0x44 */ u32 unk_44;
+    /* 0x44 */ f32 unk_44;
     u8 pad_48[0xC];
     /* 0x54 */ u32 unk_54;
     u8 pad_58[0x8];
     /* 0x60 */ s32 *unk_60;
     u8 pad_64[0x30];
-    /* 0x94 */ u32 unk_94;
+    /* 0x94 */ f32 unk_94;
     u8 pad_98[0xC];
     /* 0xA4 */ u32 unk_A4;
     u8 pad_A8[0x8];
     /* 0xB0 */ s32 *unk_B0;
     u8 pad_B4[0x30];
-    /* 0xE4 */ u32 unk_E4;
+    /* 0xE4 */ f32 unk_E4;
     u8 pad_E8[0xC];
     /* 0xF4 */ u32 unk_F4;
     u8 pad_F8[0x8];
@@ -52,7 +52,7 @@ typedef struct Obj_00139740 {
     u8 pad_C[0x18];
     /* 0x24 */ s32 unk_24;
     /* 0x28 */ s32 unk_28;
-    /* 0x2C */ u32 unk_2C;
+    /* 0x2C */ f32 unk_2C;
     /* 0x30 */ s32 unk_30;
     /* 0x34 */ s8 unk_34;
     /* 0x35 */ s8 unk_35;
@@ -101,18 +101,19 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00136A60", func_00138890);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00136A60", func_00138F80);
 
+/* The 0x7000xxxx words are addresses in the EE's scratchpad RAM (0x70000000-0x70003FFF). */
 Obj_001392C0 *func_001392C0(Obj_001392C0 *arg0)
 {
     arg0->unk_0 = &D_0069C1F0;
     arg0->unk_10 = &D_0069C200;
     arg0->unk_54 = 0x70003B80;
-    arg0->unk_44 = 0x3D800000;
+    arg0->unk_44 = 0.0625f;
     arg0->unk_60 = &D_0069C200;
     arg0->unk_A4 = 0x70003B80;
-    arg0->unk_94 = 0x3D800000;
+    arg0->unk_94 = 0.0625f;
     arg0->unk_B0 = &D_0069C200;
     arg0->unk_F4 = 0x70003BA0;
-    arg0->unk_E4 = 0x3D800000;
+    arg0->unk_E4 = 0.0625f;
     arg0->unk_100 = &D_0069C1E0;
     arg0->unk_114 = 0x70003BC0;
     return arg0;
@@ -134,7 +135,7 @@ Obj_00139740 *func_00139740(Obj_00139740 *arg0, s32 arg1, s32 arg2, s32 arg3, f3
     arg0->unk_28 = arg1;
     arg0->unk_34 = 0;
     arg0->unk_35 = 0;
-    arg0->unk_2C = 0x41C00000;
+    arg0->unk_2C = 24.0f;
     arg0->unk_30 = 0;
     while (arg1 >= 10) {
         arg1 -= 10;

@@ -31,7 +31,7 @@ typedef struct Obj_00174EF0 {
     s32 unk_5C;
     f32 unk_60;
     s32 unk_64;
-    s32 unk_68;
+    f32 unk_68;
     u8 pad_6C[4];
     u128 unk_70;
     u128 unk_80;
@@ -115,7 +115,7 @@ Obj_00174EF0 *func_00174EF0(Obj_00174EF0 *arg0, void *arg1, u128 *arg2, f32 arg6
     arg0->unk_5C = 0;
     arg0->unk_60 = arg6;
     arg0->unk_64 = arg5;
-    arg0->unk_68 = 0x3E800000;
+    arg0->unk_68 = 0.25f;
     arg0->unk_70 = *arg3;
     arg0->unk_80 = *arg4;
     return arg0;

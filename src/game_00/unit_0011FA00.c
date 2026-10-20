@@ -1,4 +1,7 @@
 #include "common.h"
+
+#include "game_00/unit_0013BD60.h"
+
 #include "game_00/obj_001211E0.h"
 
 typedef struct Obj_0011F5E0 {
@@ -112,8 +115,6 @@ void func_0013BD60(s32 arg0);
 
 s32 func_0013C510(s32 arg0, char *arg1);
 
-void func_0013C590(s32 arg0, s32 *arg1);
-
 s32 func_0013DBF0(void);
 
 void func_0013E160(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6);
@@ -161,8 +162,6 @@ typedef struct Obj_001202B0 {
 } Obj_001202B0;
 
 void func_00120230();
-
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_0011F5E0);
 
 void func_0011FA00(void)
 {
@@ -242,13 +241,13 @@ void func_0011FA50(void)
     func_001238D0();
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_0011FE50);
+INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_0011FE50);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_0011FEA0);
+INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_0011FEA0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_00120100);
+INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_00120100);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_00120160);
+INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_00120160);
 
 s32 **func_001201D0(s32 **arg0, s16 arg1)
 {
@@ -262,9 +261,9 @@ s32 **func_001201D0(s32 **arg0, s16 arg1)
     return arg0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_00120230);
+INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_00120230);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_00120270);
+INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_00120270);
 
 void func_001202B0(Obj_001202B0 *arg0)
 {
@@ -273,7 +272,7 @@ void func_001202B0(Obj_001202B0 *arg0)
     func_00120230(arg0);
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_001202F0);
+INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_001202F0);
 
 void func_00120340(Obj_0011F5E0_2 *p) {
     u16 cur;
@@ -285,15 +284,15 @@ void func_00120340(Obj_0011F5E0_2 *p) {
     p->unk_20 = p->unk_32;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_001203A0);
+INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_001203A0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_001207D0);
+INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_001207D0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_00120830);
+INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_00120830);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_001208A0);
+INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_001208A0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_00120970);
+INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_00120970);
 
 Obj_001209F0 *func_001209F0(Obj_001209F0 *o, s16 flags)
 {

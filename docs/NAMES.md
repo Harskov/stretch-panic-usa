@@ -13,9 +13,9 @@ Classes of evidence:
 |---|---|
 | Game functions | 2 of 1351 (1349 placeholders, 0 awaiting evidence) |
 | Functions, library included | 501 of 2062 (1561 placeholders, 0 awaiting evidence) |
-| Types | 3 of 192 (179 placeholders, 10 awaiting evidence) |
-| Members the matched code reaches | 15 of 630 (609 placeholders, 6 awaiting evidence) |
-| Globals the matched code reaches | 0 of 189 (189 placeholders, 0 awaiting evidence) |
+| Types | 3 of 196 (193 placeholders, 0 awaiting evidence) |
+| Members the matched code reaches | 15 of 639 (623 placeholders, 1 awaiting evidence) |
+| Globals the matched code reaches | 0 of 197 (197 placeholders, 0 awaiting evidence) |
 
 ## Functions
 
@@ -557,19 +557,4 @@ Names given before the writer checked evidence, or whose facts it has not yet ve
 
 | Kind | Name | Recorded |
 |---|---|---|
-| field | `Mtx.f` | no checked fact recorded |
-| field | `Pose.m` | no checked fact recorded |
-| field | `Pose.q4` | no checked fact recorded |
-| field | `Slot@unit_00132690.m` | no checked fact recorded |
-| field | `Slot@unit_00132690.q4` | no checked fact recorded |
-| field | `Slot@unit_00132690.vec` | no checked fact recorded |
-| type | `Inner_001562A0` | no checked fact recorded |
-| type | `List_0012F440` | no checked fact recorded |
-| type | `Mid_001562A0` | no checked fact recorded |
-| type | `Mtx` | no checked fact recorded |
-| type | `Mtx4` | no checked fact recorded |
-| type | `Outer_001562A0` | no checked fact recorded |
-| type | `Pose` | no checked fact recorded |
-| type | `Quad5` | no checked fact recorded |
-| type | `Seg_00121B10` | no checked fact recorded |
-| type | `Slots_006A6730` | no checked fact recorded |
+| field | `Obj_0012BA80.f` | no checked fact recorded |

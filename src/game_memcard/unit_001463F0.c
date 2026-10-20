@@ -1,4 +1,5 @@
 #include "common.h"
+#include "game_memcard/unit_001463F0.h"
 
 extern char D_0069BDF8[];
 
@@ -80,8 +81,9 @@ INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_001463F0", func_00146700);
 INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_001463F0", func_001467E0);
 
 /* The memory-card close step, parallel to the format step beside it: it issues
-   sceMcClose and then sets both state words to 3; the negative returns are
-   status codes whose meaning is not yet known. */
+   sceMcClose, sets D_006AEEF8 to 2 and D_006AEF10 to 3, and returns 0 or -3 once
+   D_006AEF20 has reached 3 as well; the negative returns are status codes whose
+   meaning is not yet known. */
 s32 func_001468E0(s32 arg0)
 {
     func_00146D00();

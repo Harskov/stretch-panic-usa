@@ -1,23 +1,23 @@
 #include "common.h"
 
-typedef struct Inner_001562A0 {
+typedef struct Obj_001530C0 {
     /* 0x00 */ s32 unk_0;
     /* 0x04 */ s32 unk_4;
     /* 0x08 */ s32 unk_8;
     /* 0x0C */ s32 unk_C;
     /* 0x10 */ u8 pad_10[8];
-    /* 0x18 */ s32 unk_18;
-} Inner_001562A0;
+    /* 0x18 */ f32 unk_18;
+} Obj_001530C0;
 
-typedef struct Mid_001562A0 {
+typedef struct Obj_001530C0_2 {
     /* 0x00 */ u8 pad_0[0x60];
-    /* 0x60 */ Inner_001562A0 *unk_60;
-} Mid_001562A0;
+    /* 0x60 */ Obj_001530C0 *unk_60;
+} Obj_001530C0_2;
 
-typedef struct Outer_001562A0 {
+typedef struct Obj_001530C0_3 {
     /* 0x000 */ u8 pad_0[0x504];
-    /* 0x504 */ Mid_001562A0 *unk_504;
-} Outer_001562A0;
+    /* 0x504 */ Obj_001530C0_2 *unk_504;
+} Obj_001530C0_3;
 
 extern s32 D_006A6D10;
 
@@ -49,11 +49,11 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_001530C0", func_00155F90);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001530C0", func_001561B0);
 
-void func_001562A0(Outer_001562A0 *arg0) {
-    Mid_001562A0 *mid;
-    Inner_001562A0 *in;
+void func_001562A0(Obj_001530C0_3 *arg0) {
+    Obj_001530C0_2 *mid;
+    Obj_001530C0 *in;
 
-    arg0->unk_504->unk_60->unk_18 = 0x3F800000;
+    arg0->unk_504->unk_60->unk_18 = 1.0f;
     mid = arg0->unk_504;
     in = mid->unk_60;
     mid->unk_60->unk_0 = func_0013DF50(in->unk_0, ((s32 *)D_006A6D10)[1], 0xB, in->unk_4, in->unk_C, in->unk_8);

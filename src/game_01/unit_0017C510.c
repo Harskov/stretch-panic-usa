@@ -3,7 +3,7 @@
 typedef struct Obj_0017C7A0 {
     /* 0x000 */ s32 *unk_0;
     /* 0x004 */ u8 pad_4[0x168];
-    /* 0x16C */ s32 unk_16C;
+    /* 0x16C */ f32 unk_16C;
 } Obj_0017C7A0;
 
 extern s32 D_0069D320;
@@ -20,7 +20,7 @@ Obj_0017C7A0 *func_0017C7A0(Obj_0017C7A0 *arg0)
 {
     func_0017B170(arg0);
     arg0->unk_0 = &D_0069D320;
-    arg0->unk_16C = 0x42740000;
+    arg0->unk_16C = 61.0f;
     return arg0;
 }
 

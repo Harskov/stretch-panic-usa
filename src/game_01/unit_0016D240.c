@@ -3,8 +3,8 @@
 
 /* A vtable accessor: six function-pointer tables (D_0069CE00, D_0069D0E0, D_0069D1B0,
    D_0069D2B0, D_0069D320, D_0069D4B0) hold its address, and it returns the address of
-   whatever sits at +0xA0 in the object it is called on. No matched function reaches
-   that member, so only its existence is asserted here. */
+   whatever sits at +0xA0 in the object it is called on. No function written so far
+   reaches that member, so only its existence is asserted here. */
 typedef struct ObjA0 {
     unsigned char unk_00[0xA0];
     u8 unk_A0;
@@ -25,7 +25,7 @@ typedef struct Obj_0016D360 {
     unsigned char unk_00[0x10];
     unsigned char unk_10[0x124];
     s32 unk_134;
-    u32 unk_138;
+    f32 unk_138;
     unsigned char unk_13C[0x4];
     unsigned char unk_140[0x120];
     unsigned char unk_260[0x4];
@@ -56,7 +56,7 @@ void func_0016D360(Obj_0016D360 *arg0, Src_0016D360 *arg1)
     case 0:
         if (arg1->unk_80 != zero) {
             arg0->unk_134 = 2;
-            arg0->unk_138 = 0x3F800000;
+            arg0->unk_138 = 1.0f;
             func_0012E9A0(arg0->unk_10, arg0->unk_260, arg0->unk_140, 0.75f);
         }
         break;

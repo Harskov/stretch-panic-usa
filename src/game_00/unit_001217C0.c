@@ -26,18 +26,18 @@ typedef struct Obj_00121AD0 {
     s32 unk_14;
 } Obj_00121AD0;
 
-typedef struct Seg_00121B10 {
+typedef struct Obj_001217C0_2 {
     u8 unk_0[0x10];
     f32 unk_10;
     s32 unk_14;
-} Seg_00121B10;
+} Obj_001217C0_2;
 
 typedef struct Obj_00121B10 {
     s32 unk_0;
     f32 unk_4;
-    Seg_00121B10 *unk_8;
-    Seg_00121B10 *unk_C;
-    Seg_00121B10 *unk_10;
+    Obj_001217C0_2 *unk_8;
+    Obj_001217C0_2 *unk_C;
+    Obj_001217C0_2 *unk_10;
 } Obj_00121B10;
 
 s32 func_001217C0(s32 value, s32 align);
@@ -114,9 +114,9 @@ void func_00121AD0(Obj_00121AD0 *o, Pair_001217C0 *s)
     o->unk_8 = &o->unk_C->vec0;
 }
 
-void func_00121B10(Obj_00121B10 *o, f32 dt)
+void func_00121B10(Obj_00121B10 *o, f32 arg1)
 {
-    o->unk_4 += dt;
+    o->unk_4 += arg1;
     while (o->unk_4 < 0.0f || o->unk_4 >= o->unk_8->unk_10) {
         if (o->unk_4 < 0.0f) {
             if (o->unk_8 != o->unk_C) {

@@ -25,14 +25,14 @@ typedef struct Obj_0013AC50 {
 typedef struct Obj_0013A880 {
     s32 *unk_0;
     u8 unk_4[0x2C];
-    s32 unk_30;
-    s32 unk_34;
-    s32 unk_38;
-    s32 unk_3C;
-    s32 unk_40;
-    s32 unk_44;
-    s32 unk_48;
-    s32 unk_4C;
+    f32 unk_30;
+    f32 unk_34;
+    f32 unk_38;
+    f32 unk_3C;
+    f32 unk_40;
+    f32 unk_44;
+    f32 unk_48;
+    f32 unk_4C;
 } Obj_0013A880;
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013A120", func_0013A120);
@@ -43,14 +43,14 @@ Obj_0013A880 *func_0013A880(Obj_0013A880 *self)
 {
     func_00135570(self);
     self->unk_0 = &D_0069C5D0;
-    self->unk_30 = 0x3F800000;
-    self->unk_34 = 0x3F800000;
-    self->unk_38 = 0x3F800000;
-    self->unk_3C = 0x3F000000;
-    self->unk_40 = 0;
-    self->unk_44 = 0x42700000;
-    self->unk_48 = 0;
-    self->unk_4C = 0x3F800000;
+    self->unk_30 = 1.0f;
+    self->unk_34 = 1.0f;
+    self->unk_38 = 1.0f;
+    self->unk_3C = 0.5f;
+    self->unk_40 = 0.0f;
+    self->unk_44 = 60.0f;
+    self->unk_48 = 0.0f;
+    self->unk_4C = 1.0f;
     return self;
 }
 

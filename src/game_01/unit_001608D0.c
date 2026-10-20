@@ -33,8 +33,8 @@ typedef struct Obj_001608D0 {
     s32 unk_08;
     u8 unk_0C[0x18];
     s32 *unk_24;
-    u32 unk_28;
-    u32 unk_2C;
+    f32 unk_28;
+    f32 unk_2C;
     s32 unk_30;
 } Obj_001608D0;
 
@@ -51,8 +51,8 @@ Obj_001608D0 *func_001608D0(Obj_001608D0 *self)
     self->unk_04 = 0;
     self->unk_08 = 0;
     self->unk_24 = &D_00601A00;
-    self->unk_28 = 0x41400000;
-    self->unk_2C = 0x3F800000;
+    self->unk_28 = 12.0f;
+    self->unk_2C = 1.0f;
     self->unk_30 = 0;
     return self;
 }
