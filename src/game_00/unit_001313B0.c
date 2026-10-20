@@ -36,7 +36,31 @@ typedef struct Obj_001314F0 {
     /* 0x08 */ s32 unk_8;
 } Obj_001314F0;
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_001313B0", func_001313B0);
+extern s32 D_0069C300;
+
+extern s32 D_0069C390;
+
+extern void __dl__FPv(void *);
+
+extern s32 D_0069C3C0;
+
+extern s32 D_0069C3F0;
+
+extern s32 D_0069C480;
+
+s32 **func_001313B0(s32 **arg0, s16 arg1)
+{
+    if (arg0 != 0) {
+        *arg0 = &D_0069C390;
+        if (arg0 != 0) {
+            *arg0 = &D_0069C300;
+        }
+        if (arg1 > 0) {
+            __dl__FPv(arg0);
+        }
+    }
+    return arg0;
+}
 
 s32 func_00131410(Obj_001313B0 *o)
 {
@@ -52,7 +76,19 @@ void func_00131430(void) {
 void func_00131440(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_001313B0", func_00131450);
+s32 **func_00131450(s32 **arg0, s16 arg1)
+{
+    if (arg0 != 0) {
+        *arg0 = &D_0069C3C0;
+        if (arg0 != 0) {
+            *arg0 = &D_0069C300;
+        }
+        if (arg1 > 0) {
+            __dl__FPv(arg0);
+        }
+    }
+    return arg0;
+}
 
 s32 func_001314B0(Obj_00131450 *o)
 {
@@ -68,7 +104,19 @@ void func_001314D0(void) {
 void func_001314E0(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_001313B0", func_001314F0);
+s32 **func_001314F0(s32 **arg0, s16 arg1)
+{
+    if (arg0 != 0) {
+        *arg0 = &D_0069C3F0;
+        if (arg0 != 0) {
+            *arg0 = &D_0069C300;
+        }
+        if (arg1 > 0) {
+            __dl__FPv(arg0);
+        }
+    }
+    return arg0;
+}
 
 s32 func_00131550(Obj_001314F0 *o)
 {
@@ -110,4 +158,16 @@ void func_00131740(Ctx *c) {
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_001313B0", func_001317A0);
+s32 **func_001317A0(s32 **arg0, s16 arg1)
+{
+    if (arg0 != 0) {
+        *arg0 = &D_0069C480;
+        if (arg0 != 0) {
+            *arg0 = &D_0069C300;
+        }
+        if (arg1 > 0) {
+            __dl__FPv(arg0);
+        }
+    }
+    return arg0;
+}

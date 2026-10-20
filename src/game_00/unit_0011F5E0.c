@@ -122,9 +122,56 @@ void func_0013E1A0(s32 arg0);
 
 void func_00145F00(void);
 
+typedef struct Obj_00120A50 {
+    /* 0x00 */ u8 pad_0[0x1C];
+    /* 0x1C */ s32 unk_1C;
+    /* 0x20 */ u16 unk_20;
+    /* 0x22 */ u16 unk_22;
+    /* 0x24 */ u8 pad_24[4];
+    /* 0x28 */ s32 unk_28;
+    /* 0x2C */ s32 unk_2C;
+    /* 0x30 */ u8 pad_30[8];
+    /* 0x38 */ s32 unk_38;
+} Obj_00120A50;
+
+extern s32 D_EF0100;
+
+void func_00100000();
+
+void *func_001006F0(s64 size);
+
+void __dla__FPv(void *p);
+
+typedef struct Obj_001209F0 {
+    /* 0x00 */ u8 pad_0[0x3C];
+    /* 0x3C */ s32 unk_3C;
+} Obj_001209F0;
+
+void func_00117C00();
+
+void __dl__FPv(void *p);
+
+extern s32 D_0069C1B0;
+
+void func_00120830();
+
+typedef struct Obj_001202B0 {
+    /* 0x00 */ s32 unk_0;
+    /* 0x04 */ s32 unk_4;
+} Obj_001202B0;
+
+void func_00120230();
+
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_0011F5E0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_0011FA00);
+void func_0011FA00(void)
+{
+    s32 start = (s32)&D_EF0100;
+    s32 base = (s32)func_00100000 + 0x1000;
+    s32 end = start + base + 0x1000;
+
+    __dla__FPv(func_001006F0((s64)(0x1FFFFF0 - end)));
+}
 
 /* Boot-time set-up: reboots the IOP with the image at D_0069B250, loads four IOP
    modules (retrying with a message until each loads), then seeds func_00119AA0 from
@@ -203,13 +250,28 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_00120100);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_00120160);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_001201D0);
+s32 **func_001201D0(s32 **arg0, s16 arg1)
+{
+    if (arg0 != 0) {
+        *arg0 = &D_0069C1B0;
+        func_00120830();
+        if (arg1 > 0) {
+            __dl__FPv(arg0);
+        }
+    }
+    return arg0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_00120230);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_00120270);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_001202B0);
+void func_001202B0(Obj_001202B0 *arg0)
+{
+    func_00120830();
+    arg0->unk_4 = 1;
+    func_00120230(arg0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_001202F0);
 
@@ -233,6 +295,23 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_001208A0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_00120970);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_001209F0);
+Obj_001209F0 *func_001209F0(Obj_001209F0 *o, s16 flags)
+{
+    if (o != 0) {
+        func_00117C00(o->unk_3C);
+        if (flags > 0) {
+            __dl__FPv(o);
+        }
+    }
+    return o;
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011F5E0", func_00120A50);
+void func_00120A50(Obj_00120A50 *o)
+{
+    o->unk_1C = 0;
+    o->unk_22 = 0;
+    o->unk_20 = 0;
+    o->unk_28 = 1;
+    o->unk_2C = 0;
+    o->unk_38 = 0;
+}

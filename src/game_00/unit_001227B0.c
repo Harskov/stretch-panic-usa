@@ -27,7 +27,45 @@ typedef struct Obj_00122870 {
     /* 0x26 */ u8 unk_26;
 } Obj_00122870;
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_001227B0);
+extern s32 D_0069C250;
+
+void __dl__FPv();
+
+extern s32 D_001972C0;
+
+extern s32 D_001972C4;
+
+extern s32 D_001972C8;
+
+extern s32 D_001972CC;
+
+extern s32 *D_001972D0;
+
+extern s64 D_006A6728;
+
+typedef struct Elem_00122FE0 {
+    /* 0x00 */ u64 unk_0;
+    /* 0x08 */ s32 *unk_8;
+    /* 0x0C */ s32 pad_C;
+} Elem_00122FE0;
+
+typedef struct Obj_00122FE0 {
+    /* 0x00 */ u8 pad_0[0xC];
+    /* 0x0C */ u32 unk_C;
+    /* 0x10 */ Elem_00122FE0 *unk_10;
+} Obj_00122FE0;
+
+s32 **func_001227B0(s32 **arg0, s16 arg1)
+{
+    if (arg0 != 0) {
+        *arg0 = &D_0069C250;
+        if (arg1 > 0) {
+            // !FAKE: the original is a C++ destructor calling operator delete(this); the argument register still holds this, so the call passes nothing
+            __dl__FPv();
+        }
+    }
+    return arg0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_00122800);
 
@@ -37,7 +75,15 @@ void func_00122870(Obj_00122870 *o)
     o->unk_26 = 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_00122880);
+void func_00122880(void)
+{
+    D_006A6728 = 0;
+    D_001972C0 = 0;
+    D_001972C4 = 0;
+    D_001972C8 = 0;
+    D_001972CC = 0;
+    D_001972D0 = &D_001972C0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_001228C0);
 
@@ -49,7 +95,24 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_00122CF0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_00122DE0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_00122FE0);
+/* Clears the entry at index i (the word its pointer refers to, the pointer, the first doubleword), then visits the four children 4*i+1 .. 4*i+4 while i is below the count. */
+void func_00122FE0(Obj_00122FE0 *o, u32 i)
+{
+    s32 *p = o->unk_10[i].unk_8;
+
+    if (p != 0) {
+        *p = 0;
+        o->unk_10[i].unk_8 = 0;
+        o->unk_10[i].unk_0 = 0;
+    }
+    if (i < o->unk_C) {
+        i *= 4;
+        func_00122FE0(o, i + 1);
+        func_00122FE0(o, i + 2);
+        func_00122FE0(o, i + 3);
+        func_00122FE0(o, i + 4);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_00123080);
 
@@ -81,4 +144,10 @@ void func_00123400(Obj_00123370 *o, s32 arg1, u32 arg2, u32 arg3)
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_00123480);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_001234E0);
+/* Appends one quadword to the current buffer: a tag word with arg1 in its upper half and 0x50000000 set, then a zero word. */
+void func_001234E0(Obj_00123370 *o, u32 arg1)
+{
+    o->unk_8->unk_4[0] = ((u64)arg1 << 32) | 0x50000000;
+    o->unk_8->unk_4[1] = 0;
+    o->unk_8->unk_4 += 2;
+}

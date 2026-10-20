@@ -25,6 +25,8 @@ extern f32 func_0012E8E0(Vec *in, Vec *out);
 
 void func_0014FFD0();
 
+void func_0014EE90();
+
 void func_0014EB90(void *arg0, Vec *in, register Vec *out)
 {
     Vec dir;

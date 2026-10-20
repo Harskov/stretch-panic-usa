@@ -1,5 +1,16 @@
 #include "common.h"
 
+typedef struct Obj_0016B1D0 {
+    u8 unk_0[0x40];
+    Vec unk_40;
+    u8 pad_50[0x100];
+    Vec unk_150;
+    u8 pad_160[0x10];
+    Vec unk_170;
+} Obj_0016B1D0;
+
+void func_0012E9A0(Vec *, Vec *, Vec *, f32);
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_00169EC0);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016A0A0);
@@ -18,7 +29,29 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016B000);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016B170);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016B1D0);
+void func_0016B1D0(Obj_0016B1D0 *arg0) {
+    Vec v;
+    register Vec *pv;
+    register Vec *pa;
+
+    v.x = -arg0->unk_170.x;
+    v.y = -arg0->unk_170.y;
+    v.z = -arg0->unk_170.z;
+    pv = &v;
+    pa = &arg0->unk_150;
+    asm {
+        lqc2 vf1, 0(pv)
+        lqc2 vf2, 0(pa)
+        vsub.xyz vf1, vf1, vf2
+        sqc2 vf1, 0(pv)
+        lqc2 vf1, 0(pa)
+        lqc2 vf2, 0(pv)
+        vopmula.xyz ACC, vf1, vf2
+        vopmsub.xyz vf3, vf2, vf1
+        sqc2 vf3, 0(pv)
+    }
+    func_0012E9A0(&arg0->unk_40, &v, &arg0->unk_40, 0.049087387f);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016B250);
 

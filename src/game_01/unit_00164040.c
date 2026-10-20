@@ -12,13 +12,32 @@ typedef struct Obj {
     /* 0x68 */ Ent *unk_68;
 } Obj;
 
+extern s32 D_0069CB50;
+
+void func_00172E80();
+
+void __dl__FPv(void *);
+
+Ent *func_00164E80(Obj *o);
+
+void func_00164930(Obj *o, Ent *e);
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00164040", func_00164040);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00164040", func_00164100);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00164040", func_00164200);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00164040", func_00164520);
+s32 **func_00164520(s32 **self, s16 flags) {
+    if (self != 0) {
+        *self = &D_0069CB50;
+        func_00172E80(self, 0);
+        if (flags > 0) {
+            __dl__FPv(self);
+        }
+    }
+    return self;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00164040", func_00164580);
 
@@ -45,7 +64,13 @@ Ent *func_00164E80(Obj *o) {
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00164040", func_00164EE0);
+void func_00164EE0(Obj *o) {
+    Ent *e = func_00164E80(o);
+
+    if (e != 0) {
+        func_00164930(o, e);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00164040", func_00164F20);
 

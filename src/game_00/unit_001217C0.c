@@ -17,9 +17,46 @@ typedef struct Obj_001217C0 {
     s32 unk_44;
 } Obj_001217C0;
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_001217C0", func_001217C0);
+typedef struct Obj_00121AD0 {
+    s32 unk_0;
+    s32 unk_4;
+    Vec *unk_8;
+    Quad *unk_C;
+    s32 unk_10;
+    s32 unk_14;
+} Obj_00121AD0;
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_001217C0", func_001217E0);
+typedef struct Seg_00121B10 {
+    u8 unk_0[0x10];
+    f32 unk_10;
+    s32 unk_14;
+} Seg_00121B10;
+
+typedef struct Obj_00121B10 {
+    s32 unk_0;
+    f32 unk_4;
+    Seg_00121B10 *unk_8;
+    Seg_00121B10 *unk_C;
+    Seg_00121B10 *unk_10;
+} Obj_00121B10;
+
+s32 func_001217C0(s32 value, s32 align);
+
+s32 func_001179D8(s32 a, s32 b);
+
+/* rounds value up to the next multiple of align */
+s32 func_001217C0(s32 value, s32 align)
+{
+    return align * ((value + (align - 1)) / align);
+}
+
+void func_001217E0(s32 value, s32 align)
+{
+    if (func_001179D8(align, func_001217C0(value, align)) == 0) {
+        while (1) {
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001217C0", func_00121820);
 
@@ -64,9 +101,42 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_001217C0", func_00121930);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001217C0", func_00121A60);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_001217C0", func_00121AD0);
+void func_00121AD0(Obj_00121AD0 *o, Pair_001217C0 *s)
+{
+    if (s->unk_0 != 0) {
+        o->unk_C = s->unk_0;
+        o->unk_10 = s->unk_4;
+    } else {
+        o->unk_C = (Quad *)o->unk_14;
+        o->unk_10 = o->unk_14;
+    }
+    o->unk_4 = 0;
+    o->unk_8 = &o->unk_C->vec0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_001217C0", func_00121B10);
+void func_00121B10(Obj_00121B10 *o, f32 dt)
+{
+    o->unk_4 += dt;
+    while (o->unk_4 < 0.0f || o->unk_4 >= o->unk_8->unk_10) {
+        if (o->unk_4 < 0.0f) {
+            if (o->unk_8 != o->unk_C) {
+                o->unk_8--;
+                o->unk_4 += o->unk_8->unk_10;
+            } else {
+                o->unk_8 = o->unk_10;
+                o->unk_4 += o->unk_8->unk_10;
+            }
+        } else {
+            if (o->unk_8 != o->unk_10) {
+                o->unk_4 -= o->unk_8->unk_10;
+                o->unk_8++;
+            } else {
+                o->unk_4 -= o->unk_8->unk_10;
+                o->unk_8 = o->unk_C;
+            }
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001217C0", func_00121C10);
 

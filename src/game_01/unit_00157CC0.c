@@ -8,6 +8,12 @@ typedef struct Obj {
 
 extern void func_00158130(Obj270 *p, s32 i);
 
+extern s32 D_0069C9A0;
+
+void func_00172E80();
+
+void __dl__FPv(void *);
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00157CC0", func_00157CC0);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00157CC0", func_00157D60);
@@ -49,7 +55,16 @@ void func_001580D0(Obj270 *p, int i) {
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00157CC0", func_00158130);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00157CC0", func_00158470);
+s32 **func_00158470(s32 **self, s16 flags) {
+    if (self != 0) {
+        *self = &D_0069C9A0;
+        func_00172E80(self, 0);
+        if (flags > 0) {
+            __dl__FPv(self);
+        }
+    }
+    return self;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00157CC0", func_001584D0);
 

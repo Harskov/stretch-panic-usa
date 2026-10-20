@@ -39,6 +39,10 @@ typedef struct Dst {
     s32 iC0;
 } Dst;
 
+extern s32 D_0069D280;
+
+void func_001318C0();
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001793C0", func_001793C0);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001793C0", func_00179610);
@@ -62,7 +66,12 @@ void func_00179870(u128 *out, Holder *h)
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001793C0", func_001798B0);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_001793C0", func_00179A80);
+void **func_00179A80(void **arg0, s32 arg1)
+{
+    func_001318C0(arg0, 0x23, arg1);
+    *arg0 = &D_0069D280;
+    return arg0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001793C0", func_00179AC0);
 

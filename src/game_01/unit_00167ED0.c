@@ -15,6 +15,15 @@ extern void func_001683F0(void *arg0, ObjC0 *arg1);
 
 extern void func_00168470(void);
 
+typedef struct Obj_00168DE0 {
+    unsigned char unk_00[0xE0];
+    u32 unk_E0;
+    void *unk_E4;
+    void *unk_E8;
+} Obj_00168DE0;
+
+extern void __dla__FPv(void *p);
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00167ED0", func_00167ED0);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00167ED0", func_00168080);
@@ -67,7 +76,12 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_00167ED0", func_001688F0);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00167ED0", func_00168BF0);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00167ED0", func_00168DE0);
+void func_00168DE0(Obj_00168DE0 *o) {
+    if (o->unk_E0 != 0) {
+        __dla__FPv(o->unk_E4);
+        __dla__FPv(o->unk_E8);
+    }
+}
 
 void func_00168E20(void) {
 }

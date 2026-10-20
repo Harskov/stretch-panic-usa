@@ -1,4 +1,5 @@
 #include "common.h"
+#include "types.h"
 
 typedef union Obj_00176730 {
     /* 0x00 */ u128 unk_0;
@@ -22,13 +23,20 @@ typedef struct Ent {
 
 void func_00172DA0(Ent *, s32, s32);
 
+extern s32 D_006A6730;
+
+void func_00127BA0();
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00176730", func_00176730);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00176730", func_001767A0);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00176730", func_001768B0);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00176730", func_00176A00);
+void func_00176A00(void) {
+    func_00127BA0(D_006A6730);
+    func_00127BA0(D_006A6730);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00176730", func_00176A30);
 

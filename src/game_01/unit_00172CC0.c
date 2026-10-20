@@ -17,9 +17,38 @@ extern Node *D_006B3880;
 
 extern s32 D_006B3888;
 
+extern s32 D_006A6D18;
+
+void func_0013BD20();
+
+void func_0013BFB0();
+
+typedef struct Obj_006A6730 {
+    u8 unk_0[0x504];
+    s32 unk_504;
+} Obj_006A6730;
+
+extern Obj_006A6730 *D_006A6730;
+
+extern s32 D_006B3890;
+
+extern s32 D_006B38A0;
+
+void func_0012C9C0();
+
+extern s32 D_0069CEA0;
+
+void func_00172E80();
+
+void __dl__FPv(void *);
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00172CC0);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00172D10);
+void func_00172D10(s32 arg0)
+{
+    func_0013BD20();
+    func_0013BFB0(D_006A6D18, arg0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00172D50);
 
@@ -54,11 +83,24 @@ void func_00172F60(void)
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00173070);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00173120);
+void func_00173120(void)
+{
+    func_0012C9C0(D_006A6730->unk_504, 0x70000B80, &D_006B3890);
+    func_0012C9C0(D_006A6730->unk_504, 0x70000BA0, &D_006B38A0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00173180);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00173360);
+s32 **func_00173360(s32 **self, s16 flags) {
+    if (self != 0) {
+        *self = &D_0069CEA0;
+        func_00172E80(self, 0);
+        if (flags > 0) {
+            __dl__FPv(self);
+        }
+    }
+    return self;
+}
 
 s32 func_001733C0(Obj50 *arg0) {
     register Vec *v;

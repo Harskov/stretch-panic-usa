@@ -1,6 +1,19 @@
 #include "common.h"
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00130A60", func_00130A60);
+typedef struct Obj_00130A60 {
+    Vec unk_0;
+    f32 unk_10;
+    f32 unk_14;
+} Obj_00130A60;
+
+f32 func_0012E870();
+
+int func_00130A60(Obj_00130A60 *arg0, Obj_00130A60 *arg1) {
+    f32 limit;
+
+    limit = arg1->unk_14 + (arg0->unk_14 + 2.0f * arg0->unk_10 * arg1->unk_10);
+    return func_0012E870(arg1, arg0) < limit;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00130A60", func_00130AD0);
 

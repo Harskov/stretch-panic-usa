@@ -1,4 +1,5 @@
 #include "common.h"
+#include "types.h"
 
 typedef struct M128 {
     __int128 q[8];
@@ -11,6 +12,12 @@ typedef struct Obj {
     /* 0x14C */ unsigned char unk_14C;
 } Obj;
 
+extern s32 D_006A6730;
+
+void func_00125260();
+
+void func_00127BA0();
+
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00144A20", func_00144A20);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00144A20", func_00144C20);
@@ -19,7 +26,10 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00144A20", func_00144C80);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00144A20", func_00144E00);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00144A20", func_00144FA0);
+void func_00144FA0(void) {
+    func_00125260(D_006A6730);
+    func_00127BA0(D_006A6730);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00144A20", func_00144FD0);
 

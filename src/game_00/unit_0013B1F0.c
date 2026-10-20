@@ -7,9 +7,23 @@ typedef struct Obj0013BD20 {
     Vec rot[3];
 } Obj0013BD20;
 
+extern s32 D_006A6D00;
+
+void *__nw__FUi(u32 size);
+
+void func_00138F80(void *obj, s32 a, s32 b, f32 x, f32 y);
+
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013B1F0", func_0013B1F0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013B1F0", func_0013B220);
+void *func_0013B220(void)
+{
+    void *obj;
+
+    if ((obj = __nw__FUi(0x50)) != 0) {
+        func_00138F80(obj, D_006A6D00 + 0x100, D_006A6D00 + 0x120, 240.0f, -136.0f);
+    }
+    return obj;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013B1F0", func_0013B280);
 

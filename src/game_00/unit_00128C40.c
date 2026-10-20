@@ -10,6 +10,20 @@ extern s32 D_006A6998;
 
 s32 mwLoadOverlay(s32, s32);
 
+extern s32 D_0069C290;
+
+void __dl__FPv();
+
+extern u8 D_006A6A00[];
+
+void func_0012A8C0();
+
+extern u8 D_001A0850[];
+
+extern u8 D_001A0851[];
+
+s32 rand();
+
 // loads overlay D_006A6990 (an index into the table at D_001A0970) only when it is not the one D_006A6998
 // records as loaded; a failed load is repeated until it succeeds
 void func_00128C40(void)
@@ -37,11 +51,38 @@ s32 func_00129060(void)
     return D_006A6990;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00128C40", func_00129070);
+void func_00129070(s32 arg0)
+{
+    D_001A0850[arg0 * 4] = (rand() >> 3) % 9;
+    D_001A0851[arg0 * 4] = (rand() >> 3) % 3;
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00128C40", func_001290E0);
+s32 **func_001290E0(s32 **arg0)
+{
+    s32 i;
+    u8 *p;
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00128C40", func_00129140);
+    *arg0 = &D_0069C290;
+    func_0012A8C0(arg0 + 1);
+    p = D_006A6A00;
+    for (i = 0; i < 8; i++) {
+        *p = 0;
+        p++;
+    }
+    return arg0;
+}
+
+s32 **func_00129140(s32 **arg0, s16 arg1)
+{
+    if (arg0 != 0) {
+        *arg0 = &D_0069C290;
+        if (arg1 > 0) {
+            // !FAKE: the original is a C++ destructor calling operator delete(this); the argument register still holds this, so the call passes nothing
+            __dl__FPv();
+        }
+    }
+    return arg0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00128C40", func_00129190);
 

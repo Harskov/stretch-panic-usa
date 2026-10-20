@@ -46,6 +46,30 @@ void func_0011FE50(Sub_001216E0 *e);
 
 void func_0011FEA0(Sub_001216E0 *e, u8 *rdata);
 
+typedef struct Obj_001211C0 {
+    /* 0x00 */ u8 unk_0[0x28];
+    /* 0x28 */ s32 unk_28;
+    /* 0x2C */ u8 unk_2C[4];
+    /* 0x30 */ u8 unk_30;
+    /* 0x31 */ u8 unk_31;
+} Obj_001211C0;
+
+typedef struct Obj_00120CE0 {
+    /* 0x00 */ u8 unk_0[0x22];
+    /* 0x22 */ u16 unk_22;
+    /* 0x24 */ s32 unk_24;
+    /* 0x28 */ s32 unk_28;
+    /* 0x2C */ s32 unk_2C;
+} Obj_00120CE0;
+
+typedef struct Obj_00121100 {
+    /* 0x00 */ u8 unk_0[0x24];
+    /* 0x24 */ s32 unk_24;
+    /* 0x28 */ s32 unk_28;
+} Obj_00121100;
+
+s32 func_00120E70(s32 arg0);
+
 /* Polls one pad: its libpad state, the terminal id of the connected controller
    (0x41, 0x53, 0x73 or 0x79), then the button bytes; a failed scePadRead hangs. */
 void func_00120A70(Sub_001216E0 *e)
@@ -96,7 +120,31 @@ void func_00120A70(Sub_001216E0 *e)
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00120C00);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00120CE0);
+void func_00120CE0(Obj_00120CE0 *o)
+{
+    s32 v;
+
+    v = o->unk_28;
+    if (v & 1) {
+        o->unk_28 = v & ~1;
+        o->unk_2C = o->unk_2C | 1;
+    }
+    if (!(o->unk_2C & 1)) {
+        if (o->unk_22 == 0x41) {
+            v = o->unk_24;
+            if (v & 1) {
+                o->unk_24 = v & ~1;
+                o->unk_28 = o->unk_28 | 6;
+            }
+        } else if (o->unk_22 != 0) {
+            v = o->unk_24;
+            if (!(v & 1)) {
+                o->unk_24 = v | 1;
+                o->unk_28 = o->unk_28 | 6;
+            }
+        }
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00120D90);
 
@@ -104,13 +152,48 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00120DC0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00120DF0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00120E30);
+void func_00120E30(s32 arg0)
+{
+    do {
+    } while (func_00120E70(arg0) == 0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00120E70);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00121100);
+/* Sets or clears bit 0 and bit 1 of unk_24 from the two arguments; each actual change sets bit 0 of unk_28
+   (probably a changed marker). */
+void func_00121100(Obj_00121100 *o, s32 arg1, s32 arg2)
+{
+    if (arg1 != 0) {
+        if (!(o->unk_24 & 1)) {
+            o->unk_24 |= 1;
+            o->unk_28 |= 1;
+        }
+    } else {
+        if (o->unk_24 & 1) {
+            o->unk_24 &= ~1;
+            o->unk_28 |= 1;
+        }
+    }
+    if (arg2 != 0) {
+        if (!(o->unk_24 & 2)) {
+            o->unk_24 |= 2;
+            o->unk_28 |= 1;
+        }
+    } else {
+        if (o->unk_24 & 2) {
+            o->unk_24 &= ~2;
+            o->unk_28 |= 1;
+        }
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_001211C0);
+void func_001211C0(Obj_001211C0 *o, u8 arg1, u8 arg2)
+{
+    o->unk_30 = arg1;
+    o->unk_31 = arg2;
+    o->unk_28 |= 8;
+}
 
 // probably the pad handler's constructor (it starts libpad): the one instance is published in D_006A66F8,
 // and a failed scePadInit hangs rather than returning

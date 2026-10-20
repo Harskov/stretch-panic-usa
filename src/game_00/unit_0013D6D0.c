@@ -74,10 +74,19 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013D6D0", smsBufferPop);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013D6D0", func_0013DDA0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013D6D0", func_0013DDF0);
+void func_0013DDF0(s32 *args)
+{
+    func_0013C420(5, (s32)args, 0x48);
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013D6D0", func_0013DE00);
+void func_0013DE00(s32 *args)
+{
+    func_0013C420(0xC, (s32)args, 0x48);
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013D6D0", func_0013DE10);
+void func_0013DE10(s32 *args)
+{
+    func_0013C420(9, (s32)args, 8);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013D6D0", func_0013DE20);

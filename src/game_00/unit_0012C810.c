@@ -1,5 +1,24 @@
 #include "common.h"
 
+typedef struct Obj_0012D430 {
+    u8 unk_0[0x40];
+    s32 unk_40;
+} Obj_0012D430;
+
+extern s32 D_006A6BC0;
+
+extern Vec *D_006A6BB0;
+
+extern Vec *D_006A6BD0;
+
+void func_0012C810();
+
+void func_0012C840();
+
+f32 cosf(f32);
+
+f32 sinf(f32);
+
 void func_0012C810(register Vec *src, register Vec *dst)
 {
     asm {
@@ -150,7 +169,11 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012CA90);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012CB10);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012D430);
+void func_0012D430(Obj_0012D430 *arg0)
+{
+    arg0->unk_40 = -1;
+    func_0012C810((Vec *)D_006A6BC0, (Vec *)arg0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012D450);
 
@@ -166,7 +189,33 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012D9E0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012DAC0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012DBA0);
+void func_0012DBA0(Vec *arg0, f32 arg1, f32 arg2, f32 arg3)
+{
+    f32 cx;
+    f32 cy;
+    f32 cz;
+    f32 sx;
+    f32 sy;
+    f32 sz;
+
+    func_0012C810(arg0, D_006A6BB0);
+    cx = cosf(arg1);
+    cy = cosf(arg2);
+    cz = cosf(arg3);
+    sx = sinf(arg1);
+    sy = sinf(arg2);
+    sz = sinf(arg3);
+    D_006A6BD0[0].x = cy * cz + sz * (sx * sy);
+    D_006A6BD0[1].x = -cy * sz + sy * (cz * sx);
+    D_006A6BD0[2].x = cx * sy;
+    D_006A6BD0[0].y = cx * sz;
+    D_006A6BD0[1].y = cx * cz;
+    D_006A6BD0[2].y = -sx;
+    D_006A6BD0[0].z = -cz * sy + cy * (sx * sz);
+    D_006A6BD0[1].z = sy * sz + sx * (cy * cz);
+    D_006A6BD0[2].z = cx * cy;
+    func_0012C840(D_006A6BD0, D_006A6BB0, arg0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012DD20);
 

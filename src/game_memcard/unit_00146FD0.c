@@ -36,6 +36,26 @@ extern s32 D_006AEEC8;
 
 extern s32 D_006AEED0;
 
+void func_001469B0();
+
+extern s32 D_006AEEF8;
+
+extern s32 D_006AEF10;
+
+extern s32 D_006AEF20;
+
+extern s32 D_006AEEA0;
+
+extern s32 D_006AEEB0;
+
+extern s32 D_006AEEB8;
+
+extern s32 D_006AEEC0;
+
+s32 func_00146A90();
+
+s32 func_001468E0();
+
 INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00146FD0);
 
 void func_00147070(void)
@@ -130,7 +150,17 @@ void func_00147510(void)
     func_00147B80(15);
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147520);
+s32 func_00147520(s32 arg0, s32 arg1, s32 arg2)
+{
+    D_006AEEB0 = arg0;
+    D_006AEEB8 = arg1;
+    D_006AEEC0 = arg2;
+    D_006AEEA0 = 0;
+    D_006AEEC8 = 2;
+    D_006AEED0 = -1;
+    D_006AEED8 = 14;
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147570);
 
@@ -166,11 +196,23 @@ void func_00147B70(s32 arg0)
 
 INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147B80);
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147BA0);
+void func_00147BA0(void)
+{
+    D_006AEF10 = 0;
+    D_006AEF20 = 0;
+    D_006AEEF8 = 0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147BC0);
+s32 func_00147BC0(s32 arg0)
+{
+    return (arg0 + 0x3FF) >> 10;
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147BD0);
+/* Sets the card state word D_006AEF08; func_00147BE0 clears the same word. */
+void func_00147BD0(void)
+{
+    D_006AEF08 = 1;
+}
 
 /* Clears the card state word D_006AEF08; the memory-card start-up, func_00145F00, calls it. */
 void func_00147BE0(void)
@@ -202,10 +244,29 @@ s32 func_00147C90(char *arg0, s32 arg1)
     return r;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147D50);
+void func_00147D50(void)
+{
+    func_001469B0(&D_006AEFE0);
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147D60);
+s32 func_00147D60(void)
+{
+    s32 r;
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147D90);
+    r = func_00146A90();
+    if (r >= 0)
+        r = 0;
+    return r;
+}
+
+s32 func_00147D90(void)
+{
+    s32 r;
+
+    r = func_001468E0();
+    if (r == 0 || r == -3)
+        return r;
+    return -1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147DC0);

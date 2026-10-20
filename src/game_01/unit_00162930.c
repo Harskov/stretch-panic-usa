@@ -11,6 +11,14 @@ typedef struct Obj10 {
     f32 unk_58;
 } Obj10;
 
+extern s32 D_0069CAF0;
+
+void func_00172E80();
+
+void __dl__FPv(void *);
+
+extern s32 D_0069CB20;
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00162930", func_00162930);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00162930", func_00162AF0);
@@ -58,7 +66,16 @@ s32 func_001636C0(Obj10 *o) {
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00162930", func_00163710);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00162930", func_00163A30);
+s32 **func_00163A30(s32 **self, s16 flags) {
+    if (self != 0) {
+        *self = &D_0069CAF0;
+        func_00172E80(self, 0);
+        if (flags > 0) {
+            __dl__FPv(self);
+        }
+    }
+    return self;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00162930", func_00163A90);
 
@@ -66,4 +83,13 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_00162930", func_00163B60);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00162930", func_00163CC0);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00162930", func_00163FE0);
+s32 **func_00163FE0(s32 **self, s16 flags) {
+    if (self != 0) {
+        *self = &D_0069CB20;
+        func_00172E80(self, 0);
+        if (flags > 0) {
+            __dl__FPv(self);
+        }
+    }
+    return self;
+}

@@ -42,9 +42,22 @@ s32 sceMcInit(void);
 
 void func_00147BE0(void);
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00145A90", func_00145A90);
+extern s32 D_006AEE68;
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00145A90", func_00145AB0);
+extern s32 D_006AEED8;
+
+void func_00145A90(s32 arg0)
+{
+    D_006AEE70 = arg0;
+    D_006AEE68 = 0;
+    D_006AEED8 = 0xE;
+}
+
+s32 func_00145AB0(void)
+{
+    func_00147B80(0);
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00145A90", func_00145AD0);
 

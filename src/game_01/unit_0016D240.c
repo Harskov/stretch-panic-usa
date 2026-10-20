@@ -21,6 +21,25 @@ extern Quad D_00601A40;
 
 extern void func_0016EFC0(void *arg0, Quad *arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5);
 
+typedef struct Obj_0016D360 {
+    unsigned char unk_00[0x10];
+    unsigned char unk_10[0x124];
+    s32 unk_134;
+    u32 unk_138;
+    unsigned char unk_13C[0x4];
+    unsigned char unk_140[0x120];
+    unsigned char unk_260[0x4];
+} Obj_0016D360;
+
+typedef struct Src_0016D360 {
+    unsigned char unk_00[0x80];
+    f32 unk_80;
+    unsigned char unk_84[0x3C];
+    s32 unk_C0;
+} Src_0016D360;
+
+extern void func_0012E9A0(void *arg0, void *arg1, void *arg2, f32 arg3);
+
 void *func_0016D240(ObjA0 *o) {
     return &o->unk_A0;
 }
@@ -29,7 +48,20 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016D240", func_0016D250);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016D240", func_0016D2A0);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016D240", func_0016D360);
+void func_0016D360(Obj_0016D360 *arg0, Src_0016D360 *arg1)
+{
+    f32 zero = 0.0f;
+
+    switch (arg1->unk_C0) {
+    case 0:
+        if (arg1->unk_80 != zero) {
+            arg0->unk_134 = 2;
+            arg0->unk_138 = 0x3F800000;
+            func_0012E9A0(arg0->unk_10, arg0->unk_260, arg0->unk_140, 0.75f);
+        }
+        break;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016D240", func_0016D3D0);
 
