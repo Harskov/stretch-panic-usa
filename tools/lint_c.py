@@ -20,7 +20,9 @@ end; a C++ translation unit is `unit_<ADDR>.cpp`, remediation 30) and include/**
 FILE arguments narrow it (a wip attempt before `mark`, say).
 
 Rules (error): overlay-cast, byte-offset, reinterpret-lvalue, inline-asm, do-while-zero,
-typedef-redeclare, process-comment, fake-body-unexplained, member-offset, register-name (a decompiler's
+typedef-redeclare, process-comment, fake-body-unexplained, member-offset, invented-name (a type or member
+declared outside the placeholder forms with no checked record, where a ledger is; remediation 2026-10-20-remediation-38),
+register-name (a decompiler's
 register or stack temporary kept as a name: temp_v0, var_s0, phi_a1, saved_reg_s0, sp1C; remediation 2026-10-17-remediation-34; a local
 declared tmp or temp, remediation 2026-10-17-remediation-35)
 (a struct member named for an offset, `unk_1EC`, that its declaration puts elsewhere;
@@ -30,7 +32,8 @@ declared `char *` / `u8 *` / `void *` in the function or at file scope — m2c's
 an argument it cannot type (remediation 30, fate-unlimited-codes-jp run
 2026-09-30-024 F-2).
 Rules (advisory, need an evidence note in the ledger): volatile, goto, vu0-asm, fpu-asm,
-kernel-asm, register-local, assign-in-condition, self-extern, register-pin, fake-body,
+kernel-asm, register-local, assign-in-condition, self-extern, register-pin, fake-body, float-bits (a member
+assigned a float's bits as a hex integer, 0x3F800000 for 1.0f; remediation 2026-10-20-remediation-38),
 extern-redeclare (one data object declared twice in a file, spelled differently; remediation 2026-10-15-remediation-19),
 comment-named-field (a comment above a struct says what an offset holds while its member keeps the placeholder;
 remediation 2026-10-15-remediation-20). byte-offset's third spelling, the escape: a byte pointer plus or minus a
@@ -105,6 +108,7 @@ the match record (`match.lint`) with a note, so S8 consolidate finds them;
 import argparse
 import json
 import re
+import struct
 import sys
 from pathlib import Path
 
@@ -766,6 +770,7 @@ def lint_text(text, path="", draft=None):
                          "source": f"{m.group(0)}  [an m2c placeholder: write what the instructions do]"})
     findings.extend(trace_findings(text, stripped, path, draft))
     findings.extend(member_offset_findings(text, path))
+    findings.extend(float_bits_findings(stripped, path))
     findings.extend(comment_field_findings(text, path))
     findings.extend(readability_debt(text, path)[0])
     if any(f["rule"] in ("vu0-asm", "fpu-asm", "kernel-asm", "inline-asm") for f in findings):
@@ -866,6 +871,115 @@ def trace_findings(text, stripped, path, draft):
              "source": f"{m.group(0)}  [a debug print the draft does not have]"} for m in hits[want:]]
 
 
+# float-bits (advisory): a member assigned a 32-bit constant that is a short decimal's IEEE single (0x3F800000 is 1.0f), m2c's
+# rendering of a float store into a member it typed as an integer (stretch-panic run 2026-10-20-046 F-2: 8 lane functions stored
+# 0x3F800000, 0x42740000, 0x3D800000 into s32 members; the member typed f32 and `61.0f` written, the same bytes)
+FLOAT_BITS = re.compile(r"(?:->|\.)\s*[A-Za-z_]\w*\s*(?:\[[^\]]*\]\s*)*=\s*(0[xX][0-9A-Fa-f]{7,8})\s*;")
+
+
+def float_bits_value(v):
+    """The decimal of at most four significant digits whose IEEE single has the bits `v` (0x3F800000 -> '1'), or None: a NaN or
+    infinity, a magnitude outside 1e-6..1e6, a single set bit (a flag) or a value no short decimal reproduces is no float."""
+    if v <= 0 or v & (v - 1) == 0:
+        return None
+    f = struct.unpack("<f", struct.pack("<I", v))[0]
+    if f != f or f in (float("inf"), float("-inf")) or not (1e-6 <= abs(f) <= 1e6):
+        return None
+    for digits in range(1, 5):
+        s = f"{f:.{digits}g}"
+        try:
+            if struct.unpack("<I", struct.pack("<f", float(s)))[0] == v:
+                return s
+        except (OverflowError, ValueError):
+            return None
+    return None
+
+
+def float_bits_findings(stripped, path=""):
+    out = []
+    for m in FLOAT_BITS.finditer(stripped):
+        s = float_bits_value(int(m.group(1), 16))
+        if s is not None:
+            out.append({"path": path, "line": stripped.count("\n", 0, m.start()) + 1, "rule": "float-bits", "severity": "advisory",
+                        "source": f"{' '.join(m.group(0).split())}  [{m.group(1)} is the float {s}f: an f32 member, or a union of both views]"})
+    return out
+
+
+def checked_type_names(repo):
+    """({types}, {Type.member}) a name pass checked: the verified rows of ledger/types.jsonl (the registry) and every rename or
+    cite row of ledger/renames.jsonl whose check passed (the registry is regenerated after a rename; both are read, so a name
+    written a moment ago counts too)."""
+    types, fields = set(), set()
+    p = Path(repo) / "ledger" / "types.jsonl"
+    for line in p.read_text(encoding="utf-8").splitlines() if p.is_file() else []:
+        try:
+            t = json.loads(line)
+        except ValueError:
+            continue
+        if t.get("kind") == "global":
+            continue
+        if (t.get("evidence") or {}).get("verified"):
+            types.update({t.get("name"), t.get("id")})
+        for f in t.get("fields") or []:
+            if (f.get("evidence") or {}).get("verified"):
+                fields.update({f"{t.get('name')}.{f.get('name')}", f"{t.get('id')}.{f.get('name')}"})
+    p = Path(repo) / "ledger" / "renames.jsonl"
+    for line in p.read_text(encoding="utf-8").splitlines() if p.is_file() else []:
+        try:
+            r = json.loads(line)
+        except ValueError:
+            continue
+        if r.get("op") in ("rename", "cite") and (r.get("check") or {}).get("ok") and r.get("new"):
+            if r.get("kind") == "type":
+                types.add(r["new"])
+            elif r.get("kind") == "field":
+                fields.add(r["new"])
+    return types, fields
+
+
+def invented_name_findings(repo, paths):
+    """invented-name (error): a type or member a file declares outside the placeholder forms (evidence_c.type_systematic and
+    field_systematic over the model's layout) with no checked record. K1 §4: a type or member written at S6 or S8 keeps its
+    placeholder, names come from the name pass through `ledger.py rename`, and the batch lane never names; the mark's lint had
+    no rule for it, and 10 types and 5 members with invented names (Pose, Mtx, Quad5, Slot.vec …) entered stretch-panic through
+    lane marks (run 2026-10-20-046 F-1). Runs where a ledger is (a workbench); the contributor copy's public tree has none."""
+    repo = Path(repo)
+    if not (repo / "ledger" / "functions.jsonl").is_file():
+        return []
+    import cmodel
+    from evidence_c import field_systematic, type_systematic
+    heads, srcs = cmodel.source_paths(repo)
+    items = {str(p.relative_to(repo)).replace("\\", "/"): p.read_text(encoding="utf-8", errors="replace") for p in heads + srcs}
+    rels = {}
+    for p in paths:
+        p = Path(p)
+        rel = str(p.relative_to(repo)).replace("\\", "/") if p.is_relative_to(repo) else str(p)
+        rels[rel] = p
+        items.setdefault(rel, p.read_text(encoding="utf-8", errors="replace"))
+    m = cmodel.load(repo, texts=items)
+    types, fields = checked_type_names(repo)
+    out = []
+    for a in m.aggs.values():
+        if a.get("file") not in rels:
+            continue
+        name, tid = a.get("name") or "", a.get("id") or ""
+        rel = a["file"]
+        if name and "." not in name and "<" not in name and not type_systematic(tid or name) and name not in types and tid not in types:
+            out.append({"path": rel, "line": a.get("line") or 1, "rule": "invented-name", "severity": "error",
+                        "source": f"{a.get('kind')} {name}: a type's name comes from the name pass (`ledger.py rename` with a checked fact); "
+                                  "until then its placeholder (Obj_<addr>, Obj<size>)"})
+        for mem in a.get("members") or []:
+            nm = mem.get("name") or ""
+            if not nm or field_systematic(nm, mem.get("offset"), mem.get("bit") if mem.get("bits") is not None else None):
+                continue
+            if f"{name}.{nm}" in fields or f"{tid}.{nm}" in fields:
+                continue
+            out.append({"path": rel, "line": mem.get("line") or a.get("line") or 1, "rule": "invented-name", "severity": "error",
+                        "source": f"{name}.{nm}: a member's name comes from the name pass; until then unk_<offset> "
+                                  "(pad_<offset> for bytes no code reaches, a type letter before the offset for a union's views)"})
+    return out
+
+
 def lint_file(p, rel=None):
     return lint_text(p.read_text(encoding="utf-8", errors="replace"), rel or str(p), draft_beside(p))
 
@@ -906,6 +1020,7 @@ def main():
             return 2
         rel = str(p.relative_to(repo)) if p.is_relative_to(repo) else str(p)
         findings.extend(lint_file(p, rel))
+    findings.extend(invented_name_findings(repo, paths))
     errors = [f for f in findings if f["severity"] == "error"]
     for f in findings:   # the contract's finding shape beside this lint's own keys
         f.setdefault("level", "error" if f["severity"] == "error" else "advisory")
