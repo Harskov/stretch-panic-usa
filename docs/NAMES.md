@@ -14,8 +14,8 @@ Classes of evidence:
 | Game functions | 2 of 1351 (1349 placeholders, 0 awaiting evidence) |
 | Functions, library included | 501 of 2062 (1561 placeholders, 0 awaiting evidence) |
 | Types | 3 of 196 (193 placeholders, 0 awaiting evidence) |
-| Members the matched code reaches | 15 of 639 (623 placeholders, 1 awaiting evidence) |
-| Globals the matched code reaches | 0 of 197 (197 placeholders, 0 awaiting evidence) |
+| Members the matched code reaches | 53 of 639 (586 placeholders, 0 awaiting evidence) |
+| Globals the matched code reaches | 9 of 197 (188 placeholders, 0 awaiting evidence) |
 
 ## Functions
 
@@ -199,7 +199,7 @@ Classes of evidence:
 | `sceTtyRead` | 0x001068B8 | anchored | SCE symbol database match (sce-symbol-scanner data via PS2Recomp, GPL-3.0): libkernl sceTtyRead, SDK 2.0.0-3.1.0, relocation-masked sha1 07948f7446de — checked: SCE database libkernl sceTtyRead (relocation-masked sha1 07948f7446de); byte-identical (relocations masked) to fate-unlimited-codes-jp:sceTtyRead |
 | `sceTtyInit` | 0x00106988 | anchored | SCE symbol database match (sce-symbol-scanner data via PS2Recomp, GPL-3.0): libkernl sceTtyInit, SDK 1.4.2-3.1.0, relocation-masked sha1 7dcdf0cb3749 — checked: SCE database libkernl sceTtyInit (relocation-masked sha1 7dcdf0cb3749); byte-identical (relocations masked) to fate-unlimited-codes-jp:sceTtyInit |
 | `kputchar` | 0x00106A48 | anchored | SCE symbol database match (sce-symbol-scanner data via PS2Recomp, GPL-3.0): libkernl kputchar, SDK 2.0.0-3.1.0, relocation-masked sha1 2b7ca6473db1 — checked: SCE database libkernl kputchar (relocation-masked sha1 2b7ca6473db1); byte-identical (relocations masked) to fate-unlimited-codes-jp:kputchar |
-| `deci2Putchar` | 0x00106A80 | anchored | SCE symbol database match (sce-symbol-scanner data via PS2Recomp, GPL-3.0): libkernl deci2Putchar, SDK 2.0.0-3.1.0, relocation-masked sha1 2d68176436ff — checked: SCE database libkernl deci2Putchar (relocation-masked sha1 2d68176436ff); byte-identical (relocations masked) to fate-unlimited-codes-jp:deci2Putchar |
+| `deci2Putchar` | 0x00106A80 | anchored | SCE symbol database match (sce-symbol-scanner data via PS2Recomp, GPL-3.0): libkernl deci2Putchar, SDK 2.0.0-3.1.0, relocation-masked sha1 2d68176436ff — checked: SCE database libkernl deci2Putchar (relocation-masked sha1 2d68176436ff) |
 | `serialPutchar` | 0x00106B30 | anchored | SCE symbol database match (sce-symbol-scanner data via PS2Recomp, GPL-3.0): libkernl serialPutchar, SDK 1.4.2-3.1.0, relocation-masked sha1 a32b5fbe1297 — checked: SCE database libkernl serialPutchar (relocation-masked sha1 a32b5fbe1297); byte-identical (relocations masked) to fate-unlimited-codes-jp:serialPutchar |
 | `ftoi` | 0x00106B68 | anchored | SCE symbol database match (sce-symbol-scanner data via PS2Recomp, GPL-3.0): libkernl ftoi, SDK 1.4.2-3.1.0, relocation-masked sha1 90246e26b693 — checked: SCE database libkernl ftoi (relocation-masked sha1 90246e26b693); byte-identical (relocations masked) to fate-unlimited-codes-jp:ftoi |
 | `printfloat` | 0x00106BF8 | anchored | SCE symbol database match (sce-symbol-scanner data via PS2Recomp, GPL-3.0): libkernl printfloat, SDK 2.0.0-3.0.1-1, relocation-masked sha1 d3dc69a4a089 — checked: SCE database libkernl printfloat (relocation-masked sha1 d3dc69a4a089) |
@@ -317,7 +317,7 @@ Classes of evidence:
 | `scePadSetWarningLevel` | 0x0010DFE0 | anchored | SCE symbol database match (sce-symbol-scanner data via PS2Recomp, GPL-3.0): libpad scePadSetWarningLevel, SDK 2.1.1-3.1.0, relocation-masked sha1 ef9980570893 — checked: SCE database libpad scePadSetWarningLevel (relocation-masked sha1 ef9980570893); byte-identical (relocations masked) to fate-unlimited-codes-jp:scePadSetWarningLevel |
 | `sceCdDelayThread` | 0x0010E070 | anchored | SCE symbol database match (sce-symbol-scanner data via PS2Recomp, GPL-3.0): libcdvd sceCdDelayThread, SDK 2.1.1-2.7.2, relocation-masked sha1 dff9762df2a9 — checked: SCE database libcdvd sceCdDelayThread (relocation-masked sha1 dff9762df2a9) |
 | `sceCdCallback` | 0x0010E0D8 | anchored | SCE symbol database match (sce-symbol-scanner data via PS2Recomp, GPL-3.0): libcdvd sceCdCallback, SDK 2.2.0-2.5.7, relocation-masked sha1 d3639560fdc2 — checked: SCE database libcdvd sceCdCallback (relocation-masked sha1 d3639560fdc2) |
-| `_sceCd_cd_callback` | 0x0010E130 | propagated | byte-identical (relocations masked) to fate-unlimited-codes-jp:_sceCd_cd_callback; named there from: the SCE database's relocations of matched SDK functions … — checked: byte-identical (relocations masked) to fate-unlimited-codes-jp:_sceCd_cd_callback |
+| `_sceCd_cd_callback` | 0x0010E130 | propagated | byte-identical (relocations masked) to fate-unlimited-codes-jp:_sceCd_cd_callback; named there from: byte-identical (relocations masked) to … — checked: byte-identical (relocations masked) to fate-unlimited-codes-jp:_sceCd_cd_callback |
 | `cmd_sem_init` | 0x0010E408 | anchored | SCE symbol database match (sce-symbol-scanner data via PS2Recomp, GPL-3.0): libcdvd cmd_sem_init, SDK 2.0.0-2.5.7, relocation-masked sha1 e1671e019f0c — checked: SCE database libcdvd cmd_sem_init (relocation-masked sha1 e1671e019f0c) |
 | `cdvd_exit` | 0x0010E4A0 | anchored | SCE symbol database match (sce-symbol-scanner data via PS2Recomp, GPL-3.0): libcdvd cdvd_exit, SDK 2.2.1-2.5.7, relocation-masked sha1 a20545fd534d — checked: SCE database libcdvd cdvd_exit (relocation-masked sha1 a20545fd534d) |
 | `sceCdIntToPos` | 0x0010E520 | anchored | SCE symbol database match (sce-symbol-scanner data via PS2Recomp, GPL-3.0): libcdvd sceCdIntToPos, SDK 1.4.2-2.8.1, relocation-masked sha1 7c8506fc4cc5 — checked: SCE database libcdvd sceCdIntToPos (relocation-masked sha1 7c8506fc4cc5) |
@@ -403,7 +403,7 @@ Classes of evidence:
 | `atanf` | 0x00114850 | anchored | SCE symbol database match (sce-symbol-scanner data via PS2Recomp, GPL-3.0): libm atanf, SDK 1.4.2-3.0.0, relocation-masked sha1 cdec2e2cfc7d — checked: SCE database libm atanf (relocation-masked sha1 cdec2e2cfc7d); byte-identical (relocations masked) to fate-unlimited-codes-jp:atanf |
 | `cosf` | 0x00114B28 | anchored | SCE symbol database match (sce-symbol-scanner data via PS2Recomp, GPL-3.0): libm cosf, SDK 1.4.2-3.0.0, relocation-masked sha1 4abe8df831f4 — checked: SCE database libm cosf (relocation-masked sha1 4abe8df831f4); byte-identical (relocations masked) to fate-unlimited-codes-jp:cosf |
 | `fabsf` | 0x00114C10 | propagated | byte-identical (relocations masked) to fate-unlimited-codes-jp:fabsf; named there from: byte-identical (relocations masked) to stretch-panic:fabsf; named there … — checked: byte-identical (relocations masked) to fate-unlimited-codes-jp:fabsf |
-| `finitef` | 0x00114C30 | propagated | byte-identical (relocations masked) to fate-unlimited-codes-jp:finitef; named there from: the SCE database's relocations of matched SDK functions call … — checked: byte-identical (relocations masked) to fate-unlimited-codes-jp:finitef |
+| `finitef` | 0x00114C30 | propagated | byte-identical (relocations masked) to fate-unlimited-codes-jp:finitef; named there from: byte-identical (relocations masked) to stretch-panic:finitef; named … — checked: byte-identical (relocations masked) to fate-unlimited-codes-jp:finitef |
 | `floorf` | 0x00114C58 | anchored | SCE symbol database match (sce-symbol-scanner data via PS2Recomp, GPL-3.0): libm floorf, SDK 1.4.2-3.0.0, relocation-masked sha1 77ab02417656 — checked: SCE database libm floorf (relocation-masked sha1 77ab02417656); byte-identical (relocations masked) to fate-unlimited-codes-jp:floorf |
 | `isnanf` | 0x00114D40 | propagated | byte-identical (relocations masked) to fate-unlimited-codes-jp:isnanf; named there from: byte-identical (relocations masked) to stretch-panic:isnanf; named … — checked: byte-identical (relocations masked) to fate-unlimited-codes-jp:isnanf |
 | `scalbnf` | 0x00114D68 | propagated | byte-identical (relocations masked) to fate-unlimited-codes-jp:scalbnf; named there from: byte-identical (relocations masked) to stretch-panic:scalbnf; named … — checked: byte-identical (relocations masked) to fate-unlimited-codes-jp:scalbnf |
@@ -536,6 +536,7 @@ Classes of evidence:
 | Member | Offset | Class | Evidence |
 |---|---|---|---|
 | `Ctx.count` | 0xC | behavioural | the member's name already given, with the facts that support it — checked: func_00131740 bounds the index i with it |
+| `Elem_00123370.cursor` | 0x4 | behavioural | cursor — checked: func_00123400 steps it by a constant; func_001234E0 steps it by a constant |
 | `Node@unit_0016BDF0.next` | 0x74 | behavioural | self-link — checked: it points to another Node@unit_0016BDF0 |
 | `Obj1F0.flags` | 0x1D8 | behavioural | mask-test — checked: func_0015BA00 tests it against 0x2 |
 | `Obj4E0.flags` | 0x60 | behavioural | the member's name already given, with the facts that support it — checked: func_0014DF80 tests it against 0x4 |
@@ -546,15 +547,58 @@ Classes of evidence:
 | `Obj@unit_00164040.count` | 0x50 | behavioural | the member's name already given, with the facts that support it — checked: func_00164E80 bounds the index i with it |
 | `Obj@unit_0016D1D0.count` | 0xD8 | behavioural | bound — checked: func_0016D1D0 bounds the index i with it |
 | `Obj@unit_0016D770.count` | 0xD8 | behavioural | bound — checked: func_0016D770 bounds the index i with it |
+| `Obj_00120CE0.flags_24` | 0x24 | behavioural | mask-test — checked: func_00120CE0 tests it against 0x1 |
+| `Obj_00120CE0.flags_28` | 0x28 | behavioural | mask-test — checked: func_00120CE0 tests it against 0x1 |
+| `Obj_00120CE0.flags_2C` | 0x2C | behavioural | mask-test — checked: func_00120CE0 tests it against 0x1 |
+| `Obj_00121100.flags` | 0x24 | behavioural | mask-test — checked: func_00121100 tests it against 0x1, 0x2 |
+| `Obj_001216E0.count` | 0x10 | behavioural | bound — checked: func_001216E0 bounds the index i with it |
+| `Obj_001216E0.flags` | 0x0 | behavioural | mask-test — checked: func_001216E0 tests it against 0x1 |
+| `Obj_00121B10.cursor` | 0x8 | behavioural | cursor — checked: func_00121B10 steps it by a constant |
+| `Obj_00123F70.next` | 0x10 | behavioural | self-link — checked: it points to another Obj_00123F70 |
+| `Obj_001243D0.cursor_500` | 0x500 | behavioural | cursor — checked: func_001243D0 steps it by a constant |
+| `Obj_001243D0.cursor_504` | 0x504 | behavioural | cursor — checked: func_001243D0 steps it by a constant |
+| `Obj_001243D0.cursor_508` | 0x508 | behavioural | cursor — checked: func_001243D0 steps it by a constant |
+| `Obj_001243D0.cursor_50C` | 0x50C | behavioural | cursor — checked: func_001243D0 steps it by a constant |
+| `Obj_00125260.flags` | 0x35C | behavioural | mask-test — checked: func_00125260 tests it against 0x7 |
+| `Obj_0012ED30.count` | 0x0 | behavioural | bound — checked: func_0012F440 bounds the index i with it |
+| `Obj_001318C0.link_6C` | 0x6C | behavioural | self-link — checked: it points to another Obj_001318C0 |
+| `Obj_001318C0.link_70` | 0x70 | behavioural | self-link — checked: it points to another Obj_001318C0 |
+| `Obj_001318C0.link_74` | 0x74 | behavioural | self-link — checked: it points to another Obj_001318C0 |
+| `Obj_001318C0.link_78` | 0x78 | behavioural | self-link — checked: it points to another Obj_001318C0 |
+| `Obj_001318C0.link_7C` | 0x7C | behavioural | self-link — checked: it points to another Obj_001318C0 |
+| `Obj_001318C0.link_80` | 0x80 | behavioural | self-link — checked: it points to another Obj_001318C0 |
+| `Obj_001318C0.link_84` | 0x84 | behavioural | self-link — checked: it points to another Obj_001318C0 |
+| `Obj_001318C0.link_88` | 0x88 | behavioural | self-link — checked: it points to another Obj_001318C0 |
+| `Obj_00135450.link_90` | 0x90 | behavioural | self-link — checked: it points to another Obj_00135450 |
+| `Obj_00135450.link_94` | 0x94 | behavioural | self-link — checked: it points to another Obj_00135450 |
+| `Obj_00135570.link_10` | 0x10 | behavioural | self-link — checked: it points to another Obj_00135570 |
+| `Obj_00135570.link_18` | 0x18 | behavioural | self-link — checked: it points to another Obj_00135570 |
+| `Obj_00135570.link_1C` | 0x1C | behavioural | self-link — checked: it points to another Obj_00135570 |
+| `Obj_00135570.link_C` | 0xC | behavioural | self-link — checked: it points to another Obj_00135570 |
+| `Obj_001386B0.link_20` | 0x20 | behavioural | self-link — checked: it points to another Obj_001386B0 |
+| `Obj_001386B0.link_24` | 0x24 | behavioural | self-link — checked: it points to another Obj_001386B0 |
+| `Obj_00139740.counter_34` | 0x34 | behavioural | counter — checked: func_00139740 steps it by a constant |
+| `Obj_00139740.counter_35` | 0x35 | behavioural | counter — checked: func_00139740 steps it by a constant |
+| `Obj_00167180.link_A0` | 0xA0 | behavioural | self-link — checked: it points to another Obj_00167180 |
+| `Obj_00167180.link_A4` | 0xA4 | behavioural | self-link — checked: it points to another Obj_00167180 |
+| `Obj_00167180.link_A8` | 0xA8 | behavioural | self-link — checked: it points to another Obj_00167180 |
+| `Obj_00167180.link_AC` | 0xAC | behavioural | self-link — checked: it points to another Obj_00167180 |
+| `Obj_0016DE30_2.cursor` | 0x500 | behavioural | cursor — checked: func_0016E4D0 steps it by a constant |
 | `Vec.w` | 0xC | behavioural | component: Vec is four f32 members (shape-checked) and w is the member at its own position's letter — checked: member 3 of Vec, a vector of 4 floats |
 | `Vec.x` | 0x0 | behavioural | component: Vec is four f32 members (shape-checked) and x is the member at its own position's letter — checked: member 0 of Vec, a vector of 4 floats |
 | `Vec.y` | 0x4 | behavioural | component: Vec is four f32 members (shape-checked) and y is the member at its own position's letter — checked: member 1 of Vec, a vector of 4 floats |
 | `Vec.z` | 0x8 | behavioural | component: Vec is four f32 members (shape-checked) and z is the member at its own position's letter — checked: member 2 of Vec, a vector of 4 floats |
 
-## Names awaiting their evidence
+## Globals
 
-Names given before the writer checked evidence, or whose facts it has not yet verified. The next name pass confirms each with a checked fact or returns it to its placeholder.
-
-| Kind | Name | Recorded |
-|---|---|---|
-| field | `Obj_0012BA80.f` | no checked fact recorded |
+| Global | Address | Class | Evidence |
+|---|---|---|---|
+| `gFormat_69B290` | 0x0069B290 | anchored | prototype — checked: func_0011FA50 passes it as argument 0 of printf (int printf(const char *format, ...)) |
+| `gFormat_69B2E0` | 0x0069B2E0 | anchored | prototype — checked: func_0011FA50 passes it as argument 0 of printf (int printf(const char *format, ...)) |
+| `gFormat_69B320` | 0x0069B320 | anchored | prototype — checked: func_0011FA50 passes it as argument 0 of printf (int printf(const char *format, ...)) |
+| `gFormat_69B360` | 0x0069B360 | anchored | prototype — checked: func_0011FA50 passes it as argument 0 of printf (int printf(const char *format, ...)) |
+| `gFormat_69B380` | 0x0069B380 | anchored | prototype — checked: func_00120A70 passes it as argument 0 of printf (int printf(const char *format, ...)) |
+| `gFormat_69B3C0` | 0x0069B3C0 | anchored | prototype — checked: func_001216E0 passes it as argument 0 of printf (int printf(const char *format, ...)) |
+| `gFormat_69B3D8` | 0x0069B3D8 | anchored | prototype — checked: func_00123F70 passes it as argument 1 of sprintf (int sprintf(char *buf, const char … |
+| `gFormat_69BDF8` | 0x0069BDF8 | anchored | prototype — checked: func_001463F0 passes it as argument 0 of printf (int printf(const char *format, ...)) |
+| `gFormat_69BE08` | 0x0069BE08 | anchored | prototype — checked: func_001463F0 passes it as argument 0 of printf (int printf(const char *format, ...)) |

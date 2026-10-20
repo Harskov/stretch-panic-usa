@@ -40,8 +40,8 @@ void __dl__FPv(void *);
 
 typedef struct Obj_001386B0 {
     u8 pad_0[0x20];
-    /* 0x20 */ struct Obj_001386B0 *unk_20;
-    /* 0x24 */ struct Obj_001386B0 *unk_24;
+    /* 0x20 */ struct Obj_001386B0 *link_20;
+    /* 0x24 */ struct Obj_001386B0 *link_24;
     /* 0x28 */ struct Obj_001386B0 **unk_28;
 } Obj_001386B0;
 
@@ -54,8 +54,8 @@ typedef struct Obj_00139740 {
     /* 0x28 */ s32 unk_28;
     /* 0x2C */ f32 unk_2C;
     /* 0x30 */ s32 unk_30;
-    /* 0x34 */ s8 unk_34;
-    /* 0x35 */ s8 unk_35;
+    /* 0x34 */ s8 counter_34;
+    /* 0x35 */ s8 counter_35;
 } Obj_00139740;
 
 void func_00135570();
@@ -78,15 +78,15 @@ Obj_001386B0 *func_001386B0(Obj_001386B0 *self, s16 flags) {
     Obj_001386B0 *link;
 
     if (self != 0) {
-        link = self->unk_24;
+        link = self->link_24;
         if (link != 0) {
-            link->unk_20 = self->unk_20;
+            link->link_20 = self->link_20;
         }
-        link = self->unk_20;
+        link = self->link_20;
         if (link != 0) {
-            link->unk_24 = self->unk_24;
+            link->link_24 = self->link_24;
         } else {
-            *self->unk_28 = self->unk_24;
+            *self->unk_28 = self->link_24;
         }
         if (flags > 0) {
             __dl__FPv(self);
@@ -133,17 +133,17 @@ Obj_00139740 *func_00139740(Obj_00139740 *arg0, s32 arg1, s32 arg2, s32 arg3, f3
     arg0->unk_8 = arg5;
     arg0->unk_24 = arg1;
     arg0->unk_28 = arg1;
-    arg0->unk_34 = 0;
-    arg0->unk_35 = 0;
+    arg0->counter_34 = 0;
+    arg0->counter_35 = 0;
     arg0->unk_2C = 24.0f;
     arg0->unk_30 = 0;
     while (arg1 >= 10) {
         arg1 -= 10;
-        arg0->unk_34++;
+        arg0->counter_34++;
     }
     while (arg1 > 0) {
         arg1 -= 1;
-        arg0->unk_35++;
+        arg0->counter_35++;
     }
     return arg0;
 }

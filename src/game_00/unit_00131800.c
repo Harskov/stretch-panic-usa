@@ -29,14 +29,14 @@ struct Obj_001318C0 {
     s32 unk_60;
     s32 unk_64;
     s32 unk_68;
-    Obj_001318C0 *unk_6C;
-    Obj_001318C0 *unk_70;
-    Obj_001318C0 *unk_74;
-    Obj_001318C0 *unk_78;
-    Obj_001318C0 *unk_7C;
-    Obj_001318C0 *unk_80;
-    Obj_001318C0 *unk_84;
-    Obj_001318C0 *unk_88;
+    /* 0x6C */ Obj_001318C0 *link_6C;
+    /* 0x70 */ Obj_001318C0 *link_70;
+    /* 0x74 */ Obj_001318C0 *link_74;
+    /* 0x78 */ Obj_001318C0 *link_78;
+    /* 0x7C */ Obj_001318C0 *link_7C;
+    /* 0x80 */ Obj_001318C0 *link_80;
+    /* 0x84 */ Obj_001318C0 *link_84;
+    /* 0x88 */ Obj_001318C0 *link_88;
 };
 
 extern s32 D_0069C4B0;
@@ -71,31 +71,31 @@ Obj_001318C0 *func_001318C0(Obj_001318C0 *o, s32 arg1, Obj_001318C0 *arg2) {
     o->unk_64 = 0;
     o->unk_68 = 0;
     D_006A6C00 += 1;
-    o->unk_6C = D_006A6C08;
-    o->unk_70 = 0;
+    o->link_6C = D_006A6C08;
+    o->link_70 = 0;
     D_006A6C08 = o;
-    if (o->unk_6C != 0) {
-        o->unk_6C->unk_70 = o;
+    if (o->link_6C != 0) {
+        o->link_6C->link_70 = o;
     }
-    o->unk_74 = D_006A6C10[o->unk_54];
-    o->unk_78 = 0;
+    o->link_74 = D_006A6C10[o->unk_54];
+    o->link_78 = 0;
     D_006A6C10[o->unk_54] = o;
-    if (o->unk_74 != 0) {
-        o->unk_74->unk_78 = o;
+    if (o->link_74 != 0) {
+        o->link_74->link_78 = o;
     }
-    o->unk_7C = arg2;
-    o->unk_80 = 0;
-    if (o->unk_7C == 0) {
-        o->unk_84 = D_006A6CB0;
-        o->unk_88 = 0;
+    o->link_7C = arg2;
+    o->link_80 = 0;
+    if (o->link_7C == 0) {
+        o->link_84 = D_006A6CB0;
+        o->link_88 = 0;
         D_006A6CB0 = o;
     } else {
-        o->unk_84 = o->unk_7C->unk_80;
-        o->unk_88 = 0;
-        o->unk_7C->unk_80 = o;
+        o->link_84 = o->link_7C->link_80;
+        o->link_88 = 0;
+        o->link_7C->link_80 = o;
     }
-    if (o->unk_84 != 0) {
-        o->unk_84->unk_88 = o;
+    if (o->link_84 != 0) {
+        o->link_84->link_88 = o;
     }
     return o;
 }

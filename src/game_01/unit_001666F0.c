@@ -16,10 +16,10 @@ typedef struct Obj_00167180 Obj_00167180;
 struct Obj_00167180 {
     /* 0x00 */ s32 *unk_0;
     u8 unk_04[0x9C];
-    /* 0xA0 */ Obj_00167180 *unk_A0;
-    /* 0xA4 */ Obj_00167180 *unk_A4;
-    /* 0xA8 */ Obj_00167180 *unk_A8;
-    /* 0xAC */ Obj_00167180 *unk_AC;
+    /* 0xA0 */ Obj_00167180 *link_A0;
+    /* 0xA4 */ Obj_00167180 *link_A4;
+    /* 0xA8 */ Obj_00167180 *link_A8;
+    /* 0xAC */ Obj_00167180 *link_AC;
 };
 
 extern s32 D_0069CCD0;
@@ -72,18 +72,18 @@ Obj_00167180 *func_00167180(Obj_00167180 *arg0, s32 arg1, Obj_00167180 *arg2)
 {
     func_00135450();
     arg0->unk_0 = &D_0069CCD0;
-    arg0->unk_A8 = arg2;
-    if (arg0->unk_A8 != 0) {
-        arg0->unk_A0 = arg0->unk_A8->unk_AC;
-        arg0->unk_A8->unk_AC = arg0;
-        if (arg0->unk_A0 != 0) {
-            arg0->unk_A0->unk_A4 = arg0;
+    arg0->link_A8 = arg2;
+    if (arg0->link_A8 != 0) {
+        arg0->link_A0 = arg0->link_A8->link_AC;
+        arg0->link_A8->link_AC = arg0;
+        if (arg0->link_A0 != 0) {
+            arg0->link_A0->link_A4 = arg0;
         }
     } else {
-        arg0->unk_A0 = 0;
+        arg0->link_A0 = 0;
     }
-    arg0->unk_A4 = 0;
-    arg0->unk_AC = 0;
+    arg0->link_A4 = 0;
+    arg0->link_AC = 0;
     return arg0;
 }
 

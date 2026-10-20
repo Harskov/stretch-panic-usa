@@ -16,7 +16,7 @@ typedef struct Elem_0012F440 {
 } Elem_0012F440;
 
 typedef struct Obj_0012ED30 {
-    s32 unk_0;
+    /* 0x00 */ s32 count;
     Elem_0012F440 *unk_4;
 } Obj_0012ED30;
 
@@ -130,7 +130,7 @@ s32 func_0012F440(Obj_0012F440 *a, Vec *b)
 {
     s32 i;
 
-    for (i = 0; i < a->unk_8->unk_0; i++) {
+    for (i = 0; i < a->unk_8->count; i++) {
         if (!(func_0012E970(b, &a->unk_8->unk_4[i]) <= 0.0f)) {
             return 0;
         }

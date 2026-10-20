@@ -1,9 +1,9 @@
 #include "common.h"
 #include "game_memcard/unit_001463F0.h"
 
-extern char D_0069BDF8[];
+extern char gFormat_69BDF8[];
 
-extern char D_0069BE08[];
+extern char gFormat_69BE08[];
 
 extern s32 D_006AEEF8;
 
@@ -46,7 +46,7 @@ s32 func_001463F0(void)
     if (D_006AEF10 == 0x10) {
         if (D_006AEF20 == 0x10) {
             func_00147BA0();
-            printf(D_0069BDF8);
+            printf(gFormat_69BDF8);
             return D_006AEF28 == 0 ? 0 : -3;
         }
         return -2;
@@ -60,7 +60,7 @@ s32 func_001463F0(void)
     }
     D_006AEEF8 = 2;
     D_006AEF10 = 0x10;
-    printf(D_0069BE08);
+    printf(gFormat_69BE08);
     return -2;
 }
 

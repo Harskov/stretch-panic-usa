@@ -5,7 +5,7 @@ typedef struct Obj_00123F70 {
     /* 0x04 */ f32 unk_4;
     /* 0x08 */ char *unk_8;
     /* 0x0C */ s32 unk_C;
-    /* 0x10 */ struct Obj_00123F70 *unk_10;
+    /* 0x10 */ struct Obj_00123F70 *next;
 } Obj_00123F70;
 
 void *__nw__FUi(u32 size);
@@ -14,7 +14,7 @@ void *func_001006F0(s32 size);
 
 s32 sprintf(char *s, const char *fmt, ...);
 
-extern char D_0069B3D8[];
+extern char gFormat_69B3D8[];
 
 extern Obj_00123F70 *D_006A6738;
 
@@ -65,15 +65,15 @@ typedef struct Blk_001243D0 {
 
 typedef struct Obj_001243D0 {
     u8 pad_0[0x500];
-    /* 0x500 */ Blk_001243D0 *unk_500;
-    /* 0x504 */ Blk_001243D0 *unk_504;
-    /* 0x508 */ Blk_001243D0 *unk_508;
-    /* 0x50C */ Blk_001243D0 *unk_50C;
+    /* 0x500 */ Blk_001243D0 *cursor_500;
+    /* 0x504 */ Blk_001243D0 *cursor_504;
+    /* 0x508 */ Blk_001243D0 *cursor_508;
+    /* 0x50C */ Blk_001243D0 *cursor_50C;
 } Obj_001243D0;
 
 typedef struct Obj_00125260 {
     u8 pad_0[0x35C];
-    /* 0x35C */ u32 unk_35C;
+    /* 0x35C */ u32 flags;
     u8 pad_360[0x1D00];
     /* 0x2060 */ u32 unk_2060;
     u8 pad_2064[0xC];
@@ -134,8 +134,8 @@ void func_00123F70(f32 arg0, f32 arg1, f32 arg2)
     o->unk_4 = arg1;
     o->unk_8 = func_001006F0(0x10);
     o->unk_C = 1;
-    o->unk_10 = D_006A6738;
-    sprintf(o->unk_8, D_0069B3D8, arg2);
+    o->next = D_006A6738;
+    sprintf(o->unk_8, gFormat_69B3D8, arg2);
     D_006A6738 = o;
 }
 
@@ -147,7 +147,7 @@ void func_00124010(char *arg0, f32 arg1, f32 arg2)
     o->unk_4 = arg2;
     o->unk_8 = arg0;
     o->unk_C = 0;
-    o->unk_10 = D_006A6738;
+    o->next = D_006A6738;
     D_006A6738 = o;
 }
 
@@ -181,14 +181,14 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_00124390);
 
 void func_001243D0(Obj_001243D0 *arg0)
 {
-    arg0->unk_500[1] = arg0->unk_500[0];
-    arg0->unk_504[1] = arg0->unk_504[0];
-    arg0->unk_508[1] = arg0->unk_508[0];
-    arg0->unk_50C[1] = arg0->unk_50C[0];
-    arg0->unk_500 += 1;
-    arg0->unk_504 += 1;
-    arg0->unk_508 += 1;
-    arg0->unk_50C += 1;
+    arg0->cursor_500[1] = arg0->cursor_500[0];
+    arg0->cursor_504[1] = arg0->cursor_504[0];
+    arg0->cursor_508[1] = arg0->cursor_508[0];
+    arg0->cursor_50C[1] = arg0->cursor_50C[0];
+    arg0->cursor_500 += 1;
+    arg0->cursor_504 += 1;
+    arg0->cursor_508 += 1;
+    arg0->cursor_50C += 1;
 }
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_001244C0);
@@ -217,7 +217,7 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_001250F0);
 
 void func_00125260(Obj_00125260 *arg0)
 {
-    switch (arg0->unk_35C & 7) {
+    switch (arg0->flags & 7) {
     case 0:
         if (arg0->unk_2060 == 0) {
             return;

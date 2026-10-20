@@ -11,11 +11,11 @@ extern s32 D_0069C6F0;
 typedef struct Obj_00135570 {
     /* 0x00 */ void *unk_0;
     /* 0x04 */ u8 pad_4[8];
-    /* 0x0C */ struct Obj_00135570 *unk_C;
-    /* 0x10 */ struct Obj_00135570 *unk_10;
+    /* 0x0C */ struct Obj_00135570 *link_C;
+    /* 0x10 */ struct Obj_00135570 *link_10;
     /* 0x14 */ struct Obj_00135570 **unk_14;
-    /* 0x18 */ struct Obj_00135570 *unk_18;
-    /* 0x1C */ struct Obj_00135570 *unk_1C;
+    /* 0x18 */ struct Obj_00135570 *link_18;
+    /* 0x1C */ struct Obj_00135570 *link_1C;
     /* 0x20 */ struct Obj_00135570 **unk_20;
 } Obj_00135570;
 
@@ -30,8 +30,8 @@ extern s32 D_0069C540;
 typedef struct Obj_00135450 {
     /* 0x00 */ void *unk_0;
     /* 0x04 */ u8 pad_4[0x8C];
-    /* 0x90 */ struct Obj_00135450 *unk_90;
-    /* 0x94 */ struct Obj_00135450 *unk_94;
+    /* 0x90 */ struct Obj_00135450 *link_90;
+    /* 0x94 */ struct Obj_00135450 *link_94;
 } Obj_00135450;
 
 extern Obj_00135450 *D_006A6CF0;
@@ -46,11 +46,11 @@ Obj_00135450 *func_00135450(Obj_00135450 *o)
 {
     func_001318C0(o);
     o->unk_0 = &D_0069C540;
-    o->unk_90 = D_006A6CF0;
-    o->unk_94 = 0;
+    o->link_90 = D_006A6CF0;
+    o->link_94 = 0;
     D_006A6CF0 = o;
-    if (o->unk_90 != 0) {
-        o->unk_90->unk_94 = o;
+    if (o->link_90 != 0) {
+        o->link_90->link_94 = o;
     }
     return o;
 }
@@ -62,17 +62,17 @@ Obj_00135570 *func_00135570(Obj_00135570 *o, Obj_00135570 **head_a, Obj_00135570
     o->unk_0 = &D_0069C6F0;
     o->unk_14 = head_a;
     o->unk_20 = head_b;
-    o->unk_C = *o->unk_14;
-    o->unk_10 = 0;
+    o->link_C = *o->unk_14;
+    o->link_10 = 0;
     *o->unk_14 = o;
-    if (o->unk_C != 0) {
-        o->unk_C->unk_10 = o;
+    if (o->link_C != 0) {
+        o->link_C->link_10 = o;
     }
-    o->unk_18 = *o->unk_20;
-    o->unk_1C = 0;
+    o->link_18 = *o->unk_20;
+    o->link_1C = 0;
     *o->unk_20 = o;
-    if (o->unk_18 != 0) {
-        o->unk_18->unk_1C = o;
+    if (o->link_18 != 0) {
+        o->link_18->link_1C = o;
     }
     return o;
 }

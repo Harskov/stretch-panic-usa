@@ -7,7 +7,7 @@ typedef struct Sub_00123370 {
 
 typedef struct Elem_00123370 {
     /* 0x00 */ void *unk_0;
-    /* 0x04 */ u64 *unk_4;
+    /* 0x04 */ u64 *cursor;
 } Elem_00123370;
 
 typedef struct Obj_00123370 {
@@ -128,8 +128,8 @@ Obj_00123370 *func_00123370(Obj_00123370 *o)
     o->unk_8 = &o->unk_C[o->unk_4];
     o->unk_C[0].unk_0 = func_001006F0(0x80000);
     o->unk_C[1].unk_0 = func_001006F0(0x80000);
-    o->unk_C[0].unk_4 = o->unk_C[0].unk_0;
-    o->unk_C[1].unk_4 = o->unk_C[1].unk_0;
+    o->unk_C[0].cursor = o->unk_C[0].unk_0;
+    o->unk_C[1].cursor = o->unk_C[1].unk_0;
     return o;
 }
 
@@ -137,9 +137,9 @@ Obj_00123370 *func_00123370(Obj_00123370 *o)
    (bits 28-29 set) and a second word carrying arg2 in its upper half. */
 void func_00123400(Obj_00123370 *o, s32 arg1, u32 arg2, u32 arg3)
 {
-    o->unk_8->unk_4[0] = ((u64)arg3 << 32) | ((u64)arg2 | ((s64)arg1 << 16) | 0x30000000);
-    o->unk_8->unk_4[1] = ((u64)arg2 << 32) | 0x5100000011000000;
-    o->unk_8->unk_4 += 2;
+    o->unk_8->cursor[0] = ((u64)arg3 << 32) | ((u64)arg2 | ((s64)arg1 << 16) | 0x30000000);
+    o->unk_8->cursor[1] = ((u64)arg2 << 32) | 0x5100000011000000;
+    o->unk_8->cursor += 2;
 }
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_00123480);
@@ -147,7 +147,7 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_00123480);
 /* Appends one quadword to the current buffer: a tag word with arg1 in its upper half and 0x50000000 set, then a zero word. */
 void func_001234E0(Obj_00123370 *o, u32 arg1)
 {
-    o->unk_8->unk_4[0] = ((u64)arg1 << 32) | 0x50000000;
-    o->unk_8->unk_4[1] = 0;
-    o->unk_8->unk_4 += 2;
+    o->unk_8->cursor[0] = ((u64)arg1 << 32) | 0x50000000;
+    o->unk_8->cursor[1] = 0;
+    o->unk_8->cursor += 2;
 }

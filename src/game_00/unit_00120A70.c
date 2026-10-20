@@ -16,13 +16,13 @@ typedef struct Sub_001216E0 {
 } Sub_001216E0;
 
 typedef struct Obj_001216E0 {
-    /* 0x00 */ s32 unk_0;
+    /* 0x00 */ s32 flags;
     /* 0x04 */ u8 unk_4[0xC];
-    /* 0x10 */ s32 unk_10;
+    /* 0x10 */ s32 count;
     /* 0x14 */ Sub_001216E0 *unk_14;
 } Obj_001216E0;
 
-extern char D_0069B3C0[];
+extern char gFormat_69B3C0[];
 
 s32 scePadInit(s32 mode);
 
@@ -40,7 +40,7 @@ s32 scePadInfoPressMode(s32 port, s32 slot);
 
 s32 scePadRead(s32 port, s32 slot, u8 *rdata);
 
-extern char D_0069B380[];
+extern char gFormat_69B380[];
 
 void func_0011FE50(Sub_001216E0 *e);
 
@@ -57,14 +57,14 @@ typedef struct Obj_001211C0 {
 typedef struct Obj_00120CE0 {
     /* 0x00 */ u8 unk_0[0x22];
     /* 0x22 */ u16 unk_22;
-    /* 0x24 */ s32 unk_24;
-    /* 0x28 */ s32 unk_28;
-    /* 0x2C */ s32 unk_2C;
+    /* 0x24 */ s32 flags_24;
+    /* 0x28 */ s32 flags_28;
+    /* 0x2C */ s32 flags_2C;
 } Obj_00120CE0;
 
 typedef struct Obj_00121100 {
     /* 0x00 */ u8 unk_0[0x24];
-    /* 0x24 */ s32 unk_24;
+    /* 0x24 */ s32 flags;
     /* 0x28 */ s32 unk_28;
 } Obj_00121100;
 
@@ -106,7 +106,7 @@ void func_00120A70(Sub_001216E0 *e)
 
     if (e->unk_1C == 2 || e->unk_1C == 6) {
         if (scePadRead(e->unk_14, e->unk_18, rdata) == 0) {
-            printf(D_0069B380);
+            printf(gFormat_69B380);
             while (1) {
             }
         }
@@ -124,23 +124,23 @@ void func_00120CE0(Obj_00120CE0 *o)
 {
     s32 v;
 
-    v = o->unk_28;
+    v = o->flags_28;
     if (v & 1) {
-        o->unk_28 = v & ~1;
-        o->unk_2C = o->unk_2C | 1;
+        o->flags_28 = v & ~1;
+        o->flags_2C = o->flags_2C | 1;
     }
-    if (!(o->unk_2C & 1)) {
+    if (!(o->flags_2C & 1)) {
         if (o->unk_22 == 0x41) {
-            v = o->unk_24;
+            v = o->flags_24;
             if (v & 1) {
-                o->unk_24 = v & ~1;
-                o->unk_28 = o->unk_28 | 6;
+                o->flags_24 = v & ~1;
+                o->flags_28 = o->flags_28 | 6;
             }
         } else if (o->unk_22 != 0) {
-            v = o->unk_24;
+            v = o->flags_24;
             if (!(v & 1)) {
-                o->unk_24 = v | 1;
-                o->unk_28 = o->unk_28 | 6;
+                o->flags_24 = v | 1;
+                o->flags_28 = o->flags_28 | 6;
             }
         }
     }
@@ -165,24 +165,24 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00120E70);
 void func_00121100(Obj_00121100 *o, s32 arg1, s32 arg2)
 {
     if (arg1 != 0) {
-        if (!(o->unk_24 & 1)) {
-            o->unk_24 |= 1;
+        if (!(o->flags & 1)) {
+            o->flags |= 1;
             o->unk_28 |= 1;
         }
     } else {
-        if (o->unk_24 & 1) {
-            o->unk_24 &= ~1;
+        if (o->flags & 1) {
+            o->flags &= ~1;
             o->unk_28 |= 1;
         }
     }
     if (arg2 != 0) {
-        if (!(o->unk_24 & 2)) {
-            o->unk_24 |= 2;
+        if (!(o->flags & 2)) {
+            o->flags |= 2;
             o->unk_28 |= 1;
         }
     } else {
-        if (o->unk_24 & 2) {
-            o->unk_24 &= ~2;
+        if (o->flags & 2) {
+            o->flags &= ~2;
             o->unk_28 |= 1;
         }
     }
@@ -237,21 +237,21 @@ void func_001216E0(Obj_001216E0 *o)
     s32 slot;
     s32 i;
 
-    if (o->unk_0 & 1) {
+    if (o->flags & 1) {
         if (scePadInit(0) == 0) {
             while (1) {
             }
         }
-        for (i = 0; i < o->unk_10; i++) {
+        for (i = 0; i < o->count; i++) {
             port = o->unk_14[i].unk_14;
             slot = o->unk_14[i].unk_18;
             func_00120A50(&o->unk_14[i]);
             if (scePadPortOpen(port, slot, o->unk_14[i].unk_3C) == 0) {
-                printf(D_0069B3C0);
+                printf(gFormat_69B3C0);
                 while (1) {
                 }
             }
         }
-        o->unk_0 &= ~1;
+        o->flags &= ~1;
     }
 }

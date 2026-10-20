@@ -39,19 +39,19 @@ extern char D_0069B250[];
 
 extern char D_0069B270[];
 
-extern char D_0069B290[];
+extern char gFormat_69B290[];
 
 extern char D_0069B2C0[];
 
-extern char D_0069B2E0[];
+extern char gFormat_69B2E0[];
 
 extern char D_0069B300[];
 
-extern char D_0069B320[];
+extern char gFormat_69B320[];
 
 extern char D_0069B340[];
 
-extern char D_0069B360[];
+extern char gFormat_69B360[];
 
 extern char D_0069BC78[];
 
@@ -195,13 +195,13 @@ void func_0011FA50(void)
     sceCdMmode(1);
 
     while (func_0010C610(D_0069B270, 0, 0) < 0)
-        printf(D_0069B290);
+        printf(gFormat_69B290);
     while (func_0010C610(D_0069B2C0, 0, 0) < 0)
-        printf(D_0069B2E0);
+        printf(gFormat_69B2E0);
     while (func_0010C610(D_0069B300, 0, 0) < 0)
-        printf(D_0069B320);
+        printf(gFormat_69B320);
     while (func_0010C610(D_0069B340, 0, 0) < 0)
-        printf(D_0069B360);
+        printf(gFormat_69B360);
 
     func_0013DBF0();
     func_00145F00();

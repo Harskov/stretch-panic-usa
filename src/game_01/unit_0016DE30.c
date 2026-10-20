@@ -21,7 +21,7 @@ typedef struct Obj_0016DE30_2 {
     u8 unk_354[0x24];
     s32 unk_378;
     u8 unk_37C[0x184];
-    Obj_0016DE30 *unk_500[4];
+    /* 0x500 */ Obj_0016DE30 *cursor[4];
 } Obj_0016DE30_2;
 
 extern Obj_0016DE30_2 *D_006A6730;
@@ -90,12 +90,12 @@ void func_0016E4D0(s32 arg0, Obj_0016DE30 *arg1, s32 arg2, s32 arg3, s32 arg4)
     Obj_0016DE30_2 *s = D_006A6730;
     Obj_0016DE30_2 *s2;
 
-    s->unk_500[s->unk_378][1] = *arg1;
-    s->unk_500[s->unk_378] += 1;
+    s->cursor[s->unk_378][1] = *arg1;
+    s->cursor[s->unk_378] += 1;
     s->unk_350 |= 0x100 << s->unk_378;
     func_0016E5A0(arg0, arg2, arg3, arg4);
     s2 = D_006A6730;
-    s2->unk_500[s2->unk_378] -= 1;
+    s2->cursor[s2->unk_378] -= 1;
     s2->unk_350 |= 0x100 << s2->unk_378;
 }
 

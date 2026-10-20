@@ -9,7 +9,7 @@ void __dl__FPv(void *);
 
 typedef union Obj_0012BA80 {
     u128 q[4];
-    f32 f[16];
+    /* 0x00 */ f32 unk_0[16];
 } Obj_0012BA80;
 
 extern Obj_0012BA80 D_001A09E0;
@@ -110,7 +110,7 @@ void func_0012C710(f32 *arg0) {
     s32 i;
 
     m = D_001A09E0;
-    src = m.f;
+    src = m.unk_0;
     D_006A6BB8 = arg0 + 16;
     D_006A6BC0 = arg0 + 32;
     D_006A6BC8 = arg0 + 48;

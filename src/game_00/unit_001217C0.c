@@ -35,7 +35,7 @@ typedef struct Obj_001217C0_2 {
 typedef struct Obj_00121B10 {
     s32 unk_0;
     f32 unk_4;
-    Obj_001217C0_2 *unk_8;
+    /* 0x08 */ Obj_001217C0_2 *cursor;
     Obj_001217C0_2 *unk_C;
     Obj_001217C0_2 *unk_10;
 } Obj_00121B10;
@@ -117,22 +117,22 @@ void func_00121AD0(Obj_00121AD0 *o, Pair_001217C0 *s)
 void func_00121B10(Obj_00121B10 *o, f32 arg1)
 {
     o->unk_4 += arg1;
-    while (o->unk_4 < 0.0f || o->unk_4 >= o->unk_8->unk_10) {
+    while (o->unk_4 < 0.0f || o->unk_4 >= o->cursor->unk_10) {
         if (o->unk_4 < 0.0f) {
-            if (o->unk_8 != o->unk_C) {
-                o->unk_8--;
-                o->unk_4 += o->unk_8->unk_10;
+            if (o->cursor != o->unk_C) {
+                o->cursor--;
+                o->unk_4 += o->cursor->unk_10;
             } else {
-                o->unk_8 = o->unk_10;
-                o->unk_4 += o->unk_8->unk_10;
+                o->cursor = o->unk_10;
+                o->unk_4 += o->cursor->unk_10;
             }
         } else {
-            if (o->unk_8 != o->unk_10) {
-                o->unk_4 -= o->unk_8->unk_10;
-                o->unk_8++;
+            if (o->cursor != o->unk_10) {
+                o->unk_4 -= o->cursor->unk_10;
+                o->cursor++;
             } else {
-                o->unk_4 -= o->unk_8->unk_10;
-                o->unk_8 = o->unk_C;
+                o->unk_4 -= o->cursor->unk_10;
+                o->cursor = o->unk_C;
             }
         }
     }
