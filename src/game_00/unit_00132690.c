@@ -1,10 +1,10 @@
 #include "common.h"
 
 typedef struct Obj_00132690_2 {
-    u128 q0;
-    u128 q1;
-    u128 q2;
-    u128 q3;
+    /* 0x00 */ u128 unk_0;
+    /* 0x10 */ u128 unk_10;
+    /* 0x20 */ u128 unk_20;
+    /* 0x30 */ u128 unk_30;
 } Obj_00132690_2;
 
 typedef struct Obj_00132690_3 {

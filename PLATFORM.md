@@ -463,11 +463,11 @@ Every function whose code carries COP2 instructions, matched or not. The matched
 | `src/game_00/unit_001217C0.c` | 92 | COP2 |
 | `src/game_00/unit_001217C0.c` | 93 | COP2 |
 | `src/game_00/unit_001217C0.c` | 94 | COP2 |
-| `src/game_00/unit_00122260.c` | 108 | inline asm |
+| `src/game_00/unit_00122260.c` | 106 | inline asm |
+| `src/game_00/unit_00122260.c` | 107 | COP2 |
+| `src/game_00/unit_00122260.c` | 108 | COP2 |
 | `src/game_00/unit_00122260.c` | 109 | COP2 |
 | `src/game_00/unit_00122260.c` | 110 | COP2 |
-| `src/game_00/unit_00122260.c` | 111 | COP2 |
-| `src/game_00/unit_00122260.c` | 112 | COP2 |
 | `src/game_00/unit_00123520.c` | 59 | u128 |
 | `src/game_00/unit_00123520.c` | 60 | u128 |
 | `src/game_00/unit_00123520.c` | 61 | u128 |
@@ -688,20 +688,20 @@ Every function whose code carries COP2 instructions, matched or not. The matched
 | `src/game_00/unit_0013B1F0.c` | 73 | COP2 |
 | `src/game_00/unit_0013B1F0.c` | 74 | COP2 |
 | `src/game_00/unit_0013B1F0.c` | 75 | COP2 |
-| `src/game_00/unit_0013BD60.c` | 60 | inline asm |
-| `src/game_00/unit_0013BD60.c` | 64 | COP2 |
-| `src/game_00/unit_0013BD60.c` | 66 | COP2 |
-| `src/game_00/unit_0013BD60.c` | 68 | COP2 |
+| `src/game_00/unit_0013BD60.c` | 59 | inline asm |
+| `src/game_00/unit_0013BD60.c` | 63 | COP2 |
+| `src/game_00/unit_0013BD60.c` | 65 | COP2 |
+| `src/game_00/unit_0013BD60.c` | 67 | COP2 |
+| `src/game_00/unit_0013BD60.c` | 75 | COP2 |
 | `src/game_00/unit_0013BD60.c` | 76 | COP2 |
 | `src/game_00/unit_0013BD60.c` | 77 | COP2 |
-| `src/game_00/unit_0013BD60.c` | 78 | COP2 |
+| `src/game_00/unit_0013BD60.c` | 79 | COP2 |
 | `src/game_00/unit_0013BD60.c` | 80 | COP2 |
 | `src/game_00/unit_0013BD60.c` | 81 | COP2 |
 | `src/game_00/unit_0013BD60.c` | 82 | COP2 |
-| `src/game_00/unit_0013BD60.c` | 83 | COP2 |
-| `src/game_00/unit_0013BD60.c` | 86 | COP2 |
-| `src/game_00/unit_0013BD60.c` | 88 | COP2 |
-| `src/game_00/unit_0013BD60.c` | 90 | COP2 |
+| `src/game_00/unit_0013BD60.c` | 85 | COP2 |
+| `src/game_00/unit_0013BD60.c` | 87 | COP2 |
+| `src/game_00/unit_0013BD60.c` | 89 | COP2 |
 | `src/game_00/unit_00144A20.c` | 5 | u128 |
 | `src/game_01/unit_0014DF80.c` | 107 | inline asm |
 | `src/game_01/unit_0014DF80.c` | 138 | u128 |

@@ -1,7 +1,7 @@
 #include "common.h"
 
 typedef struct E64 {
-    __int128 q[4];
+    /* 0x00 */ __int128 unk_0[4];
 } E64;
 
 typedef struct Src {

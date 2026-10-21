@@ -12,7 +12,7 @@ s32 mwLoadOverlay(s32, s32);
 
 extern s32 D_0069C290;
 
-void __dl__FPv();
+void __dl__FPv(void *);
 
 extern u8 D_006A6A00[];
 
@@ -77,8 +77,7 @@ s32 **func_00129140(s32 **arg0, s16 arg1)
     if (arg0 != 0) {
         *arg0 = &D_0069C290;
         if (arg1 > 0) {
-            // !FAKE: the original is a C++ destructor calling operator delete(this); the argument register still holds this, so the call passes nothing
-            __dl__FPv();
+            __dl__FPv(arg0);
         }
     }
     return arg0;

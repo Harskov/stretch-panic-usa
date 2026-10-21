@@ -12,7 +12,7 @@ void func_0012D450(Vec *, f32, f32, f32);
 void func_0012C8F0(Vec *, Vec *);
 
 typedef struct Obj_0016DE30 {
-    u128 q[5];
+    /* 0x00 */ u128 unk_0[5];
 } Obj_0016DE30;
 
 typedef struct Obj_0016DE30_2 {

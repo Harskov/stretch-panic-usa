@@ -8,7 +8,7 @@ void func_001319D0();
 void __dl__FPv(void *);
 
 typedef union Obj_0012BA80 {
-    u128 q[4];
+    /* 0x00 */ u128 q0[4];
     /* 0x00 */ f32 unk_0[16];
 } Obj_0012BA80;
 

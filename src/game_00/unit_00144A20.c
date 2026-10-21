@@ -2,7 +2,7 @@
 #include "types.h"
 
 typedef struct M128 {
-    __int128 q[8];
+    /* 0x00 */ __int128 unk_0[8];
 } M128;
 
 typedef struct Obj {

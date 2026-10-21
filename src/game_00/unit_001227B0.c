@@ -29,7 +29,7 @@ typedef struct Obj_00122870 {
 
 extern s32 D_0069C250;
 
-void __dl__FPv();
+void __dl__FPv(void *);
 
 extern s32 D_001972C0;
 
@@ -60,8 +60,7 @@ s32 **func_001227B0(s32 **arg0, s16 arg1)
     if (arg0 != 0) {
         *arg0 = &D_0069C250;
         if (arg1 > 0) {
-            // !FAKE: the original is a C++ destructor calling operator delete(this); the argument register still holds this, so the call passes nothing
-            __dl__FPv();
+            __dl__FPv(arg0);
         }
     }
     return arg0;
