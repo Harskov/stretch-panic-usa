@@ -15,13 +15,13 @@ typedef struct Holder {
 } Holder;
 
 typedef struct Src {
-    u128 v0;
+    /* 0x00 */ u128 unk_0;
     /* 0x10 */ u128 v10;
     /* 0x20 */ u128 v20;
     /* 0x30 */ u128 v30;
-    f32 f40;
-    s32 i44;
-    s32 i48;
+    /* 0x40 */ f32 unk_40;
+    /* 0x44 */ s32 unk_44;
+    /* 0x48 */ s32 unk_48;
 } Src;
 
 typedef struct Dst {
@@ -32,11 +32,11 @@ typedef struct Dst {
     u8 pad40[0x50];
     /* 0x90 */ u128 v90;
     /* 0xA0 */ u128 vA0;
-    f32 fB0;
-    s32 iB4;
-    s32 iB8;
-    s32 iBC;
-    s32 iC0;
+    /* 0xB0 */ f32 unk_B0;
+    /* 0xB4 */ s32 unk_B4;
+    /* 0xB8 */ s32 unk_B8;
+    /* 0xBC */ s32 unk_BC;
+    /* 0xC0 */ s32 unk_C0;
 } Dst;
 
 extern s32 D_0069D280;
@@ -96,15 +96,15 @@ void func_00179D20(void)
 
 void func_00179D30(Dst *arg0, Src *arg1)
 {
-    arg0->v10 = arg1->v0;
+    arg0->v10 = arg1->unk_0;
     arg0->v30 = arg1->v10;
     arg0->v90 = arg1->v20;
     arg0->vA0 = arg1->v30;
-    arg0->fB0 = arg1->f40;
-    arg0->iB4 = 1;
-    arg0->iB8 = arg1->i44;
-    arg0->iBC = arg1->i48;
-    arg0->iC0 = 0;
+    arg0->unk_B0 = arg1->unk_40;
+    arg0->unk_B4 = 1;
+    arg0->unk_B8 = arg1->unk_44;
+    arg0->unk_BC = arg1->unk_48;
+    arg0->unk_C0 = 0;
 }
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001793C0", func_00179D80);

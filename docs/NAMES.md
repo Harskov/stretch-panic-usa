@@ -14,7 +14,7 @@ Classes of evidence:
 | Game functions | 2 of 1351 (1349 placeholders, 0 awaiting evidence) |
 | Functions, library included | 501 of 2062 (1561 placeholders, 0 awaiting evidence) |
 | Types | 3 of 196 (193 placeholders, 0 awaiting evidence) |
-| Members the matched code reaches | 60 of 639 (561 placeholders, 18 awaiting evidence) |
+| Members the matched code reaches | 60 of 639 (579 placeholders, 0 awaiting evidence) |
 | Globals the matched code reaches | 9 of 197 (188 placeholders, 0 awaiting evidence) |
 
 ## Functions
@@ -609,28 +609,3 @@ Classes of evidence:
 | `gFormat_69B3D8` | 0x0069B3D8 | anchored | prototype — checked: func_00123F70 passes it as argument 1 of sprintf (int sprintf(char *buf, const char … |
 | `gFormat_69BDF8` | 0x0069BDF8 | anchored | prototype — checked: func_001463F0 passes it as argument 0 of printf (int printf(const char *format, ...)) |
 | `gFormat_69BE08` | 0x0069BE08 | anchored | prototype — checked: func_001463F0 passes it as argument 0 of printf (int printf(const char *format, ...)) |
-
-## Names awaiting their evidence
-
-Names given before the writer checked evidence, or whose facts it has not yet verified. The next name pass confirms each with a checked fact or returns it to its placeholder.
-
-| Kind | Name | Recorded |
-|---|---|---|
-| field | `Dst@unit_001608D0.v0` | no checked fact recorded |
-| field | `Dst@unit_001608D0.v10` | no checked fact recorded |
-| field | `Dst@unit_001608D0.v20` | no checked fact recorded |
-| field | `Dst@unit_001793C0.fB0` | no checked fact recorded |
-| field | `Dst@unit_001793C0.iB4` | no checked fact recorded |
-| field | `Dst@unit_001793C0.iB8` | no checked fact recorded |
-| field | `Dst@unit_001793C0.iBC` | no checked fact recorded |
-| field | `Dst@unit_001793C0.iC0` | no checked fact recorded |
-| field | `Ent@unit_00176730.vec60` | no checked fact recorded |
-| field | `Ent@unit_00176730.vecB0` | no checked fact recorded |
-| field | `Obj16C.i16C` | no checked fact recorded |
-| field | `Obj@unit_0016E9A0.v10` | no checked fact recorded |
-| field | `Src@unit_001608D0.v1B0` | no checked fact recorded |
-| field | `Src@unit_001608D0.v210` | no checked fact recorded |
-| field | `Src@unit_001793C0.f40` | no checked fact recorded |
-| field | `Src@unit_001793C0.i44` | no checked fact recorded |
-| field | `Src@unit_001793C0.i48` | no checked fact recorded |
-| field | `Src@unit_001793C0.v0` | no checked fact recorded |

@@ -14,7 +14,7 @@ typedef struct Obj {
 
 typedef struct Obj16C {
     u8 pad0[0x16C];
-    s32 i16C;
+    /* 0x16C */ s32 unk_16C;
 } Obj16C;
 
 void func_00179E80();
@@ -183,7 +183,7 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_00179E20", func_0017BE20);
 
 void func_0017BEE0(Obj16C *arg0)
 {
-    arg0->i16C = 0;
+    arg0->unk_16C = 0;
     func_0017AFC0();
 }
 

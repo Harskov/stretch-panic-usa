@@ -3,7 +3,7 @@
 
 typedef struct Obj {
     unsigned char unk_00[0x10];
-    Vec v10;
+    /* 0x10 */ Vec unk_10;
 } Obj;
 
 typedef struct Obj_0016E9A0 {
@@ -66,7 +66,7 @@ s32 func_0016F790(Obj *o, Vec *src, s32 *state)
     switch (*state) {
     case 0:
         a = &D_006AEE40;
-        d = &o->v10;
+        d = &o->unk_10;
         b = src;
         asm {
             lqc2 vf1, 0(a)
@@ -81,7 +81,7 @@ s32 func_0016F790(Obj *o, Vec *src, s32 *state)
         return 0;
     case 1:
         a = &D_006AEE40;
-        d = &o->v10;
+        d = &o->unk_10;
         b = src;
         asm {
             lqc2 vf1, 0(a)

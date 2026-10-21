@@ -3,15 +3,15 @@
 
 typedef struct Src {
     unsigned char unk_00[0x1B0];
-    u128 v1B0;
+    /* 0x1B0 */ u128 unk_1B0;
     unsigned char unk_1C0[0x50];
-    u128 v210;
+    /* 0x210 */ u128 unk_210;
 } Src;
 
 typedef struct Dst {
-    u128 v0;
-    u128 v10;
-    u32 v20;
+    /* 0x00 */ u128 unk_0;
+    /* 0x10 */ u128 unk_10;
+    /* 0x20 */ u32 unk_20;
 } Dst;
 
 typedef struct Dst_00162900 {
@@ -97,9 +97,9 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_001608D0", func_00161CF0);
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001608D0", func_00162350);
 
 void func_00162790(Src *a0, Dst *a1) {
-    a1->v0 = a0->v210;
-    a1->v10 = a0->v1B0;
-    a1->v20 = 0x3E440000;
+    a1->unk_0 = a0->unk_210;
+    a1->unk_10 = a0->unk_1B0;
+    a1->unk_20 = 0x3E440000;
 }
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001608D0", func_001627B0);
