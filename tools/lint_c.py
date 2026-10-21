@@ -942,7 +942,8 @@ def invented_name_findings(repo, paths):
     field_systematic over the model's layout) with no checked record. K1 §4: a type or member written at S6 or S8 keeps its
     placeholder, names come from the name pass through `ledger.py rename`, and the batch lane never names; the mark's lint had
     no rule for it, and 10 types and 5 members with invented names (Pose, Mtx, Quad5, Slot.vec …) entered stretch-panic through
-    lane marks (run 2026-10-20-046 F-1). Runs where a ledger is (a workbench); the contributor copy's public tree has none."""
+    lane marks (run 2026-10-20-046 F-1). A type letter before the offset is a union's view and a name in a struct (stretch-panic
+    run 2026-10-20-048 F-1). Runs where a ledger is (a workbench); the contributor copy's public tree has none."""
     repo = Path(repo)
     if not (repo / "ledger" / "functions.jsonl").is_file():
         return []
@@ -970,7 +971,8 @@ def invented_name_findings(repo, paths):
                                   "until then its placeholder (Obj_<addr>, Obj<size>)"})
         for mem in a.get("members") or []:
             nm = mem.get("name") or ""
-            if not nm or field_systematic(nm, mem.get("offset"), mem.get("bit") if mem.get("bits") is not None else None):
+            if not nm or field_systematic(nm, mem.get("offset"), mem.get("bit") if mem.get("bits") is not None else None,
+                                          union=a.get("kind") == "union"):
                 continue
             if f"{name}.{nm}" in fields or f"{tid}.{nm}" in fields:
                 continue
