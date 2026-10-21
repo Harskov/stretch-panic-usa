@@ -131,6 +131,10 @@ RULES = [
     ("overlay-cast", "error", re.compile(CAST_TYPE + r"\s*&\s*[A-Za-z_]\w*\s*\[")),
     # (u8 *)p + 0x1c, (char *)this + 1  — bytes counted from a pointer to reach a field
     ("byte-offset", "error", re.compile(BYTE_TYPE + r"\s*\(?\s*[A-Za-z_][\w>.-]*\s*\)?\s*[+-]\s*(?:0[xX][0-9A-Fa-f]+|\d+|[A-Za-z_]\w*)")),
+    # s->pad_28 + 0x34, &o.pad_34  — a padding member is bytes no code reaches (K1 §4), so code that reaches one counts
+    # bytes to a field (fate run 2026-10-23-050 F-2 and F-3: memset(s->pad_28 + 0x34, 0, 0x34) and pad_34 passed by
+    # address linted clean; both rewritten as members at 100)
+    ("byte-offset", "error", re.compile(r"(?:->|\.)\s*(?:pad|padding|filler|reserved|unused|dummy)(?:_?[0-9A-Fa-f]+)?\b")),
     # *(int *)&x  — an lvalue read through another type
     ("reinterpret-lvalue", "error", re.compile(r"\*\s*" + CAST_TYPE + r"\s*&\s*[A-Za-z_]")),
     ("inline-asm", "error", re.compile(r"(?<![\w.])(?:__asm__|__asm|asm)\s*(?:volatile\s*)?\(")),
