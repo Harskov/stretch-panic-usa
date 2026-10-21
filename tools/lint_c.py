@@ -959,13 +959,20 @@ def invented_name_findings(repo, paths):
         items.setdefault(rel, p.read_text(encoding="utf-8", errors="replace"))
     m = cmodel.load(repo, texts=items)
     types, fields = checked_type_names(repo)
+    bearers = {}                            # how many aggregates bear a bare name: a record under a bare name clears one type only
+    for x in m.aggs.values():               # (remediation-39 F-2: Dst@unit_001793C0's checked v10 cleared Dst@unit_001608D0's)
+        if x.get("name"):
+            bearers[x["name"]] = bearers.get(x["name"], 0) + 1
+
+    def checked(pool, name, keyed, bare):
+        return keyed in pool or (bare in pool and bearers.get(name, 0) == 1)
     out = []
     for a in m.aggs.values():
         if a.get("file") not in rels:
             continue
         name, tid = a.get("name") or "", a.get("id") or ""
         rel = a["file"]
-        if name and "." not in name and "<" not in name and not type_systematic(tid or name) and name not in types and tid not in types:
+        if name and "." not in name and "<" not in name and not type_systematic(tid or name) and not checked(types, name, tid, name):
             out.append({"path": rel, "line": a.get("line") or 1, "rule": "invented-name", "severity": "error",
                         "source": f"{a.get('kind')} {name}: a type's name comes from the name pass (`ledger.py rename` with a checked fact); "
                                   "until then its placeholder (Obj_<addr>, Obj<size>)"})
@@ -974,7 +981,7 @@ def invented_name_findings(repo, paths):
             if not nm or field_systematic(nm, mem.get("offset"), mem.get("bit") if mem.get("bits") is not None else None,
                                           union=a.get("kind") == "union"):
                 continue
-            if f"{name}.{nm}" in fields or f"{tid}.{nm}" in fields:
+            if checked(fields, name, f"{tid}.{nm}", f"{name}.{nm}"):
                 continue
             out.append({"path": rel, "line": mem.get("line") or a.get("line") or 1, "rule": "invented-name", "severity": "error",
                         "source": f"{name}.{nm}: a member's name comes from the name pass; until then unk_<offset> "
