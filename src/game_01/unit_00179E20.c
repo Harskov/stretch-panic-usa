@@ -40,6 +40,17 @@ typedef struct Obj_0017C370 {
 
 f32 func_0012E850();
 
+typedef struct Obj_0017A5E0 {
+    u8 unk_0[0x250];
+    u8 unk_250[0x20];
+    u8 unk_270[0x48];
+    s32 unk_2B8;
+} Obj_0017A5E0;
+
+void func_0012E9A0(void *, void *, void *, f32);
+
+void func_0017A220(Obj2F8 *arg0);
+
 void func_00179E20(Obj *o)
 {
     f32 zero;
@@ -119,7 +130,14 @@ void func_0017A5B0(Obj2F8 *arg0)
     func_0016E760(arg0);
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00179E20", func_0017A5E0);
+void func_0017A5E0(Obj_0017A5E0 *arg0)
+{
+    func_0012E9A0(&arg0->unk_270, &arg0->unk_250, &arg0->unk_270, 0.015f);
+    arg0->unk_2B8 = arg0->unk_2B8 + 1;
+    if (arg0->unk_2B8 >= 0x3C) {
+        func_0017A220((Obj2F8 *)arg0);
+    }
+}
 
 void func_0017A640(Obj2F8 *arg0)
 {

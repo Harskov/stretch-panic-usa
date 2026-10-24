@@ -12,9 +12,35 @@ typedef struct Obj_0015ED00 {
 } Obj_0015ED00;
 
 
+typedef struct Obj_0015ECA0 {
+    u8 unk_0[0xF0];
+    /* 0xF0 */ u32 unk_F0;
+} Obj_0015ECA0;
+
+void func_0015FEF0();
+
+void func_00160200();
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0015EB70", func_0015EB70);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0015EB70", func_0015ECA0);
+void func_0015ECA0(Obj_0015ECA0 *o, s32 arg1)
+{
+    switch (o->unk_F0) {
+    case 0:
+    case 1:
+    case 4:
+    case 8:
+        func_0015FEF0(o, arg1);
+        break;
+    case 2:
+    case 3:
+    case 5:
+    case 6:
+    case 7:
+        func_00160200(o, arg1);
+        break;
+    }
+}
 
 void func_0015ED00(Obj_0015ED00 *o)
 {

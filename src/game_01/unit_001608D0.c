@@ -12,6 +12,8 @@ typedef struct Dst {
     /* 0x00 */ u128 unk_0;
     /* 0x10 */ u128 unk_10;
     /* 0x20 */ u32 unk_20;
+    /* 0x30 */ u128 unk_30[9];
+    /* 0xC0 */ s32 unk_C0;
 } Dst;
 
 typedef struct Dst_00162900 {
@@ -43,6 +45,14 @@ extern s32 D_00601A00;
 extern s32 D_006A6D00;
 
 void func_00135570();
+
+void func_00162790(Src *a0, Dst *a1);
+
+void func_001627B0(Src *a0, Dst *a1);
+
+void func_00162870();
+
+void func_00162900();
 
 Obj_001608D0 *func_001608D0(Obj_001608D0 *self)
 {
@@ -80,9 +90,29 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_001608D0", func_00161250);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001608D0", func_001615D0);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_001608D0", func_001617A0);
+void func_001617A0(Src *a0, Dst *a1)
+{
+    switch (a1->unk_C0) {
+    case 3:
+        func_00162790(a0, a1);
+        break;
+    case 4:
+        func_001627B0(a0, a1);
+        break;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_001608D0", func_001617F0);
+void func_001617F0(Src *a0, Dst *a1)
+{
+    switch (a1->unk_C0) {
+    case 3:
+        func_00162870(a0, a1);
+        break;
+    case 4:
+        func_00162900(a0, a1);
+        break;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001608D0", func_00161840);
 

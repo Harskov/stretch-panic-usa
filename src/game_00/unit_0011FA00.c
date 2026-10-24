@@ -163,6 +163,66 @@ typedef struct Obj_001202B0 {
 
 void func_00120230();
 
+typedef struct Obj_0011FE50 {
+    /* 0x00 */ unsigned short unk_0;
+    /* 0x02 */ unsigned char unk_2[4];
+    /* 0x06 */ unsigned char unk_6[4];
+    /* 0x0A */ unsigned char unk_A[4];
+    /* 0x0E */ unsigned char unk_E[4];
+} Obj_0011FE50;
+
+typedef struct Obj_00120830 {
+    /* 0x00 */ u8 unk_0[8];
+    /* 0x08 */ struct Obj_00120830 *link_8;
+    /* 0x0C */ struct Obj_00120830 *link_C;
+    /* 0x10 */ s32 flags;
+} Obj_00120830;
+
+typedef struct Obj_00120160 {
+    /* 0x00 */ s32 *unk_0;
+    /* 0x04 */ u8 pad_4[4];
+    /* 0x08 */ s32 unk_8;
+    /* 0x0C */ s32 unk_C;
+    /* 0x10 */ s32 unk_10;
+    /* 0x14 */ u8 pad_14[0xC];
+    /* 0x20 */ Obj_0011FE50 unk_20;
+    /* 0x32 */ Obj_0011FE50 unk_32;
+} Obj_00120160;
+
+void func_0011FE50(Obj_0011FE50 *p);
+
+void func_00120270();
+
+s32 func_001217E0(s32 arg0, s32 arg1);
+
+typedef struct Obj_00120970 {
+    /* 0x00 */ u8 pad_0[0x14];
+    /* 0x14 */ s32 unk_14;
+    /* 0x18 */ s32 unk_18;
+    /* 0x1C */ s32 unk_1C;
+    /* 0x20 */ u16 unk_20;
+    /* 0x22 */ u16 unk_22;
+    /* 0x24 */ s32 unk_24;
+    /* 0x28 */ s32 unk_28;
+    /* 0x2C */ s32 unk_2C;
+    /* 0x30 */ u8 unk_30;
+    /* 0x31 */ u8 unk_31;
+    /* 0x32 */ u8 unk_32;
+    /* 0x33 */ u8 unk_33;
+    /* 0x34 */ u8 unk_34;
+    /* 0x35 */ u8 unk_35;
+    /* 0x36 */ u8 pad_36[2];
+    /* 0x38 */ s32 unk_38;
+    /* 0x3C */ s32 unk_3C;
+} Obj_00120970;
+
+typedef struct Obj_001207D0 {
+    /* 0x00 */ u8 pad_0[8];
+    /* 0x08 */ struct Obj_001207D0 *link_8;
+    /* 0x0C */ struct Obj_001207D0 *link_C;
+    /* 0x10 */ s32 flags;
+} Obj_001207D0;
+
 void func_0011FA00(void)
 {
     s32 start = (s32)&D_EF0100;
@@ -241,13 +301,42 @@ void func_0011FA50(void)
     func_001238D0();
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_0011FE50);
+void func_0011FE50(Obj_0011FE50 *p)
+{
+    p->unk_0 = 0;
+    p->unk_2[3] = 0;
+    p->unk_2[2] = 0;
+    p->unk_2[1] = 0;
+    p->unk_2[0] = 0;
+    p->unk_6[3] = 0;
+    p->unk_6[2] = 0;
+    p->unk_6[1] = 0;
+    p->unk_6[0] = 0;
+    p->unk_A[3] = 0;
+    p->unk_A[2] = 0;
+    p->unk_A[1] = 0;
+    p->unk_A[0] = 0;
+    p->unk_E[3] = 0;
+    p->unk_E[2] = 0;
+    p->unk_E[1] = 0;
+    p->unk_E[0] = 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_0011FEA0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_00120100);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_00120160);
+Obj_00120160 *func_00120160(Obj_00120160 *arg0, s32 arg1)
+{
+    arg0->unk_0 = &D_0069C1B0;
+    func_0011FE50(&arg0->unk_20);
+    func_0011FE50(&arg0->unk_32);
+    arg0->unk_10 = 0;
+    arg0->unk_C = 0;
+    arg0->unk_8 = 0;
+    func_00120270(arg0, arg1);
+    return arg0;
+}
 
 s32 **func_001201D0(s32 **arg0, s16 arg1)
 {
@@ -286,13 +375,64 @@ void func_00120340(Obj_0011F5E0_2 *p) {
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_001203A0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_001207D0);
+void func_001207D0(Obj_001207D0 *o)
+{
+    if (!(o->flags & 1)) {
+        o->link_8 = 0;
+        o->link_C = (Obj_001207D0 *)D_006A66F8->unk_18;
+        D_006A66F8->unk_18 = (s32)o;
+        if (o->link_C != 0) {
+            o->link_C->link_8 = o;
+        }
+        o->flags |= 1;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_00120830);
+void func_00120830(Obj_00120830 *o)
+{
+    Obj_00120830 *prev;
+    Obj_00120830 *next;
+
+    if (o->flags & 1) {
+        prev = o->link_8;
+        if (prev != 0) {
+            prev->link_C = o->link_C;
+        } else {
+            D_006A66F8->unk_18 = (s32)o->link_C;
+        }
+        next = o->link_C;
+        if (next != 0) {
+            next->link_8 = o->link_8;
+        }
+        o->link_C = 0;
+        o->link_8 = 0;
+        o->flags = o->flags & ~1;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_001208A0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_00120970);
+Obj_00120970 *func_00120970(Obj_00120970 *o)
+{
+    func_0011FE50((Obj_0011FE50 *)o);
+    o->unk_18 = 0;
+    o->unk_14 = 0;
+    o->unk_1C = 0;
+    o->unk_22 = 0;
+    o->unk_20 = 0;
+    o->unk_24 = 0;
+    o->unk_28 = 1;
+    o->unk_2C = 0;
+    o->unk_35 = 0;
+    o->unk_34 = 0;
+    o->unk_33 = 0;
+    o->unk_32 = 0;
+    o->unk_31 = 0;
+    o->unk_30 = 0;
+    o->unk_38 = 0;
+    o->unk_3C = func_001217E0(0x100, 0x40);
+    return o;
+}
 
 Obj_001209F0 *func_001209F0(Obj_001209F0 *o, s16 flags)
 {

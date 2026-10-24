@@ -18,9 +18,28 @@ typedef struct Obj_00126900 {
     u128 unk_1910[4];
 } Obj_00126900;
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00125690", func_00125690);
+void *__nw__FUi(unsigned int size);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00125690", func_001256B0);
+void func_00122AE0();
+
+extern s64 D_001972C0[];
+
+extern s32 D_001972D0;
+
+void func_00125690(s32 arg0, s32 arg1)
+{
+    D_001972D0 = (s32)&D_001972C0[arg1];
+}
+
+void *func_001256B0(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4)
+{
+    void *obj;
+
+    if ((obj = __nw__FUi(0x20)) != 0) {
+        func_00122AE0(obj, arg1, arg2, arg3, arg4);
+    }
+    return obj;
+}
 
 void func_00125730(s32 arg0, s32 arg1)
 {

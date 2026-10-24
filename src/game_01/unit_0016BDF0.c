@@ -15,6 +15,16 @@ extern s32 func_0013DF50(s32, s32, s32, s32, s32, s32);
 
 extern Node *D_006A6C38;
 
+extern s32 D_0069CDD0;
+
+extern s32 D_006AF4E8;
+
+void func_001319D0();
+
+void func_00173070();
+
+void __dl__FPv(void *);
+
 Rec10 *func_0016BDF0(Rec10 *arg0) {
     arg0->unk_00 = 0;
     arg0->unk_04 = 0;
@@ -100,7 +110,20 @@ void func_0016C260(void) {
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016BDF0", func_0016C2A0);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016BDF0", func_0016C340);
+/* destructor-shaped: restores the vtable, runs the base teardown, and deletes the object when the flag is positive */
+s32 **func_0016C340(s32 **arg0, s16 arg1)
+{
+    if (arg0 != 0) {
+        *arg0 = &D_0069CDD0;
+        func_00173070();
+        D_006AF4E8 = 0;
+        func_001319D0(arg0, 0);
+        if (arg1 > 0) {
+            __dl__FPv(arg0);
+        }
+    }
+    return arg0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016BDF0", func_0016C3B0);
 

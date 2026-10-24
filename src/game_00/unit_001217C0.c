@@ -44,6 +44,20 @@ s32 func_001217C0(s32 value, s32 align);
 
 s32 func_001179D8(s32 a, s32 b);
 
+typedef struct Obj_001221F0 {
+    s32 *unk_0;
+    u8 unk_4[12];
+    void *unk_10;
+} Obj_001221F0;
+
+extern s32 D_0069C1C0;
+
+void func_00122260();
+
+void __destroy_new_array(void *, void (*)());
+
+void __dl__FPv(void *);
+
 /* rounds value up to the next multiple of align */
 s32 func_001217C0(s32 value, s32 align)
 {
@@ -155,4 +169,14 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_001217C0", func_00121F30);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001217C0", func_00121FE0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_001217C0", func_001221F0);
+Obj_001221F0 *func_001221F0(Obj_001221F0 *arg0, s16 arg1)
+{
+    if (arg0 != 0) {
+        arg0->unk_0 = &D_0069C1C0;
+        __destroy_new_array(arg0->unk_10, func_00122260);
+        if (arg1 > 0) {
+            __dl__FPv(arg0);
+        }
+    }
+    return arg0;
+}

@@ -34,9 +34,36 @@ void func_0013DE10();
 
 int func_0013DDA0();
 
+extern s32 D_006A6D20;
+
+extern s32 D_006A6D30;
+
+extern s32 D_006A6D38;
+
+void func_0013DE70();
+
+void func_0013DEA0();
+
+void func_0013E1A0();
+
+s32 func_0013C6D0();
+
+char *strcpy(char *dst, const char *src);
+
+void func_0013DDF0();
+
+void func_0013DED0();
+
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013BD60", func_0013BD60);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013BD60", func_0013BDF0);
+void func_0013BDF0(s32 arg0, s32 arg1, s32 arg2)
+{
+    func_0013DE70(arg1);
+    func_0013DEA0(arg2);
+    func_0013E1A0(0);
+    D_006A6D20 = func_0013C6D0(arg0, &D_006A6D30, &D_006A6D38);
+    func_0013E1A0(1);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013BD60", func_0013BE60);
 
@@ -117,7 +144,27 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013BD60", func_0013C2E0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013BD60", func_0013C420);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013BD60", func_0013C510);
+int func_0013C510(s32 arg0, char *arg1)
+{
+    s32 buf[8];
+    struct {
+        s32 handle;
+        s32 unk_4;
+        char name[72];
+    } req;
+    int handle;
+
+    buf[1] = 0;
+    buf[2] = 3;
+    buf[3] = 0;
+    handle = func_0013DDA0(buf);
+    req.handle = handle;
+    req.unk_4 = 1;
+    strcpy(req.name, arg1);
+    func_0013DDF0(&req);
+    func_0013DED0(handle, arg0);
+    return handle;
+}
 
 int func_0013C590(s32 arg0, s32 *arg1)
 {

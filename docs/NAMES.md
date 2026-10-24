@@ -13,9 +13,9 @@ Classes of evidence:
 |---|---|
 | Game functions | 2 of 1351 (1349 placeholders, 0 awaiting evidence) |
 | Functions, library included | 501 of 2062 (1561 placeholders, 0 awaiting evidence) |
-| Types | 3 of 196 (193 placeholders, 0 awaiting evidence) |
-| Members the matched code reaches | 60 of 639 (579 placeholders, 0 awaiting evidence) |
-| Globals the matched code reaches | 9 of 197 (188 placeholders, 0 awaiting evidence) |
+| Types | 3 of 222 (219 placeholders, 0 awaiting evidence) |
+| Members the matched code reaches | 68 of 744 (676 placeholders, 0 awaiting evidence) |
+| Globals the matched code reaches | 9 of 222 (213 placeholders, 0 awaiting evidence) |
 
 ## Functions
 
@@ -551,10 +551,17 @@ Classes of evidence:
 | `Obj@unit_00164040.count` | 0x50 | behavioural | the member's name already given, with the facts that support it — checked: func_00164E80 bounds the index i with it |
 | `Obj@unit_0016D1D0.count` | 0xD8 | behavioural | bound — checked: func_0016D1D0 bounds the index i with it |
 | `Obj@unit_0016D770.count` | 0xD8 | behavioural | bound — checked: func_0016D770 bounds the index i with it |
+| `Obj_001207D0.flags` | 0x10 | behavioural | mask-test — checked: func_001207D0 tests it against 0x1 |
+| `Obj_001207D0.link_8` | 0x8 | behavioural | self-link — checked: it points to another Obj_001207D0 |
+| `Obj_001207D0.link_C` | 0xC | behavioural | self-link — checked: it points to another Obj_001207D0 |
+| `Obj_00120830.flags` | 0x10 | behavioural | mask-test — checked: func_00120830 tests it against 0x1 |
+| `Obj_00120830.link_8` | 0x8 | behavioural | self-link — checked: it points to another Obj_00120830 |
+| `Obj_00120830.link_C` | 0xC | behavioural | self-link — checked: it points to another Obj_00120830 |
 | `Obj_00120CE0.flags_24` | 0x24 | behavioural | mask-test — checked: func_00120CE0 tests it against 0x1 |
 | `Obj_00120CE0.flags_28` | 0x28 | behavioural | mask-test — checked: func_00120CE0 tests it against 0x1 |
 | `Obj_00120CE0.flags_2C` | 0x2C | behavioural | mask-test — checked: func_00120CE0 tests it against 0x1 |
 | `Obj_00121100.flags` | 0x24 | behavioural | mask-test — checked: func_00121100 tests it against 0x1, 0x2 |
+| `Obj_001211C0.flags` | 0x28 | behavioural | mask-test — checked: func_00120D90 tests it against 0x2; func_00120DC0 tests it against 0x8 |
 | `Obj_001216E0.count` | 0x10 | behavioural | bound — checked: func_001216E0 bounds the index i with it |
 | `Obj_001216E0.flags` | 0x0 | behavioural | mask-test — checked: func_001216E0 tests it against 0x1 |
 | `Obj_00121B10.cursor` | 0x8 | behavioural | cursor — checked: func_00121B10 steps it by a constant |
@@ -591,6 +598,7 @@ Classes of evidence:
 | `Src@unit_001793C0.v10` | 0x10 |  | no fact the checker can verify supports this name |
 | `Src@unit_001793C0.v20` | 0x20 |  | no fact the checker can verify supports this name |
 | `Src@unit_001793C0.v30` | 0x30 |  | no fact the checker can verify supports this name |
+| `Sub_001216E0.flags` | 0x28 | behavioural | mask-test — checked: func_00120DF0 tests it against 0x4 |
 | `Vec.w` | 0xC | behavioural | component: Vec is four f32 members (shape-checked) and w is the member at its own position's letter — checked: member 3 of Vec, a vector of 4 floats |
 | `Vec.x` | 0x0 | behavioural | component: Vec is four f32 members (shape-checked) and x is the member at its own position's letter — checked: member 0 of Vec, a vector of 4 floats |
 | `Vec.y` | 0x4 | behavioural | component: Vec is four f32 members (shape-checked) and y is the member at its own position's letter — checked: member 1 of Vec, a vector of 4 floats |

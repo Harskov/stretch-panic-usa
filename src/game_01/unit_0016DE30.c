@@ -28,15 +28,56 @@ extern Obj_0016DE30_2 *D_006A6730;
 
 void func_0016E5A0();
 
+void func_0012CA30();
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016DE30", func_0016DE30);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016DE30", func_0016DF60);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016DE30", func_0016DFF0);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016DE30", func_0016E040);
+void func_0016E040(Obj2F8 *arg0, f32 arg1)
+{
+    s32 *word = (s32 *)&arg0->unk_184[0xF8];
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016DE30", func_0016E0B0);
+    *word = 0;
+    func_0012CA30((Vec *)&arg0->unk_184[0xC], (Vec *)&arg0->unk_184[0xEC]);
+    func_0012E9A0((Vec *)&arg0->unk_184[0xEC], (Vec *)&arg0->unk_20[0x10], (Vec *)&arg0->unk_20[0x10], arg1);
+    {
+        register Vec *e;
+        register Vec *d;
+
+        d = (Vec *)&arg0->unk_10;
+        e = (Vec *)&arg0->unk_20[0x10];
+        asm {
+            lqc2 vf1, 0(d)
+            lqc2 vf2, 0(e)
+            vadd.xyz vf1, vf1, vf2
+            sqc2 vf1, 0(d)
+        }
+    }
+}
+
+void func_0016E0B0(Obj2F8 *arg0, f32 t)
+{
+    void func_0012EA20(Vec *, f32, f32);
+
+    func_0012E9A0((Vec *)&arg0->unk_184[0xFC], (Vec *)&arg0->unk_20[0x20], (Vec *)&arg0->unk_20[0x20], t);
+    {
+        register Vec *d;
+        register Vec *e;
+
+        d = (Vec *)&arg0->unk_20[0];
+        e = (Vec *)&arg0->unk_20[0x20];
+        asm {
+            lqc2 vf1, 0(d)
+            lqc2 vf2, 0(e)
+            vadd.xyz vf1, vf1, vf2
+            sqc2 vf1, 0(d)
+        }
+    }
+    func_0012EA20((Vec *)&arg0->unk_20[0], 6.2831855f, 0.31830987f);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016DE30", func_0016E120);
 

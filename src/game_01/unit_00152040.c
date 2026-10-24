@@ -86,6 +86,14 @@ extern void func_0012E9E0(Vec *a, Vec *b, Vec *out, f32 t);
 extern Vec D_006AF4B0;
 
 
+typedef struct Obj_00152640 {
+    u8 unk_00[0x70];
+    Vec unk_70;
+    Vec unk_80;
+    u8 unk_90[0x10];
+    u128 unk_A0;
+} Obj_00152640;
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00152040", func_00152040);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00152040", func_00152160);
@@ -150,7 +158,32 @@ void func_00152630(Obj70 *o, f32 t) {
     func_0012E9E0(&o->unk_70, &o->unk_70, &o->unk_70, t);
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00152040", func_00152640);
+void func_00152640(Obj_00152640 *o, Vec *target)
+{
+    Quad axis;
+    Vec diff;
+    register Vec *pt;
+    register Quad *pa;
+    register Vec *pd;
+
+    pt = target;
+    pa = &axis;
+    pa->unk_0 = o->unk_A0;
+    pd = &diff;
+    asm {
+        lqc2 vf1, 0(pt)
+        lqc2 vf2, 0(pa)
+        vsub.xyz vf1, vf1, vf2
+        sqc2 vf1, 0(pd)
+        lqc2 vf1, 0(pa)
+        lqc2 vf2, 0(pd)
+        vopmula.xyz ACC, vf1, vf2
+        vopmsub.xyz vf3, vf2, vf1
+        sqc2 vf3, 0(pa)
+    }
+    func_0012C950(&o->unk_80, &pa->vec0);
+    func_0012E9A0(&o->unk_70, &axis.vec0, &o->unk_70, 0.39269909f);
+}
 
 Vec *func_001526C0(Obj *o)
 {

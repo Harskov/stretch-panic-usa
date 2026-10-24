@@ -27,6 +27,10 @@ extern s32 D_006A6730;
 
 void func_00127BA0();
 
+void func_00172E80();
+
+void __dl__FPv(void *);
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00176730", func_00176730);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00176730", func_001767A0);
@@ -80,4 +84,13 @@ Ent *func_00176F80(Ent *e, s32 a1, s32 a2, Quad *v1, Quad *v2, f32 f0, f32 f1)
     return e;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00176730", func_00177020);
+s32 **func_00177020(s32 **self, s16 flags) {
+    if (self != 0) {
+        *self = &D_0069D080;
+        func_00172E80(self, 0);
+        if (flags > 0) {
+            __dl__FPv(self);
+        }
+    }
+    return self;
+}

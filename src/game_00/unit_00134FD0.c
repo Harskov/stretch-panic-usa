@@ -38,6 +38,18 @@ extern Obj_00135450 *D_006A6CF0;
 
 void func_001318C0();
 
+typedef struct Obj_00135770 {
+    /* 0x00 */ u8 pad_0[0x28];
+    /* 0x28 */ f32 unk_28;
+    /* 0x2C */ f32 unk_2C;
+    /* 0x30 */ f32 unk_30;
+    /* 0x34 */ f32 unk_34;
+    /* 0x38 */ f32 unk_38;
+    /* 0x3C */ f32 unk_3C;
+    /* 0x40 */ u8 pad_40[4];
+    /* 0x44 */ f32 unk_44;
+} Obj_00135770;
+
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00134FD0", func_00134FD0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00134FD0", func_00135190);
@@ -92,7 +104,14 @@ s32 **func_00135710(s32 **self, s16 flags) {
     return self;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00134FD0", func_00135770);
+/* moves the three floats at +0x34 toward the three at +0x28 by the fraction at +0x44 */
+s32 func_00135770(Obj_00135770 *o)
+{
+    o->unk_34 += o->unk_44 * (o->unk_28 - o->unk_34);
+    o->unk_38 += o->unk_44 * (o->unk_2C - o->unk_38);
+    o->unk_3C += o->unk_44 * (o->unk_30 - o->unk_3C);
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00134FD0", func_001357D0);
 

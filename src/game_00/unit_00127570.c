@@ -3,7 +3,9 @@
 extern void __dl__FPv(void *p);
 
 typedef struct Obj_00127810 {
-    u8 pad_0[0x70];
+    u8 pad_0[0x40];
+    u64 unk_40;
+    u8 pad_48[0x28];
     u64 unk_70;
     u8 pad_78[0x18];
     u8 unk_90;
@@ -41,7 +43,11 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00127570", func_001276F0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00127570", func_00127750);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00127570", func_001277C0);
+void func_001277C0(Obj_00127810 *arg0, s64 arg1)
+{
+    arg0->unk_90 = 1;
+    arg0->unk_40 = ((((u64)(arg1 << 32) >> 32) & 1) << 32) | (arg0->unk_40 & ~0x100000000ULL);
+}
 
 void func_00127810(Obj_00127810 *arg0, s32 arg1)
 {

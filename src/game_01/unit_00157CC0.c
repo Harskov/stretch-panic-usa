@@ -14,6 +14,26 @@ void func_00172E80();
 
 void __dl__FPv(void *);
 
+typedef struct Obj_00158690 {
+    unsigned char unk_0[0x50];
+    int unk_50;
+} Obj_00158690;
+
+typedef struct Obj_006A6730 {
+    unsigned char unk_0[0x378];
+    int unk_378;
+    unsigned char unk_37C[0x184];
+    int unk_500[1];
+} Obj_006A6730;
+
+extern Obj_006A6730 *D_006A6730;
+
+extern int D_006A6D18;
+
+void func_0013BD20();
+
+void func_0013BFB0();
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00157CC0", func_00157CC0);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00157CC0", func_00157D60);
@@ -74,7 +94,10 @@ int func_00158670(Obj *o) {
     return o->count-- > 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00157CC0", func_00158690);
+void func_00158690(Obj_00158690 *arg0) {
+    func_0013BD20(arg0->unk_50, D_006A6730->unk_500[D_006A6730->unk_378]);
+    func_0013BFB0(D_006A6D18, arg0->unk_50);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00157CC0", func_001586E0);
 

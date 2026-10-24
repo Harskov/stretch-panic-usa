@@ -27,6 +27,12 @@ void func_0014FFD0();
 
 void func_0014EE90();
 
+extern s32 D_0069C8E0;
+
+void func_001319D0();
+
+void func_00150660();
+
 void func_0014EB90(void *arg0, Vec *in, register Vec *out)
 {
     Vec dir;
@@ -111,7 +117,18 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_0014EB90", func_00150C30);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0014EB90", func_00150D00);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0014EB90", func_00150D90);
+s32 **func_00150D90(s32 **arg0, s16 arg1)
+{
+    if (arg0 != 0) {
+        *arg0 = &D_0069C8E0;
+        func_00150660(arg0);
+        func_001319D0(arg0, 0);
+        if (arg1 > 0) {
+            __dl__FPv(arg0);
+        }
+    }
+    return arg0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0014EB90", func_00150E00);
 

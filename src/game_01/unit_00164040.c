@@ -22,6 +22,24 @@ Ent *func_00164E80(Obj *o);
 
 void func_00164930(Obj *o, Ent *e);
 
+typedef struct Obj_00164690 {
+    /* 0x00 */ s32 *unk_0;
+    unsigned char unk_04[0x64];
+    /* 0x68 */ void *unk_68;
+} Obj_00164690;
+
+extern s32 D_0069CB80;
+
+void __dla__FPv(void *);
+
+typedef struct Obj_00165090 {
+    /* 0x00 */ s32 *unk_0;
+    unsigned char unk_04[0x80];
+    /* 0x84 */ void *unk_84;
+} Obj_00165090;
+
+extern s32 D_0069CBB0;
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00164040", func_00164040);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00164040", func_00164100);
@@ -41,7 +59,17 @@ s32 **func_00164520(s32 **self, s16 flags) {
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00164040", func_00164580);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00164040", func_00164690);
+Obj_00164690 *func_00164690(Obj_00164690 *self, s16 flags) {
+    if (self != 0) {
+        self->unk_0 = &D_0069CB80;
+        __dla__FPv(self->unk_68);
+        func_00172E80(self, 0);
+        if (flags > 0) {
+            __dl__FPv(self);
+        }
+    }
+    return self;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00164040", func_00164700);
 
@@ -74,6 +102,16 @@ void func_00164EE0(Obj *o) {
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00164040", func_00164F20);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00164040", func_00165090);
+Obj_00165090 *func_00165090(Obj_00165090 *self, s16 flags) {
+    if (self != 0) {
+        self->unk_0 = &D_0069CBB0;
+        __dla__FPv(self->unk_84);
+        func_00172E80(self, 0);
+        if (flags > 0) {
+            __dl__FPv(self);
+        }
+    }
+    return self;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00164040", func_00165100);

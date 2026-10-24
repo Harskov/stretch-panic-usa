@@ -11,6 +11,14 @@ typedef struct Obj_0016B1D0 {
 } Obj_0016B1D0;
 
 
+void func_0012E8E0(Vec *a, Vec *out);
+
+f32 func_0012E950(Vec *a, Vec *b);
+
+void func_0012E9E0(Vec *a, Vec *b, Vec *c, f32 t);
+
+void func_0012E8A0(Vec *a);
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_00169EC0);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016A0A0);
@@ -71,7 +79,13 @@ void func_0016B6A0(void) {
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016B6B0);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016B730);
+void func_0016B730(Vec *arg0, Vec *arg1, Vec *arg2) {
+    Vec v;
+
+    func_0012E8E0(arg0, &v);
+    func_0012E9E0(arg1, &v, arg2, func_0012E950(&v, arg1));
+    func_0012E8A0(arg2);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016B790);
 

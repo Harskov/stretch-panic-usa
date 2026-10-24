@@ -11,7 +11,10 @@ typedef struct Sub_001216E0 {
     /* 0x1C */ s32 unk_1C;
     /* 0x20 */ u16 unk_20;
     /* 0x22 */ u16 unk_22;
-    /* 0x24 */ u8 unk_24[0x18];
+    /* 0x24 */ u8 unk_24[4];
+    /* 0x28 */ s32 flags;
+    /* 0x2C */ s32 unk_2C;
+    /* 0x30 */ u8 unk_30[0xC];
     /* 0x3C */ s32 unk_3C;
 } Sub_001216E0;
 
@@ -48,8 +51,8 @@ void func_0011FEA0(Sub_001216E0 *e, u8 *rdata);
 
 typedef struct Obj_001211C0 {
     /* 0x00 */ u8 unk_0[0x28];
-    /* 0x28 */ s32 unk_28;
-    /* 0x2C */ u8 unk_2C[4];
+    /* 0x28 */ s32 flags;
+    /* 0x2C */ s32 unk_2C;
     /* 0x30 */ u8 unk_30;
     /* 0x31 */ u8 unk_31;
 } Obj_001211C0;
@@ -69,6 +72,19 @@ typedef struct Obj_00121100 {
 } Obj_00121100;
 
 s32 func_00120E70(s32 arg0);
+
+typedef struct Elem_001215E0 {
+    /* 0x00 */ u8 unk_0[0x44];
+} Elem_001215E0;
+
+typedef struct Obj_001215E0 {
+    /* 0x00 */ u8 unk_0[0x10];
+    /* 0x10 */ s32 unk_10;
+    /* 0x14 */ u8 unk_14[8];
+    /* 0x1C */ Elem_001215E0 *unk_1C;
+    /* 0x20 */ Elem_001215E0 *unk_20;
+    /* 0x24 */ Elem_001215E0 *unk_24;
+} Obj_001215E0;
 
 /* Polls one pad: its libpad state, the terminal id of the connected controller
    (0x41, 0x53, 0x73 or 0x79), then the button bytes; a failed scePadRead hangs. */
@@ -146,11 +162,31 @@ void func_00120CE0(Obj_00120CE0 *o)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00120D90);
+void func_00120D90(Obj_001211C0 *o)
+{
+    if (o->flags & 2) {
+        o->flags &= ~2;
+        o->unk_2C |= 2;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00120DC0);
+void func_00120DC0(Obj_001211C0 *o)
+{
+    if (o->flags & 8) {
+        o->flags &= ~8;
+        o->unk_2C |= 8;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00120DF0);
+void func_00120DF0(Sub_001216E0 *e)
+{
+    if (e->unk_22 == 0x73) {
+        if (e->flags & 4) {
+            e->flags &= ~4;
+            e->unk_2C |= 4;
+        }
+    }
+}
 
 void func_00120E30(s32 arg0)
 {
@@ -192,7 +228,7 @@ void func_001211C0(Obj_001211C0 *o, u8 arg1, u8 arg2)
 {
     o->unk_30 = arg1;
     o->unk_31 = arg2;
-    o->unk_28 |= 8;
+    o->flags |= 8;
 }
 
 // probably the pad handler's constructor (it starts libpad): the one instance is published in D_006A66F8,
@@ -223,7 +259,18 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_001214F0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_001215A0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_001215E0);
+/* Element lookup by index: -1 selects the special entry at unk_20, an index outside
+   -1..unk_10-1 falls back to the entry at unk_24. */
+Elem_001215E0 *func_001215E0(Obj_001215E0 *o, s32 i)
+{
+    if (i < -1 || i >= o->unk_10) {
+        return o->unk_24;
+    }
+    if (i == -1) {
+        return o->unk_20;
+    }
+    return o->unk_1C + i;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00121640);
 

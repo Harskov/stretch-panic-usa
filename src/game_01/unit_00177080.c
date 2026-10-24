@@ -20,6 +20,16 @@ extern Quad D_00677D60;
 
 void func_0016FDE0(s32 a0, s32 a1, s32 a2, Quad *a3, Quad *t0, Quad *t1, f32 f12, f32 f13);
 
+extern s32 D_0069D0E0;
+
+void func_0017B7A0();
+
+void __dl__FPv(void *);
+
+extern s32 D_0069D150;
+
+void func_00172E80();
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00177080", func_00177080);
 
 void func_00177170(Obj_00177170 *arg0)
@@ -44,7 +54,16 @@ void func_00177CF0(void)
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00177080", func_00177D00);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00177080", func_00177F90);
+s32 **func_00177F90(s32 **self, s16 flags) {
+    if (self != 0) {
+        *self = &D_0069D0E0;
+        func_0017B7A0(self, 0);
+        if (flags > 0) {
+            __dl__FPv(self);
+        }
+    }
+    return self;
+}
 
 void func_00177FF0(Obj_00177FF0 *arg0)
 {
@@ -56,7 +75,16 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_00177080", func_00178020);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00177080", func_001780C0);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00177080", func_00178320);
+s32 **func_00178320(s32 **self, s16 flags) {
+    if (self != 0) {
+        *self = &D_0069D150;
+        func_00172E80(self, 0);
+        if (flags > 0) {
+            __dl__FPv(self);
+        }
+    }
+    return self;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00177080", func_00178380);
 

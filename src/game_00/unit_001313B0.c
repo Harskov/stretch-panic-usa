@@ -48,6 +48,10 @@ extern s32 D_0069C3F0;
 
 extern s32 D_0069C480;
 
+extern s32 D_0069C450;
+
+extern void __dla__FPv(void *);
+
 s32 **func_001313B0(s32 **arg0, s16 arg1)
 {
     if (arg0 != 0) {
@@ -142,7 +146,19 @@ void *func_00131620(Obj_00131620 *o) {
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001313B0", func_00131630);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_001313B0", func_001316B0);
+s32 **func_001316B0(s32 **arg0, s16 arg1) {
+    if (arg0 != 0) {
+        *arg0 = &D_0069C450;
+        __dla__FPv(arg0[4]);
+        if (arg0 != 0) {
+            *arg0 = &D_0069C300;
+        }
+        if (arg1 > 0) {
+            __dl__FPv(arg0);
+        }
+    }
+    return arg0;
+}
 
 /* Shares the function-pointer table D_0069C450 with func_00131740, so both are
    called on the same object. */

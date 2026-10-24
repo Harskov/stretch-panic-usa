@@ -124,7 +124,26 @@ s32 func_001472F0(void)
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147380);
+// registers: path = the buffer the copied string lives in
+s32 func_00147380(void)
+{
+    s32 r;
+    union {
+        Obj14 unk_0;
+        char path[0x40];
+    } u;
+
+    // !FAKE: probably strcpy(path, ...) into a char path[0x40]; only a 20-byte struct assignment reproduces the inline copy
+    u.unk_0 = D_0069BE20;
+    func_00147B80(5);
+    r = func_00146B90(u.path);
+    switch (r) {
+    case -1:
+    case -2:
+        return -1;
+    }
+    return 0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_001473F0);
 

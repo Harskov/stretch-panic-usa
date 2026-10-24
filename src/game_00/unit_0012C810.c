@@ -19,6 +19,15 @@ f32 cosf(f32);
 
 f32 sinf(f32);
 
+extern Vec *D_006A6BC8;
+
+typedef struct Obj_0012D560 {
+    u8 unk_0[0x30];
+    s32 unk_30;
+    s32 unk_34;
+    f32 unk_38;
+} Obj_0012D560;
+
 void func_0012C810(register Vec *src, register Vec *dst)
 {
     asm {
@@ -177,9 +186,23 @@ void func_0012D430(Obj_0012D430 *arg0)
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012D450);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012D4E0);
+void func_0012D4E0(Vec *arg0, f32 arg1)
+{
+    func_0012C810(arg0, D_006A6BB0);
+    D_006A6BC8[3].x = 0.0f;
+    D_006A6BC8[3].y = arg1;
+    D_006A6BC8[3].z = 0.0f;
+    func_0012C840(D_006A6BC8, D_006A6BB0, arg0);
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012D560);
+void func_0012D560(Vec *arg0, f32 arg1)
+{
+    func_0012C810(arg0, D_006A6BB0);
+    ((Obj_0012D560 *)D_006A6BC8)->unk_30 = 0;
+    ((Obj_0012D560 *)D_006A6BC8)->unk_34 = 0;
+    ((Obj_0012D560 *)D_006A6BC8)->unk_38 = arg1;
+    func_0012C840(D_006A6BC8, D_006A6BB0, arg0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012D5E0);
 

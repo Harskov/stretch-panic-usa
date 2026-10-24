@@ -45,6 +45,20 @@ typedef struct Obj_0012AF20 {
 
 s32 func_001006F0(s32 size);
 
+extern s32 D_0069C330;
+
+void __dl__FPv();
+
+extern s32 D_0069C510;
+
+void __dla__FPv(void *);
+
+typedef struct Obj_0012B0F0 {
+    s32 *unk_0;
+    u8 unk_4[0x1C];
+    void *unk_20;
+} Obj_0012B0F0;
+
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012AA40", func_0012AA40);
 
 s32 **func_0012AE80(s32 **arg0, s16 arg1)
@@ -58,7 +72,17 @@ s32 **func_0012AE80(s32 **arg0, s16 arg1)
     return arg0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012AA40", func_0012AED0);
+s32 **func_0012AED0(s32 **arg0, s16 arg1)
+{
+    if (arg0 != 0) {
+        *arg0 = &D_0069C330;
+        if (arg1 > 0) {
+            // !FAKE: the original is a C++ destructor calling operator delete(this); the argument register still holds this, so the call passes nothing
+            __dl__FPv();
+        }
+    }
+    return arg0;
+}
 
 Obj_0012AF20 *func_0012AF20(Obj_0012AF20 *o, Src_0012AF20 *src)
 {
@@ -79,7 +103,20 @@ Obj_0012AF20 *func_0012AF20(Obj_0012AF20 *o, Src_0012AF20 *src)
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012AA40", func_0012AFB0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012AA40", func_0012B0F0);
+Obj_0012B0F0 *func_0012B0F0(Obj_0012B0F0 *o, s16 arg1)
+{
+    if (o != 0) {
+        o->unk_0 = &D_0069C510;
+        if (o != 0) {
+            o->unk_0 = &D_0069C270;
+            __dla__FPv(o->unk_20);
+        }
+        if (arg1 > 0) {
+            __dl__FPv(o);
+        }
+    }
+    return o;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012AA40", func_0012B160);
 
