@@ -1,6 +1,6 @@
 #ifndef GAME_01_OBJ2F8_H
 #define GAME_01_OBJ2F8_H
-#include "types.h"
+#include "common.h"
 /* The object with a backup pair for the two words at +0x64/+0x68, agreed by
    func_0016E740 and func_0016E760: func_0016E740 copies +0x64/+0x68 into
    +0x2F8/+0x2FC and func_0016E760 copies them back, so the two functions are the
@@ -14,18 +14,34 @@
    (func_00179F40 then clears the word at +0x504), and func_0017B170, which stores
    a vtable at +0x00 and writes +0x64/+0x68, is the only caller of both
    func_00179DF0 and func_0016E740. The words stored at +0x180 are the bit patterns
-   of 0.5, 0.75, 1.0 and 2.0, stored from integer registers, so the field stays s32. */
+   of 0.5, 0.75, 1.0 and 2.0, stored from integer registers, so the field stays s32.
+
+   The Vec members are those func_0016E040, func_0016E0B0, func_0016E270, func_0016E340
+   and func_0017A5E0 pass to the vector functions; func_0017A5E0 hands its object on to
+   func_0017A220, so it is this layout too. */
 typedef struct Obj2F8 {
     unsigned char unk_00[0x10];
     u128 unk_10;
-    unsigned char unk_20[0x44];
+    /* 0x020 */ Vec unk_20;
+    /* 0x030 */ Vec unk_30;
+    /* 0x040 */ Vec unk_40;
+    unsigned char unk_50[0x14];
     s32 unk_64;
     s32 unk_68;
     unsigned char unk_6C[0x10C];
     s32 unk_178;
     unsigned char unk_17C[4];
     s32 unk_180;
-    unsigned char unk_184[0x12C];
+    unsigned char unk_184[0xC];
+    /* 0x190 */ Vec unk_190;
+    unsigned char unk_1A0[0x40];
+    /* 0x1E0 */ Vec unk_1E0;
+    unsigned char unk_1F0[0x60];
+    /* 0x250 */ Vec unk_250;
+    unsigned char unk_260[0x10];
+    /* 0x270 */ Vec unk_270;
+    /* 0x280 */ Vec unk_280;
+    unsigned char unk_290[0x20];
     s32 unk_2B0;
     s32 unk_2B4;
     s32 unk_2B8;

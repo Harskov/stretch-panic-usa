@@ -1,5 +1,6 @@
 #include "common.h"
 #include "game_00/obj90.h"
+#include "game_00/unit_0012DF10.h"
 
 extern s32 D_0069C360;
 
@@ -38,7 +39,6 @@ typedef struct Obj_0012C4B0 {
     Vec unk_1C0;
 } Obj_0012C4B0;
 
-extern f32 func_0012E970(Vec *a, Vec *b);
 
 void *func_0012BA80(Obj90 *o) {
     return &o->unk_A0;

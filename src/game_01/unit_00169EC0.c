@@ -11,13 +11,11 @@ typedef struct Obj_0016B1D0 {
 } Obj_0016B1D0;
 
 
-void func_0012E8E0(Vec *a, Vec *out);
 
 f32 func_0012E950(Vec *a, Vec *b);
 
 void func_0012E9E0(Vec *a, Vec *b, Vec *c, f32 t);
 
-void func_0012E8A0(Vec *a);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_00169EC0);
 

@@ -158,31 +158,31 @@ void func_00152630(Obj70 *o, f32 t) {
     func_0012E9E0(&o->unk_70, &o->unk_70, &o->unk_70, t);
 }
 
-void func_00152640(Obj_00152640 *o, Vec *target)
+void func_00152640(Obj_00152640 *o, Vec *arg1)
 {
-    Quad axis;
-    Vec diff;
-    register Vec *pt;
-    register Quad *pa;
+    Quad q;
+    Vec d;
+    register Vec *pv;
+    register Quad *pq;
     register Vec *pd;
 
-    pt = target;
-    pa = &axis;
-    pa->unk_0 = o->unk_A0;
-    pd = &diff;
+    pv = arg1;
+    pq = &q;
+    pq->unk_0 = o->unk_A0;
+    pd = &d;
     asm {
-        lqc2 vf1, 0(pt)
-        lqc2 vf2, 0(pa)
+        lqc2 vf1, 0(pv)
+        lqc2 vf2, 0(pq)
         vsub.xyz vf1, vf1, vf2
         sqc2 vf1, 0(pd)
-        lqc2 vf1, 0(pa)
+        lqc2 vf1, 0(pq)
         lqc2 vf2, 0(pd)
         vopmula.xyz ACC, vf1, vf2
         vopmsub.xyz vf3, vf2, vf1
-        sqc2 vf3, 0(pa)
+        sqc2 vf3, 0(pq)
     }
-    func_0012C950(&o->unk_80, &pa->vec0);
-    func_0012E9A0(&o->unk_70, &axis.vec0, &o->unk_70, 0.39269909f);
+    func_0012C950(&o->unk_80, &pq->vec0);
+    func_0012E9A0(&o->unk_70, &q.vec0, &o->unk_70, 0.39269909f);
 }
 
 Vec *func_001526C0(Obj *o)

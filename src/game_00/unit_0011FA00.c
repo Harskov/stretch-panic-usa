@@ -196,7 +196,8 @@ void func_00120270();
 s32 func_001217E0(s32 arg0, s32 arg1);
 
 typedef struct Obj_00120970 {
-    /* 0x00 */ u8 pad_0[0x14];
+    /* 0x00 */ Obj_0011FE50 unk_0;
+    /* 0x12 */ u8 pad_12[2];
     /* 0x14 */ s32 unk_14;
     /* 0x18 */ s32 unk_18;
     /* 0x1C */ s32 unk_1C;
@@ -414,7 +415,7 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_001208A0);
 
 Obj_00120970 *func_00120970(Obj_00120970 *o)
 {
-    func_0011FE50((Obj_0011FE50 *)o);
+    func_0011FE50(&o->unk_0);
     o->unk_18 = 0;
     o->unk_14 = 0;
     o->unk_1C = 0;

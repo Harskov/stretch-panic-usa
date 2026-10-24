@@ -30,6 +30,8 @@ void func_0016E5A0();
 
 void func_0012CA30();
 
+void func_0012EA20(Vec *, f32, f32);
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016DE30", func_0016DE30);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016DE30", func_0016DF60);
@@ -38,17 +40,15 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016DE30", func_0016DFF0);
 
 void func_0016E040(Obj2F8 *arg0, f32 arg1)
 {
-    s32 *word = (s32 *)&arg0->unk_184[0xF8];
-
-    *word = 0;
-    func_0012CA30((Vec *)&arg0->unk_184[0xC], (Vec *)&arg0->unk_184[0xEC]);
-    func_0012E9A0((Vec *)&arg0->unk_184[0xEC], (Vec *)&arg0->unk_20[0x10], (Vec *)&arg0->unk_20[0x10], arg1);
+    arg0->unk_270.w = 0.0f;
+    func_0012CA30(&arg0->unk_190, &arg0->unk_270);
+    func_0012E9A0(&arg0->unk_270, &arg0->unk_30, &arg0->unk_30, arg1);
     {
         register Vec *e;
         register Vec *d;
 
         d = (Vec *)&arg0->unk_10;
-        e = (Vec *)&arg0->unk_20[0x10];
+        e = &arg0->unk_30;
         asm {
             lqc2 vf1, 0(d)
             lqc2 vf2, 0(e)
@@ -58,17 +58,15 @@ void func_0016E040(Obj2F8 *arg0, f32 arg1)
     }
 }
 
-void func_0016E0B0(Obj2F8 *arg0, f32 t)
+void func_0016E0B0(Obj2F8 *arg0, f32 arg1)
 {
-    void func_0012EA20(Vec *, f32, f32);
-
-    func_0012E9A0((Vec *)&arg0->unk_184[0xFC], (Vec *)&arg0->unk_20[0x20], (Vec *)&arg0->unk_20[0x20], t);
+    func_0012E9A0(&arg0->unk_280, &arg0->unk_40, &arg0->unk_40, arg1);
     {
         register Vec *d;
         register Vec *e;
 
-        d = (Vec *)&arg0->unk_20[0];
-        e = (Vec *)&arg0->unk_20[0x20];
+        d = &arg0->unk_20;
+        e = &arg0->unk_40;
         asm {
             lqc2 vf1, 0(d)
             lqc2 vf2, 0(e)
@@ -76,7 +74,7 @@ void func_0016E0B0(Obj2F8 *arg0, f32 t)
             sqc2 vf1, 0(d)
         }
     }
-    func_0012EA20((Vec *)&arg0->unk_20[0], 6.2831855f, 0.31830987f);
+    func_0012EA20(&arg0->unk_20, 6.2831855f, 0.31830987f);
 }
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016DE30", func_0016E120);
@@ -84,7 +82,7 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016DE30", func_0016E120);
 void func_0016E270(Obj2F8 *arg0, f32 scale, f32 arg2)
 {
     {
-        register Vec *a = (Vec *)&arg0->unk_184[0xEC];
+        register Vec *a = &arg0->unk_270;
         register f32 s = scale;
 
         asm {
@@ -95,13 +93,13 @@ void func_0016E270(Obj2F8 *arg0, f32 scale, f32 arg2)
             sqc2 vf1, 0(a)
         }
     }
-    func_0012E9A0((Vec *)&arg0->unk_184[0xEC], (Vec *)&arg0->unk_20[0x10], (Vec *)&arg0->unk_20[0x10], arg2);
+    func_0012E9A0(&arg0->unk_270, &arg0->unk_30, &arg0->unk_30, arg2);
     {
         register Vec *e;
         register Vec *d;
 
         d = (Vec *)&arg0->unk_10;
-        e = (Vec *)&arg0->unk_20[0x10];
+        e = &arg0->unk_30;
         asm {
             lqc2 vf1, 0(d)
             lqc2 vf2, 0(e)
@@ -115,9 +113,9 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016DE30", func_0016E2D0);
 
 void func_0016E340(Obj2F8 *arg0)
 {
-    func_0012D430((Vec *)&arg0->unk_184[0xC]);
-    func_0012D450((Vec *)&arg0->unk_184[0xC], ((Vec *)&arg0->unk_10)->x, ((Vec *)&arg0->unk_10)->y, ((Vec *)&arg0->unk_10)->z);
-    func_0012C8F0((Vec *)&arg0->unk_184[0xC], (Vec *)&arg0->unk_184[0x5C]);
+    func_0012D430(&arg0->unk_190);
+    func_0012D450(&arg0->unk_190, ((Vec *)&arg0->unk_10)->x, ((Vec *)&arg0->unk_10)->y, ((Vec *)&arg0->unk_10)->z);
+    func_0012C8F0(&arg0->unk_190, &arg0->unk_1E0);
 }
 
 void func_0016E390(int arg0, int arg1, int arg2) {

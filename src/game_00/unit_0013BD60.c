@@ -148,22 +148,22 @@ int func_0013C510(s32 arg0, char *arg1)
 {
     s32 buf[8];
     struct {
-        s32 handle;
+        s32 unk_0;
         s32 unk_4;
-        char name[72];
-    } req;
-    int handle;
+        char unk_8[72];
+    } blk;
+    int ret;
 
     buf[1] = 0;
     buf[2] = 3;
     buf[3] = 0;
-    handle = func_0013DDA0(buf);
-    req.handle = handle;
-    req.unk_4 = 1;
-    strcpy(req.name, arg1);
-    func_0013DDF0(&req);
-    func_0013DED0(handle, arg0);
-    return handle;
+    ret = func_0013DDA0(buf);
+    blk.unk_0 = ret;
+    blk.unk_4 = 1;
+    strcpy(blk.unk_8, arg1);
+    func_0013DDF0(&blk);
+    func_0013DED0(ret, arg0);
+    return ret;
 }
 
 int func_0013C590(s32 arg0, s32 *arg1)

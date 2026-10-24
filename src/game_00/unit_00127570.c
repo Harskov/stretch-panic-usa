@@ -43,10 +43,10 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00127570", func_001276F0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00127570", func_00127750);
 
-void func_001277C0(Obj_00127810 *arg0, s64 arg1)
+void func_001277C0(Obj_00127810 *arg0, s32 arg1)
 {
     arg0->unk_90 = 1;
-    arg0->unk_40 = ((((u64)(arg1 << 32) >> 32) & 1) << 32) | (arg0->unk_40 & ~0x100000000ULL);
+    arg0->unk_40 = (((u64)(u32)arg1 & 1) << 32) | (arg0->unk_40 & ~0x100000000ULL);
 }
 
 void func_00127810(Obj_00127810 *arg0, s32 arg1)

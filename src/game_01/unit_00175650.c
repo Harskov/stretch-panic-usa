@@ -17,7 +17,9 @@ void func_00175970(s32 **, s32, s32, f32);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00175650", func_00175650);
 
-s32 **func_001757E0(s32 ** volatile arg0, s32 arg1, s32 arg2, f32 arg3) {
+s32 **func_001757E0(s32 **volatile arg0, s32 arg1, s32 arg2, f32 arg3)
+{
+    // !FAKE: probably a C++ constructor whose `this` lives in a stack slot and is returned; the volatile parameter forces that spill in C
     func_00172DA0(arg0, 0x5B, 0);
     *arg0 = &D_0069CFC0;
     func_00175970(arg0, arg1, arg2, arg3);

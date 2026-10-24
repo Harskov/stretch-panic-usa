@@ -476,81 +476,81 @@ Every function whose code carries COP2 instructions, matched or not. The matched
 | `src/game_00/unit_00125690.c` | 17 | u128 |
 | `src/game_00/unit_00125690.c` | 18 | u128 |
 | `src/game_00/unit_00125690.c` | 77 | u128 |
-| `src/game_00/unit_0012BA80.c` | 11 | u128 |
-| `src/game_00/unit_0012C810.c` | 33 | inline asm |
+| `src/game_00/unit_0012BA80.c` | 12 | u128 |
+| `src/game_00/unit_0012C810.c` | 26 | inline asm |
+| `src/game_00/unit_0012C810.c` | 27 | COP2 |
+| `src/game_00/unit_0012C810.c` | 28 | COP2 |
+| `src/game_00/unit_0012C810.c` | 29 | COP2 |
+| `src/game_00/unit_0012C810.c` | 30 | COP2 |
+| `src/game_00/unit_0012C810.c` | 31 | COP2 |
+| `src/game_00/unit_0012C810.c` | 32 | COP2 |
+| `src/game_00/unit_0012C810.c` | 33 | COP2 |
 | `src/game_00/unit_0012C810.c` | 34 | COP2 |
-| `src/game_00/unit_0012C810.c` | 35 | COP2 |
-| `src/game_00/unit_0012C810.c` | 36 | COP2 |
-| `src/game_00/unit_0012C810.c` | 37 | COP2 |
-| `src/game_00/unit_0012C810.c` | 38 | COP2 |
-| `src/game_00/unit_0012C810.c` | 39 | COP2 |
-| `src/game_00/unit_0012C810.c` | 40 | COP2 |
+| `src/game_00/unit_0012C810.c` | 40 | inline asm |
 | `src/game_00/unit_0012C810.c` | 41 | COP2 |
-| `src/game_00/unit_0012C810.c` | 47 | inline asm |
+| `src/game_00/unit_0012C810.c` | 42 | COP2 |
+| `src/game_00/unit_0012C810.c` | 43 | COP2 |
+| `src/game_00/unit_0012C810.c` | 44 | COP2 |
+| `src/game_00/unit_0012C810.c` | 45 | COP2 |
+| `src/game_00/unit_0012C810.c` | 46 | COP2 |
+| `src/game_00/unit_0012C810.c` | 47 | COP2 |
 | `src/game_00/unit_0012C810.c` | 48 | COP2 |
-| `src/game_00/unit_0012C810.c` | 49 | COP2 |
 | `src/game_00/unit_0012C810.c` | 50 | COP2 |
 | `src/game_00/unit_0012C810.c` | 51 | COP2 |
 | `src/game_00/unit_0012C810.c` | 52 | COP2 |
-| `src/game_00/unit_0012C810.c` | 53 | COP2 |
 | `src/game_00/unit_0012C810.c` | 54 | COP2 |
 | `src/game_00/unit_0012C810.c` | 55 | COP2 |
-| `src/game_00/unit_0012C810.c` | 57 | COP2 |
+| `src/game_00/unit_0012C810.c` | 56 | COP2 |
 | `src/game_00/unit_0012C810.c` | 58 | COP2 |
 | `src/game_00/unit_0012C810.c` | 59 | COP2 |
-| `src/game_00/unit_0012C810.c` | 61 | COP2 |
+| `src/game_00/unit_0012C810.c` | 60 | COP2 |
 | `src/game_00/unit_0012C810.c` | 62 | COP2 |
 | `src/game_00/unit_0012C810.c` | 63 | COP2 |
+| `src/game_00/unit_0012C810.c` | 64 | COP2 |
 | `src/game_00/unit_0012C810.c` | 65 | COP2 |
 | `src/game_00/unit_0012C810.c` | 66 | COP2 |
 | `src/game_00/unit_0012C810.c` | 67 | COP2 |
-| `src/game_00/unit_0012C810.c` | 69 | COP2 |
-| `src/game_00/unit_0012C810.c` | 70 | COP2 |
-| `src/game_00/unit_0012C810.c` | 71 | COP2 |
-| `src/game_00/unit_0012C810.c` | 72 | COP2 |
-| `src/game_00/unit_0012C810.c` | 73 | COP2 |
-| `src/game_00/unit_0012C810.c` | 74 | COP2 |
-| `src/game_00/unit_0012C810.c` | 75 | COP2 |
-| `src/game_00/unit_0012C810.c` | 86 | inline asm |
+| `src/game_00/unit_0012C810.c` | 68 | COP2 |
+| `src/game_00/unit_0012C810.c` | 79 | inline asm |
+| `src/game_00/unit_0012C810.c` | 92 | COP2 |
+| `src/game_00/unit_0012C810.c` | 93 | COP2 |
+| `src/game_00/unit_0012C810.c` | 94 | COP2 |
+| `src/game_00/unit_0012C810.c` | 95 | COP2 |
+| `src/game_00/unit_0012C810.c` | 96 | COP2 |
+| `src/game_00/unit_0012C810.c` | 98 | COP2 |
 | `src/game_00/unit_0012C810.c` | 99 | COP2 |
 | `src/game_00/unit_0012C810.c` | 100 | COP2 |
-| `src/game_00/unit_0012C810.c` | 101 | COP2 |
-| `src/game_00/unit_0012C810.c` | 102 | COP2 |
 | `src/game_00/unit_0012C810.c` | 103 | COP2 |
-| `src/game_00/unit_0012C810.c` | 105 | COP2 |
-| `src/game_00/unit_0012C810.c` | 106 | COP2 |
-| `src/game_00/unit_0012C810.c` | 107 | COP2 |
-| `src/game_00/unit_0012C810.c` | 110 | COP2 |
-| `src/game_00/unit_0012C810.c` | 117 | inline asm |
+| `src/game_00/unit_0012C810.c` | 110 | inline asm |
+| `src/game_00/unit_0012C810.c` | 123 | COP2 |
+| `src/game_00/unit_0012C810.c` | 124 | COP2 |
+| `src/game_00/unit_0012C810.c` | 125 | COP2 |
+| `src/game_00/unit_0012C810.c` | 126 | COP2 |
+| `src/game_00/unit_0012C810.c` | 127 | COP2 |
+| `src/game_00/unit_0012C810.c` | 129 | COP2 |
 | `src/game_00/unit_0012C810.c` | 130 | COP2 |
 | `src/game_00/unit_0012C810.c` | 131 | COP2 |
-| `src/game_00/unit_0012C810.c` | 132 | COP2 |
-| `src/game_00/unit_0012C810.c` | 133 | COP2 |
 | `src/game_00/unit_0012C810.c` | 134 | COP2 |
-| `src/game_00/unit_0012C810.c` | 136 | COP2 |
-| `src/game_00/unit_0012C810.c` | 137 | COP2 |
-| `src/game_00/unit_0012C810.c` | 138 | COP2 |
+| `src/game_00/unit_0012C810.c` | 140 | inline asm |
 | `src/game_00/unit_0012C810.c` | 141 | COP2 |
-| `src/game_00/unit_0012C810.c` | 147 | inline asm |
+| `src/game_00/unit_0012C810.c` | 142 | COP2 |
+| `src/game_00/unit_0012C810.c` | 143 | COP2 |
+| `src/game_00/unit_0012C810.c` | 144 | COP2 |
+| `src/game_00/unit_0012C810.c` | 145 | COP2 |
+| `src/game_00/unit_0012C810.c` | 147 | COP2 |
 | `src/game_00/unit_0012C810.c` | 148 | COP2 |
 | `src/game_00/unit_0012C810.c` | 149 | COP2 |
 | `src/game_00/unit_0012C810.c` | 150 | COP2 |
-| `src/game_00/unit_0012C810.c` | 151 | COP2 |
-| `src/game_00/unit_0012C810.c` | 152 | COP2 |
-| `src/game_00/unit_0012C810.c` | 154 | COP2 |
-| `src/game_00/unit_0012C810.c` | 155 | COP2 |
-| `src/game_00/unit_0012C810.c` | 156 | COP2 |
+| `src/game_00/unit_0012C810.c` | 156 | inline asm |
 | `src/game_00/unit_0012C810.c` | 157 | COP2 |
-| `src/game_00/unit_0012C810.c` | 163 | inline asm |
+| `src/game_00/unit_0012C810.c` | 158 | COP2 |
+| `src/game_00/unit_0012C810.c` | 159 | COP2 |
+| `src/game_00/unit_0012C810.c` | 160 | COP2 |
+| `src/game_00/unit_0012C810.c` | 161 | COP2 |
+| `src/game_00/unit_0012C810.c` | 163 | COP2 |
 | `src/game_00/unit_0012C810.c` | 164 | COP2 |
 | `src/game_00/unit_0012C810.c` | 165 | COP2 |
 | `src/game_00/unit_0012C810.c` | 166 | COP2 |
-| `src/game_00/unit_0012C810.c` | 167 | COP2 |
-| `src/game_00/unit_0012C810.c` | 168 | COP2 |
-| `src/game_00/unit_0012C810.c` | 170 | COP2 |
-| `src/game_00/unit_0012C810.c` | 171 | COP2 |
-| `src/game_00/unit_0012C810.c` | 172 | COP2 |
-| `src/game_00/unit_0012C810.c` | 173 | COP2 |
 | `src/game_00/unit_0012DF10.c` | 17 | COP2 |
 | `src/game_00/unit_0012DF10.c` | 18 | COP2 |
 | `src/game_00/unit_0012DF10.c` | 21 | COP2 |
@@ -706,10 +706,10 @@ Every function whose code carries COP2 instructions, matched or not. The matched
 | `src/game_01/unit_0014DF80.c` | 107 | inline asm |
 | `src/game_01/unit_0014DF80.c` | 138 | u128 |
 | `src/game_01/unit_0014DF80.c` | 148 | u128 |
-| `src/game_01/unit_0014EB90.c` | 5 | u128 |
-| `src/game_01/unit_0014EB90.c` | 10 | u128 |
-| `src/game_01/unit_0014EB90.c` | 14 | u128 |
+| `src/game_01/unit_0014EB90.c` | 6 | u128 |
+| `src/game_01/unit_0014EB90.c` | 11 | u128 |
 | `src/game_01/unit_0014EB90.c` | 15 | u128 |
+| `src/game_01/unit_0014EB90.c` | 16 | u128 |
 | `src/game_01/unit_0014EB90.c` | 47 | inline asm |
 | `src/game_01/unit_0014EB90.c` | 49 | COP2 |
 | `src/game_01/unit_0014EB90.c` | 50 | COP2 |
@@ -750,11 +750,11 @@ Every function whose code carries COP2 instructions, matched or not. The matched
 | `src/game_01/unit_00159F10.c` | 9 | u128 |
 | `src/game_01/unit_00159F10.c` | 15 | u128 |
 | `src/game_01/unit_00159F10.c` | 16 | u128 |
-| `src/game_01/unit_0015D510.c` | 46 | inline asm |
+| `src/game_01/unit_0015D510.c` | 45 | inline asm |
+| `src/game_01/unit_0015D510.c` | 46 | COP2 |
 | `src/game_01/unit_0015D510.c` | 47 | COP2 |
 | `src/game_01/unit_0015D510.c` | 48 | COP2 |
 | `src/game_01/unit_0015D510.c` | 49 | COP2 |
-| `src/game_01/unit_0015D510.c` | 50 | COP2 |
 | `src/game_01/unit_0015E000.cpp` | 38 | inline asm |
 | `src/game_01/unit_0015E000.cpp` | 40 | COP2 |
 | `src/game_01/unit_0015E000.cpp` | 41 | COP2 |
@@ -780,7 +780,9 @@ Every function whose code carries COP2 instructions, matched or not. The matched
 | `src/game_01/unit_001651D0.c` | 47 | u128 |
 | `src/game_01/unit_001651D0.c` | 53 | u128 |
 | `src/game_01/unit_001651D0.c` | 54 | u128 |
-| `src/game_01/unit_00169EC0.c` | 50 | inline asm |
+| `src/game_01/unit_00169EC0.c` | 48 | inline asm |
+| `src/game_01/unit_00169EC0.c` | 49 | COP2 |
+| `src/game_01/unit_00169EC0.c` | 50 | COP2 |
 | `src/game_01/unit_00169EC0.c` | 51 | COP2 |
 | `src/game_01/unit_00169EC0.c` | 52 | COP2 |
 | `src/game_01/unit_00169EC0.c` | 53 | COP2 |
@@ -788,8 +790,6 @@ Every function whose code carries COP2 instructions, matched or not. The matched
 | `src/game_01/unit_00169EC0.c` | 55 | COP2 |
 | `src/game_01/unit_00169EC0.c` | 56 | COP2 |
 | `src/game_01/unit_00169EC0.c` | 57 | COP2 |
-| `src/game_01/unit_00169EC0.c` | 58 | COP2 |
-| `src/game_01/unit_00169EC0.c` | 59 | COP2 |
 | `src/game_01/unit_0016D830.c` | 11 | u128 |
 | `src/game_01/unit_0016D830.c` | 12 | u128 |
 | `src/game_01/unit_0016D830.c` | 13 | u128 |
@@ -800,20 +800,20 @@ Every function whose code carries COP2 instructions, matched or not. The matched
 | `src/game_01/unit_0016DE30.c` | 54 | COP2 |
 | `src/game_01/unit_0016DE30.c` | 55 | COP2 |
 | `src/game_01/unit_0016DE30.c` | 56 | COP2 |
-| `src/game_01/unit_0016DE30.c` | 72 | inline asm |
+| `src/game_01/unit_0016DE30.c` | 70 | inline asm |
+| `src/game_01/unit_0016DE30.c` | 71 | COP2 |
+| `src/game_01/unit_0016DE30.c` | 72 | COP2 |
 | `src/game_01/unit_0016DE30.c` | 73 | COP2 |
 | `src/game_01/unit_0016DE30.c` | 74 | COP2 |
-| `src/game_01/unit_0016DE30.c` | 75 | COP2 |
-| `src/game_01/unit_0016DE30.c` | 76 | COP2 |
-| `src/game_01/unit_0016DE30.c` | 90 | inline asm |
-| `src/game_01/unit_0016DE30.c` | 92 | COP2 |
+| `src/game_01/unit_0016DE30.c` | 88 | inline asm |
+| `src/game_01/unit_0016DE30.c` | 90 | COP2 |
+| `src/game_01/unit_0016DE30.c` | 91 | COP2 |
 | `src/game_01/unit_0016DE30.c` | 93 | COP2 |
-| `src/game_01/unit_0016DE30.c` | 95 | COP2 |
-| `src/game_01/unit_0016DE30.c` | 105 | inline asm |
+| `src/game_01/unit_0016DE30.c` | 103 | inline asm |
+| `src/game_01/unit_0016DE30.c` | 104 | COP2 |
+| `src/game_01/unit_0016DE30.c` | 105 | COP2 |
 | `src/game_01/unit_0016DE30.c` | 106 | COP2 |
 | `src/game_01/unit_0016DE30.c` | 107 | COP2 |
-| `src/game_01/unit_0016DE30.c` | 108 | COP2 |
-| `src/game_01/unit_0016DE30.c` | 109 | COP2 |
 | `src/game_01/unit_0016E9A0.c` | 71 | inline asm |
 | `src/game_01/unit_0016E9A0.c` | 72 | COP2 |
 | `src/game_01/unit_0016E9A0.c` | 73 | COP2 |

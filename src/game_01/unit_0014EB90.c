@@ -1,4 +1,5 @@
 #include "common.h"
+#include "game_00/unit_0012DF10.h"
 
 typedef struct Obj {
     u8 pad0[0x30];
@@ -21,7 +22,6 @@ typedef struct Obj {
     Vec unk_400;
 } Obj;
 
-extern f32 func_0012E8E0(Vec *in, Vec *out);
 
 void func_0014FFD0();
 
