@@ -941,13 +941,35 @@ def checked_type_names(repo):
     return types, fields
 
 
+def attempt_homes(repo, rels):
+    """{rel: unit stem} for the files among `rels` that are a function's attempts (`wip/<fn>/…`), from the ledger's records."""
+    want = {}
+    for rel in rels:
+        parts = rel.split("/")
+        if len(parts) >= 3 and parts[0] == "wip":
+            want.setdefault(parts[1], []).append(rel)
+    out = {}
+    p = Path(repo) / "ledger" / "functions.jsonl"
+    for line in p.read_text(encoding="utf-8").splitlines() if want and p.is_file() else []:
+        try:
+            r = json.loads(line)
+        except ValueError:
+            continue
+        if r.get("name") in want and r.get("unit"):
+            out.update({rel: r["unit"] for rel in want[r["name"]]})
+    return out
+
+
 def invented_name_findings(repo, paths):
     """invented-name (error): a type or member a file declares outside the placeholder forms (evidence_c.type_systematic and
     field_systematic over the model's layout) with no checked record. K1 §4: a type or member written at S6 or S8 keeps its
     placeholder, names come from the name pass through `ledger.py rename`, and the batch lane never names; the mark's lint had
     no rule for it, and 10 types and 5 members with invented names (Pose, Mtx, Quad5, Slot.vec …) entered stretch-panic through
     lane marks (run 2026-10-20-046 F-1). A type letter before the offset is a union's view and a name in a struct (stretch-panic
-    run 2026-10-20-048 F-1). Runs where a ledger is (a workbench); the contributor copy's public tree has none."""
+    run 2026-10-20-048 F-1). Runs where a ledger is (a workbench); the contributor copy's public tree has none.
+    An attempt under `wip/<fn>/` is a draft for its function's unit: its copy of a type is checked against the record of the type
+    that unit sees, and it is no second bearer of the name (fate run 2026-10-27-054 F-1: an S8 rewrite that redeclared
+    Obj_001F1C20 read its checked `flags` as invented)."""
     repo = Path(repo)
     if not (repo / "ledger" / "functions.jsonl").is_file():
         return []
@@ -955,6 +977,7 @@ def invented_name_findings(repo, paths):
     from evidence_c import field_systematic, type_systematic
     heads, srcs = cmodel.source_paths(repo)
     items = {str(p.relative_to(repo)).replace("\\", "/"): p.read_text(encoding="utf-8", errors="replace") for p in heads + srcs}
+    tree = set(items)
     rels = {}
     for p in paths:
         p = Path(p)
@@ -963,10 +986,22 @@ def invented_name_findings(repo, paths):
         items.setdefault(rel, p.read_text(encoding="utf-8", errors="replace"))
     m = cmodel.load(repo, texts=items)
     types, fields = checked_type_names(repo)
-    bearers = {}                            # how many aggregates bear a bare name: a record under a bare name clears one type only
+    homes = attempt_homes(repo, [r for r in rels if r not in tree])
+    bearers, tree_bearers = {}, {}          # how many aggregates bear a bare name: a record under a bare name clears one type only
     for x in m.aggs.values():               # (remediation-39 F-2: Dst@unit_001793C0's checked v10 cleared Dst@unit_001608D0's)
         if x.get("name"):
             bearers[x["name"]] = bearers.get(x["name"], 0) + 1
+            if x.get("file") in tree:
+                tree_bearers[x["name"]] = tree_bearers.get(x["name"], 0) + 1
+
+    def seen_from(name, home):
+        """The tree's id of the type `name` as the unit `home` sees it: its own copy, else the one header that bears it."""
+        mine = [x for x in m.aggs.values() if x.get("name") == name and x.get("file") in tree]
+        if any(Path(x["file"]).stem == home for x in mine):
+            return name if tree_bearers.get(name, 0) == 1 else f"{name}@{home}"
+        if sum(1 for x in mine if x["file"].startswith("include/")) == 1:
+            return name
+        return None
 
     def checked(pool, name, keyed, bare):
         return keyed in pool or (bare in pool and bearers.get(name, 0) == 1)
@@ -976,7 +1011,13 @@ def invented_name_findings(repo, paths):
             continue
         name, tid = a.get("name") or "", a.get("id") or ""
         rel = a["file"]
-        if name and "." not in name and "<" not in name and not type_systematic(tid or name) and not checked(types, name, tid, name):
+        key = seen_from(name, homes[rel]) if rel in homes else None
+
+        def ok(pool, keyed, bare):
+            if rel in homes:                # an attempt's copy: the record of its unit's type, never a namesake's bare one
+                return key is not None and key + bare[len(name):] in pool
+            return checked(pool, name, keyed, bare)
+        if name and "." not in name and "<" not in name and not type_systematic(tid or name) and not ok(types, tid, name):
             out.append({"path": rel, "line": a.get("line") or 1, "rule": "invented-name", "severity": "error",
                         "source": f"{a.get('kind')} {name}: a type's name comes from the name pass (`ledger.py rename` with a checked fact); "
                                   "until then its placeholder (Obj_<addr>, Obj<size>)"})
@@ -985,7 +1026,7 @@ def invented_name_findings(repo, paths):
             if not nm or field_systematic(nm, mem.get("offset"), mem.get("bit") if mem.get("bits") is not None else None,
                                           union=a.get("kind") == "union"):
                 continue
-            if checked(fields, name, f"{tid}.{nm}", f"{name}.{nm}"):
+            if ok(fields, f"{tid}.{nm}", f"{name}.{nm}"):
                 continue
             out.append({"path": rel, "line": mem.get("line") or a.get("line") or 1, "rule": "invented-name", "severity": "error",
                         "source": f"{name}.{nm}: a member's name comes from the name pass; until then unk_<offset> "

@@ -54,7 +54,40 @@ void func_0013DDF0();
 
 void func_0013DED0();
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013BD60", func_0013BD60);
+void *__nw__FUi(unsigned int size);
+
+extern s32 D_001BEE08;
+
+extern s32 D_006A6D08;
+
+extern s32 D_006A6D10;
+
+extern s32 D_006A6D18;
+
+s32 func_001006F0();
+
+void func_0013BE60();
+
+void func_0013DE00();
+
+void func_0013DE20();
+
+/* builds the 0x80-byte object (func_0013BE60 is probably its constructor), resets the
+   unit's state words, then passes arg0 * 4 to func_001006F0, probably an allocation;
+   the product is formed in 64 bits and narrowed back to an int */
+void func_0013BD60(s32 arg0)
+{
+    void *p;
+
+    if ((p = __nw__FUi(0x80)) != 0) {
+        func_0013BE60(p);
+    }
+    D_006A6D18 = (s32)p;
+    D_006A6D08 = 0;
+    D_001BEE08 = 0x10000;
+    D_006A6D20 = -1;
+    D_006A6D10 = func_001006F0((s32)((s64)arg0 * 4));
+}
 
 void func_0013BDF0(s32 arg0, s32 arg1, s32 arg2)
 {
@@ -181,7 +214,32 @@ int func_0013C590(s32 arg0, s32 *arg1)
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013BD60", func_0013C620);
+void func_0013C620(char *arg0, s32 *arg1, s32 arg2)
+{
+    struct {
+        s32 unk_0;
+        s32 unk_4;
+        union {
+            s32 i0;
+            char b0[72];
+        } unk_8;
+    } blk;
+    s32 buf[8];
+
+    blk.unk_0 = arg1[0];
+    blk.unk_4 = 1;
+    strcpy(blk.unk_8.b0, arg0);
+    func_0013DDF0(&blk);
+    blk.unk_0 = arg1[1];
+    blk.unk_4 = 2;
+    blk.unk_8.i0 = arg1[0];
+    func_0013DE00(&blk);
+    buf[1] = arg1[1];
+    buf[2] = D_006AEDD8;
+    buf[3] = arg2;
+    buf[4] = 0;
+    func_0013DE20(buf);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013BD60", func_0013C6D0);
 

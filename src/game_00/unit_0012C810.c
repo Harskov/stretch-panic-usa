@@ -199,11 +199,56 @@ void func_0012D560(Vec *arg0, f32 arg1)
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012D5E0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012D900);
+/* Probably a rotation about the x axis: the rows of D_006A6BD0 take the sine and
+   cosine of arg1 the way func_0012DBA0 fills them, then the result goes back to arg0. */
+void func_0012D900(Vec *arg0, f32 arg1)
+{
+    func_0012C810(arg0, D_006A6BB0);
+    D_006A6BD0[0].z = 0.0f;
+    D_006A6BD0[1].z = sinf(arg1);
+    D_006A6BD0[2].z = cosf(arg1);
+    D_006A6BD0[0].y = 0.0f;
+    D_006A6BD0[1].y = D_006A6BD0[2].z;
+    D_006A6BD0[2].y = -D_006A6BD0[1].z;
+    D_006A6BD0[0].x = 1.0f;
+    D_006A6BD0[1].x = 0.0f;
+    D_006A6BD0[2].x = 0.0f;
+    func_0012C840(D_006A6BD0, D_006A6BB0, arg0);
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012D9E0);
+/* Probably a rotation about the y axis: the rows of D_006A6BD0 take the cosine and
+   sine of arg1 the way func_0012D900 fills them for x, then the result goes back to arg0. */
+void func_0012D9E0(Vec *arg0, f32 arg1)
+{
+    func_0012C810(arg0, D_006A6BB0);
+    D_006A6BD0[0].x = cosf(arg1);
+    D_006A6BD0[1].x = 0.0f;
+    D_006A6BD0[2].x = sinf(arg1);
+    D_006A6BD0[0].y = 0.0f;
+    D_006A6BD0[1].y = 1.0f;
+    D_006A6BD0[2].y = 0.0f;
+    D_006A6BD0[0].z = -D_006A6BD0[2].x;
+    D_006A6BD0[1].z = 0.0f;
+    D_006A6BD0[2].z = D_006A6BD0[0].x;
+    func_0012C840(D_006A6BD0, D_006A6BB0, arg0);
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012DAC0);
+/* Probably a rotation about the z axis: the rows of D_006A6BD0 take the sine and
+   cosine of arg1 the way func_0012D900 fills them, then the result goes back to arg0. */
+void func_0012DAC0(Vec *arg0, f32 arg1)
+{
+    func_0012C810(arg0, D_006A6BB0);
+    D_006A6BD0[0].z = 0.0f;
+    D_006A6BD0[1].z = 0.0f;
+    D_006A6BD0[2].z = 1.0f;
+    D_006A6BD0[0].y = sinf(arg1);
+    D_006A6BD0[1].y = cosf(arg1);
+    D_006A6BD0[2].y = 0.0f;
+    D_006A6BD0[0].x = D_006A6BD0[1].y;
+    D_006A6BD0[1].x = -D_006A6BD0[0].y;
+    D_006A6BD0[2].x = 0.0f;
+    func_0012C840(D_006A6BD0, D_006A6BB0, arg0);
+}
 
 void func_0012DBA0(Vec *arg0, f32 arg1, f32 arg2, f32 arg3)
 {

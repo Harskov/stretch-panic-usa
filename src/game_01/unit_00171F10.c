@@ -57,19 +57,26 @@ void func_00172410(f32 x0, f32 x1, f32 x2, f32 x3, f32 x4, f32 x5, f32 x6, f32 x
     q->unk_48 = q->unk_48 + x5;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00171F10", func_001724A0);
+void func_001724A0(f32 x0, f32 x1, f32 x2, f32 x3, f32 x4, f32 x5) {
+    func_00172410(x0, x1, x2, x3, x4, x5, 0.4f, 0.065f);
+}
 
 void func_001724D0(f32 x0, f32 x1, f32 x2, f32 x3, f32 x4, f32 x5) {
     func_00172410(x0, x1, x2, x3, x4, x5, 0.5f, 0.05f);
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00171F10", func_001724F0);
+void func_001724F0(f32 x0, f32 x1, f32 x2, f32 x3, f32 x4, f32 x5) {
+    func_00172410(x0, x1, x2, x3, x4, x5, 0.6f, 0.035f);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00171F10", func_00172520);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00171F10", func_00172740);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00171F10", func_00172860);
+void func_00172860(void) {
+    func_00127BA0(D_006A6730);
+    func_00127BA0(D_006A6730);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00171F10", func_00172890);
 

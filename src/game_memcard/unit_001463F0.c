@@ -37,6 +37,8 @@ extern s32 D_006AEED8;
 
 extern s32 D_006AEF50;
 
+s32 sceMcOpen(s32 port, s32 slot, const char *name, s32 mode);
+
 /* The memory-card format step (it prints "[FORMAT]" when it issues sceMcFormat
    and "[FORMAT END]" once both state words read 0x10); the negative returns are
    status codes whose meaning is not yet known. */
@@ -106,7 +108,31 @@ s32 func_001468E0(s32 arg0)
     return -2;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_001463F0", func_001469B0);
+/* The memory-card open step, parallel to the close and delete steps beside it: it
+   issues sceMcOpen on port 0, slot 0 with mode 1, sets D_006AEEF8 and D_006AEF10 to 2,
+   and once D_006AEF20 has reached 2 returns D_006AEF28 (probably the descriptor), or -3
+   when that is negative; the other negative returns are status codes not yet known. */
+s32 func_001469B0(const char *arg0)
+{
+    func_00146D00();
+    if (D_006AEF10 == 2) {
+        if (D_006AEF20 == 2) {
+            func_00147BA0();
+            return D_006AEF28 >= 0 ? D_006AEF28 : -3;
+        }
+        return -2;
+    }
+    if (D_006AEEF8 != 0) {
+        return -1;
+    }
+    func_00147BD0();
+    if (sceMcOpen(0, 0, arg0, 1) != 0) {
+        return -1;
+    }
+    D_006AEEF8 = 2;
+    D_006AEF10 = 2;
+    return -2;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_001463F0", func_00146A90);
 

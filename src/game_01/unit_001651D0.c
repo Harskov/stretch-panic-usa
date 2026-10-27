@@ -121,7 +121,16 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_001651D0", func_00165800);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001651D0", func_00165980);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_001651D0", func_00165DC0);
+s32 **func_00165DC0(s32 **self, s16 flags) {
+    if (self != 0) {
+        *self = &D_0069CC10;
+        func_00172E80(self, 0);
+        if (flags > 0) {
+            __dl__FPv(self);
+        }
+    }
+    return self;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001651D0", func_00165E20);
 

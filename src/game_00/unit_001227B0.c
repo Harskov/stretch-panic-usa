@@ -50,10 +50,17 @@ typedef struct Elem_00122FE0 {
 } Elem_00122FE0;
 
 typedef struct Obj_00122FE0 {
-    /* 0x00 */ u8 pad_0[0xC];
+    /* 0x00 */ s32 unk_0;
+    /* 0x04 */ s32 pad_4;
+    /* 0x08 */ s32 unk_8;
     /* 0x0C */ u32 unk_C;
     /* 0x10 */ Elem_00122FE0 *unk_10;
+    /* 0x14 */ void *unk_14;
+    /* 0x18 */ struct Obj_00122FE0 *link_18;
+    /* 0x1C */ struct Obj_00122FE0 *link_1C;
 } Obj_00122FE0;
+
+void __dla__FPv(void *);
 
 s32 **func_001227B0(s32 **arg0, s16 arg1)
 {
@@ -88,7 +95,32 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_001228C0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_00122AE0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_00122C30);
+/* Destructor shape: clears the entries, frees the two arrays, unlinks the object from its
+   list (the list head lives in the table at D_001972C0), then frees the object itself
+   when the second argument is positive. */
+Obj_00122FE0 *func_00122C30(Obj_00122FE0 *o, s16 arg1)
+{
+    /* defined further down the file */
+    void func_00122FE0(Obj_00122FE0 *o, u32 i);
+
+    if (o != 0) {
+        func_00122FE0(o, 0);
+        __dla__FPv(o->unk_14);
+        __dla__FPv(o->unk_10);
+        if (o->link_1C != 0) {
+            o->link_1C->link_18 = o->link_18;
+        }
+        if (o->link_18 != 0) {
+            o->link_18->link_1C = o->link_1C;
+        } else {
+            (&D_001972C0 + o->unk_0 * 2)[o->unk_8] = (s32)o->link_1C;
+        }
+        if (arg1 > 0) {
+            __dl__FPv(o);
+        }
+    }
+    return o;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_00122CF0);
 

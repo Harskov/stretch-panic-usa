@@ -36,7 +36,23 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016DE30", func_0016DE30);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016DE30", func_0016DF60);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016DE30", func_0016DFF0);
+void func_0016DFF0(Obj2F8 *arg0, f32 arg1)
+{
+    func_0012E9A0(&arg0->unk_270, &arg0->unk_30, &arg0->unk_30, arg1);
+    {
+        register Vec *e;
+        register Vec *d;
+
+        d = (Vec *)&arg0->unk_10;
+        e = &arg0->unk_30;
+        asm {
+            lqc2 vf1, 0(d)
+            lqc2 vf2, 0(e)
+            vadd.xyz vf1, vf1, vf2
+            sqc2 vf1, 0(d)
+        }
+    }
+}
 
 void func_0016E040(Obj2F8 *arg0, f32 arg1)
 {

@@ -35,9 +35,12 @@ typedef struct Obj_00132690 {
     /* 0x18 */ u8 unk_18;
     u8 pad_19[0x1F];
     /* 0x38 */ s32 unk_38;
+    /* 0x3C */ s32 unk_3C;
 } Obj_00132690;
 
 void func_00132B50();
+
+void func_00132E10();
 
 void func_00132690(Obj_00132690 *o, s32 arg1, s32 arg2, s32 arg3, s32 arg4)
 {
@@ -52,7 +55,19 @@ void func_00132690(Obj_00132690 *o, s32 arg1, s32 arg2, s32 arg3, s32 arg4)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00132690", func_00132700);
+void func_00132700(Obj_00132690 *o, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5)
+{
+    s32 i;
+
+    o->unk_C = arg1;
+    o->unk_10 = arg3;
+    o->unk_38 = arg2;
+    o->unk_3C = arg4;
+    o->unk_18 = arg5;
+    for (i = o->unk_8[0]; i != 0; i--) {
+        func_00132E10(o, o->unk_8[i]);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00132690", func_00132780);
 

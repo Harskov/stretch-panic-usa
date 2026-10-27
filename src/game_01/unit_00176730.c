@@ -31,6 +31,18 @@ void func_00172E80();
 
 void __dl__FPv(void *);
 
+typedef struct Obj_00176B40 {
+    /* 0x00 */ s32 *unk_0;
+    unsigned char unk_04[0x98];
+    /* 0x9C */ void *unk_9C;
+} Obj_00176B40;
+
+extern s32 D_0069D050;
+
+void __dla__FPv(void *);
+
+void func_001319D0();
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00176730", func_00176730);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00176730", func_001767A0);
@@ -44,7 +56,17 @@ void func_00176A00(void) {
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00176730", func_00176A30);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00176730", func_00176B40);
+Obj_00176B40 *func_00176B40(Obj_00176B40 *self, s16 flags) {
+    if (self != 0) {
+        self->unk_0 = &D_0069D050;
+        __dla__FPv(self->unk_9C);
+        func_001319D0(self, 0);
+        if (flags > 0) {
+            __dl__FPv(self);
+        }
+    }
+    return self;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00176730", func_00176BB0);
 

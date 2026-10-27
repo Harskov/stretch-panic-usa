@@ -19,6 +19,12 @@ void func_0013BB20(s32 *, s32);
 
 void func_0017DFC0(Obj_0017DF40 *, s32, f32);
 
+extern s32 D_0069D4B0;
+
+void func_00172E80();
+
+void __dl__FPv(void *);
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0017DBF0", func_0017DBF0);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0017DBF0", func_0017DD30);
@@ -64,7 +70,16 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_0017DBF0", func_0017EA30);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0017DBF0", func_0017EB50);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0017DBF0", func_0017EC20);
+s32 **func_0017EC20(s32 **self, s16 flags) {
+    if (self != 0) {
+        *self = &D_0069D4B0;
+        func_00172E80(self, 0);
+        if (flags > 0) {
+            __dl__FPv(self);
+        }
+    }
+    return self;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0017DBF0", func_0017EC80);
 

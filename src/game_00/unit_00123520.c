@@ -96,7 +96,31 @@ typedef struct Obj_001244C0 {
     /* 0x50C */ s32 unk_50C;
 } Obj_001244C0;
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_00123520);
+typedef struct Sub_00123520 {
+    /* 0x00 */ u64 *unk_0;
+    /* 0x04 */ u64 *unk_4;
+} Sub_00123520;
+
+typedef struct Obj_00123520 {
+    /* 0x00 */ void *unk_0;
+    /* 0x04 */ s32 unk_4;
+    /* 0x08 */ Sub_00123520 *unk_8;
+} Obj_00123520;
+
+void FlushCache(s32 operation);
+
+void sceDmaSend(void *d, void *tag);
+
+/* Sends the current buffer when it holds anything: clears the ID bits (28-30) of the last
+   tag written, flushes the data cache, and starts the transfer on the object's channel. */
+void func_00123520(Obj_00123520 *o)
+{
+    if (o->unk_8->unk_4 != o->unk_8->unk_0) {
+        o->unk_8->unk_4[-2] &= ~0x70000000;
+        FlushCache(0);
+        sceDmaSend(o->unk_0, o->unk_8->unk_0);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_00123590);
 

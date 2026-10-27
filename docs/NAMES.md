@@ -13,9 +13,9 @@ Classes of evidence:
 |---|---|
 | Game functions | 2 of 1351 (1349 placeholders, 0 awaiting evidence) |
 | Functions, library included | 501 of 2062 (1561 placeholders, 0 awaiting evidence) |
-| Types | 3 of 220 (217 placeholders, 0 awaiting evidence) |
-| Members the matched code reaches | 68 of 745 (677 placeholders, 0 awaiting evidence) |
-| Globals the matched code reaches | 9 of 222 (213 placeholders, 0 awaiting evidence) |
+| Types | 3 of 247 (244 placeholders, 0 awaiting evidence) |
+| Members the matched code reaches | 75 of 826 (751 placeholders, 0 awaiting evidence) |
+| Globals the matched code reaches | 11 of 240 (229 placeholders, 0 awaiting evidence) |
 
 ## Functions
 
@@ -541,6 +541,8 @@ Classes of evidence:
 | `Dst@unit_001793C0.v90` | 0x90 |  | no fact the checker can verify supports this name |
 | `Dst@unit_001793C0.vA0` | 0xA0 |  | no fact the checker can verify supports this name |
 | `Elem_00123370.cursor` | 0x4 | behavioural | cursor — checked: func_00123400 steps it by a constant; func_001234E0 steps it by a constant |
+| `Elem_00131630.count` | 0x0 | behavioural | bound — checked: func_00131630 bounds the index i with it |
+| `Elem_0013AC90.next` | 0x28 | behavioural | self-link — checked: it points to another Elem_0013AC90 |
 | `Node@unit_0016BDF0.next` | 0x74 | behavioural | self-link — checked: it points to another Node@unit_0016BDF0 |
 | `Obj1F0.flags` | 0x1D8 | behavioural | mask-test — checked: func_0015BA00 tests it against 0x2 |
 | `Obj4E0.flags` | 0x60 | behavioural | the member's name already given, with the facts that support it — checked: func_0014DF80 tests it against 0x4 |
@@ -565,6 +567,8 @@ Classes of evidence:
 | `Obj_001216E0.count` | 0x10 | behavioural | bound — checked: func_001216E0 bounds the index i with it |
 | `Obj_001216E0.flags` | 0x0 | behavioural | mask-test — checked: func_001216E0 tests it against 0x1 |
 | `Obj_00121B10.cursor` | 0x8 | behavioural | cursor — checked: func_00121B10 steps it by a constant |
+| `Obj_00122FE0.link_18` | 0x18 | behavioural | self-link — checked: it points to another Obj_00122FE0 |
+| `Obj_00122FE0.link_1C` | 0x1C | behavioural | self-link — checked: it points to another Obj_00122FE0 |
 | `Obj_00123F70.next` | 0x10 | behavioural | self-link — checked: it points to another Obj_00123F70 |
 | `Obj_001243D0.cursor_500` | 0x500 | behavioural | cursor — checked: func_001243D0 steps it by a constant |
 | `Obj_001243D0.cursor_504` | 0x504 | behavioural | cursor — checked: func_001243D0 steps it by a constant |
@@ -590,11 +594,14 @@ Classes of evidence:
 | `Obj_001386B0.link_24` | 0x24 | behavioural | self-link — checked: it points to another Obj_001386B0 |
 | `Obj_00139740.counter_34` | 0x34 | behavioural | counter — checked: func_00139740 steps it by a constant |
 | `Obj_00139740.counter_35` | 0x35 | behavioural | counter — checked: func_00139740 steps it by a constant |
+| `Obj_0013BC80.link_68` | 0x68 | behavioural | self-link — checked: it points to another Obj_0013BC80 |
+| `Obj_0013BC80.link_6C` | 0x6C | behavioural | self-link — checked: it points to another Obj_0013BC80 |
 | `Obj_00167180.link_A0` | 0xA0 | behavioural | self-link — checked: it points to another Obj_00167180 |
 | `Obj_00167180.link_A4` | 0xA4 | behavioural | self-link — checked: it points to another Obj_00167180 |
 | `Obj_00167180.link_A8` | 0xA8 | behavioural | self-link — checked: it points to another Obj_00167180 |
 | `Obj_00167180.link_AC` | 0xAC | behavioural | self-link — checked: it points to another Obj_00167180 |
 | `Obj_0016DE30_2.cursor` | 0x500 | behavioural | cursor — checked: func_0016E4D0 steps it by a constant |
+| `Obj_006A6730@unit_00179E20.cursor` | 0x500 | behavioural | cursor — checked: func_0017BBA0 steps it by a constant |
 | `Src@unit_001793C0.v10` | 0x10 |  | no fact the checker can verify supports this name |
 | `Src@unit_001793C0.v20` | 0x20 |  | no fact the checker can verify supports this name |
 | `Src@unit_001793C0.v30` | 0x30 |  | no fact the checker can verify supports this name |
@@ -615,5 +622,7 @@ Classes of evidence:
 | `gFormat_69B380` | 0x0069B380 | anchored | prototype — checked: func_00120A70 passes it as argument 0 of printf (int printf(const char *format, ...)) |
 | `gFormat_69B3C0` | 0x0069B3C0 | anchored | prototype — checked: func_001216E0 passes it as argument 0 of printf (int printf(const char *format, ...)) |
 | `gFormat_69B3D8` | 0x0069B3D8 | anchored | prototype — checked: func_00123F70 passes it as argument 1 of sprintf (int sprintf(char *buf, const char … |
+| `gFormat_69B840` | 0x0069B840 | anchored | prototype — checked: smsBufferPush passes it as argument 0 of printf (int printf(const char *format, ...)) |
+| `gFormat_69B870` | 0x0069B870 | anchored | prototype — checked: smsBufferPop passes it as argument 0 of printf (int printf(const char *format, ...)) |
 | `gFormat_69BDF8` | 0x0069BDF8 | anchored | prototype — checked: func_001463F0 passes it as argument 0 of printf (int printf(const char *format, ...)) |
 | `gFormat_69BE08` | 0x0069BE08 | anchored | prototype — checked: func_001463F0 passes it as argument 0 of printf (int printf(const char *format, ...)) |

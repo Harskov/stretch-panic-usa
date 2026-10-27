@@ -58,6 +58,8 @@ extern s32 D_006AEED0;
 
 extern s32 D_006AEE78;
 
+s32 func_00146230(s32 arg0, s32 arg1, s32 arg2);
+
 void func_00145A90(s32 arg0)
 {
     D_006AEE70 = arg0;
@@ -78,7 +80,23 @@ void func_00145B80(void)
     func_00147B80(2);
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00145A90", func_00145B90);
+s32 func_00145B90(void)
+{
+    s32 ret;
+
+    func_00147B80(3);
+    ret = func_00146230(D_006AEE80, D_006AEE88, D_006AEE90);
+    switch (ret) {
+    case 0:
+        return 0;
+    case -1:
+    case -2:
+        return -1;
+    default:
+        D_006AEE78 = ret;
+        return -3;
+    }
+}
 
 void func_00145C20(void)
 {

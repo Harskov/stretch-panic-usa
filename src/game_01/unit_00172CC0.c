@@ -44,7 +44,39 @@ void __dl__FPv(void *);
 
 extern s32 D_0069CED0;
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00172CC0);
+typedef struct Elem_00172CC0 {
+    u8 unk_0[0x10];
+    s32 unk_10;
+    s32 unk_14;
+    f32 unk_18;
+    u8 unk_1C[4];
+} Elem_00172CC0;
+
+typedef struct Obj_00172CC0 {
+    u8 unk_0[0x60];
+    Elem_00172CC0 *unk_60;
+} Obj_00172CC0;
+
+typedef struct Elem_00172D50 {
+    u8 unk_0[0x10];
+    f32 unk_10;
+    f32 unk_14;
+    f32 unk_18;
+    u8 unk_1C[4];
+} Elem_00172D50;
+
+typedef struct Obj_00172D50 {
+    u8 unk_0[0x60];
+    Elem_00172D50 *unk_60;
+} Obj_00172D50;
+
+void func_00172CC0(Obj_00172CC0 *arg0, s32 arg1, f32 arg2)
+{
+    arg0->unk_60[arg1].unk_10 = 0x459D1463;
+    arg0->unk_60[arg1].unk_14 = 0x40A00000;
+    arg0->unk_60[arg1].unk_18 = arg2;
+    func_0013BFB0(D_006A6D18, arg0);
+}
 
 void func_00172D10(s32 arg0)
 {
@@ -52,7 +84,13 @@ void func_00172D10(s32 arg0)
     func_0013BFB0(D_006A6D18, arg0);
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00172D50);
+void func_00172D50(Obj_00172D50 *arg0, s32 arg1, f32 arg2, f32 arg3, f32 arg4)
+{
+    arg0->unk_60[arg1].unk_10 = 12.566371f * (arg2 * arg2);
+    arg0->unk_60[arg1].unk_14 = arg3;
+    arg0->unk_60[arg1].unk_18 = arg4;
+    func_0013BFB0(D_006A6D18, arg0);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00172DA0);
 

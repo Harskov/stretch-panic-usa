@@ -27,6 +27,12 @@ typedef struct Obj_0013D940 {
     /* 0x240 */ s32 unk_240;
 } Obj_0013D940;
 
+extern s32 gFormat_69B870;
+
+void printf();
+
+extern s32 gFormat_69B840;
+
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013D6D0", func_0013D6D0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013D6D0", func_0013D8C0);
@@ -68,11 +74,34 @@ s32 func_0013DBF0(void)
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013D6D0", smsBufferPush);
+/* evidence: debug string D_0069B840 begins with this name and only this function references it */
+void smsBufferPush(void)
+{
+    if (D_006AEE38 >= 4) {
+        printf(&gFormat_69B840);
+        return;
+    }
+    func_0013C420(6, (s32)&D_006AEE38, 4);
+    D_006AEE38 += 1;
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013D6D0", smsBufferPop);
+/* evidence: debug string D_0069B870 begins with this name and only this function references it */
+void smsBufferPop(void)
+{
+    if (D_006AEE38 <= 0) {
+        printf(&gFormat_69B870);
+        return;
+    }
+    D_006AEE38 -= 1;
+    func_0013C420(7, (s32)&D_006AEE38, 4);
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013D6D0", func_0013DDA0);
+s32 func_0013DDA0(s32 *args)
+{
+    *args = D_006AEE20;
+    func_0013C420(3, (s32)args, 0x14);
+    return D_006AEE20++;
+}
 
 void func_0013DDF0(s32 *args)
 {
@@ -89,4 +118,9 @@ void func_0013DE10(s32 *args)
     func_0013C420(9, (s32)args, 8);
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013D6D0", func_0013DE20);
+s32 func_0013DE20(s32 *args)
+{
+    *args = D_006AEE28;
+    func_0013C420(0xD, (s32)args, 0x14);
+    return D_006AEE28++;
+}

@@ -52,6 +52,26 @@ extern s32 D_0069C450;
 
 extern void __dla__FPv(void *);
 
+typedef struct Sub_00131630 {
+    /* 0x00 */ Quad *unk_0;
+    /* 0x04 */ Src *unk_4;
+} Sub_00131630;
+
+typedef struct Elem_00131630 {
+    /* 0x00 */ s32 count;
+    /* 0x04 */ E64 *unk_4;
+} Elem_00131630;
+
+typedef struct Obj_00131630 {
+    /* 0x00 */ s32 *unk_0;
+    unsigned char unk_4[4];
+    /* 0x08 */ Sub_00131630 *unk_8;
+    /* 0x0C */ Quad *unk_C;
+    /* 0x10 */ Elem_00131630 *unk_10;
+} Obj_00131630;
+
+extern s32 D_0069C420;
+
 s32 **func_001313B0(s32 **arg0, s16 arg1)
 {
     if (arg0 != 0) {
@@ -136,7 +156,25 @@ void func_00131570(void) {
 void func_00131580(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_001313B0", func_00131590);
+/* A deleting destructor: frees the owned buffers, falls back to the base class's table
+   (the second null test is the base destructor's own), and frees the object itself
+   when the flag is positive. */
+Obj_00131630 *func_00131590(Obj_00131630 *o, s16 arg1)
+{
+    if (o != 0) {
+        o->unk_0 = &D_0069C420;
+        __dla__FPv(o->unk_10->unk_4);
+        __dl__FPv(o->unk_10);
+        __dl__FPv(o->unk_C);
+        if (o != 0) {
+            o->unk_0 = &D_0069C300;
+        }
+        if (arg1 > 0) {
+            __dl__FPv(o);
+        }
+    }
+    return o;
+}
 
 /* A slot of the function-pointer table D_0069C420. Only the member's address is
    taken, so its type is not known. */
@@ -144,7 +182,16 @@ void *func_00131620(Obj_00131620 *o) {
     return &o->unk_C;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_001313B0", func_00131630);
+/* Copies one quadword, then as many 64-byte blocks as the count at the head of
+   the destination list holds, each block assigned whole. */
+void func_00131630(Obj_00131630 *o) {
+    s32 i;
+
+    *o->unk_C = *o->unk_8->unk_0;
+    for (i = 0; i < o->unk_10->count; i++) {
+        o->unk_10->unk_4[i] = o->unk_8->unk_4->unk_4[i];
+    }
+}
 
 s32 **func_001316B0(s32 **arg0, s16 arg1) {
     if (arg0 != 0) {

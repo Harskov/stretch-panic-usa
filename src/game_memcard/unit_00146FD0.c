@@ -56,6 +56,10 @@ s32 func_00146A90();
 
 s32 func_001468E0();
 
+extern s32 D_006AEEA8;
+
+s32 func_00146060(s32 arg0, s32 arg1, s32 arg2);
+
 INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00146FD0);
 
 void func_00147070(void)
@@ -67,7 +71,26 @@ INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147080);
 
 INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147120);
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_001471C0);
+/* Calls func_00146060 with the three words at D_006AEEB0..C0 after func_00147B80(5);
+   its -1 and -2 both come back as -1, any other non-zero result is kept in
+   D_006AEEA8 and reported as -3. */
+s32 func_001471C0(void)
+{
+    s32 ret;
+
+    func_00147B80(5);
+    ret = func_00146060(D_006AEEB0, D_006AEEB8, D_006AEEC0);
+    switch (ret) {
+    case 0:
+        return 0;
+    case -1:
+    case -2:
+        return -1;
+    default:
+        D_006AEEA8 = ret;
+        return -3;
+    }
+}
 
 void func_00147250(void)
 {
@@ -145,7 +168,26 @@ s32 func_00147380(void)
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_001473F0);
+void func_001473F0(void)
+{
+    s32 mode;
+
+    switch (D_006AEEA8) {
+    case 11:
+        mode = 7;
+        break;
+    case 13:
+        mode = 8;
+        break;
+    case 8:
+        mode = 9;
+        break;
+    default:
+        mode = 10;
+        break;
+    }
+    func_00147B80(mode);
+}
 
 void func_00147430(void)
 {

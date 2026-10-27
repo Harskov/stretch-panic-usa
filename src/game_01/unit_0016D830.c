@@ -76,7 +76,26 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016D830", func_0016DAA0);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016D830", func_0016DB10);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016D830", func_0016DBA0);
+/* The cross product of +0x250 with the vector func_0012E8E0 derives from +0x260 feeds
+   +0x280; +0x270 is then stepped from +0x250 by the second factor. */
+void func_0016DBA0(Obj2F4 *o, f32 arg1, f32 arg2) {
+    Vec v;
+
+    func_0012E8E0((Vec *)o->unk_260, &v);
+    {
+        register Vec *p = &o->unk_250.vec0;
+        register Vec *q = &v;
+        asm {
+            lqc2 vf1, 0(p)
+            lqc2 vf2, 0(q)
+            vopmula.xyz ACC, vf1, vf2
+            vopmsub.xyz vf3, vf2, vf1
+            sqc2 vf3, 0(q)
+        }
+    }
+    func_0012E9A0((Vec *)&o->unk_280, &v, (Vec *)&o->unk_280, arg1);
+    func_0012E9A0(&o->unk_270.vec0, &o->unk_250.vec0, &o->unk_270.vec0, arg2);
+}
 
 void func_0016DC30(Obj168 *arg0) {
     func_0016DC40(arg0, arg0->unk_134);

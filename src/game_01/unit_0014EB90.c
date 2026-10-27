@@ -33,6 +33,12 @@ void func_001319D0();
 
 void func_00150660();
 
+extern s32 D_006AF098;
+
+extern s32 *D_006A6D10;
+
+void func_0013DFD0();
+
 void func_0014EB90(void *arg0, Vec *in, register Vec *out)
 {
     Vec dir;
@@ -70,7 +76,28 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_0014EB90", func_0014ECF0);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0014EB90", func_0014ED70);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0014EB90", func_0014EE90);
+/* Adds arg1 to the counter at D_006AF098, kept within 0..99, then calls
+   func_0013DFD0 with 5 for a rise or 4 for a fall. Nothing happens when the
+   counter is already at its limit in the direction of the change. */
+void func_0014EE90(s32 arg0, s32 arg1)
+{
+    if (D_006AF098 >= 99 && arg1 > 0)
+        return;
+    if (D_006AF098 <= 0 && arg1 < 0)
+        return;
+
+    D_006AF098 += arg1;
+    if (D_006AF098 > 99)
+        D_006AF098 = 99;
+    if (D_006AF098 < 0)
+        D_006AF098 = 0;
+
+    if (arg1 > 0) {
+        func_0013DFD0(-1, *D_006A6D10, 5, 0x3FFF, 0, 0);
+    } else if (arg1 < 0) {
+        func_0013DFD0(-1, *D_006A6D10, 4, 0x3FFF, 0, 0);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0014EB90", func_0014EF80);
 

@@ -17,6 +17,14 @@ f32 func_0012E950(Vec *a, Vec *b);
 void func_0012E9E0(Vec *a, Vec *b, Vec *c, f32 t);
 
 
+typedef struct Obj_0016B170 {
+    u8 unk_0[0x1A8];
+    f32 unk_1A8;
+    f32 unk_1AC;
+} Obj_0016B170;
+
+extern f32 sinf(f32);
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_00169EC0);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016A0A0);
@@ -33,7 +41,11 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016ACC0);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016B000);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016B170);
+void func_0016B170(Obj_0016B170 *arg0) {
+    f32 step = 0.06544985f;
+    arg0->unk_1AC = 0.5f * sinf(arg0->unk_1A8);
+    arg0->unk_1A8 = arg0->unk_1A8 + step;
+}
 
 void func_0016B1D0(Obj_0016B1D0 *arg0) {
     Vec v;
