@@ -44,19 +44,6 @@ void __dl__FPv(void *);
 
 extern s32 D_0069CED0;
 
-typedef struct Elem_00172CC0 {
-    u8 unk_0[0x10];
-    s32 unk_10;
-    s32 unk_14;
-    f32 unk_18;
-    u8 unk_1C[4];
-} Elem_00172CC0;
-
-typedef struct Obj_00172CC0 {
-    u8 unk_0[0x60];
-    Elem_00172CC0 *unk_60;
-} Obj_00172CC0;
-
 typedef struct Elem_00172D50 {
     u8 unk_0[0x10];
     f32 unk_10;
@@ -70,10 +57,10 @@ typedef struct Obj_00172D50 {
     Elem_00172D50 *unk_60;
 } Obj_00172D50;
 
-void func_00172CC0(Obj_00172CC0 *arg0, s32 arg1, f32 arg2)
+void func_00172CC0(Obj_00172D50 *arg0, s32 arg1, f32 arg2)
 {
-    arg0->unk_60[arg1].unk_10 = 0x459D1463;
-    arg0->unk_60[arg1].unk_14 = 0x40A00000;
+    arg0->unk_60[arg1].unk_10 = 12.566371f * (20.0f * 20.0f);
+    arg0->unk_60[arg1].unk_14 = 5.0f;
     arg0->unk_60[arg1].unk_18 = arg2;
     func_0013BFB0(D_006A6D18, arg0);
 }

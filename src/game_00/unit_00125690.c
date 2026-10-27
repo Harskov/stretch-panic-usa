@@ -14,7 +14,7 @@ typedef struct Obj_00126900 {
     u32 unk_350;
     u8 pad_354[0x156C];
     s32 unk_18C0[4];
-    u128 unk_18D0[4];
+    Quad unk_18D0[4];
     u128 unk_1910[4];
 } Obj_00126900;
 
@@ -80,16 +80,16 @@ void func_00126880(Obj_00126900 *arg0, s32 arg1, s32 arg2)
     case 3:
         switch (arg1) {
         case 0:
-            ((s32 *)&arg0->unk_18D0[0])[0] = 0x3F000000;
-            ((s32 *)&arg0->unk_18D0[0])[1] = 0;
-            ((s32 *)&arg0->unk_18D0[0])[2] = 0;
-            ((s32 *)&arg0->unk_18D0[0])[3] = 0x3F000000;
+            arg0->unk_18D0[0].vec0.x = 0.5f;
+            arg0->unk_18D0[0].vec0.y = 0.0f;
+            arg0->unk_18D0[0].vec0.z = 0.0f;
+            arg0->unk_18D0[0].vec0.w = 0.5f;
             break;
         case 1:
-            ((s32 *)&arg0->unk_18D0[1])[0] = 0;
-            ((s32 *)&arg0->unk_18D0[1])[1] = 0xBF000000;
-            ((s32 *)&arg0->unk_18D0[1])[2] = 0;
-            ((s32 *)&arg0->unk_18D0[1])[3] = 0x3F000000;
+            arg0->unk_18D0[1].vec0.x = 0.0f;
+            arg0->unk_18D0[1].vec0.y = -0.5f;
+            arg0->unk_18D0[1].vec0.z = 0.0f;
+            arg0->unk_18D0[1].vec0.w = 0.5f;
             break;
         }
         break;
@@ -102,19 +102,19 @@ void func_00126900(Obj_00126900 *arg0, s32 arg1, s32 arg2, u128 *arg3)
     arg0->unk_18C0[arg1] = arg2;
     switch (arg1) {
     case 0:
-        arg0->unk_18D0[0] = *arg3;
+        arg0->unk_18D0[0].unk_0 = *arg3;
         arg0->unk_1910[0] = *arg3;
         break;
     case 1:
-        arg0->unk_18D0[1] = *arg3;
+        arg0->unk_18D0[1].unk_0 = *arg3;
         arg0->unk_1910[1] = *arg3;
         break;
     case 2:
-        arg0->unk_18D0[2] = *arg3;
+        arg0->unk_18D0[2].unk_0 = *arg3;
         arg0->unk_1910[2] = *arg3;
         break;
     case 3:
-        arg0->unk_18D0[3] = *arg3;
+        arg0->unk_18D0[3].unk_0 = *arg3;
         arg0->unk_1910[3] = *arg3;
         break;
     }

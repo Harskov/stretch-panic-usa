@@ -117,7 +117,7 @@ void func_0013E150(void)
     func_0013C420(0x17, 0, 0);
 }
 
-void func_0013E160(s32 arg0, s16 arg1, s16 arg2, s32 arg3, s32 arg4, s16 arg5, s16 arg6)
+void func_0013E160(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6)
 {
     Obj_0013E160 args;
 

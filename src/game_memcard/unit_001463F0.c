@@ -108,10 +108,9 @@ s32 func_001468E0(s32 arg0)
     return -2;
 }
 
-/* The memory-card open step, parallel to the close and delete steps beside it: it
-   issues sceMcOpen on port 0, slot 0 with mode 1, sets D_006AEEF8 and D_006AEF10 to 2,
-   and once D_006AEF20 has reached 2 returns D_006AEF28 (probably the descriptor), or -3
-   when that is negative; the other negative returns are status codes not yet known. */
+/* The memory-card open step, beside the close and delete steps: sceMcOpen on port 0, slot 0,
+   mode 1; once D_006AEF20 reaches 2 it returns D_006AEF28 (probably the descriptor), or -3
+   when that is negative. The other negative returns are status codes not yet known. */
 s32 func_001469B0(const char *arg0)
 {
     func_00146D00();

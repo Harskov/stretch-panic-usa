@@ -273,25 +273,25 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_00179E20", func_0017C430);
 
 s32 func_0017C4A0(Obj_0017C4A0 *arg0)
 {
-    Vec diff;
-    f32 radius;
-    f32 limit;
+    Vec d;
+    f32 f;
+    f32 f2;
     register Vec *out;
     register u128 *b;
     register u128 *a;
 
     a = &arg0->unk_10;
     b = &arg0->unk_120;
-    out = &diff;
+    out = &d;
     asm {
         lqc2 vf1, 0(a)
         lqc2 vf2, 0(b)
         vsub.xyz vf1, vf1, vf2
         sqc2 vf1, 0(out)
     }
-    radius = arg0->unk_4F4;
-    limit = radius * radius;
-    if (func_0012E850(&diff) > limit) {
+    f = arg0->unk_4F4;
+    f2 = f * f;
+    if (func_0012E850(&d) > f2) {
         return 1;
     }
     return 0;

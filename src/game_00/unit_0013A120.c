@@ -19,7 +19,7 @@ void func_00135570();
 typedef struct Obj_0013AC50 {
     s32 *unk_0;
     u8 unk_4[0x20];
-    s32 unk_24;
+    struct Elem_0013AC90 *unk_24;
 } Obj_0013AC50;
 
 typedef struct Obj_0013A880 {
@@ -104,7 +104,7 @@ Obj_0013AC50 *func_0013AC90(Obj_0013AC50 *self, s16 flags)
 
     if (self != 0) {
         self->unk_0 = &D_0069C5B0;
-        node = (Elem_0013AC90 *)self->unk_24;
+        node = self->unk_24;
         self->unk_24 = 0;
         while (node != 0) {
             next = node->next;
@@ -127,16 +127,15 @@ s32 func_0013AD30(void)
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013A120", func_0013AD40);
 
 /* Pushes a new 0x2C-byte node on the list headed at +0x24: the node takes a copy of
-   the ten floats at src and links to the previous head. The unit declares the head
-   as an s32, hence the casts. */
+   the ten floats at src and links to the previous head. */
 void func_0013AFE0(Obj_0013AC50 *self, struct Sub_0013AFE0 *src)
 {
-    s32 prev;
+    Elem_0013AC90 *prev;
 
     prev = self->unk_24;
-    self->unk_24 = (s32)__nw__FUi(0x2C);
-    ((Elem_0013AC90 *)self->unk_24)->unk_0 = *src;
-    ((Elem_0013AC90 *)self->unk_24)->next = (Elem_0013AC90 *)prev;
+    self->unk_24 = __nw__FUi(0x2C);
+    self->unk_24->unk_0 = *src;
+    self->unk_24->next = prev;
 }
 
 void *func_0013B080(void)

@@ -41,10 +41,11 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016ACC0);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016B000);
 
+/* the angle at +0x1A8 advances by pi/48 (0.06544985) a call; +0x1AC takes half its sine */
 void func_0016B170(Obj_0016B170 *arg0) {
-    f32 step = 0.06544985f;
+    f32 d = 0.06544985f;
     arg0->unk_1AC = 0.5f * sinf(arg0->unk_1A8);
-    arg0->unk_1A8 = arg0->unk_1A8 + step;
+    arg0->unk_1A8 = arg0->unk_1A8 + d;
 }
 
 void func_0016B1D0(Obj_0016B1D0 *arg0) {

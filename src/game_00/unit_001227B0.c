@@ -62,6 +62,8 @@ typedef struct Obj_00122FE0 {
 
 void __dla__FPv(void *);
 
+void func_00122FE0(Obj_00122FE0 *o, u32 i);
+
 s32 **func_001227B0(s32 **arg0, s16 arg1)
 {
     if (arg0 != 0) {
@@ -95,14 +97,10 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_001228C0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_00122AE0);
 
-/* Destructor shape: clears the entries, frees the two arrays, unlinks the object from its
-   list (the list head lives in the table at D_001972C0), then frees the object itself
-   when the second argument is positive. */
+/* A deleting destructor: clears the entries, frees the two arrays and unlinks the object
+   from its two-way list, whose heads are the words func_00122880 clears at D_001972C0. */
 Obj_00122FE0 *func_00122C30(Obj_00122FE0 *o, s16 arg1)
 {
-    /* defined further down the file */
-    void func_00122FE0(Obj_00122FE0 *o, u32 i);
-
     if (o != 0) {
         func_00122FE0(o, 0);
         __dla__FPv(o->unk_14);

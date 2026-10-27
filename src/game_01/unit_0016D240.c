@@ -1,4 +1,5 @@
 #include "common.h"
+#include "game_01/scratchpad.h"
 #include "types.h"
 
 /* A vtable accessor: six function-pointer tables (D_0069CE00, D_0069D0E0, D_0069D1B0,
@@ -134,11 +135,12 @@ void func_0016D690(Obj *arg0) {
     arg0->unk_60 |= 0x10000;
 }
 
+/* 0x70000BA0, like SPR_QUAD, is a quadword of the EE's scratchpad RAM */
 void func_0016D6B0(Obj_0016D6B0 *arg0) {
     arg0->unk_134 = 0;
     arg0->unk_138 = 1.0f;
     arg0->unk_13C = 0;
-    arg0->unk_140 = *(Quad *)0x70000BE0;
+    arg0->unk_140 = *SPR_QUAD;
     arg0->unk_150 = *(Quad *)0x70000BA0;
 }
 

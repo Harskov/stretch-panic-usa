@@ -170,23 +170,23 @@ s32 func_00147380(void)
 
 void func_001473F0(void)
 {
-    s32 mode;
+    s32 n;
 
     switch (D_006AEEA8) {
     case 11:
-        mode = 7;
+        n = 7;
         break;
     case 13:
-        mode = 8;
+        n = 8;
         break;
     case 8:
-        mode = 9;
+        n = 9;
         break;
     default:
-        mode = 10;
+        n = 10;
         break;
     }
-    func_00147B80(mode);
+    func_00147B80(n);
 }
 
 void func_00147430(void)
