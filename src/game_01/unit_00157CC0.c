@@ -1,5 +1,6 @@
 #include "common.h"
 #include "game_01/pool70.h"
+#include "game_01/unit_00157CC0.h"
 
 typedef struct Obj {
     unsigned char unk_00[0x54];
@@ -33,6 +34,43 @@ extern int D_006A6D18;
 void func_0013BD20();
 
 void func_0013BFB0();
+
+typedef struct Elem_001584D0 {
+    /* 0x00 */ s32 unk_0;
+    /* 0x04 */ s32 unk_4;
+    /* 0x08 */ s32 unk_8;
+    /* 0x0C */ s32 unk_C;
+    /* 0x10 */ f32 unk_10;
+    /* 0x14 */ f32 unk_14;
+    /* 0x18 */ f32 unk_18;
+} Elem_001584D0;
+
+typedef struct Obj70 {
+    u8 unk_0[0x60];
+    /* 0x60 */ Elem_001584D0 *unk_60;
+    u8 unk_64[0xC];
+} Obj70;
+
+typedef struct Obj_001584D0 {
+    /* 0x00 */ s32 *unk_0;
+    u8 unk_4[0xC];
+    /* 0x10 */ Quad unk_10;
+    u8 unk_20[0x30];
+    /* 0x50 */ Obj70 *unk_50;
+    /* 0x54 */ s32 unk_54;
+} Obj_001584D0;
+
+void * __nw__FUi(u32);
+
+void func_0013BB20(s32 *, s32);
+
+s32 func_0013DF50(s32, s32, s32, s32, s32, s32);
+
+void func_00172DA0();
+
+extern s32 D_0069C9D0;
+
+extern s32 *D_006A6D10;
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00157CC0", func_00157CC0);
 
@@ -86,7 +124,31 @@ s32 **func_00158470(s32 **self, s16 flags) {
     return self;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00157CC0", func_001584D0);
+/* Probably a constructor: the base set-up, the vtable at +0x0 (the destructor
+   func_00158470 stores its sibling table), then a 0x70-byte part built and filled
+   from the description at arg1. 12.566371f is 4*pi, times the square of a radius. */
+// !FAKE: the reference keeps this in a stack slot and reloads it on every use, as a C++ constructor's this would be; volatile is the C spelling that reproduces the reloads
+Obj_001584D0 *func_001584D0(Obj_001584D0 *volatile self, Sub_001584D0 *desc)
+{
+    void *part;
+    Obj70 *owned;
+
+    func_00172DA0(self, 0x38, 0);
+    self->unk_0 = &D_0069C9D0;
+    self->unk_10 = desc->unk_0;
+    if ((part = __nw__FUi(0x70)) != 0) {
+        func_0013BB20(part, 1);
+    }
+    self->unk_50 = part;
+    self->unk_50->unk_60->unk_10 = 12.566371f * (desc->unk_10 * desc->unk_10);
+    self->unk_50->unk_60->unk_18 = desc->unk_14;
+    self->unk_50->unk_60->unk_14 = desc->unk_18;
+    owned = self->unk_50;
+    owned->unk_60->unk_0 = func_0013DF50(owned->unk_60->unk_0, D_006A6D10[desc->unk_1C], desc->unk_20,
+                                         owned->unk_60->unk_4, owned->unk_60->unk_C, owned->unk_60->unk_8);
+    self->unk_54 = desc->unk_24;
+    return self;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00157CC0", func_001585F0);
 

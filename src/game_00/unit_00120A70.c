@@ -86,6 +86,20 @@ typedef struct Obj_001215E0 {
     /* 0x24 */ Elem_001215E0 *unk_24;
 } Obj_001215E0;
 
+void * __nw__FUi(u32);
+
+void *__construct_new_array(void *block, void *ctor, void *dtor, u32 size, s64 n);
+
+void *func_001006F0(s32 size);
+
+void func_00120100();
+
+void func_00120160();
+
+void func_001201D0();
+
+void func_00120270();
+
 /* Polls one pad: its libpad state, the terminal id of the connected controller
    (0x41, 0x53, 0x73 or 0x79), then the button bytes; a failed scePadRead hangs. */
 void func_00120A70(Sub_001216E0 *e)
@@ -253,7 +267,37 @@ Obj_001211E0 *func_001211E0(Obj_001211E0 *o)
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00121250);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_001213F0);
+/* Builds the table func_001215E0 looks entries up in: unk_10 elements constructed as an
+   array (an array-new header of 0x10 bytes ahead of them), each set up with its index,
+   then the two single entries at unk_20 (made with -1) and unk_24. */
+void func_001213F0(Obj_001215E0 *o)
+{
+    s64 n;
+    s32 i;
+    Elem_001215E0 *e;
+
+    if (o->unk_10 > 0) {
+        n = o->unk_10;
+        o->unk_1C = __construct_new_array(func_001006F0((s32)(n * 0x44 + 0x10)),
+                                          func_00120100, func_001201D0, 0x44, n);
+    } else {
+        o->unk_1C = 0;
+    }
+
+    for (i = 0; i < o->unk_10; i++) {
+        func_00120270(o->unk_1C + i, i);
+    }
+
+    if ((e = __nw__FUi(0x44)) != 0) {
+        func_00120160(e, -1);
+    }
+    o->unk_20 = e;
+
+    if ((e = __nw__FUi(0x44)) != 0) {
+        func_00120100(e);
+    }
+    o->unk_24 = e;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_001214F0);
 

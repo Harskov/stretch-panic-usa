@@ -72,6 +72,16 @@ void func_0013DE00();
 
 void func_0013DE20();
 
+extern s32 D_006AED78;
+
+extern s8 D_006AED80;
+
+extern u8 D_006A6D40[2][0x4000];
+
+int sceSifCallRpc(int *rd, unsigned int fno, unsigned int mode, void *send, int ssize, void *receive, int rsize, void *end_func, void *end_para);
+
+void func_0013C420(s32, s32, s32);
+
 /* builds the 0x80-byte object (func_0013BE60 is probably its constructor), resets the
    unit's state words, then passes arg0 * 4 to func_001006F0, probably an allocation;
    the product is formed in 64 bits and narrowed back to an int */
@@ -173,7 +183,27 @@ int func_0013C250(void)
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013BD60", func_0013C2E0);
+// sends the current 0x4000-byte buffer of D_006A6D40 (its byte count in D_006AED40, rounded up to words)
+// to the RPC client bound in func_0013C250, retrying until the call returns 0, then switches to the other buffer.
+// D_006AED78 is the call's function number, stepped on every call and cleared on first use.
+void func_0013C2E0(void)
+{
+    s32 size;
+
+    if (D_006AED80 == 0) {
+        D_006AED78 = 0;
+        D_006AED80 = 1;
+    }
+    if (D_006AED40[D_006AED48] != 0) {
+        func_0013C420(0x1B, 0, 0);
+        size = ((u32)(D_006AED40[D_006AED48] + 3) >> 2) * 4;
+        while (sceSifCallRpc(&D_006AED50, D_006AED78++, 0, D_006A6D40[D_006AED48], size, 0, 0, 0, 0) != 0)
+            ;
+        D_006AED40[D_006AED48] = 0;
+        if ((u32)++D_006AED48 >= 2)
+            D_006AED48 = 0;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013BD60", func_0013C420);
 

@@ -53,6 +53,17 @@ extern s32 D_0069CF30;
 
 void __dla__FPv(void *);
 
+typedef struct Obj_00174DD0 {
+    u8 unk_0[0x16A0];
+    /* 0x16A0 */ Vec unk_16A0;
+    /* 0x16B0 */ f32 unk_16B0;
+    /* 0x16B4 */ f32 unk_16B4;
+} Obj_00174DD0;
+
+extern Obj_00174DD0 *D_006A6730;
+
+void func_00125350();
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00173F40", func_00173F40);
 
 s32 **func_00174150(s32 **self, s16 flags) {
@@ -123,7 +134,40 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_00173F40", func_00174A40);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00173F40", func_00174B30);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00173F40", func_00174DD0);
+/* two passes through func_00125350: the point arg1 + (arg2 + arg3) with the pair at +0x16B0 set (0, 1),
+   then arg1 - (arg2 + arg3) with the pair set (1, 0) */
+void func_00174DD0(void *arg0, Vec *arg1, Vec *arg2, Vec *arg3) {
+    Obj_00174DD0 *p;
+    f32 z;
+    f32 y;
+    f32 x;
+
+    p = D_006A6730;
+    p->unk_16B0 = 0.0f;
+    p->unk_16B4 = 1.0f;
+    z = arg1->z + (arg2->z + arg3->z);
+    y = arg1->y + (arg2->y + arg3->y);
+    x = arg1->x + (arg2->x + arg3->x);
+    p = D_006A6730;
+    p->unk_16A0.x = x;
+    p->unk_16A0.y = y;
+    p->unk_16A0.z = z;
+    p->unk_16A0.w = 1.0f;
+    func_00125350(p);
+
+    p = D_006A6730;
+    p->unk_16B0 = 1.0f;
+    p->unk_16B4 = 0.0f;
+    z = arg1->z + (-arg2->z - arg3->z);
+    y = arg1->y + (-arg2->y - arg3->y);
+    x = arg1->x + (-arg2->x - arg3->x);
+    p = D_006A6730;
+    p->unk_16A0.x = x;
+    p->unk_16A0.y = y;
+    p->unk_16A0.z = z;
+    p->unk_16A0.w = 1.0f;
+    func_00125350(p);
+}
 
 Obj_00174EF0 *func_00174EF0(Obj_00174EF0 *arg0, void *arg1, u128 *arg2, f32 arg6, u128 *arg3, u128 *arg4, f32 arg7, s32 arg5) {
     func_00172DA0(arg0, arg1, 0);

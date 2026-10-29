@@ -39,6 +39,18 @@ extern s32 *D_006A6D10;
 
 void func_0013DFD0();
 
+typedef struct Obj_00150D00 {
+    /* 0x00 */ s32 *unk_0;
+    u8 pad_4[0x90 - 0x4];
+    /* 0x90 */ Quad unk_90;
+    /* 0xA0 */ Quad unk_A0;
+    /* 0xB0 */ f32 unk_B0;
+} Obj_00150D00;
+
+void func_001318C0();
+
+void func_00150330();
+
 void func_0014EB90(void *arg0, Vec *in, register Vec *out)
 {
     Vec dir;
@@ -142,7 +154,19 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_0014EB90", func_00150B90);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0014EB90", func_00150C30);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0014EB90", func_00150D00);
+/* Probably a constructor: the base initialiser runs first, then the table pointer at +0x0
+   is set, the two quads and the float are copied in, and the object is returned. */
+// !FAKE: probably a constructor whose this the compiler keeps in a stack slot and reloads before every use; volatile on the parameter keeps those reloads in C
+Obj_00150D00 *func_00150D00(Obj_00150D00 *volatile arg0, Quad *arg1, Quad *arg2, f32 arg3)
+{
+    func_001318C0(arg0, 4, 0);
+    arg0->unk_0 = &D_0069C8E0;
+    arg0->unk_90 = *arg1;
+    arg0->unk_A0 = *arg2;
+    arg0->unk_B0 = arg3;
+    func_00150330(arg0);
+    return arg0;
+}
 
 s32 **func_00150D90(s32 **arg0, s16 arg1)
 {

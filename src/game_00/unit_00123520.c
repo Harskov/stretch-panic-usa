@@ -105,11 +105,23 @@ typedef struct Obj_00123520 {
     /* 0x00 */ void *unk_0;
     /* 0x04 */ s32 unk_4;
     /* 0x08 */ Sub_00123520 *unk_8;
+    /* 0x0C */ Sub_00123520 unk_C[2];
+    u8 pad_1C[0x14];
+    /* 0x30 */ u64 unk_30;
+    u8 pad_38[0x58];
+    /* 0x90 */ u8 unk_90;
+    u8 pad_91[0x2D3];
+    /* 0x364 */ s32 unk_364;
+    /* 0x368 */ u64 unk_368[2];
 } Obj_00123520;
 
 void FlushCache(s32 operation);
 
 void sceDmaSend(void *d, void *tag);
+
+void func_00123590();
+
+void func_001247B0();
 
 /* Sends the current buffer when it holds anything: clears the ID bits (28-30) of the last
    tag written, flushes the data cache, and starts the transfer on the object's channel. */
@@ -200,7 +212,22 @@ void func_00124080(Obj_00124080 *arg0)
     *(volatile u64 *)0x12000090 = D_0019F4A8;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_00124110);
+/* Swaps to the other of the two halves at 0xC, then copies the current buffer base
+   into the low nine bits of the word at 0x30, probably a DISPFB value as in
+   func_00124080. */
+void func_00124110(Obj_00123520 *o)
+{
+    u64 v;
+
+    func_00123520(o);
+    o->unk_4 = (u8)!o->unk_4;
+    o->unk_8 = &o->unk_C[o->unk_4];
+    func_00123590(o);
+    v = o->unk_368[o->unk_364];
+    o->unk_90 = 1;
+    o->unk_30 = v | (o->unk_30 & ~0x1FF);
+    func_001247B0(o, v);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_001241A0);
 

@@ -34,6 +34,41 @@ typedef struct Obj_0015BD80 {
     /* 0x94 */ Obj3B0 *unk_94;
 } Obj_0015BD80;
 
+void func_001664F0();
+
+typedef struct Sub_0015D100 {
+    /* 0x00 */ u128 unk_0;
+    /* 0x10 */ u128 unk_10;
+    /* 0x20 */ u128 unk_20;
+    /* 0x30 */ u128 unk_30;
+    /* 0x40 */ u128 unk_40;
+} Sub_0015D100;
+
+typedef struct Obj_0015D100 {
+    /* 0x000 */ u8 unk_0[0x90];
+    /* 0x090 */ Sub_0015D100 unk_90;
+    /* 0x0E0 */ u8 unk_E0[0x30];
+    /* 0x110 */ f32 unk_110;
+} Obj_0015D100;
+
+typedef struct Obj90 {
+    /* 0x00 */ Sub_0015D100 unk_0;
+    /* 0x50 */ f32 unk_50;
+    /* 0x54 */ f32 unk_54;
+    /* 0x58 */ f32 unk_58;
+    /* 0x5C */ f32 unk_5C;
+    /* 0x60 */ f32 unk_60;
+    /* 0x64 */ u8 unk_64[0xC];
+    /* 0x70 */ f32 unk_70;
+    /* 0x74 */ f32 unk_74;
+    /* 0x78 */ f32 unk_78;
+    /* 0x7C */ f32 unk_7C;
+    /* 0x80 */ f32 unk_80;
+    /* 0x84 */ f32 unk_84;
+    /* 0x88 */ f32 unk_88;
+    /* 0x8C */ f32 unk_8C;
+} Obj90;
+
 // registers: obj = the block operator new returns, then the object being built in it (obj)
 /* builds the two 0x3B0-byte objects the owner keeps at +0x90 and +0x94: operator new,
    then the base constructor with its table, the vtable, and the pointer to the object's own buffer */
@@ -89,7 +124,52 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_0015BD80", func_0015CB40);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0015BD80", func_0015CD50);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0015BD80", func_0015D100);
+/* builds two 0x280-byte objects from one parameter block: the five quads at +0x90 of
+   the owner and its float at +0x110, with the second object's settings changed */
+void func_0015D100(Obj_0015D100 *arg0)
+{
+    Obj90 params;
+    void *p;
+
+    params.unk_50 = 1.0f;
+    params.unk_54 = 1.5f;
+    params.unk_58 = 1.5f;
+    params.unk_5C = 0.5f;
+    params.unk_60 = 0.0f;
+
+    params.unk_0 = arg0->unk_90;
+    params.unk_54 = 2.0f;
+    params.unk_58 = arg0->unk_110;
+    params.unk_5C = 0.5f;
+    params.unk_60 = 0.00390625f;
+    params.unk_70 = 1.0f;
+    params.unk_74 = 1.0f;
+    params.unk_78 = 1.0f;
+    params.unk_7C = 0.8f;
+    params.unk_80 = 0.0f;
+    params.unk_84 = 1.0f;
+    params.unk_88 = 0.0f;
+    params.unk_8C = 0.0f;
+    if ((p = __nw__FUi(0x280)) != 0) {
+        func_001664F0(p, &params);
+    }
+
+    params.unk_50 = 3.0f;
+    params.unk_54 = 1.0f;
+    params.unk_5C = 1.5f;
+    params.unk_60 = -0.0078125f;
+    params.unk_70 = 1.0f;
+    params.unk_74 = 1.0f;
+    params.unk_78 = 1.0f;
+    params.unk_7C = 0.9f;
+    params.unk_80 = 1.0f;
+    params.unk_84 = 0.5f;
+    params.unk_88 = 0.0f;
+    params.unk_8C = 0.0f;
+    if ((p = __nw__FUi(0x280)) != 0) {
+        func_001664F0(p, &params);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0015BD80", func_0015D2B0);
 

@@ -60,6 +60,72 @@ typedef struct Obj_00139740 {
 
 void func_00135570();
 
+typedef struct Sub_00139ED0 {
+    /* 0x00 */ s32 *unk_0;
+    /* 0x04 */ s32 unk_4;
+    /* 0x08 */ u32 unk_8;
+    /* 0x0C */ s32 unk_C;
+    /* 0x10 */ s32 unk_10;
+    /* 0x14 */ s32 unk_14;
+    /* 0x18 */ s32 unk_18;
+    /* 0x1C */ s32 unk_1C;
+    /* 0x20 */ void *unk_20;
+    /* 0x24 */ u8 unk_24;
+    /* 0x25 */ u8 unk_25;
+    /* 0x26 */ u8 unk_26;
+    u8 pad_27[0x1];
+} Sub_00139ED0;
+
+typedef struct Obj_00139ED0 {
+    /* 0x00 */ s32 *unk_0;
+    u8 pad_4[0x13C];
+    /* 0x140 */ f32 unk_140;
+    /* 0x144 */ f32 unk_144;
+    /* 0x148 */ f32 unk_148;
+    /* 0x14C */ f32 unk_14C;
+    /* 0x150 */ f32 unk_150;
+    u8 pad_154[0x4];
+    /* 0x158 */ Sub_00139ED0 *unk_158;
+    /* 0x15C */ Sub_00139ED0 *unk_15C;
+    /* 0x160 */ u8 unk_160;
+} Obj_00139ED0;
+
+void * __nw__FUi(u32);
+
+extern s32 D_001A37E0;
+
+extern s32 D_001A37E4;
+
+extern s32 D_001A37E8;
+
+extern s32 D_001A37EC;
+
+extern s32 D_001A37F0;
+
+extern s32 D_001A37F4;
+
+extern s32 D_001A37F8;
+
+extern s32 D_001A37FC;
+
+extern s32 D_001A3800;
+
+extern s32 D_001A3804;
+
+extern s32 D_001A3808;
+
+extern s32 D_001A380C;
+
+extern s32 D_001A3810;
+
+extern s32 D_001A3814;
+
+extern s32 D_0069C270;
+
+extern s32 D_0069C5F0;
+
+void *func_001006F0(u32);
+
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00136A60", func_00136A60);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00136A60", func_00136CA0);
@@ -163,6 +229,55 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00136A60", func_00139870);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00136A60", func_00139A00);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00136A60", func_00139ED0);
+/* builds the object over its base, then allocates and fills its two 0x28-byte sub-objects */
+// !FAKE: probably a constructor whose this the compiler kept in a stack slot and reloads before every access; volatile forces that in C
+Obj_00139ED0 *func_00139ED0(Obj_00139ED0 *volatile self)
+{
+    Sub_00139ED0 *sub;
+
+    func_00135570(self);
+    self->unk_0 = &D_0069C5F0;
+    self->unk_148 = 8.0f;
+    self->unk_150 = 0.0f;
+    /* 1.5707964f is pi / 2 */
+    self->unk_14C = 1.5707964f;
+    self->unk_140 = 0.0f;
+    self->unk_144 = 0.0f;
+    self->unk_160 = 0;
+
+    if ((sub = __nw__FUi(sizeof(Sub_00139ED0))) != 0) {
+        sub->unk_0 = &D_0069C270;
+        sub->unk_4 = D_001A37E0;
+        sub->unk_8 = D_001A37E4;
+        sub->unk_C = D_001A37E8;
+        sub->unk_10 = D_001A37EC;
+        sub->unk_14 = D_001A37F0;
+        sub->unk_18 = D_001A37F4;
+        sub->unk_1C = D_001A37F8;
+        sub->unk_20 = func_001006F0((s32)((u64)sub->unk_8 * 4));
+        sub->unk_24 = 0;
+        sub->unk_25 = 0;
+        sub->unk_26 = 0;
+    }
+    self->unk_15C = sub;
+
+    if ((sub = __nw__FUi(sizeof(Sub_00139ED0))) != 0) {
+        sub->unk_0 = &D_0069C270;
+        sub->unk_4 = D_001A37FC;
+        sub->unk_8 = D_001A3800;
+        sub->unk_C = D_001A3804;
+        sub->unk_10 = D_001A3808;
+        sub->unk_14 = D_001A380C;
+        sub->unk_18 = D_001A3810;
+        sub->unk_1C = D_001A3814;
+        sub->unk_20 = func_001006F0((s32)((u64)sub->unk_8 * 4));
+        sub->unk_24 = 0;
+        sub->unk_25 = 0;
+        sub->unk_26 = 0;
+    }
+    self->unk_158 = sub;
+
+    return self;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00136A60", func_0013A080);

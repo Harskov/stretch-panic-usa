@@ -1,6 +1,8 @@
 #include "common.h"
 #include "game_01/obj1F0.h"
 #include "game_01/actorC4.h"
+#include "game_01/scratchpad.h"
+#include "game_01/unit_00157CC0.h"
 
 typedef struct Obj {
     u8 unk_00[0x10];
@@ -21,6 +23,46 @@ typedef struct Obj {
 void func_00159E20(Obj1F0 *arg0, ObjCC *arg1);
 
 extern s32 func_00131B30(Obj *arg0, void *arg1, f32 *arg2, ObjC8 *arg3, void *arg4);
+
+extern s32 D_005CFC30;
+
+extern s32 D_0069C510;
+
+void func_0012AF20();
+
+void * __nw__FUi(u32);
+
+typedef struct Obj3B0 {
+    void *unk_0;
+    u8 unk_4[0x24];
+    void *unk_28;
+    u8 unk_2C[4];
+    u8 unk_30[0x380];
+} Obj3B0;
+
+typedef struct Obj_00159E80 {
+    u8 unk_0[0xB0];
+    Obj3B0 *unk_B0;
+} Obj_00159E80;
+
+/* the object whose quadword at +0x10 is passed to func_0016B960 and copied whole */
+typedef struct Obj_00159520 {
+    u8 unk_00[0x10];
+    /* 0x10 */ Quad unk_10;
+} Obj_00159520;
+
+typedef struct Obj_006A6988 {
+    s32 unk_0;
+    s32 unk_4;
+} Obj_006A6988;
+
+extern Obj_006A6988 *D_006A6988;
+
+extern u8 D_006A69D8;
+
+void func_0012AA10(f32, void *, s32);
+
+void func_0016B960(Quad *arg0, f32 arg1);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00158C80", func_00158C80);
 
@@ -47,7 +89,34 @@ void func_00159400(Obj1F0 *arg0, ObjCC *arg1)
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00158C80", func_00159430);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00158C80", func_00159520);
+/* fills a parameter block from the scratchpad quadword at 0x70000BE0, then refills it from
+   the object's quadword at +0x10 and hands it to the 0x60-byte object operator new returns */
+void func_00159520(Obj_00159520 *arg0)
+{
+    Sub_001584D0 params;
+    void *obj;
+
+    params.unk_0 = *SPR_QUAD;
+    params.unk_10 = 10.0f;
+    params.unk_14 = 1.0f;
+    params.unk_18 = 0.25f;
+    params.unk_1C = 0;
+    params.unk_20 = 2;
+    params.unk_24 = 0x40;
+    if (D_006A69D8 != 0) {
+        func_0012AA10(0.7f, &D_006A6988->unk_4, 8);
+    }
+    func_0016B960(&arg0->unk_10, 1.0f);
+    params.unk_0 = arg0->unk_10;
+    params.unk_10 = 6.0f;
+    params.unk_14 = 1.0f;
+    params.unk_1C = 0;
+    params.unk_20 = 0x12;
+    params.unk_24 = 0x78;
+    if ((obj = __nw__FUi(0x60)) != 0) {
+        func_001584D0(obj, &params);
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00158C80", func_00159650);
 
@@ -109,4 +178,14 @@ void func_00159E20(Obj1F0 *arg0, ObjCC *arg1) {
     arg0->unk_30 = arg0->unk_240;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00158C80", func_00159E80);
+void func_00159E80(Obj_00159E80 *arg0)
+{
+    Obj3B0 *p;
+
+    if ((p = __nw__FUi(0x3B0)) != 0) {
+        func_0012AF20(p, &D_005CFC30);
+        p->unk_0 = &D_0069C510;
+        p->unk_28 = &p->unk_30;
+    }
+    arg0->unk_B0 = p;
+}

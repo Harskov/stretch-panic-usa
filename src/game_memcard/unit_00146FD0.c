@@ -26,8 +26,6 @@ extern s32 D_006AEF78;
 
 extern Obj14 D_006AEFE0;
 
-s32 func_00146500(char *path);
-
 extern s32 D_006AEF08;
 
 extern s32 D_006AEED8;
@@ -35,8 +33,6 @@ extern s32 D_006AEED8;
 extern s32 D_006AEEC8;
 
 extern s32 D_006AEED0;
-
-void func_001469B0();
 
 extern s32 D_006AEEF8;
 
@@ -293,7 +289,7 @@ s32 func_00147C90(char *arg0, s32 arg1)
     D_006AEFE0 = D_0069BEC0;
     strcat((char *)&D_006AEFE0, D_0069BED8);
     strcat((char *)&D_006AEFE0, arg0);
-    r = func_00146500((char *)&D_006AEFE0);
+    r = func_00146500(D_006AEFE0.unk_0);
     switch (r) {
     case 0:
         if (D_006AEF78 == arg1)
@@ -307,7 +303,7 @@ s32 func_00147C90(char *arg0, s32 arg1)
 
 void func_00147D50(void)
 {
-    func_001469B0(&D_006AEFE0);
+    func_001469B0(D_006AEFE0.unk_0);
 }
 
 s32 func_00147D60(void)

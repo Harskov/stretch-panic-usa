@@ -21,6 +21,8 @@ f32 sinf(f32);
 
 extern Vec *D_006A6BC8;
 
+extern Vec *D_006A6BD8;
+
 void func_0012C810(register Vec *src, register Vec *dst)
 {
     asm {
@@ -177,7 +179,14 @@ void func_0012D430(Obj_0012D430 *arg0)
     func_0012C810((Vec *)D_006A6BC0, (Vec *)arg0);
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012D450);
+void func_0012D450(Vec *arg0, f32 arg1, f32 arg2, f32 arg3)
+{
+    func_0012C810(arg0, D_006A6BB0);
+    D_006A6BC8[3].x = arg1;
+    D_006A6BC8[3].y = arg2;
+    D_006A6BC8[3].z = arg3;
+    func_0012C840(D_006A6BC8, D_006A6BB0, arg0);
+}
 
 void func_0012D4E0(Vec *arg0, f32 arg1)
 {
@@ -282,4 +291,16 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012DD20);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012DDB0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012DE80);
+/* Probably a scale along the y axis: unless arg1 is 1, the diagonal of D_006A6BD8 takes
+   1, arg1, 1 and the product goes back to arg0, whose word at +0x40 is cleared first. */
+void func_0012DE80(Obj_0012D430 *arg0, f32 arg1)
+{
+    if (arg1 != 1.0f) {
+        arg0->unk_40 = 0;
+        func_0012C810((Vec *)arg0, D_006A6BB0);
+        D_006A6BD8[0].x = 1.0f;
+        D_006A6BD8[1].y = arg1;
+        D_006A6BD8[2].z = 1.0f;
+        func_0012C840(D_006A6BD8, D_006A6BB0, (Vec *)arg0);
+    }
+}

@@ -58,6 +58,27 @@ void __destroy_new_array(void *, void (*)());
 
 void __dl__FPv(void *);
 
+typedef struct Sub_00121C10 {
+    s32 unk_0;
+    s32 unk_4;
+    f32 unk_8;
+    f32 unk_C;
+    s32 unk_10;
+    f32 unk_14;
+} Sub_00121C10;
+
+typedef struct Obj_00121C10 {
+    s32 unk_0;
+    f32 unk_4;
+    Sub_00121C10 *unk_8;
+} Obj_00121C10;
+
+extern s32 D_006A6700;
+
+extern s32 D_006A6704;
+
+extern f32 D_006A6708;
+
 /* rounds value up to the next multiple of align */
 s32 func_001217C0(s32 value, s32 align)
 {
@@ -152,7 +173,22 @@ void func_00121B10(Obj_00121B10 *o, f32 arg1)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_001217C0", func_00121C10);
+s32 *func_00121C10(Obj_00121C10 *o)
+{
+    f32 t;
+    f32 c;
+    f32 b;
+    f32 a;
+
+    D_006A6700 = o->unk_8->unk_0;
+    D_006A6704 = o->unk_8->unk_4;
+    t = o->unk_4;
+    c = o->unk_8->unk_14;
+    b = o->unk_8->unk_C;
+    a = o->unk_8->unk_8;
+    D_006A6708 = a + b * (t * c);
+    return &D_006A6700;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001217C0", func_00121C70);
 
