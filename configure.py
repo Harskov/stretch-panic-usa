@@ -131,6 +131,7 @@ def main():
             fail(f"{ld.relative_to(ROOT)} missing: run without --no-split")
         dps2build.patch_subalign(ld)
         dps2build.fix_nonmatchings(ROOT, aroot)
+        dps2build.fix_jtbl_zero_words(ROOT, aroot)
         ld_text = ld.read_text(encoding="utf-8")
         try:
             for stub in dps2build.missing_bss_stubs(ROOT, (cfg_dir / "splat.yaml").read_text(encoding="utf-8"), ld_text, broot):

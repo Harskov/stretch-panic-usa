@@ -251,6 +251,32 @@ def fix_nonmatchings(root, asm_root="asm"):
     return n
 
 
+JTBL_ZERO_WORD_RE = re.compile(r"^(\s*/\* [0-9A-Fa-f]+ [0-9A-Fa-f]{8} 00000000 \*/\s+)\.word \.L0$")
+
+
+def fix_jtbl_zero_words(root, asm_root="asm"):
+    """CodeWarrior pads a switch's jump table to 16 bytes with zero words, and spimdisasm 1.42.4 renders a zero entry of a
+    jump table as the label of address 0, `.word .L0`, which no file defines (ld: undefined reference to `.L0'). The word
+    is 0x00000000 in the image, so it is written as that word; the label was never a target (persona-4 run 2026-10-30-005
+    F-3/F-5: 509 such words in the primary's data, 271 and 395 in two further releases). Every .s under the asm root, after
+    every split; idempotent. Returns the number of lines changed."""
+    n = 0
+    d = Path(root) / asm_root
+    for p in sorted(d.rglob("*.s")) if d.is_dir() else []:
+        t = p.read_text(encoding="utf-8")
+        if ".word .L0" not in t:
+            continue
+        out = []
+        for ln in t.split("\n"):
+            m = JTBL_ZERO_WORD_RE.match(ln)
+            if m:
+                ln = m.group(1) + ".word 0x00000000"
+                n += 1
+            out.append(ln)
+        p.write_text("\n".join(out), encoding="utf-8")
+    return n
+
+
 def mwccgap_command(*, python, mwccgap, wibo, mwcc, as_path, as_flags, cflags):
     """The ninja command (with $in and $out) that compiles a C file carrying INCLUDE_ASM:
     mwccgap's own options, the source and the object, then the compiler flags it passes on
