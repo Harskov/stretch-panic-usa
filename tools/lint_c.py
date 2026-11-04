@@ -22,6 +22,8 @@ FILE arguments narrow it (a wip attempt before `mark`, say).
 Rules (error): overlay-cast, byte-offset, reinterpret-lvalue, inline-asm, do-while-zero,
 typedef-redeclare, process-comment, fake-body-unexplained, member-offset, invented-name (a type or member
 declared outside the placeholder forms with no checked record, where a ledger is; remediation 2026-10-20-remediation-38),
+call-arity (a call whose argument count differs from the definition src/ holds of its callee), void-result (a call that
+reads the result of a function src/ defines void; both remediation 2026-11-07-remediation-105, the section above lint_file),
 register-name (a decompiler's
 register or stack temporary kept as a name: temp_v0, var_s0, phi_a1, saved_reg_s0, sp1C; remediation 2026-10-17-remediation-34; a local
 declared tmp or temp, remediation 2026-10-17-remediation-35)
@@ -1034,6 +1036,170 @@ def invented_name_findings(repo, paths):
     return out
 
 
+# --- call-arity and void-result (remediation 2026-11-07-remediation-105, fate run 2026-11-07-061 F-2) ----------
+# A call that leaves an argument register alone compiles to the bytes of a call that passes it, and a definition typed void
+# over a tail call leaves the callee's result where its callers read it, so a 100 shows neither, and an empty prototype lets
+# every unit compile either way: 30 calls and 3 definitions stood in fate's reviewed source (func_00165EA0 called with one
+# argument where the bytes pass three). A call is compared with the definition src/ holds of its callee; a function with
+# no definition yet, a C++ unit (the compiler checks those) and a name two files define are left alone. On a file run a
+# definition is also compared with the calls of the tree's other files, so an attempt that drops a parameter is reported on
+# its own line. Which side is wrong is the call sites' question: what they load into the argument registers.
+CALL_SHAPE_BLANKS = re.compile(r"/\*.*?\*/|//[^\n]*|\"(?:\\.|[^\"\\\n])*\"|'(?:\\.|[^'\\\n])*'", re.S)
+CALL_SHAPE_NAME = re.compile(r"\b([A-Za-z_]\w*)\s*\(")
+CALL_SHAPE_KEYWORDS = {"if", "while", "for", "switch", "return", "sizeof", "do", "else", "case", "goto"}
+CALL_SHAPE_DECLARATION = re.compile(r"^\s*(?:(?:extern|static|const|volatile|struct|union|enum)\s+)*[A-Za-z_]\w*(?:\s+[A-Za-z_]\w*)*[\s*]+$")
+CALL_SHAPE_STATEMENT = re.compile(r"^\s*(?:return|else|case|goto|do)\b")
+CALL_SHAPE_USED = re.compile(r"(?:=|\breturn|[(!,&|+\-*/<>?%^~])\s*$")
+
+
+def call_shape_code(text):
+    """C text with comments, string and character contents and preprocessor lines blanked; the line numbers stay."""
+    blanked = CALL_SHAPE_BLANKS.sub(lambda m: re.sub(r"[^\n]", " ", m.group(0)), text)
+    out, more = [], False
+    for ln in blanked.split("\n"):
+        hit = more or ln.lstrip().startswith("#")
+        more = hit and ln.rstrip().endswith("\\")
+        out.append("" if hit else ln)
+    return "\n".join(out)
+
+
+def call_shape_close(code, i):
+    """The index of the `)` that closes the `(` at i, or -1."""
+    depth = 0
+    for j in range(i, len(code)):
+        if code[j] == "(":
+            depth += 1
+        elif code[j] == ")":
+            depth -= 1
+            if depth == 0:
+                return j
+    return -1
+
+
+def call_shape_args(text):
+    """The top-level comma-separated pieces of a parameter or argument list."""
+    if not text.strip():
+        return []
+    out, depth, cur = [], 0, []
+    for ch in text:
+        if ch in "([{":
+            depth += 1
+        elif ch in ")]}":
+            depth -= 1
+        if ch == "," and depth == 0:
+            out.append("".join(cur))
+            cur = []
+        else:
+            cur.append(ch)
+    return out + ["".join(cur)]
+
+
+def call_shape_definitions(code):
+    """{name, params, variadic, void, static, line} of every function defined at brace depth 0."""
+    out, depth, start = [], 0, 0
+    for i, ch in enumerate(code):
+        if ch == "{":
+            if depth == 0:
+                m = next(iter(CALL_SHAPE_NAME.finditer(code, start, i)), None)
+                head = code[start:m.start()] if m else ""
+                close = call_shape_close(code, m.end() - 1) if m else -1
+                if (head.strip() and "=" not in head and m.group(1) not in CALL_SHAPE_KEYWORDS and -1 < close < i
+                        and not code[close + 1:i].strip()):
+                    args = [a.strip() for a in call_shape_args(code[m.end():close])]
+                    args = [] if args == ["void"] else args
+                    out.append({"name": m.group(1), "params": sum(1 for a in args if a != "..."), "variadic": "..." in args,
+                                "void": bool(re.search(r"\bvoid\s*$", head)), "static": bool(re.search(r"\bstatic\b", head)),
+                                "line": code.count("\n", 0, m.start()) + 1})
+            depth += 1
+        elif ch == "}":
+            depth = max(0, depth - 1)
+            if depth == 0:
+                start = i + 1
+        elif ch == ";" and depth == 0:
+            start = i + 1
+    return out
+
+
+def call_shape_calls(code, names):
+    """{name, args, line, used} of every call of a name in `names`; a declaration, at file or block scope, is no call."""
+    out = []
+    for m in CALL_SHAPE_NAME.finditer(code):
+        name = m.group(1)
+        if name not in names or (m.start() and code[m.start() - 1] in ".>"):
+            continue
+        k = m.start() - 1
+        while k >= 0 and code[k] not in ";{}":
+            k -= 1
+        before = code[k + 1:m.start()]
+        if CALL_SHAPE_DECLARATION.match(before) and not CALL_SHAPE_STATEMENT.match(before):
+            continue
+        close = call_shape_close(code, m.end() - 1)
+        if close < 0:
+            continue
+        out.append({"name": name, "args": len(call_shape_args(code[m.end():close])), "line": code.count("\n", 0, m.start()) + 1,
+                    "used": bool(CALL_SHAPE_USED.search(before))})
+    return out
+
+
+def call_shape_callee(defs, name, rel):
+    """The one definition a call of `name` in file `rel` reaches: the file's own static, else the tree's one non-static."""
+    rows = defs.get(name) or []
+    mine = [d for d in rows if d["static"] and d["file"] == rel]
+    rows = mine or [d for d in rows if not d["static"]]
+    return rows[0] if len(rows) == 1 else None
+
+
+def call_shape_wrong(call, d):
+    """Why `call` disagrees with the definition `d`: (rule, the words), or None."""
+    if d["void"] and call["used"]:
+        return "void-result", f"its result is read, and {d['file']}:{d['line']} defines {d['name']} void"
+    if call["args"] != d["params"] and not (d["variadic"] and call["args"] >= d["params"]):
+        return "call-arity", (f"{call['args']} argument(s), and {d['file']}:{d['line']} defines {d['name']} with "
+                              f"{d['params']}{' or more' if d['variadic'] else ''}")
+    return None
+
+
+def call_shape_rows(repo, paths, whole):
+    """[(path, line, rule, text)] for the C files `paths` of the repository; `whole` says they are its whole tree. A file
+    outside src/ (an attempt) stands in for the tree's definitions of the functions it defines."""
+    repo = Path(repo)
+    tree = {}
+    for p in sorted((repo / "src").rglob("*.c")) if (repo / "src").is_dir() else []:
+        tree[str(p.relative_to(repo)).replace("\\", "/")] = call_shape_code(p.read_text(encoding="utf-8", errors="replace"))
+    linted = {}
+    for p in paths:
+        p = Path(p)
+        if p.suffix == ".c" and p.is_file():
+            rel = str(p.relative_to(repo)).replace("\\", "/") if p.is_relative_to(repo) else str(p)
+            linted[rel] = tree[rel] if rel in tree else call_shape_code(p.read_text(encoding="utf-8", errors="replace"))
+    defs = {}
+    for rel, code in tree.items():
+        for d in call_shape_definitions(code):
+            defs.setdefault(d["name"], []).append(dict(d, file=rel))
+    for rel, code in linted.items():
+        if rel not in tree:
+            for d in call_shape_definitions(code):
+                defs[d["name"]] = [dict(d, file=rel)]
+    out = []
+    for rel, code in linted.items():
+        for call in call_shape_calls(code, defs):
+            d = call_shape_callee(defs, call["name"], rel)
+            wrong = call_shape_wrong(call, d) if d else None
+            if wrong:
+                out.append((rel, call["line"], wrong[0], f"{call['name']}: {wrong[1]}"))
+    if not whole:
+        mine = {d["name"]: d for rows in defs.values() for d in rows if d["file"] in linted}
+        for rel, code in tree.items():
+            if rel in linted:
+                continue
+            for call in call_shape_calls(code, mine):
+                d = call_shape_callee(defs, call["name"], rel)
+                wrong = call_shape_wrong(call, d) if d else None
+                if wrong:
+                    out.append((d["file"], d["line"], wrong[0], f"{call['name']}: {rel}:{call['line']} calls it: {wrong[1]}"))
+    return list(dict.fromkeys(out))
+
+
 def lint_file(p, rel=None):
     return lint_text(p.read_text(encoding="utf-8", errors="replace"), rel or str(p), draft_beside(p))
 
@@ -1075,6 +1241,9 @@ def main():
         rel = str(p.relative_to(repo)) if p.is_relative_to(repo) else str(p)
         findings.extend(lint_file(p, rel))
     findings.extend(invented_name_findings(repo, paths))
+    for path, line, rule, text in call_shape_rows(repo, paths, not a.files):
+        findings.append({"path": path, "line": line, "rule": rule, "severity": "error",
+                         "source": f"{text}  [a 100 cannot show this; the registers at the call sites decide which side is wrong]"})
     errors = [f for f in findings if f["severity"] == "error"]
     for f in findings:   # the contract's finding shape beside this lint's own keys
         f.setdefault("level", "error" if f["severity"] == "error" else "advisory")
