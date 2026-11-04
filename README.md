@@ -42,6 +42,7 @@ You need Linux x86-64 (WSL2 on Windows works), Python 3.9 or newer, git, and you
 | M7 Documented | later | docs.py check ok=None (never run) |
 | M8 Behaviour-verified | not required | last behaviour compare ok=None at never |
 | M9 Reverse-engineered | later | names without checked evidence: 0; matches since the last name pass: 25; named types with two layouts: 0 |
+| M10 Designed | later | no design document yet |
 
 The milestones and why they come in this order: [ROADMAP.md](ROADMAP.md).
 
