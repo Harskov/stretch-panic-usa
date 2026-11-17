@@ -24,6 +24,10 @@
     },
     "binutils": {
       "url": "http://deb.debian.org/debian/pool/main/b/binutils-mipsen/binutils-mipsel-linux-gnu_2.35.2-2cross2_amd64.deb",
+      "mirrors": [
+        "https://archive.debian.org/debian/pool/main/b/binutils-mipsen/binutils-mipsel-linux-gnu_2.35.2-2cross2_amd64.deb",
+        "https://snapshot.debian.org/file/87b1dd71ef98a819c2abb9fa75f51b344a947867"
+      ],
       "sha256": "ed53bf5cfeee0ed4dd718842ed5557e6dabcd883af6af3a0d5f7caf2a42da82f",
       "version": "2.35.2-2cross2",
       "bin_prefix": "usr/bin/mipsel-linux-gnu-",

@@ -28,20 +28,25 @@ import urllib.request
 from pathlib import Path
 
 
-def fetch(url, sha256=None, retries=3):
-    last = None
-    for _ in range(retries):
-        try:
-            with urllib.request.urlopen(url, timeout=120) as r:
-                data = r.read()
-            if sha256 and hashlib.sha256(data).hexdigest() != sha256:
-                raise RuntimeError(f"{url}: sha256 {hashlib.sha256(data).hexdigest()} is not the pinned {sha256}")
-            return data
-        except Exception as e:  # retry network errors; a hash mismatch is final
-            last = e
-            if isinstance(e, RuntimeError):
-                break
-    raise SystemExit(f"download failed: {url}: {last}")
+def fetch(url, sha256=None, retries=3, mirrors=()):
+    """The bytes at url, else at each mirror in order; every copy is held to the pinned sha256, and a copy of other bytes moves
+    on to the next URL (a package pool drops a file when its release is archived)."""
+    failed = []
+    for u in [url, *(mirrors or ())]:
+        last = None
+        for _ in range(retries):
+            try:
+                with urllib.request.urlopen(u, timeout=120) as r:
+                    data = r.read()
+                if sha256 and hashlib.sha256(data).hexdigest() != sha256:
+                    raise RuntimeError(f"sha256 {hashlib.sha256(data).hexdigest()} is not the pinned {sha256}")
+                return data
+            except Exception as e:  # retry network errors; a hash mismatch ends this URL
+                last = e
+                if isinstance(e, RuntimeError):
+                    break
+        failed.append(f"{u}: {last}")
+    raise SystemExit("download failed: " + "; ".join(failed))
 
 
 def ar_members(data):
@@ -106,7 +111,7 @@ def ensure_all(tools, specs, compiler, mwccgap=None, offline=False):
         if offline:
             raise SystemExit("tools/binutils missing (run without --no-download)")
         print(f"download: binutils {bspec.get('version', '')}")
-        members = ar_members(fetch(bspec["url"], bspec.get("sha256")))
+        members = ar_members(fetch(bspec["url"], bspec.get("sha256"), mirrors=bspec.get("mirrors")))
         data = next((k for k in members if k.startswith("data.tar")), None)
         if data is None:
             raise SystemExit("no data.tar in the binutils package")
