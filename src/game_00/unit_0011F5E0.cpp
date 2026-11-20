@@ -15,20 +15,11 @@ public:
     virtual void m8(void);
 };
 
-typedef struct Obj_006A6D18 {
-    /* 0x00 */ u8 pad_0[0x60];
-    /* 0x60 */ f32 unk_60;
-    /* 0x64 */ f32 unk_64;
-    /* 0x68 */ f32 unk_68;
-    /* 0x6C */ f32 unk_6C;
-    /* 0x70 */ f32 unk_70;
-} Obj_006A6D18;
 
 extern "C" {
 extern s32 D_006A6730;
 extern Obj_006A6988 *D_006A6988;
-extern s32 *D_006A6D10;
-extern Obj_006A6D18 *D_006A6D18;
+
 
 s32 sceGsSyncV(s32 mode);
 s32 sceGsSyncPath(s32 mode, u16 timeout);

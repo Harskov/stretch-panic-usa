@@ -33,7 +33,6 @@ typedef struct Obj_0016F850 {
     Obj_0016E9A0_2 *unk_10C;
 } Obj_0016F850;
 
-extern s32 *D_006A6D10;
 
 extern s32 func_0013DF50(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f);
 

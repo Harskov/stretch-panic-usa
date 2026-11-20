@@ -28,7 +28,6 @@ typedef struct Obj_006A6730 {
 
 extern Obj_006A6730 *D_006A6730;
 
-extern int D_006A6D18;
 
 void func_0013BD20();
 
@@ -67,7 +66,6 @@ s32 func_0013DF50(s32, s32, s32, s32, s32, s32);
 
 void func_00172DA0();
 
-extern s32 *D_006A6D10;
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00157CC0", func_00157CC0);
 

@@ -10,7 +10,6 @@ typedef struct Node {
     /* 0x74 */ struct Node *next;
 } Node;
 
-extern s32 *D_006A6D10;
 
 extern s32 func_0013DF50(s32, s32, s32, s32, s32, s32);
 

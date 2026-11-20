@@ -114,6 +114,16 @@ typedef struct Obj_0014DF80 {
     u32 unk_60;
 } Obj_0014DF80;
 
+/* The 0x80-byte object func_0013BD60 allocates and publishes in D_006A6D18. */
+typedef struct Obj_006A6D18 {
+    /* 0x00 */ u8 pad_0[0x60];
+    /* 0x60 */ f32 unk_60;
+    /* 0x64 */ f32 unk_64;
+    /* 0x68 */ f32 unk_68;
+    /* 0x6C */ f32 unk_6C;
+    /* 0x70 */ f32 unk_70;
+} Obj_006A6D18;
+
 /*
  * data_game  (0x00197250-0x00699800)
  */
@@ -306,6 +316,8 @@ extern Obj_001318C0 *D_006A6CB0;
 extern Obj_00135450 *D_006A6CF0;
 extern s32 D_006A6D00;
 extern s32 D_006A6D08;
+extern s32 *D_006A6D10;
+extern Obj_006A6D18 *D_006A6D18;
 extern s32 D_006A6D20;
 extern s32 D_006A6D30;
 extern s32 D_006A6D38;

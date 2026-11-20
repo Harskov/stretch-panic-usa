@@ -12,7 +12,6 @@ extern Node *D_006B3700[];
 
 extern Node *D_006B3880;
 
-extern s32 D_006A6D18;
 
 void func_0013BD20();
 

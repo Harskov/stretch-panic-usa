@@ -33,11 +33,7 @@ void func_0013DED0();
 
 void *__nw__FUi(unsigned int size);
 
-extern s32 D_006A6D10;
-
-extern s32 D_006A6D18;
-
-s32 func_001006F0();
+void *func_001006F0();
 
 void func_0013BE60();
 
@@ -59,7 +55,7 @@ void func_0013BD60(s32 arg0)
     if ((p = __nw__FUi(0x80)) != 0) {
         func_0013BE60(p);
     }
-    D_006A6D18 = (s32)p;
+    D_006A6D18 = p;
     D_006A6D08 = 0;
     D_001BEE08 = 0x10000;
     D_006A6D20 = -1;

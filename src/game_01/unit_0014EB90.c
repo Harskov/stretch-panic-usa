@@ -32,7 +32,6 @@ void func_001319D0();
 
 void func_00150660();
 
-extern s32 *D_006A6D10;
 
 void func_0013DFD0();
 

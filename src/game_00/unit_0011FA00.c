@@ -19,20 +19,9 @@ typedef struct Obj_0011F5E0_2 {
     /* 0x32 */ Obj_0011F5E0 unk_32;
 } Obj_0011F5E0_2;
 
-typedef struct Obj_006A6D18 {
-    /* 0x00 */ u8 pad_0[0x60];
-    /* 0x60 */ f32 unk_60;
-    /* 0x64 */ f32 unk_64;
-    /* 0x68 */ f32 unk_68;
-    /* 0x6C */ f32 unk_6C;
-    /* 0x70 */ f32 unk_70;
-} Obj_006A6D18;
 
 extern s32 D_006A6730;
 
-extern s32 *D_006A6D10;
-
-extern Obj_006A6D18 *D_006A6D18;
 
 s32 sceSifInitRpc(s32 mode);
 
