@@ -82,7 +82,7 @@ segments:
       - [0x000469D0, asm, game_memcard]
       - [0x00049600, c, game_memcard/unit_00147EE0]
       - [0x00049678, asm, game_memcard_1]
-      - [0x00049680, asm, game_01]
+      - [0x0004ABD0, asm, game_01]
       - [0x000586B0, c, game_01/unit_001569A0]
       - [0x000599D0, c, game_01/unit_00157CC0]
       - [0x0005A984, asm, game_01_1]

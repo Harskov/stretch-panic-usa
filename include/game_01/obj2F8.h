@@ -16,8 +16,8 @@
    func_00179DF0 and func_0016E740. The words stored at +0x180 are the bit patterns
    of 0.5, 0.75, 1.0 and 2.0, stored from integer registers, so the field stays s32.
 
-   The Vec members are those func_0016E040, func_0016E0B0, func_0016E270, func_0016E340
-   and func_0017A5E0 pass to the vector functions; func_0017A5E0 hands its object on to
+   The Vec members are those func_0016E040, func_0016E0B0, func_0016E270, func_0016E340,
+   func_0016DF60 and func_0017A5E0 pass to the vector functions; func_0017A5E0 hands its object on to
    func_0017A220, so it is this layout too. */
 typedef struct Obj2F8 {
     unsigned char unk_00[0x10];
@@ -36,7 +36,8 @@ typedef struct Obj2F8 {
     /* 0x190 */ Vec unk_190;
     unsigned char unk_1A0[0x40];
     /* 0x1E0 */ Vec unk_1E0;
-    unsigned char unk_1F0[0x60];
+    unsigned char unk_1F0[0x50];
+    /* 0x240 */ Vec unk_240;
     /* 0x250 */ Vec unk_250;
     unsigned char unk_260[0x10];
     /* 0x270 */ Vec unk_270;
@@ -46,7 +47,9 @@ typedef struct Obj2F8 {
     s32 unk_2B4;
     s32 unk_2B8;
     s32 unk_2BC;
-    unsigned char unk_2C0[0x30];
+    unsigned char unk_2C0[0x10];
+    /* 0x2D0 */ Vec unk_2D0;
+    unsigned char unk_2E0[0x10];
     s32 unk_2F0;
     unsigned char unk_2F4[4];
     s32 unk_2F8;

@@ -32,9 +32,43 @@ void func_0012CA30();
 
 void func_0012EA20(Vec *, f32, f32);
 
+f32 func_0012E920(Vec *a);
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016DE30", func_0016DE30);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016DE30", func_0016DF60);
+/* scales +0x2D0 by minus the float func_0012E920 returns for it, takes the outer
+   product of +0x240 with that, and passes the result on to func_0012E9A0 */
+void func_0016DF60(Obj2F8 *arg0, f32 arg1)
+{
+    Vec v;
+
+    {
+        register f32 s;
+        register Vec *d;
+        register Vec *o;
+        register Vec *e;
+
+        s = -1.0f * func_0012E920(&arg0->unk_2D0);
+        d = &arg0->unk_2D0;
+        o = &v;
+        asm {
+            mfc1 v0, s
+            lqc2 vf1, 0(d)
+            qmtc2.ni v0, vf2
+            vmulx.xyz vf1, vf1, vf2x
+            sqc2 vf1, 0(o)
+        }
+        e = &arg0->unk_240;
+        asm {
+            lqc2 vf1, 0(e)
+            lqc2 vf2, 0(o)
+            vopmula.xyz ACC, vf1, vf2
+            vopmsub.xyz vf3, vf2, vf1
+            sqc2 vf3, 0(o)
+        }
+    }
+    func_0012E9A0(&arg0->unk_280, &v, &arg0->unk_280, arg1);
+}
 
 void func_0016DFF0(Obj2F8 *arg0, f32 arg1)
 {

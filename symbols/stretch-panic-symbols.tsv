@@ -830,7 +830,7 @@ func_00127FD0	unit_00127570	function	asm	platform	calls FlushCache, sceGsSetDefD
 func_00128B30	unit_00127570	function	matched	gameplay/game_00.007	call-graph community of 41 function(s) from func_00128B30
 func_00128B40	unit_00127570	function	matched	gameplay/game_00.007	call-graph community of 41 function(s) from func_00128B30
 func_00128B90	unit_00127570	function	matched	core	boot chain: called from func_0011F5E0, which crt0 calls
-func_00128C00	unit_00127570	function	wip	core	boot chain: called from func_0011F5E0, which crt0 calls
+func_00128C00	unit_00127570	function	matched	core	boot chain: called from func_0011F5E0, which crt0 calls
 func_00128C40	unit_00128C40	function	matched	platform	loads IOP modules (module path strings)
 func_00128CB0	unit_00128C40	function	asm	core	boot chain: called from func_0011F5E0, which crt0 calls
 func_00129010	unit_00128C40	function	asm	core	boot chain: called from func_0011F5E0, which crt0 calls
@@ -890,7 +890,7 @@ func_0012C950	unit_0012C810	function	matched	platform	VU0 macro mode: lqc2, qmtc
 func_0012C9C0	unit_0012C810	function	matched	platform	VU0 macro mode: lqc2, qmtc2.ni, sqc2, vmadday.xyzw
 func_0012CA30	unit_0012C810	function	matched	platform	VU0 macro mode: lqc2, sqc2, vmadday.xyzw, vmaddaz.xyzw
 func_0012CA60	unit_0012C810	function	matched	platform	VU0 macro mode: lqc2, sqc2, vmadday.xyzw, vmaddaz.xyzw
-func_0012CA90	unit_0012C810	function	wip	platform	VU0 macro mode: lqc2, qmfc2.ni, qmtc2.ni, sqc2
+func_0012CA90	unit_0012C810	function	matched	platform	VU0 macro mode: lqc2, qmfc2.ni, qmtc2.ni, sqc2
 func_0012CB10	unit_0012C810	function	asm	gameplay/game_00.003	call-graph community of 65 function(s) from func_00121C10
 func_0012D430	unit_0012C810	function	matched	core	utility called by 66 functions
 func_0012D450	unit_0012C810	function	matched	core	utility called by 83 functions
@@ -1297,7 +1297,7 @@ func_00147B40	unit_00146FD0	function	matched	gameplay/game_memcard.001	call-grap
 func_00147B50	unit_00146FD0	function	matched	gameplay/game_memcard.001	call-graph community of 57 function(s) from func_00145A90
 func_00147B60	unit_00146FD0	function	matched	gameplay/game_memcard.001	call-graph community of 57 function(s) from func_00145A90
 func_00147B70	unit_00146FD0	function	matched	gameplay/game_memcard.001	call-graph community of 57 function(s) from func_00145A90
-func_00147B80	unit_00146FD0	function	wip	gameplay/game_memcard.001	call-graph community of 57 function(s) from func_00145A90
+func_00147B80	unit_00146FD0	function	matched	gameplay/game_memcard.001	call-graph community of 57 function(s) from func_00145A90
 func_00147BA0	unit_00146FD0	function	matched	gameplay/game_memcard.001	call-graph community of 57 function(s) from func_00145A90
 func_00147BC0	unit_00146FD0	function	matched	gameplay/game_memcard.001	call-graph community of 57 function(s) from func_00145A90
 func_00147BD0	unit_00146FD0	function	matched	gameplay/game_memcard.001	call-graph community of 57 function(s) from func_00145A90
@@ -1686,7 +1686,7 @@ func_0016B690	unit_00169EC0	function	matched	gameplay/game_00.006	call-graph com
 func_0016B6A0	unit_00169EC0	function	matched	gameplay/game_00.006	call-graph community of 63 function(s) from func_00127750
 func_0016B6B0	unit_00169EC0	function	wip	core	utility called by 24 functions
 func_0016B730	unit_00169EC0	function	matched	gameplay/game_00.006	call-graph community of 63 function(s) from func_00127750
-func_0016B790	unit_00169EC0	function	asm	platform	VU0 macro mode: lqc2, qmtc2.ni, sqc2, vmulx.xyz
+func_0016B790	unit_00169EC0	function	wip	platform	VU0 macro mode: lqc2, qmtc2.ni, sqc2, vmulx.xyz
 func_0016B960	unit_00169EC0	function	asm	platform	VU0 macro mode: lqc2, qmtc2.ni, sqc2, vadd.xyz
 func_0016BC10	unit_00169EC0	function	asm	gameplay/game_00.006	call-graph community of 63 function(s) from func_00127750
 func_0016BDF0	unit_0016BDF0	function	matched	gameplay/game_00.012	call-graph community of 73 function(s) from func_00132780
@@ -1747,7 +1747,7 @@ func_0016DCF0	unit_0016D830	function	asm	gameplay/game_01.003	call-graph communi
 func_0016DD60	unit_0016D830	function	asm	gameplay/game_01.003	call-graph community of 38 function(s) from func_00151820
 func_0016DDD0	unit_0016D830	function	asm	gameplay/game_01.003	call-graph community of 38 function(s) from func_00151820
 func_0016DE30	unit_0016DE30	function	asm	platform	VU0 macro mode: lqc2, qmtc2.ni, sqc2, vmulx.xyz
-func_0016DF60	unit_0016DE30	function	wip	platform	VU0 macro mode: lqc2, qmtc2.ni, sqc2, vmulx.xyz
+func_0016DF60	unit_0016DE30	function	matched	platform	VU0 macro mode: lqc2, qmtc2.ni, sqc2, vmulx.xyz
 func_0016DFF0	unit_0016DE30	function	matched	platform	VU0 macro mode: lqc2, sqc2, vadd.xyz
 func_0016E040	unit_0016DE30	function	matched	platform	VU0 macro mode: lqc2, sqc2, vadd.xyz
 func_0016E0B0	unit_0016DE30	function	matched	platform	VU0 macro mode: lqc2, sqc2, vadd.xyz
@@ -2019,7 +2019,7 @@ func_0017E3A0	unit_0017DBF0	function	asm	gameplay/game_01.010	call-graph communi
 func_0017E4F0	unit_0017DBF0	function	matched	gameplay/game_01.010	call-graph community of 7 function(s) from func_0017E3A0
 func_0017E520	unit_0017DBF0	function	asm	gameplay/game_01.010	call-graph community of 7 function(s) from func_0017E3A0
 func_0017E640	unit_0017DBF0	function	asm	gameplay/game_01.010	call-graph community of 7 function(s) from func_0017E3A0
-func_0017E6C0	unit_0017DBF0	function	asm	platform	VU0 macro mode: lqc2, qmtc2.ni, sqc2, vadd.xyz
+func_0017E6C0	unit_0017DBF0	function	wip	platform	VU0 macro mode: lqc2, qmtc2.ni, sqc2, vadd.xyz
 func_0017E890	unit_0017DBF0	function	asm	platform	VU0 macro mode: lqc2, qmtc2.ni, sqc2, vmulx.xyz
 func_0017EA30	unit_0017DBF0	function	asm	gameplay/game_01.010	call-graph community of 7 function(s) from func_0017E3A0
 func_0017EB50	unit_0017DBF0	function	wip	gameplay/game_01.010	call-graph community of 7 function(s) from func_0017E3A0

@@ -169,7 +169,41 @@ void func_0012CA60(register Vec *m, register Vec *v, register Vec *out)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012CA90);
+// out = the inverse of a rotation-and-translation m: the MMI transpose gives the rotation's
+// transpose, and the translation becomes -(transpose * t); the word after the matrix is copied
+void func_0012CA90(register Vec *m, register Vec *out)
+{
+    asm {
+        lw t0, 0x40(m)
+        sw t0, 0x40(out)
+        lq t0, 0(m)
+        lq t1, 0x10(m)
+        lq t2, 0x20(m)
+        lqc2 vf4, 0x30(m)
+        vmove.xyzw vf5, vf4
+        vsub.xyz vf4, vf4, vf4
+        vmove.xyzw vf9, vf4
+        qmfc2.ni t3, vf4
+        pextlw t4, t1, t0
+        pextuw t5, t1, t0
+        pextlw t6, t3, t2
+        pextuw t7, t3, t2
+        pcpyld t0, t6, t4
+        pcpyud t1, t4, t6
+        pcpyld t2, t7, t5
+        qmtc2.ni t0, vf6
+        qmtc2.ni t1, vf7
+        qmtc2.ni t2, vf8
+        vmulax.xyz ACC, vf6, vf5x
+        vmadday.xyz ACC, vf7, vf5y
+        vmaddz.xyz vf4, vf8, vf5z
+        vsub.xyz vf4, vf9, vf4
+        sq t0, 0(out)
+        sq t1, 0x10(out)
+        sq t2, 0x20(out)
+        sqc2 vf4, 0x30(out)
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012CB10);
 

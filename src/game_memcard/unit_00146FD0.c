@@ -13,7 +13,7 @@ extern char D_0069BE40[];
 
 char *strcat(char *dst, const char *src);
 
-void func_00147B80(s32 arg0);
+s32 func_00147B80(s32 arg0);
 
 
 extern char D_0069BE50[];
@@ -247,7 +247,11 @@ void func_00147B70(s32 arg0)
     D_006AEED8 = arg0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147B80);
+s32 func_00147B80(s32 arg0)
+{
+    D_006AEED0 = arg0;
+    return D_006AEED8;
+}
 
 void func_00147BA0(void)
 {

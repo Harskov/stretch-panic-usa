@@ -11,7 +11,20 @@ typedef struct Obj_00127810 {
     u8 unk_90;
 } Obj_00127810;
 
-extern s32 D_001A0840;
+typedef struct Elem_001A0850 {
+    /* 0x00 */ u8 unk_0;
+    /* 0x01 */ u8 unk_1;
+    /* 0x02 */ u8 unk_2;
+    /* 0x03 */ u8 unk_3;
+} Elem_001A0850;
+
+typedef struct Obj_001A0840 {
+    /* 0x00 */ s32 unk_0;
+    u8 pad_4[0xC];
+    /* 0x10 */ Elem_001A0850 unk_10[12];
+} Obj_001A0840;
+
+extern Obj_001A0840 D_001A0840;
 
 extern s32 D_0069F794;
 
@@ -34,6 +47,8 @@ extern u8 D_006A69E0;
 extern u8 D_006A69E8;
 
 extern u8 D_006A69F0;
+
+extern s32 D_006AF098;
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00127570", func_00127570);
 
@@ -90,7 +105,7 @@ void *func_00128B40(void *p, s16 flags)
 
 void func_00128B90(void)
 {
-    D_001A0840 = 0;
+    D_001A0840.unk_0 = 0;
     D_006A69F0 = 0;
     D_006A69D0 = 0;
     D_006A69E8 = 0;
@@ -103,4 +118,14 @@ void func_00128B90(void)
     D_006A6980 = D_0069F794;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00127570", func_00128C00);
+void func_00128C00(void)
+{
+    s32 i;
+
+    D_006A69F0 = 0;
+    D_006AF098 = 0;
+    for (i = 0; i < 12; i++) {
+        D_001A0840.unk_10[i].unk_2 = 0;
+        D_001A0840.unk_10[i].unk_3 = 0;
+    }
+}
