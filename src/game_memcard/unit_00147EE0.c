@@ -1,7 +1,6 @@
 #include "common.h"
+#include "globals.h"
 #include "game_memcard/unit_001463F0.h"
-
-extern s32 D_006AEF90;
 
 void func_00146700();
 

@@ -1,10 +1,11 @@
 #include "common.h"
+#include "globals.h"
 #include "game_01/scratchpad.h"
 
-typedef struct Obj {
+typedef struct Obj_0016F790 {
     unsigned char unk_00[0x10];
     /* 0x10 */ Vec unk_10;
-} Obj;
+} Obj_0016F790;
 
 typedef struct Obj_0016E9A0 {
     s32 unk_00;
@@ -32,13 +33,6 @@ typedef struct Obj_0016F850 {
     Obj_0016E9A0_2 *unk_10C;
 } Obj_0016F850;
 
-extern Vec D_006AEE40;
-
-extern u8 D_006AEE58;
-
-extern u8 D_006AEE60;
-
-extern s32 *D_006A6D10;
 
 extern s32 func_0013DF50(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f);
 
@@ -82,7 +76,7 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016E9A0", func_0016F510);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016E9A0", func_0016F670);
 
-s32 func_0016F790(Obj *o, Vec *src, s32 *state)
+s32 func_0016F790(Obj_0016F790 *o, Vec *src, s32 *state)
 {
     register Vec *a;
     register Vec *d;

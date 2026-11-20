@@ -1,16 +1,10 @@
 #include "common.h"
-
-extern s32 D_0069C840;
+#include "globals.h"
+#include "game_00/obj_006A6730.h"
 
 void func_00172E80();
 
 void __dl__FPv(void *);
-
-extern s32 D_0069C810;
-
-extern s32 D_0069C7E0;
-
-extern s32 D_006A6730;
 
 void func_00127BA0();
 

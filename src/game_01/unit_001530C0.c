@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 
 typedef struct Obj_001530C0 {
     /* 0x00 */ s32 unk_0;
@@ -19,7 +20,6 @@ typedef struct Obj_001530C0_3 {
     /* 0x504 */ Obj_001530C0_2 *unk_504;
 } Obj_001530C0_3;
 
-extern s32 D_006A6D10;
 
 s32 func_0013DF50();
 
@@ -56,7 +56,7 @@ void func_001562A0(Obj_001530C0_3 *arg0) {
     arg0->unk_504->unk_60->unk_18 = 1.0f;
     mid = arg0->unk_504;
     in = mid->unk_60;
-    mid->unk_60->unk_0 = func_0013DF50(in->unk_0, ((s32 *)D_006A6D10)[1], 0xB, in->unk_4, in->unk_C, in->unk_8);
+    mid->unk_60->unk_0 = func_0013DF50(in->unk_0, D_006A6D10[1], 0xB, in->unk_4, in->unk_C, in->unk_8);
 }
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001530C0", func_00156300);

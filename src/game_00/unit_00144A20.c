@@ -1,24 +1,21 @@
 #include "common.h"
+#include "globals.h"
+#include "game_00/obj_006A6730.h"
 #include "types.h"
 
 typedef struct M128 {
     /* 0x00 */ __int128 unk_0[8];
 } M128;
 
-typedef struct Obj {
+typedef struct Obj_00145A10 {
     unsigned char unk_00[0x90];
     /* 0x90 */ M128 unk_90;
     unsigned char unk_110[0x3C];
     /* 0x14C */ unsigned char unk_14C;
-} Obj;
+} Obj_00145A10;
 
-extern s32 D_006A6730;
-
-void func_00125260();
 
 void func_00127BA0();
-
-extern s32 D_0069C7B0;
 
 void func_00172E80();
 
@@ -34,13 +31,10 @@ typedef struct Obj_00145790 {
     /* 0x150 */ unsigned char unk_150[4];
 } Obj_00145790;
 
-extern s32 D_0069C8B0;
-
 void func_0013BC80();
 
 void func_001319D0();
 
-extern s32 D_006A6D18;
 
 void func_0012D430();
 
@@ -109,7 +103,7 @@ void func_001459B0(Obj_00145790 *o) {
     func_0013BFB0(D_006A6D18, o->unk_150);
 }
 
-void func_00145A10(Obj *o, M128 *dst) {
+void func_00145A10(Obj_00145A10 *o, M128 *dst) {
     *dst = o->unk_90;
     o->unk_14C = 0;
 }

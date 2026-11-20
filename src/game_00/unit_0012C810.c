@@ -1,15 +1,11 @@
 #include "common.h"
+#include "globals.h"
 
 typedef struct Obj_0012D430 {
     u8 unk_0[0x40];
     s32 unk_40;
 } Obj_0012D430;
 
-extern s32 D_006A6BC0;
-
-extern Vec *D_006A6BB0;
-
-extern Vec *D_006A6BD0;
 
 void func_0012C810();
 
@@ -19,9 +15,6 @@ f32 cosf(f32);
 
 f32 sinf(f32);
 
-extern Vec *D_006A6BC8;
-
-extern Vec *D_006A6BD8;
 
 void func_0012C810(register Vec *src, register Vec *dst)
 {
@@ -210,7 +203,7 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012CB10);
 void func_0012D430(Obj_0012D430 *arg0)
 {
     arg0->unk_40 = -1;
-    func_0012C810((Vec *)D_006A6BC0, (Vec *)arg0);
+    func_0012C810(D_006A6BC0, (Vec *)arg0);
 }
 
 void func_0012D450(Vec *arg0, f32 arg1, f32 arg2, f32 arg3)

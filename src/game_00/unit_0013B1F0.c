@@ -1,13 +1,12 @@
 #include "common.h"
+#include "globals.h"
 
 typedef struct Obj0013BD20 {
-    u8 pad0[0x10];
+    u8 pad_0[0x10];
     /* 0x10 */ Vec unk_10;
     /* 0x20 */ Vec unk_20;
     /* 0x30 */ Vec unk_30[3];
 } Obj0013BD20;
-
-extern s32 D_006A6D00;
 
 void *__nw__FUi(u32 size);
 
@@ -21,10 +20,6 @@ typedef struct Obj_0013BC80 {
     /* 0x68 */ struct Obj_0013BC80 *link_68;
     /* 0x6C */ struct Obj_0013BC80 *link_6C;
 } Obj_0013BC80;
-
-extern s32 D_0069C718;
-
-extern s32 D_006A6D08;
 
 void __dla__FPv(void *p);
 

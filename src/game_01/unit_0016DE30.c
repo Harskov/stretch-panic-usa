@@ -1,4 +1,5 @@
 #include "common.h"
+#include "game_00/obj_006A6730.h"
 #include "game_00/unit_0012DF10.h"
 #include "game_01/obj2F8.h"
 
@@ -10,21 +11,6 @@ void func_0012D430(Vec *);
 void func_0012D450(Vec *, f32, f32, f32);
 
 void func_0012C8F0(Vec *, Vec *);
-
-typedef struct Obj_0016DE30 {
-    /* 0x00 */ u128 unk_0[5];
-} Obj_0016DE30;
-
-typedef struct Obj_0016DE30_2 {
-    u8 unk_0[0x350];
-    s32 unk_350;
-    u8 unk_354[0x24];
-    s32 unk_378;
-    u8 unk_37C[0x184];
-    /* 0x500 */ Obj_0016DE30 *cursor[4];
-} Obj_0016DE30_2;
-
-extern Obj_0016DE30_2 *D_006A6730;
 
 void func_0016E5A0();
 
@@ -174,10 +160,10 @@ void func_0016E390(int arg0, int arg1, int arg2) {
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016DE30", func_0016E3A0);
 
-void func_0016E4D0(s32 arg0, Obj_0016DE30 *arg1, s32 arg2, s32 arg3, s32 arg4)
+void func_0016E4D0(s32 arg0, Blk_001243D0 *arg1, s32 arg2, s32 arg3, s32 arg4)
 {
-    Obj_0016DE30_2 *s = D_006A6730;
-    Obj_0016DE30_2 *s2;
+    Obj_006A6730 *s = D_006A6730;
+    Obj_006A6730 *s2;
 
     s->cursor[s->unk_378][1] = *arg1;
     s->cursor[s->unk_378] += 1;

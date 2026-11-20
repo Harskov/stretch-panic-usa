@@ -1,6 +1,7 @@
 #include "common.h"
+#include "globals.h"
 
-typedef struct Obj {
+typedef struct Obj_001653D0 {
     unsigned char unk_00[0x50];
     /* 0x50 */ float unk_50;
     /* 0x54 */ float unk_54;
@@ -9,15 +10,11 @@ typedef struct Obj {
     unsigned char unk_60[0x30];
     /* 0x90 */ float unk_90;
     /* 0x94 */ float unk_94;
-} Obj;
-
-extern s32 D_0069CBE0;
+} Obj_001653D0;
 
 void func_00172E80();
 
 void __dl__FPv(void *);
-
-extern s32 D_0069CC70;
 
 typedef struct Sub_00165730 {
     u128 unk_0[4];
@@ -54,8 +51,6 @@ typedef struct Src_00165730 {
     /* 0xA0 */ u128 unk_A0;
 } Src_00165730;
 
-extern s32 D_0069CC10;
-
 void func_00172DA0();
 
 typedef struct Obj_00165FF0 {
@@ -64,15 +59,13 @@ typedef struct Obj_00165FF0 {
     /* 0xA0 */ void *unk_A0;
 } Obj_00165FF0;
 
-extern s32 D_0069CC40;
-
 void __dla__FPv(void *);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001651D0", func_001651D0);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001651D0", func_00165300);
 
-int func_001653D0(Obj *o) {
+int func_001653D0(Obj_001653D0 *o) {
     int alive = 1;
 
     o->unk_50 = o->unk_50 - o->unk_50 * o->unk_54;

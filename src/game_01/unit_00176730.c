@@ -1,4 +1,6 @@
 #include "common.h"
+#include "globals.h"
+#include "game_00/obj_006A6730.h"
 #include "types.h"
 
 typedef union Obj_00176730 {
@@ -7,23 +9,19 @@ typedef union Obj_00176730 {
     /* 0x00 */ s32 i0[4];
 } Obj_00176730;
 
-extern s32 D_0069D080;
-
-typedef struct Ent {
+typedef struct Ent_00176F80 {
     void *unk_0;          /* 0x00 */
-    u8 pad04[0x4C];      /* 0x04 */
+    u8 pad_04[0x4C];      /* 0x04 */
     s32 unk50;           /* 0x50 */
-    u8 pad54[0xC];       /* 0x54 */
+    u8 pad_54[0xC];       /* 0x54 */
     Obj_00176730 unk_60;         /* 0x60 */
-    u8 pad70[0x40];      /* 0x70 */
+    u8 pad_70[0x40];      /* 0x70 */
     Quad unk_B0;          /* 0xB0 */
     f32 unkC0;           /* 0xC0 */
     f32 unkC4;           /* 0xC4 */
-} Ent;
+} Ent_00176F80;
 
-void func_00172DA0(Ent *, s32, s32);
-
-extern s32 D_006A6730;
+void func_00172DA0(Ent_00176F80 *, s32, s32);
 
 void func_00127BA0();
 
@@ -36,8 +34,6 @@ typedef struct Obj_00176B40 {
     unsigned char unk_04[0x98];
     /* 0x9C */ void *unk_9C;
 } Obj_00176B40;
-
-extern s32 D_0069D050;
 
 void __dla__FPv(void *);
 
@@ -92,7 +88,7 @@ void func_00176F70(void)
 {
 }
 
-Ent *func_00176F80(Ent *e, s32 a1, s32 a2, Quad *v1, Quad *v2, f32 f0, f32 f1)
+Ent_00176F80 *func_00176F80(Ent_00176F80 *e, s32 a1, s32 a2, Quad *v1, Quad *v2, f32 f0, f32 f1)
 {
 
     func_00172DA0(e, a1, 0);

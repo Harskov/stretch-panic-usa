@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 
 typedef struct Pair_001217C0 {
     Quad *unk_0;
@@ -50,8 +51,6 @@ typedef struct Obj_001221F0 {
     void *unk_10;
 } Obj_001221F0;
 
-extern s32 D_0069C1C0;
-
 void func_00122260();
 
 void __destroy_new_array(void *, void (*)());
@@ -72,12 +71,6 @@ typedef struct Obj_00121C10 {
     f32 unk_4;
     Sub_00121C10 *unk_8;
 } Obj_00121C10;
-
-extern s32 D_006A6700;
-
-extern s32 D_006A6704;
-
-extern f32 D_006A6708;
 
 /* rounds value up to the next multiple of align */
 s32 func_001217C0(s32 value, s32 align)

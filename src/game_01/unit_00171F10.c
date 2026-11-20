@@ -1,30 +1,7 @@
 #include "common.h"
+#include "globals.h"
+#include "game_00/obj_006A6730.h"
 #include "types.h"
-
-/* The object the global pointer D_006A6B90 holds. Only this function reaches it so
-   far, so the layout stays local: two float triples at +0x30 and +0x40 that this
-   function integrates, each preceded by a float (+0x2C, +0x3C) and followed at +0x1C
-   and +0x4C by the two floats it stores outright. */
-typedef struct Obj6A6B90 {
-    unsigned char unk_00[0x1C];
-    f32 unk_1C;
-    unsigned char unk_20[0xC];
-    f32 unk_2C;
-    f32 unk_30;
-    f32 unk_34;
-    f32 unk_38;
-    f32 unk_3C;
-    f32 unk_40;
-    f32 unk_44;
-    f32 unk_48;
-    f32 unk_4C;
-} Obj6A6B90;
-
-extern Obj6A6B90 *D_006A6B90;
-
-extern s32 D_00601BB0;
-
-extern s32 D_006A6730;
 
 void func_00127BA0();
 

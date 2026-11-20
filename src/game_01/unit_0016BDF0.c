@@ -1,23 +1,10 @@
 #include "common.h"
+#include "globals.h"
 #include "game_01/rec10.h"
 #include "game_01/obj530.h"
 
-typedef struct Node {
-    unsigned char unk_00[0x60];
-    u32 unk_60;
-    unsigned char unk_64[0x10];
-    /* 0x74 */ struct Node *next;
-} Node;
-
-extern s32 *D_006A6D10;
-
 extern s32 func_0013DF50(s32, s32, s32, s32, s32, s32);
 
-extern Node *D_006A6C38;
-
-extern s32 D_0069CDD0;
-
-extern s32 D_006AF4E8;
 
 void func_001319D0();
 
@@ -101,7 +88,7 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016BDF0", func_0016C040);
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016BDF0", func_0016C150);
 
 void func_0016C260(void) {
-    Node *p;
+    Node_006A6C38 *p;
 
     for (p = D_006A6C38; p != 0; p = p->next) {
         p->unk_60 |= 0x10000;

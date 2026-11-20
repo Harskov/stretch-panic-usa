@@ -17,13 +17,13 @@ public:
     unsigned char unk_30[4];
 };
 
-struct Obj {
+struct Obj_0016D770_2 {
     unsigned char unk_00[0xD8];
     /* 0xD8 */ u32 count;
     Obj_0016D770 **unk_DC;
 };
 
-extern "C" void func_0016D770(Obj *arg0)
+extern "C" void func_0016D770(Obj_0016D770_2 *arg0)
 {
     {
         u32 i;

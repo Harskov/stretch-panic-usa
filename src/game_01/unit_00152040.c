@@ -1,10 +1,11 @@
 #include "common.h"
+#include "globals.h"
 #include "game_00/unit_0012DF10.h"
 #include "game_01/obj80.h"
 
 /* The 16 bytes at +0x20 of the destination are copied whole and then negated
    lane by lane, so the field is a union. */
-typedef struct Src {
+typedef struct Src_00152300 {
     u8 unk_00[0x250];
     u128 unk_250;
     u128 unk_260;
@@ -15,9 +16,9 @@ typedef struct Src {
     Vec unk_370;
     s32 unk_380;
     f32 unk_384;
-} Src;
+} Src_00152300;
 
-typedef struct Dst {
+typedef struct Dst_00152300 {
     u128 unk_00;
     u128 unk_10;
     Quad unk_20;
@@ -28,7 +29,7 @@ typedef struct Dst {
     s32 unk_68;
     s32 unk_6C;
     s32 unk_70;
-} Dst;
+} Dst_00152300;
 
 typedef struct Src_00152380 {
     u8 unk_00[0x140];
@@ -69,21 +70,19 @@ typedef struct Obj4A0 {
     Obj30 unk_4A0;
 } Obj4A0;
 
-typedef struct Obj70 {
+typedef struct Obj70_00152630 {
     u8 unk_00[0x70];
     Vec unk_70;
-} Obj70;
+} Obj70_00152630;
 
-typedef struct Obj {
+typedef struct Obj_001526C0 {
     u8 unk_00[0x2C0];
     Vec unk_2C0;
     u8 unk_2D0[0xD0];
     Vec unk_3A0;
-} Obj;
+} Obj_001526C0;
 
 extern void func_0012E9E0(Vec *a, Vec *b, Vec *out, f32 t);
-
-extern Vec D_006AF4B0;
 
 
 typedef struct Obj_00152640 {
@@ -105,7 +104,7 @@ void func_001522E0(Src_00152380 *s, Dst_00152380 *d)
     d->unk_20.vec0.x = s->unk_410 * s->unk_410;
 }
 
-void func_00152300(Src *s, Dst *d)
+void func_00152300(Src_00152300 *s, Dst_00152300 *d)
 {
     s->unk_314 = 0;
     d->unk_50 = s->unk_370;
@@ -154,7 +153,7 @@ void func_00152600(Obj4A0 *d, Obj80 *s)
 
 /* Scales the vector at +0x70 by 1 - t (func_0012E9E0 is out = a - b * t); both callers pass
    t = 0.0625f. */
-void func_00152630(Obj70 *o, f32 t) {
+void func_00152630(Obj70_00152630 *o, f32 t) {
     func_0012E9E0(&o->unk_70, &o->unk_70, &o->unk_70, t);
 }
 
@@ -185,7 +184,7 @@ void func_00152640(Obj_00152640 *o, Vec *arg1)
     func_0012E9A0(&o->unk_70, &q.vec0, &o->unk_70, 0.39269909f);
 }
 
-Vec *func_001526C0(Obj *o)
+Vec *func_001526C0(Obj_001526C0 *o)
 {
     func_0012E9A0(&o->unk_3A0, &o->unk_2C0, &D_006AF4B0, 0.75f);
     return &D_006AF4B0;

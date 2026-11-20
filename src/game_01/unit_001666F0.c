@@ -1,6 +1,7 @@
 #include "common.h"
+#include "globals.h"
 
-typedef struct Obj {
+typedef struct Obj_00166D90 {
     unsigned char unk_00[0xA8];
     float unk_A8;
     /* 0xAC */ int unk_AC;
@@ -9,7 +10,7 @@ typedef struct Obj {
     float unk_E4;
     float unk_E8;
     int unk_EC;
-} Obj;
+} Obj_00166D90;
 
 typedef struct Obj_00167180 Obj_00167180;
 
@@ -22,11 +23,7 @@ struct Obj_00167180 {
     /* 0xAC */ Obj_00167180 *link_AC;
 };
 
-extern s32 D_0069CCD0;
-
 void func_00135450();
-
-extern s32 D_0069CCA0;
 
 void func_00172E80();
 
@@ -53,7 +50,7 @@ s32 **func_00166D30(s32 **self, s16 flags) {
     return self;
 }
 
-int func_00166D90(Obj *o) {
+int func_00166D90(Obj_00166D90 *o) {
     int old;
 
     o->unk_E0 += o->unk_A8;

@@ -1,44 +1,21 @@
 #include "common.h"
+#include "globals.h"
 #include "game_00/unit_0013BD60.h"
-
-extern int D_006AED40[2];
-
-extern int D_006AED48;
-
-extern int D_006AED50;
-
-extern int D_006AED74;
 
 int sceSifInitRpc(int mode);
 
 int sceSifBindRpc(int *rd, unsigned int rpc_id, unsigned int mode);
-
-extern s32 D_006AEDD8;
 
 typedef struct Obj0013BF30 {
     u8 unk_0[0x10];
     Vec unk_10;
 } Obj0013BF30;
 
-extern s32 D_0069C708;
-
 void __dl__FPv(void *);
-
-extern s32 D_0069C250;
-
-extern s32 D_0069C760;
-
-extern s32 D_006AEDD0;
 
 void func_0013DE10();
 
 int func_0013DDA0();
-
-extern s32 D_006A6D20;
-
-extern s32 D_006A6D30;
-
-extern s32 D_006A6D38;
 
 void func_0013DE70();
 
@@ -56,27 +33,13 @@ void func_0013DED0();
 
 void *__nw__FUi(unsigned int size);
 
-extern s32 D_001BEE08;
-
-extern s32 D_006A6D08;
-
-extern s32 D_006A6D10;
-
-extern s32 D_006A6D18;
-
-s32 func_001006F0();
+void *func_001006F0();
 
 void func_0013BE60();
 
 void func_0013DE00();
 
 void func_0013DE20();
-
-extern s32 D_006AED78;
-
-extern s8 D_006AED80;
-
-extern u8 D_006A6D40[2][0x4000];
 
 int sceSifCallRpc(int *rd, unsigned int fno, unsigned int mode, void *send, int ssize, void *receive, int rsize, void *end_func, void *end_para);
 
@@ -92,7 +55,7 @@ void func_0013BD60(s32 arg0)
     if ((p = __nw__FUi(0x80)) != 0) {
         func_0013BE60(p);
     }
-    D_006A6D18 = (s32)p;
+    D_006A6D18 = p;
     D_006A6D08 = 0;
     D_001BEE08 = 0x10000;
     D_006A6D20 = -1;

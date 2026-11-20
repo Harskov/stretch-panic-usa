@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 
 typedef struct Sub_00123370 {
     /* 0x00 */ u32 pad_0 : 6;
@@ -27,38 +28,8 @@ typedef struct Obj_00122870 {
     /* 0x26 */ u8 unk_26;
 } Obj_00122870;
 
-extern s32 D_0069C250;
-
 void __dl__FPv(void *);
 
-extern s32 D_001972C0;
-
-extern s32 D_001972C4;
-
-extern s32 D_001972C8;
-
-extern s32 D_001972CC;
-
-extern s32 *D_001972D0;
-
-extern s64 D_006A6728;
-
-typedef struct Elem_00122FE0 {
-    /* 0x00 */ u64 unk_0;
-    /* 0x08 */ s32 *unk_8;
-    /* 0x0C */ s32 pad_C;
-} Elem_00122FE0;
-
-typedef struct Obj_00122FE0 {
-    /* 0x00 */ s32 unk_0;
-    /* 0x04 */ s32 pad_4;
-    /* 0x08 */ s32 unk_8;
-    /* 0x0C */ u32 unk_C;
-    /* 0x10 */ Elem_00122FE0 *unk_10;
-    /* 0x14 */ void *unk_14;
-    /* 0x18 */ struct Obj_00122FE0 *link_18;
-    /* 0x1C */ struct Obj_00122FE0 *link_1C;
-} Obj_00122FE0;
 
 void __dla__FPv(void *);
 
@@ -86,11 +57,11 @@ void func_00122870(Obj_00122870 *o)
 void func_00122880(void)
 {
     D_006A6728 = 0;
-    D_001972C0 = 0;
-    D_001972C4 = 0;
-    D_001972C8 = 0;
-    D_001972CC = 0;
-    D_001972D0 = &D_001972C0;
+    D_001972C0[0][0] = 0;
+    D_001972C0[0][1] = 0;
+    D_001972C0[1][0] = 0;
+    D_001972C0[1][1] = 0;
+    D_001972D0 = D_001972C0[0];
 }
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_001228C0);
@@ -111,7 +82,7 @@ Obj_00122FE0 *func_00122C30(Obj_00122FE0 *o, s16 arg1)
         if (o->link_18 != 0) {
             o->link_18->link_1C = o->link_1C;
         } else {
-            (&D_001972C0 + o->unk_0 * 2)[o->unk_8] = (s32)o->link_1C;
+            D_001972C0[o->unk_0][o->unk_8] = o->link_1C;
         }
         if (arg1 > 0) {
             __dl__FPv(o);

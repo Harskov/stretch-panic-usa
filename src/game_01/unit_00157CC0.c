@@ -1,15 +1,15 @@
 #include "common.h"
+#include "globals.h"
+#include "game_00/obj_006A6730.h"
 #include "game_01/pool70.h"
 #include "game_01/unit_00157CC0.h"
 
-typedef struct Obj {
+typedef struct Obj_00158670 {
     unsigned char unk_00[0x54];
     int count;
-} Obj;
+} Obj_00158670;
 
 extern void func_00158130(Obj270 *p, s32 i);
-
-extern s32 D_0069C9A0;
 
 void func_00172E80();
 
@@ -20,16 +20,6 @@ typedef struct Obj_00158690 {
     int unk_50;
 } Obj_00158690;
 
-typedef struct Obj_006A6730 {
-    unsigned char unk_0[0x378];
-    int unk_378;
-    unsigned char unk_37C[0x184];
-    int unk_500[1];
-} Obj_006A6730;
-
-extern Obj_006A6730 *D_006A6730;
-
-extern int D_006A6D18;
 
 void func_0013BD20();
 
@@ -45,18 +35,18 @@ typedef struct Elem_001584D0 {
     /* 0x18 */ f32 unk_18;
 } Elem_001584D0;
 
-typedef struct Obj70 {
+typedef struct Obj70_001584D0 {
     u8 unk_0[0x60];
     /* 0x60 */ Elem_001584D0 *unk_60;
     u8 unk_64[0xC];
-} Obj70;
+} Obj70_001584D0;
 
 typedef struct Obj_001584D0 {
     /* 0x00 */ s32 *unk_0;
     u8 unk_4[0xC];
     /* 0x10 */ Quad unk_10;
     u8 unk_20[0x30];
-    /* 0x50 */ Obj70 *unk_50;
+    /* 0x50 */ Obj70_001584D0 *unk_50;
     /* 0x54 */ s32 unk_54;
 } Obj_001584D0;
 
@@ -68,9 +58,6 @@ s32 func_0013DF50(s32, s32, s32, s32, s32, s32);
 
 void func_00172DA0();
 
-extern s32 D_0069C9D0;
-
-extern s32 *D_006A6D10;
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00157CC0", func_00157CC0);
 
@@ -131,7 +118,7 @@ s32 **func_00158470(s32 **self, s16 flags) {
 Obj_001584D0 *func_001584D0(Obj_001584D0 *volatile self, Sub_001584D0 *desc)
 {
     void *part;
-    Obj70 *owned;
+    Obj70_001584D0 *owned;
 
     func_00172DA0(self, 0x38, 0);
     self->unk_0 = &D_0069C9D0;
@@ -152,12 +139,12 @@ Obj_001584D0 *func_001584D0(Obj_001584D0 *volatile self, Sub_001584D0 *desc)
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00157CC0", func_001585F0);
 
-int func_00158670(Obj *o) {
+int func_00158670(Obj_00158670 *o) {
     return o->count-- > 0;
 }
 
 void func_00158690(Obj_00158690 *arg0) {
-    func_0013BD20(arg0->unk_50, D_006A6730->unk_500[D_006A6730->unk_378]);
+    func_0013BD20(arg0->unk_50, D_006A6730->cursor[D_006A6730->unk_378]);
     func_0013BFB0(D_006A6D18, arg0->unk_50);
 }
 

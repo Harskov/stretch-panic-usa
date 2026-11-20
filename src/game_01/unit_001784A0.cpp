@@ -7,7 +7,7 @@ public:
     virtual void m2();
 };
 
-struct Obj {
+struct Obj_00178B10 {
     unsigned char unk_00[0x50];
     Obj_001784A0 *field_50;
 };
@@ -28,7 +28,7 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_001784A0", func_00178990);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001784A0", func_00178AE0);
 
-extern "C" void func_00178B10(Obj *p)
+extern "C" void func_00178B10(Obj_00178B10 *p)
 {
     p->field_50->m2();
 }

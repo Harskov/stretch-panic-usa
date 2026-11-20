@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 
 class Obj_0016C720 {
 public:
@@ -9,19 +10,16 @@ public:
     virtual void m4(int);
 };
 
-class Node : public Obj_0016C720 {
-public:
-    unsigned char pad[0x44];
-    Node *next;
+struct Node_006B3880 : public Obj_0016C720 {
+    unsigned char pad_4[0x44];
+    Node_006B3880 *next;
 };
-
-extern Node *D_006B3880;
 
 extern "C" int func_0016C720(int arg0, int arg1);
 
 int func_0016C720(int arg0, int arg1)
 {
-    Node *p;
+    Node_006B3880 *p;
 
     for (p = D_006B3880; p != 0; p = p->next) {
         p->m4(arg1);

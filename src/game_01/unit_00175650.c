@@ -1,17 +1,13 @@
 #include "common.h"
+#include "globals.h"
+#include "game_00/obj_006A6730.h"
 #include "types.h"
 
-extern s32 D_006A6730;
-
 void func_00127BA0();
-
-extern s32 D_0069D020;
 
 void func_00172DA0();
 
 void func_00176530(s32 **, s32, f32);
-
-extern s32 D_0069CFC0;
 
 void func_00175970(s32 **, s32, s32, f32);
 

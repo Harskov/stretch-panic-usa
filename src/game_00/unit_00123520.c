@@ -1,12 +1,6 @@
 #include "common.h"
-
-typedef struct Obj_00123F70 {
-    /* 0x00 */ f32 unk_0;
-    /* 0x04 */ f32 unk_4;
-    /* 0x08 */ char *unk_8;
-    /* 0x0C */ s32 unk_C;
-    /* 0x10 */ struct Obj_00123F70 *next;
-} Obj_00123F70;
+#include "globals.h"
+#include "game_00/obj_006A6730.h"
 
 void *__nw__FUi(u32 size);
 
@@ -14,28 +8,11 @@ void *func_001006F0(s32 size);
 
 s32 sprintf(char *s, const char *fmt, ...);
 
-extern char gFormat_69B3D8[];
-
-extern Obj_00123F70 *D_006A6738;
-
 typedef struct Obj_001238B0 {
     u8 unk_0[4];
     /* 0x04 */ s32 unk_4;
     /* 0x08 */ s32 unk_8;
 } Obj_001238B0;
-
-typedef struct Obj_00124360 {
-    u8 pad_0[0x350];
-    /* 0x350 */ s32 unk_350;
-    u8 pad_354[0x2C];
-    /* 0x380 */ f32 unk_380;
-    /* 0x384 */ f32 unk_384;
-    /* 0x388 */ f32 unk_388;
-    u8 pad_38C[4];
-    /* 0x390 */ f32 unk_390;
-    /* 0x394 */ f32 unk_394;
-    /* 0x398 */ f32 unk_398;
-} Obj_00124360;
 
 typedef struct Obj_00123850 {
     /* 0x00 */ s32 *unk_0;
@@ -43,77 +20,11 @@ typedef struct Obj_00123850 {
     /* 0x20 */ void *unk_20;
 } Obj_00123850;
 
-extern s32 D_0069C270;
-
 void __dl__FPv(void *p);
 
 void __dla__FPv(void *p);
 
-typedef struct Obj_00124080 {
-    u8 pad_0[0x364];
-    /* 0x364 */ s32 unk_364;
-    /* 0x368 */ u64 unk_368[2];
-} Obj_00124080;
-
-extern volatile u64 D_0019F4A0;
-
-extern volatile u64 D_0019F4A8;
-
-typedef struct Blk_001243D0 {
-    /* 0x00 */ u128 unk_0;
-    /* 0x10 */ u128 unk_10;
-    /* 0x20 */ u128 unk_20;
-    /* 0x30 */ u128 unk_30;
-    /* 0x40 */ u128 unk_40;
-} Blk_001243D0;
-
-typedef struct Obj_001243D0 {
-    u8 pad_0[0x500];
-    /* 0x500 */ Blk_001243D0 *cursor_500;
-    /* 0x504 */ Blk_001243D0 *cursor_504;
-    /* 0x508 */ Blk_001243D0 *cursor_508;
-    /* 0x50C */ Blk_001243D0 *cursor_50C;
-} Obj_001243D0;
-
-typedef struct Obj_00125260 {
-    u8 pad_0[0x35C];
-    /* 0x35C */ u32 flags;
-    u8 pad_360[0x1D00];
-    /* 0x2060 */ u32 unk_2060;
-    u8 pad_2064[0xC];
-    /* 0x2070 */ u8 unk_2070;
-} Obj_00125260;
-
 void func_00125530();
-
-typedef struct Obj_001244C0 {
-    u8 pad_0[0x350];
-    /* 0x350 */ s32 unk_350;
-    u8 pad_354[0x1AC];
-    /* 0x500 */ s32 unk_500;
-    /* 0x504 */ s32 unk_504;
-    /* 0x508 */ s32 unk_508;
-    /* 0x50C */ s32 unk_50C;
-} Obj_001244C0;
-
-typedef struct Sub_00123520 {
-    /* 0x00 */ u64 *unk_0;
-    /* 0x04 */ u64 *unk_4;
-} Sub_00123520;
-
-typedef struct Obj_00123520 {
-    /* 0x00 */ void *unk_0;
-    /* 0x04 */ s32 unk_4;
-    /* 0x08 */ Sub_00123520 *unk_8;
-    /* 0x0C */ Sub_00123520 unk_C[2];
-    u8 pad_1C[0x14];
-    /* 0x30 */ u64 unk_30;
-    u8 pad_38[0x58];
-    /* 0x90 */ u8 unk_90;
-    u8 pad_91[0x2D3];
-    /* 0x364 */ s32 unk_364;
-    /* 0x368 */ u64 unk_368[2];
-} Obj_00123520;
 
 void FlushCache(s32 operation);
 
@@ -125,7 +36,7 @@ void func_001247B0();
 
 /* Sends the current buffer when it holds anything: clears the ID bits (28-30) of the last
    tag written, flushes the data cache, and starts the transfer on the object's channel. */
-void func_00123520(Obj_00123520 *o)
+void func_00123520(Obj_006A6730 *o)
 {
     if (o->unk_8->unk_4 != o->unk_8->unk_0) {
         o->unk_8->unk_4[-2] &= ~0x70000000;
@@ -203,7 +114,7 @@ void func_00124010(char *arg0, f32 arg1, f32 arg2)
 
 /* Flips between two frame buffers: 0x12000070 and 0x12000090 are the GS's DISPFB1 and
    DISPFB2 registers, whose low nine bits (FBP) give the displayed buffer's base. */
-void func_00124080(Obj_00124080 *arg0)
+void func_00124080(Obj_006A6730 *arg0)
 {
     arg0->unk_364 = (u8)((arg0->unk_364 != 0) ^ 1);
     D_0019F4A0 = arg0->unk_368[arg0->unk_364] | (D_0019F4A0 & ~0x1FF);
@@ -215,7 +126,7 @@ void func_00124080(Obj_00124080 *arg0)
 /* Swaps to the other of the two halves at 0xC, then copies the current buffer base
    into the low nine bits of the word at 0x30, probably a DISPFB value as in
    func_00124080. */
-void func_00124110(Obj_00123520 *o)
+void func_00124110(Obj_006A6730 *o)
 {
     u64 v;
 
@@ -233,7 +144,7 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_001241A0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_001242D0);
 
-void func_00124360(Obj_00124360 *arg0, f32 arg1, f32 arg2)
+void func_00124360(Obj_006A6730 *arg0, f32 arg1, f32 arg2)
 {
     f32 v = -0.5f * (arg2 + arg1);
 
@@ -242,7 +153,7 @@ void func_00124360(Obj_00124360 *arg0, f32 arg1, f32 arg2)
     arg0->unk_350 |= 0x1000;
 }
 
-void func_00124390(Obj_00124360 *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4)
+void func_00124390(Obj_006A6730 *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4)
 {
     arg0->unk_380 = 0.5f * arg3;
     arg0->unk_384 = -0.5f * arg4;
@@ -251,24 +162,24 @@ void func_00124390(Obj_00124360 *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4)
     arg0->unk_350 |= 0x1000;
 }
 
-void func_001243D0(Obj_001243D0 *arg0)
+void func_001243D0(Obj_006A6730 *arg0)
 {
-    arg0->cursor_500[1] = arg0->cursor_500[0];
-    arg0->cursor_504[1] = arg0->cursor_504[0];
-    arg0->cursor_508[1] = arg0->cursor_508[0];
-    arg0->cursor_50C[1] = arg0->cursor_50C[0];
-    arg0->cursor_500 += 1;
-    arg0->cursor_504 += 1;
-    arg0->cursor_508 += 1;
-    arg0->cursor_50C += 1;
+    arg0->cursor[0][1] = arg0->cursor[0][0];
+    arg0->cursor[1][1] = arg0->cursor[1][0];
+    arg0->cursor[2][1] = arg0->cursor[2][0];
+    arg0->cursor[3][1] = arg0->cursor[3][0];
+    arg0->cursor[0] += 1;
+    arg0->cursor[1] += 1;
+    arg0->cursor[2] += 1;
+    arg0->cursor[3] += 1;
 }
 
-void func_001244C0(Obj_001244C0 *arg0)
+void func_001244C0(Obj_006A6730 *arg0)
 {
-    arg0->unk_500 -= 0x50;
-    arg0->unk_504 -= 0x50;
-    arg0->unk_508 -= 0x50;
-    arg0->unk_50C -= 0x50;
+    arg0->cursor[0] -= 1;
+    arg0->cursor[1] -= 1;
+    arg0->cursor[2] -= 1;
+    arg0->cursor[3] -= 1;
     arg0->unk_350 |= 0xF00;
 }
 
@@ -294,7 +205,7 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_00124EC0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_001250F0);
 
-void func_00125260(Obj_00125260 *arg0)
+void func_00125260(Obj_006A6730 *arg0)
 {
     switch (arg0->flags & 7) {
     case 0:

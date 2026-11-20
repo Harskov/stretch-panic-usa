@@ -1,6 +1,5 @@
 #include "common.h"
-
-extern s32 D_00601A50;
+#include "globals.h"
 
 void func_0016FA30(void) {
 }

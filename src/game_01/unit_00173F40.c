@@ -1,7 +1,7 @@
 #include "common.h"
+#include "globals.h"
+#include "game_00/obj_006A6730.h"
 #include "game_01/obj50.h"
-
-extern s32 D_0069CF90;
 
 void func_00172DA0();
 
@@ -17,8 +17,6 @@ typedef struct Obj_001753F0 {
     u128 unk_60;
     u128 unk_70;
 } Obj_001753F0;
-
-extern s32 D_0069CF60;
 
 typedef struct Obj_00174EF0 {
     void *unk_0;
@@ -37,8 +35,6 @@ typedef struct Obj_00174EF0 {
     u128 unk_80;
 } Obj_00174EF0;
 
-extern s32 D_0069CF00;
-
 void func_00172E80();
 
 void __dl__FPv(void *);
@@ -49,18 +45,7 @@ typedef struct Obj_00174860 {
     /* 0x78 */ void *unk_78;
 } Obj_00174860;
 
-extern s32 D_0069CF30;
-
 void __dla__FPv(void *);
-
-typedef struct Obj_00174DD0 {
-    u8 unk_0[0x16A0];
-    /* 0x16A0 */ Vec unk_16A0;
-    /* 0x16B0 */ f32 unk_16B0;
-    /* 0x16B4 */ f32 unk_16B4;
-} Obj_00174DD0;
-
-extern Obj_00174DD0 *D_006A6730;
 
 void func_00125350();
 
@@ -137,7 +122,7 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_00173F40", func_00174B30);
 /* two passes through func_00125350: the point arg1 + (arg2 + arg3) with the pair at +0x16B0 set (0, 1),
    then arg1 - (arg2 + arg3) with the pair set (1, 0) */
 void func_00174DD0(void *arg0, Vec *arg1, Vec *arg2, Vec *arg3) {
-    Obj_00174DD0 *p;
+    Obj_006A6730 *p;
     f32 z;
     f32 y;
     f32 x;

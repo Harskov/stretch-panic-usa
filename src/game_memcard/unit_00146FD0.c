@@ -1,54 +1,11 @@
 #include "common.h"
+#include "globals.h"
 #include "game_memcard/unit_001463F0.h"
-
-typedef struct Obj14 {
-    /* 0x00 */ char unk_0[0x14];
-} Obj14;
-
-extern Obj14 D_0069BE20;
-
-extern char D_0069BE38[];
-
-extern char D_0069BE40[];
 
 char *strcat(char *dst, const char *src);
 
 s32 func_00147B80(s32 arg0);
 
-
-extern char D_0069BE50[];
-
-extern Obj14 D_0069BEC0;
-
-extern char D_0069BED8[];
-
-extern s32 D_006AEF78;
-
-extern Obj14 D_006AEFE0;
-
-extern s32 D_006AEF08;
-
-extern s32 D_006AEED8;
-
-extern s32 D_006AEEC8;
-
-extern s32 D_006AEED0;
-
-extern s32 D_006AEEF8;
-
-extern s32 D_006AEF10;
-
-extern s32 D_006AEF20;
-
-extern s32 D_006AEEA0;
-
-extern s32 D_006AEEB0;
-
-extern s32 D_006AEEB8;
-
-extern s32 D_006AEEC0;
-
-extern s32 D_006AEEA8;
 
 s32 func_00146060(s32 arg0, s32 arg1, s32 arg2);
 

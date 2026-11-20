@@ -1,33 +1,28 @@
 #include "common.h"
+#include "globals.h"
 #include "game_01/pool70.h"
 
-typedef struct Slot {
+typedef struct Slot_001569A0 {
     u8 unk_00;
     u8 unk_01[0x3F];
-} Slot;
+} Slot_001569A0;
 
-typedef struct Obj {
+typedef struct Obj_001575E0 {
     u8 unk_00[0x50];
     u8 unk_50;
     u8 unk_51[0x1F];
-    Slot unk_70[8];
-} Obj;
+    Slot_001569A0 unk_70[8];
+} Obj_001575E0;
 
 typedef struct Slot_00157650 {
     unsigned char unk_00[0x40];
 } Slot_00157650;
 
-extern void func_00157920(Obj *arg0, s32 arg1);
-
-extern s32 D_0069C910;
+extern void func_00157920(Obj_001575E0 *arg0, s32 arg1);
 
 void func_00172E80();
 
 void __dl__FPv(void *);
-
-extern s32 D_0069C940;
-
-extern s32 D_0069C970;
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001569A0", func_001569A0);
 
@@ -73,7 +68,7 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_001569A0", func_001574B0);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001569A0", func_00157550);
 
-void func_001575E0(Obj *arg0)
+void func_001575E0(Obj_001575E0 *arg0)
 {
     s32 i;
 

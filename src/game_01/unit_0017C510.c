@@ -1,4 +1,6 @@
 #include "common.h"
+#include "globals.h"
+#include "game_00/obj_006A6730.h"
 
 typedef struct Obj_0017C7A0 {
     /* 0x000 */ s32 *unk_0;
@@ -6,32 +8,13 @@ typedef struct Obj_0017C7A0 {
     /* 0x16C */ f32 unk_16C;
 } Obj_0017C7A0;
 
-extern s32 D_0069D320;
-
 void func_0017B170();
 
 void func_0017B7A0();
 
 void __dl__FPv(void *);
 
-extern s32 D_0069D390;
-
 void func_00172E80();
-
-extern s32 D_0069D3C0;
-
-extern s32 D_0069D3F0;
-
-extern s32 D_0069D420;
-
-typedef struct Obj_00174DD0 {
-    u8 unk_0[0x16A0];
-    /* 0x16A0 */ Vec unk_16A0;
-    /* 0x16B0 */ f32 unk_16B0;
-    /* 0x16B4 */ f32 unk_16B4;
-} Obj_00174DD0;
-
-extern Obj_00174DD0 *D_006A6730;
 
 void func_00125350();
 
@@ -80,7 +63,7 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_0017C510", func_0017CBC0);
 /* two passes through func_00125350: the point arg1 + (arg2 + arg3) with the pair at +0x16B0 set (0, 1),
    then arg1 - (arg2 + arg3) with the pair set (1, 0) */
 void func_0017CCE0(void *arg0, Vec *arg1, Vec *arg2, Vec *arg3) {
-    Obj_00174DD0 *p;
+    Obj_006A6730 *p;
     f32 z;
     f32 y;
     f32 x;

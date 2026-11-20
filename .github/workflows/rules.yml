@@ -1,0 +1,24 @@
+name: Code rules
+
+# A matched function also has to pass the [match] code rules in AGENTS.md: one declaration per type and per
+# global, no offset casts, no fake code, no assembly bodies outside the listed forms. tools/lint_rules.py reports
+# every function that matches but breaks one as MATCH-PENDING. The job fails on a [match] finding that the source
+# does not disclose with `// !FAKE:`; the disclosed ones are published debt and are listed, not refused.
+# tools/lint_c.py, the readability lint the rules build on, runs first. Nothing from the game is needed here.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  rules:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Readability lint
+        run: python3 tools/lint_c.py --repo .
+      - name: Code rules
+        run: python3 tools/lint_rules.py

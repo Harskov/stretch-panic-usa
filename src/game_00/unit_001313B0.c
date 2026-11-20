@@ -1,17 +1,18 @@
 #include "common.h"
+#include "globals.h"
 
 typedef struct E64 {
     /* 0x00 */ __int128 unk_0[4];
 } E64;
 
-typedef struct Src {
+typedef struct Src_001313B0 {
     unsigned char unk_00[4];
     /* 0x04 */ E64 *unk_4;
-} Src;
+} Src_001313B0;
 
 typedef struct Ctx {
     unsigned char unk_00[8];
-    /* 0x08 */ Src *unk_8;
+    /* 0x08 */ Src_001313B0 *unk_8;
     int count;
     /* 0x10 */ E64 *unk_10;
 } Ctx;
@@ -36,25 +37,13 @@ typedef struct Obj_001314F0 {
     /* 0x08 */ s32 unk_8;
 } Obj_001314F0;
 
-extern s32 D_0069C300;
-
-extern s32 D_0069C390;
-
 extern void __dl__FPv(void *);
-
-extern s32 D_0069C3C0;
-
-extern s32 D_0069C3F0;
-
-extern s32 D_0069C480;
-
-extern s32 D_0069C450;
 
 extern void __dla__FPv(void *);
 
 typedef struct Sub_00131630 {
     /* 0x00 */ Quad *unk_0;
-    /* 0x04 */ Src *unk_4;
+    /* 0x04 */ Src_001313B0 *unk_4;
 } Sub_00131630;
 
 typedef struct Elem_00131630 {
@@ -69,8 +58,6 @@ typedef struct Obj_00131630 {
     /* 0x0C */ Quad *unk_C;
     /* 0x10 */ Elem_00131630 *unk_10;
 } Obj_00131630;
-
-extern s32 D_0069C420;
 
 s32 **func_001313B0(s32 **arg0, s16 arg1)
 {

@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 
 class Obj_0016C690 {
 public:
@@ -8,18 +9,15 @@ public:
     virtual void m3();
 };
 
-class Node : public Obj_0016C690 {
-public:
+struct Node_006B3700 : public Obj_0016C690 {
     unsigned char unk_04[0x38];
-    Node *next;
+    Node_006B3700 *next;
 };
-
-extern Node *D_006B3700[];
 
 extern "C" void func_0016C690(void)
 {
     s32 i;
-    Node *p;
+    Node_006B3700 *p;
 
     for (i = 0; i < 0x5F; i++) {
         for (p = D_006B3700[i]; p != 0; p = p->next) {

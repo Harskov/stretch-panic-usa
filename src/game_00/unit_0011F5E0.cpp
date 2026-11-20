@@ -1,57 +1,10 @@
 #include "common.h"
+#include "globals.h"
+#include "game_00/obj_006A6730.h"
 #include "game_00/obj_001211E0.h"
-
-class Obj_006A6988 {
-public:
-    virtual void m0(void);
-    virtual void m1(void);
-    virtual void m2(void);
-    virtual void m3(void);
-    virtual void m4(void);
-    virtual void m5(void);
-    virtual void m6(void);
-    virtual void m7(void);
-    virtual void m8(void);
-};
-
-typedef struct Obj_00546440 {
-    /* 0x00 */ char *unk_0;
-    /* 0x04 */ char *unk_4;
-} Obj_00546440;
-
-typedef struct Obj_005464F0 {
-    /* 0x00 */ s32 unk_0;
-    /* 0x04 */ s32 unk_4;
-    /* 0x08 */ s32 unk_8;
-    /* 0x0C */ s32 unk_C;
-    /* 0x10 */ s32 unk_10;
-    /* 0x14 */ s32 unk_14;
-    /* 0x18 */ s32 unk_18;
-    /* 0x1C */ s32 unk_1C;
-} Obj_005464F0;
-
-typedef struct Obj_006A6D18 {
-    /* 0x00 */ u8 pad_0[0x60];
-    /* 0x60 */ f32 unk_60;
-    /* 0x64 */ f32 unk_64;
-    /* 0x68 */ f32 unk_68;
-    /* 0x6C */ f32 unk_6C;
-    /* 0x70 */ f32 unk_70;
-} Obj_006A6D18;
+#include "game_00/obj_006A6988.h"
 
 extern "C" {
-extern Obj_00546440 D_00546440[];
-extern Obj_005464F0 D_005464F0[];
-extern void *D_006A66E8;
-extern s32 D_006A66F0;
-extern s32 D_006A6730;
-extern Obj_006A6988 *D_006A6988;
-extern u8 D_006A69B8;
-extern u8 D_006A69C0;
-extern s32 D_006A69F8;
-extern s32 *D_006A6D10;
-extern Obj_006A6D18 *D_006A6D18;
-extern s32 D_006A6D20;
 
 s32 sceGsSyncV(s32 mode);
 s32 sceGsSyncPath(s32 mode, u16 timeout);
@@ -62,8 +15,7 @@ void func_0011FA00(void);
 void func_0011FA50(void);
 void func_00121640(void *arg0, s32 arg1, s32 arg2, s32 arg3);
 void func_001214F0(void *arg0);
-void func_00124080(s32 arg0);
-void func_00124110(s32 arg0);
+
 void func_00128B90(void);
 void func_00128C00(void);
 void func_00128C40(void);

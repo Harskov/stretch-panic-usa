@@ -1,11 +1,6 @@
 #include "common.h"
+#include "globals.h"
 #include "game_01/obj430.h"
-
-extern s32 D_006AF0A0[];
-
-extern s32 D_006AF0A4[];
-
-extern s32 D_006AF4A0;
 
 void func_00152040();
 
@@ -29,10 +24,6 @@ typedef struct Obj_001517A0 {
     /* 0xBC */ u8 unk_BC;
 } Obj_001517A0;
 
-extern s32 D_006A6D20;
-
-extern s32 D_006AEDE0;
-
 void func_0013C7A0();
 
 void func_0013C830();
@@ -46,12 +37,6 @@ void *__nw__FUi(u32);
 void * func_0013B220(void);
 
 void func_0013BB20(s32 *, s32);
-
-extern s32 D_005AFAE0;
-
-extern s32 D_0069C300;
-
-extern s32 D_0069C3F0;
 
 void func_00152700();
 
@@ -147,8 +132,6 @@ void func_001517A0(Obj_001517A0 *arg0) {
 }
 
 void func_00151820(s32 arg0) {
-    s32 idx;
-
     if (arg0 > 0) {
         D_006AF0A0[((D_006AF4A0 + 0x5A) % 128) * 2] += arg0;
     }

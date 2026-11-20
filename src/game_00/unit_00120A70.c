@@ -1,6 +1,6 @@
 #include "common.h"
+#include "globals.h"
 #include "game_00/obj_001211E0.h"
-
 
 void func_00121250(Obj_001211E0 *o);
 
@@ -25,8 +25,6 @@ typedef struct Obj_001216E0 {
     /* 0x14 */ Sub_001216E0 *unk_14;
 } Obj_001216E0;
 
-extern char gFormat_69B3C0[];
-
 s32 scePadInit(s32 mode);
 
 s32 scePadPortOpen(s32 port, s32 slot, s32 addr);
@@ -42,8 +40,6 @@ s32 scePadInfoMode(s32 port, s32 slot, s32 term, s32 offs);
 s32 scePadInfoPressMode(s32 port, s32 slot);
 
 s32 scePadRead(s32 port, s32 slot, u8 *rdata);
-
-extern char gFormat_69B380[];
 
 void func_0011FE50(Sub_001216E0 *e);
 
@@ -73,18 +69,6 @@ typedef struct Obj_00121100 {
 
 s32 func_00120E70(s32 arg0);
 
-typedef struct Elem_001215E0 {
-    /* 0x00 */ u8 unk_0[0x44];
-} Elem_001215E0;
-
-typedef struct Obj_001215E0 {
-    /* 0x00 */ u8 unk_0[0x10];
-    /* 0x10 */ s32 unk_10;
-    /* 0x14 */ u8 unk_14[8];
-    /* 0x1C */ Elem_001215E0 *unk_1C;
-    /* 0x20 */ Elem_001215E0 *unk_20;
-    /* 0x24 */ Elem_001215E0 *unk_24;
-} Obj_001215E0;
 
 void * __nw__FUi(u32);
 
@@ -270,7 +254,7 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00121250);
 /* Builds the table func_001215E0 looks entries up in: unk_10 elements constructed as an
    array (an array-new header of 0x10 bytes ahead of them), each set up with its index,
    then the two single entries at unk_20 (made with -1) and unk_24. */
-void func_001213F0(Obj_001215E0 *o)
+void func_001213F0(Obj_001211E0 *o)
 {
     s64 n;
     s32 i;
@@ -305,7 +289,7 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_001215A0);
 
 /* Element lookup by index: -1 selects the special entry at unk_20, an index outside
    -1..unk_10-1 falls back to the entry at unk_24. */
-Elem_001215E0 *func_001215E0(Obj_001215E0 *o, s32 i)
+Elem_001215E0 *func_001215E0(Obj_001211E0 *o, s32 i)
 {
     if (i < -1 || i >= o->unk_10) {
         return o->unk_24;

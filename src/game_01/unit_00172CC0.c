@@ -1,48 +1,18 @@
 #include "common.h"
+#include "globals.h"
+#include "game_00/obj_006A6730.h"
 
 #include "game_01/obj50.h"
-
-extern s32 D_00601BD0[];
-
-extern s32 D_006B3580[];
-
-/* List heads: func_0016C690 walks the 0x5F lists of D_006B3700 and func_0016C720 the
-   list at D_006B3880, each through its own unit's object class; here they are only
-   cleared, so the element type stays incomplete. */
-typedef struct Node Node;
-
-extern Node *D_006B3700[];
-
-extern Node *D_006B3880;
-
-extern s32 D_006B3888;
-
-extern s32 D_006A6D18;
 
 void func_0013BD20();
 
 void func_0013BFB0();
 
-typedef struct Obj_006A6730 {
-    u8 unk_0[0x504];
-    s32 unk_504;
-} Obj_006A6730;
-
-extern Obj_006A6730 *D_006A6730;
-
-extern s32 D_006B3890;
-
-extern s32 D_006B38A0;
-
 void func_0012C9C0();
-
-extern s32 D_0069CEA0;
 
 void func_00172E80();
 
 void __dl__FPv(void *);
-
-extern s32 D_0069CED0;
 
 typedef struct Elem_00172D50 {
     u8 unk_0[0x10];
@@ -113,8 +83,8 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00173070);
 /* 0x70000B80 and 0x70000BA0 are addresses in the EE's scratchpad RAM. */
 void func_00173120(void)
 {
-    func_0012C9C0(D_006A6730->unk_504, 0x70000B80, &D_006B3890);
-    func_0012C9C0(D_006A6730->unk_504, 0x70000BA0, &D_006B38A0);
+    func_0012C9C0(D_006A6730->cursor[1], 0x70000B80, &D_006B3890);
+    func_0012C9C0(D_006A6730->cursor[1], 0x70000BA0, &D_006B38A0);
 }
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00172CC0", func_00173180);
