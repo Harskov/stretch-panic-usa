@@ -128,6 +128,21 @@ typedef struct Obj_00135450 {
     /* 0x94 */ struct Obj_00135450 *link_94;
 } Obj_00135450;
 
+/* The objects on the list headed by D_006A6C38; func_0016C260 sets bit 0x10000 of
+   the word at +0x60 in each. */
+typedef struct Node_006A6C38 {
+    unsigned char unk_00[0x60];
+    u32 unk_60;
+    unsigned char unk_64[0x10];
+    /* 0x74 */ struct Node_006A6C38 *next;
+} Node_006A6C38;
+
+/* The objects on the lists headed by D_006B3700[] and D_006B3880 are C++ objects that
+   only the units walking them define (unit_0016C690.cpp, unit_0016C720.cpp); every
+   other unit sees the list heads alone. */
+typedef struct Node_006B3700 Node_006B3700;
+typedef struct Node_006B3880 Node_006B3880;
+
 typedef struct Obj_0014DF80 {
     u8 unk_00[0x60];
     u32 unk_60;
@@ -337,6 +352,7 @@ extern Vec *D_006A6BD8;
 extern s32 D_006A6C00;
 extern Obj_001318C0 *D_006A6C08;
 extern Obj_001318C0 *D_006A6C10[];
+extern Node_006A6C38 *D_006A6C38;
 extern Obj_001318C0 *D_006A6CB0;
 extern Obj_00135450 *D_006A6CF0;
 extern s32 D_006A6D00;
@@ -408,6 +424,8 @@ extern s32 D_006AF4C0;
 extern Obj_0014DF80 *D_006AF4D8;
 extern s32 D_006AF4E8;
 extern s32 D_006B3580[];
+extern Node_006B3700 *D_006B3700[];
+extern Node_006B3880 *D_006B3880;
 extern s32 D_006B3888;
 extern s32 D_006B3890;
 extern s32 D_006B38A0;

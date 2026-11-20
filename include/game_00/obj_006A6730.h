@@ -18,7 +18,7 @@ typedef struct Blk_001243D0 {
     /* 0x40 */ u128 unk_40;
 } Blk_001243D0;
 
-/* The object D_006A6730 points at; func_00127FD0 returns it at start-up. unit_00123520
+/* The object D_006A6730 points at; func_0011FA50 gets it from func_00127FD0. unit_00123520
    holds its functions, and every unit that draws reaches it through the global.
    unk_C is the pair of DMA buffers and unk_8 the current one; unk_368[unk_364] is the
    base of the frame buffer being displayed (func_00124080); cursor[] are the tops of

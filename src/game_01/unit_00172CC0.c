@@ -4,15 +4,6 @@
 
 #include "game_01/obj50.h"
 
-/* List heads: func_0016C690 walks the 0x5F lists of D_006B3700 and func_0016C720 the
-   list at D_006B3880, each through its own unit's object class; here they are only
-   cleared, so the element type stays incomplete. */
-typedef struct Node Node;
-
-extern Node *D_006B3700[];
-
-extern Node *D_006B3880;
-
 
 void func_0013BD20();
 

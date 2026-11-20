@@ -2,24 +2,9 @@
 #include "globals.h"
 #include "game_00/obj_006A6730.h"
 #include "game_00/obj_001211E0.h"
-
-class Obj_006A6988 {
-public:
-    virtual void m0(void);
-    virtual void m1(void);
-    virtual void m2(void);
-    virtual void m3(void);
-    virtual void m4(void);
-    virtual void m5(void);
-    virtual void m6(void);
-    virtual void m7(void);
-    virtual void m8(void);
-};
-
+#include "game_00/obj_006A6988.h"
 
 extern "C" {
-extern Obj_006A6988 *D_006A6988;
-
 
 s32 sceGsSyncV(s32 mode);
 s32 sceGsSyncPath(s32 mode, u16 timeout);
