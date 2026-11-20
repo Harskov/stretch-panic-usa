@@ -16,6 +16,25 @@ typedef struct Obj_001972A0 {
     /* 0x00 */ f32 unk_0[6];
 } Obj_001972A0;
 
+typedef struct Elem_00122FE0 {
+    /* 0x00 */ u64 unk_0;
+    /* 0x08 */ s32 *unk_8;
+    /* 0x0C */ s32 pad_C;
+} Elem_00122FE0;
+
+/* The objects on the four two-way lists whose heads are D_001972C0[unk_0][unk_8];
+   func_00122C30, the deleting destructor, unlinks one. */
+typedef struct Obj_00122FE0 {
+    /* 0x00 */ s32 unk_0;
+    /* 0x04 */ s32 pad_4;
+    /* 0x08 */ s32 unk_8;
+    /* 0x0C */ u32 unk_C;
+    /* 0x10 */ Elem_00122FE0 *unk_10;
+    /* 0x14 */ void *unk_14;
+    /* 0x18 */ struct Obj_00122FE0 *link_18;
+    /* 0x1C */ struct Obj_00122FE0 *link_1C;
+} Obj_00122FE0;
+
 typedef struct Elem_001A0850 {
     /* 0x00 */ u8 unk_0;
     /* 0x01 */ u8 unk_1;
@@ -130,9 +149,8 @@ typedef struct Obj_006A6D18 {
 extern Obj_00197260 D_00197260;
 extern Obj_00197260 D_00197280;
 extern Obj_001972A0 D_001972A0;
-extern s32 D_001972C4;
-extern s32 D_001972C8;
-extern s32 D_001972CC;
+extern Obj_00122FE0 *D_001972C0[2][2];
+extern Obj_00122FE0 **D_001972D0;
 extern volatile u64 D_0019F4A0;
 extern volatile u64 D_0019F4A8;
 extern Obj_001A0840 D_001A0840;
