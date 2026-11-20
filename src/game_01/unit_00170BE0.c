@@ -1,7 +1,6 @@
 #include "common.h"
 #include "globals.h"
-
-extern s32 D_006A6730;
+#include "game_00/obj_006A6730.h"
 
 void func_00125D20();
 

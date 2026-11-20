@@ -1,5 +1,6 @@
 #include "common.h"
 #include "globals.h"
+#include "game_00/obj_006A6730.h"
 #include "types.h"
 
 typedef union Obj_00176730 {
@@ -21,8 +22,6 @@ typedef struct Ent {
 } Ent;
 
 void func_00172DA0(Ent *, s32, s32);
-
-extern s32 D_006A6730;
 
 void func_00127BA0();
 

@@ -1,4 +1,5 @@
 #include "common.h"
+#include "game_00/obj_006A6730.h"
 #include "game_01/obj2F8.h"
 
 typedef struct Obj {
@@ -53,14 +54,6 @@ typedef struct Obj_0017C4A0 {
     f32 unk_4F4;
 } Obj_0017C4A0;
 
-typedef struct Sub_0017BBA0 {
-    /* 0x00 */ u128 unk_0;
-    /* 0x10 */ u128 unk_10;
-    /* 0x20 */ u128 unk_20;
-    /* 0x30 */ u128 unk_30;
-    /* 0x40 */ u128 unk_40;
-} Sub_0017BBA0;
-
 typedef struct Obj_0017BBA0 {
     u8 unk_0[0xD0];
     /* 0x0D0 */ s32 unk_D0;
@@ -68,19 +61,8 @@ typedef struct Obj_0017BBA0 {
     u8 unk_D8[0x4];
     /* 0x0DC */ s32 unk_DC;
     u8 unk_E0[0xB0];
-    /* 0x190 */ Sub_0017BBA0 unk_190;
+    /* 0x190 */ Blk_001243D0 unk_190;
 } Obj_0017BBA0;
-
-typedef struct Obj_006A6730 {
-    u8 unk_0[0x350];
-    /* 0x350 */ s32 unk_350;
-    u8 unk_354[0x24];
-    /* 0x378 */ s32 unk_378;
-    u8 unk_37C[0x184];
-    /* 0x500 */ Sub_0017BBA0 *cursor[8];
-} Obj_006A6730;
-
-extern Obj_006A6730 *D_006A6730;
 
 void func_00132690();
 

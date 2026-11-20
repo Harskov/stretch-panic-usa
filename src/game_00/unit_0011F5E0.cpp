@@ -1,5 +1,6 @@
 #include "common.h"
 #include "globals.h"
+#include "game_00/obj_006A6730.h"
 #include "game_00/obj_001211E0.h"
 
 class Obj_006A6988 {
@@ -17,7 +18,6 @@ public:
 
 
 extern "C" {
-extern s32 D_006A6730;
 extern Obj_006A6988 *D_006A6988;
 
 
@@ -30,8 +30,7 @@ void func_0011FA00(void);
 void func_0011FA50(void);
 void func_00121640(void *arg0, s32 arg1, s32 arg2, s32 arg3);
 void func_001214F0(void *arg0);
-void func_00124080(s32 arg0);
-void func_00124110(s32 arg0);
+
 void func_00128B90(void);
 void func_00128C00(void);
 void func_00128C40(void);

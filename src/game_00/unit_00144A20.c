@@ -1,5 +1,6 @@
 #include "common.h"
 #include "globals.h"
+#include "game_00/obj_006A6730.h"
 #include "types.h"
 
 typedef struct M128 {
@@ -13,9 +14,6 @@ typedef struct Obj {
     /* 0x14C */ unsigned char unk_14C;
 } Obj;
 
-extern s32 D_006A6730;
-
-void func_00125260();
 
 void func_00127BA0();
 

@@ -1,5 +1,6 @@
 #include "common.h"
 #include "globals.h"
+#include "game_00/obj_006A6730.h"
 #include "game_01/pool70.h"
 #include "game_01/unit_00157CC0.h"
 
@@ -18,15 +19,6 @@ typedef struct Obj_00158690 {
     unsigned char unk_0[0x50];
     int unk_50;
 } Obj_00158690;
-
-typedef struct Obj_006A6730 {
-    unsigned char unk_0[0x378];
-    int unk_378;
-    unsigned char unk_37C[0x184];
-    int unk_500[1];
-} Obj_006A6730;
-
-extern Obj_006A6730 *D_006A6730;
 
 
 void func_0013BD20();
@@ -152,7 +144,7 @@ int func_00158670(Obj *o) {
 }
 
 void func_00158690(Obj_00158690 *arg0) {
-    func_0013BD20(arg0->unk_50, D_006A6730->unk_500[D_006A6730->unk_378]);
+    func_0013BD20(arg0->unk_50, D_006A6730->cursor[D_006A6730->unk_378]);
     func_0013BFB0(D_006A6D18, arg0->unk_50);
 }
 

@@ -1,7 +1,7 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 #include "common.h"
-/* The game's global data: every object at a fixed address that the matched code names, declared once,
+/* The game's global data: every object at a fixed address that the source names, declared once,
    in address order, with the types of the objects themselves. An object whose type has its own header
    is declared there, beside the type. */
 #ifdef __cplusplus

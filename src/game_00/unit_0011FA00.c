@@ -1,5 +1,6 @@
 #include "common.h"
 #include "globals.h"
+#include "game_00/obj_006A6730.h"
 
 #include "game_00/unit_0013BD60.h"
 
@@ -19,8 +20,6 @@ typedef struct Obj_0011F5E0_2 {
     /* 0x32 */ Obj_0011F5E0 unk_32;
 } Obj_0011F5E0_2;
 
-
-extern s32 D_006A6730;
 
 
 s32 sceSifInitRpc(s32 mode);
@@ -59,7 +58,7 @@ void func_001238D0(void);
 
 void func_0012E6D0(void *arg0);
 
-s32 func_00127FD0(void *arg0);
+Obj_006A6730 *func_00127FD0(void *arg0);
 
 void func_0013BD60(s32 arg0);
 
