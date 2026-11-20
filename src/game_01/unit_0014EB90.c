@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 #include "game_00/unit_0012DF10.h"
 
 typedef struct Obj {
@@ -27,13 +28,9 @@ void func_0014FFD0();
 
 void func_0014EE90();
 
-extern s32 D_0069C8E0;
-
 void func_001319D0();
 
 void func_00150660();
-
-extern s32 D_006AF098;
 
 extern s32 *D_006A6D10;
 

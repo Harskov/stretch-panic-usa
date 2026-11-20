@@ -1,20 +1,11 @@
 #include "common.h"
-
-extern s32 D_0069CA70;
-
-extern s32 D_006AF4C0;
+#include "globals.h"
 
 void func_001319D0();
 
 void func_0015D4E0();
 
 void __dl__FPv(void *);
-
-extern s32 D_005D99A0;
-
-extern s32 D_005D99BC;
-
-extern s32 D_0069C510;
 
 void func_0012AF20();
 

@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 #include "game_01/scratchpad.h"
 
 typedef struct Obj {
@@ -31,12 +32,6 @@ typedef struct Obj_0016F850 {
     u8 unk_00[0x10C];
     Obj_0016E9A0_2 *unk_10C;
 } Obj_0016F850;
-
-extern Vec D_006AEE40;
-
-extern u8 D_006AEE58;
-
-extern u8 D_006AEE60;
 
 extern s32 *D_006A6D10;
 

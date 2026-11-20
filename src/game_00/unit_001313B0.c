@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 
 typedef struct E64 {
     /* 0x00 */ __int128 unk_0[4];
@@ -36,19 +37,7 @@ typedef struct Obj_001314F0 {
     /* 0x08 */ s32 unk_8;
 } Obj_001314F0;
 
-extern s32 D_0069C300;
-
-extern s32 D_0069C390;
-
 extern void __dl__FPv(void *);
-
-extern s32 D_0069C3C0;
-
-extern s32 D_0069C3F0;
-
-extern s32 D_0069C480;
-
-extern s32 D_0069C450;
 
 extern void __dla__FPv(void *);
 
@@ -69,8 +58,6 @@ typedef struct Obj_00131630 {
     /* 0x0C */ Quad *unk_C;
     /* 0x10 */ Elem_00131630 *unk_10;
 } Obj_00131630;
-
-extern s32 D_0069C420;
 
 s32 **func_001313B0(s32 **arg0, s16 arg1)
 {

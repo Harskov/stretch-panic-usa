@@ -1,62 +1,11 @@
 #include "common.h"
+#include "globals.h"
 
 void func_00147B80(s32 arg0);
-
-extern s32 D_006AEE70;
-
-extern s32 D_006AEEA0;
-
-extern s32 D_006AEEF0;
-
-extern s32 D_006AEEF8;
-
-extern s32 D_006AEF00;
-
-extern s32 D_006AEF10;
-
-extern s32 D_006AEF18;
-
-extern s32 D_006AEF20;
-
-extern s32 D_006AEF28;
-
-extern s32 D_006AEF38;
-
-extern s32 D_006AEF40;
-
-extern s32 D_006AEF48;
-
-extern s32 D_006AEF50;
-
-extern s32 D_006AEF58;
-
-extern s32 D_006AEF78;
-
-extern s32 D_006AEF80;
-
-extern s32 D_006AEF88;
-
-extern s32 D_006AEFD0;
 
 s32 sceMcInit(void);
 
 void func_00147BE0(void);
-
-extern s32 D_006AEE68;
-
-extern s32 D_006AEED8;
-
-extern s32 D_006AEE80;
-
-extern s32 D_006AEE88;
-
-extern s32 D_006AEE90;
-
-extern s32 D_006AEEC8;
-
-extern s32 D_006AEED0;
-
-extern s32 D_006AEE78;
 
 s32 func_00146230(s32 arg0, s32 arg1, s32 arg2);
 

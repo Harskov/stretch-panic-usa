@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 
 /* A different object from Obj50: its vector pair sits at +0x10/+0x20, not +0x50/+0x60,
    and its counter at +0x54. Only the Vec type is shared. */
@@ -11,13 +12,9 @@ typedef struct Obj10 {
     f32 unk_58;
 } Obj10;
 
-extern s32 D_0069CAF0;
-
 void func_00172E80();
 
 void __dl__FPv(void *);
-
-extern s32 D_0069CB20;
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00162930", func_00162930);
 

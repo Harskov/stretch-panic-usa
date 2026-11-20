@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 
 typedef struct Obj_0017C7A0 {
     /* 0x000 */ s32 *unk_0;
@@ -6,23 +7,13 @@ typedef struct Obj_0017C7A0 {
     /* 0x16C */ f32 unk_16C;
 } Obj_0017C7A0;
 
-extern s32 D_0069D320;
-
 void func_0017B170();
 
 void func_0017B7A0();
 
 void __dl__FPv(void *);
 
-extern s32 D_0069D390;
-
 void func_00172E80();
-
-extern s32 D_0069D3C0;
-
-extern s32 D_0069D3F0;
-
-extern s32 D_0069D420;
 
 typedef struct Obj_00174DD0 {
     u8 unk_0[0x16A0];

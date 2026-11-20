@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 #include "game_00/unit_0012DF10.h"
 
 typedef struct Obj_00122460 {
@@ -9,8 +10,6 @@ typedef struct Obj_00122460 {
 } Obj_00122460;
 
 
-extern s32 D_0069C1E0;
-
 void __dl__FPv(void *);
 
 typedef struct Obj_001223D0 {
@@ -19,8 +18,6 @@ typedef struct Obj_001223D0 {
     u8 unk_40[4];
     /* 0x44 */ s32 unk_44;
 } Obj_001223D0;
-
-extern s32 D_0069C200;
 
 typedef struct Obj_001224A0 {
     u8 unk_0[8];

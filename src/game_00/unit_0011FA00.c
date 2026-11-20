@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 
 #include "game_00/unit_0013BD60.h"
 
@@ -18,14 +19,6 @@ typedef struct Obj_0011F5E0_2 {
     /* 0x32 */ Obj_0011F5E0 unk_32;
 } Obj_0011F5E0_2;
 
-typedef struct Obj_00197260 {
-    /* 0x00 */ u128 unk_0[2];
-} Obj_00197260;
-
-typedef struct Obj_001972A0 {
-    /* 0x00 */ f32 unk_0[6];
-} Obj_001972A0;
-
 typedef struct Obj_006A6D18 {
     /* 0x00 */ u8 pad_0[0x60];
     /* 0x60 */ f32 unk_60;
@@ -35,43 +28,11 @@ typedef struct Obj_006A6D18 {
     /* 0x70 */ f32 unk_70;
 } Obj_006A6D18;
 
-extern char D_0069B250[];
-
-extern char D_0069B270[];
-
-extern char gFormat_69B290[];
-
-extern char D_0069B2C0[];
-
-extern char gFormat_69B2E0[];
-
-extern char D_0069B300[];
-
-extern char gFormat_69B320[];
-
-extern char D_0069B340[];
-
-extern char gFormat_69B360[];
-
-extern char D_0069BC78[];
-
-extern Obj_00197260 D_00197260;
-
-extern Obj_00197260 D_00197280;
-
-extern Obj_001972A0 D_001972A0;
-
-extern void *D_006A66E8;
-
 extern s32 D_006A6730;
 
 extern s32 *D_006A6D10;
 
 extern Obj_006A6D18 *D_006A6D18;
-
-extern s32 D_006A6D30;
-
-extern s32 D_006A6D38;
 
 s32 sceSifInitRpc(s32 mode);
 
@@ -135,8 +96,6 @@ typedef struct Obj_00120A50 {
     /* 0x38 */ s32 unk_38;
 } Obj_00120A50;
 
-extern s32 D_EF0100;
-
 void func_00100000();
 
 void *func_001006F0(s64 size);
@@ -151,8 +110,6 @@ typedef struct Obj_001209F0 {
 void func_00117C00();
 
 void __dl__FPv(void *p);
-
-extern s32 D_0069C1B0;
 
 void func_00120830();
 

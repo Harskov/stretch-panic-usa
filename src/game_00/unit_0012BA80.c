@@ -1,27 +1,13 @@
 #include "common.h"
+#include "globals.h"
 #include "game_00/obj90.h"
 #include "game_00/unit_0012DF10.h"
-
-extern s32 D_0069C360;
 
 void func_001319D0();
 
 void __dl__FPv(void *);
 
-typedef union Obj_0012BA80 {
-    /* 0x00 */ u128 q0[4];
-    /* 0x00 */ f32 unk_0[16];
-} Obj_0012BA80;
-
-extern Obj_0012BA80 D_001A09E0;
-
-extern f32 *D_006A6BA0;
-
-extern f32 *D_006A6BA8;
-
 extern f32 *D_006A6BB0;
-
-extern f32 *D_006A6BB8;
 
 extern f32 *D_006A6BC0;
 

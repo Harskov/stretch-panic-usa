@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 
 typedef struct Obj_001392C0 {
     /* 0x00 */ s32 *unk_0;
@@ -25,14 +26,6 @@ typedef struct Obj_001392C0 {
     u8 pad_104[0x10];
     /* 0x114 */ u32 unk_114;
 } Obj_001392C0;
-
-extern s32 D_0069C1E0;
-
-extern s32 D_0069C1F0;
-
-extern s32 D_0069C200;
-
-extern s32 D_0069C610;
 
 void func_001355E0();
 
@@ -91,38 +84,6 @@ typedef struct Obj_00139ED0 {
 } Obj_00139ED0;
 
 void * __nw__FUi(u32);
-
-extern s32 D_001A37E0;
-
-extern s32 D_001A37E4;
-
-extern s32 D_001A37E8;
-
-extern s32 D_001A37EC;
-
-extern s32 D_001A37F0;
-
-extern s32 D_001A37F4;
-
-extern s32 D_001A37F8;
-
-extern s32 D_001A37FC;
-
-extern s32 D_001A3800;
-
-extern s32 D_001A3804;
-
-extern s32 D_001A3808;
-
-extern s32 D_001A380C;
-
-extern s32 D_001A3810;
-
-extern s32 D_001A3814;
-
-extern s32 D_0069C270;
-
-extern s32 D_0069C5F0;
 
 void *func_001006F0(u32);
 

@@ -1,7 +1,6 @@
 #include "common.h"
+#include "globals.h"
 #include "game_00/obj90.h"
-
-extern s32 D_0069C300;
 
 void __dl__FPv(void *);
 
@@ -15,8 +14,6 @@ typedef struct Obj_0012B1F0 {
 } Obj_0012B1F0;
 
 void func_0012B6D0();
-
-extern s32 D_0069C270;
 
 typedef struct Src_0012AF20 {
     s32 unk_0;
@@ -45,11 +42,7 @@ typedef struct Obj_0012AF20 {
 
 s32 func_001006F0(s32 size);
 
-extern s32 D_0069C330;
-
 void __dl__FPv();
-
-extern s32 D_0069C510;
 
 void __dla__FPv(void *);
 

@@ -1,18 +1,13 @@
 #include "common.h"
-
-extern s32 D_006A6D00;
+#include "globals.h"
 
 extern void *__nw__FUi(u32 size);
 
 void func_00135C70();
 
-extern s32 D_0069C5D0;
-
 void func_001355E0();
 
 void __dl__FPv(void *);
-
-extern s32 D_0069C5B0;
 
 void func_00135570();
 

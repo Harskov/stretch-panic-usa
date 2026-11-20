@@ -1,16 +1,5 @@
 #include "common.h"
-
-extern char D_0069B800[];
-
-extern char D_0069B820[];
-
-extern s32 D_006AEE20;
-
-extern s32 D_006AEE28;
-
-extern s32 D_006AEE30;
-
-extern s32 D_006AEE38;
+#include "globals.h"
 
 s32 sceSifInitRpc(s32 mode);
 
@@ -27,11 +16,7 @@ typedef struct Obj_0013D940 {
     /* 0x240 */ s32 unk_240;
 } Obj_0013D940;
 
-extern s32 gFormat_69B870;
-
 void printf();
-
-extern s32 gFormat_69B840;
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013D6D0", func_0013D6D0);
 

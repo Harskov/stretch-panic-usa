@@ -1,22 +1,11 @@
 #include "common.h"
-
-typedef struct Obj_00123F70 {
-    /* 0x00 */ f32 unk_0;
-    /* 0x04 */ f32 unk_4;
-    /* 0x08 */ char *unk_8;
-    /* 0x0C */ s32 unk_C;
-    /* 0x10 */ struct Obj_00123F70 *next;
-} Obj_00123F70;
+#include "globals.h"
 
 void *__nw__FUi(u32 size);
 
 void *func_001006F0(s32 size);
 
 s32 sprintf(char *s, const char *fmt, ...);
-
-extern char gFormat_69B3D8[];
-
-extern Obj_00123F70 *D_006A6738;
 
 typedef struct Obj_001238B0 {
     u8 unk_0[4];
@@ -43,8 +32,6 @@ typedef struct Obj_00123850 {
     /* 0x20 */ void *unk_20;
 } Obj_00123850;
 
-extern s32 D_0069C270;
-
 void __dl__FPv(void *p);
 
 void __dla__FPv(void *p);
@@ -54,10 +41,6 @@ typedef struct Obj_00124080 {
     /* 0x364 */ s32 unk_364;
     /* 0x368 */ u64 unk_368[2];
 } Obj_00124080;
-
-extern volatile u64 D_0019F4A0;
-
-extern volatile u64 D_0019F4A8;
 
 typedef struct Blk_001243D0 {
     /* 0x00 */ u128 unk_0;

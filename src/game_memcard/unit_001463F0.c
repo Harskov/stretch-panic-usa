@@ -1,17 +1,6 @@
 #include "common.h"
+#include "globals.h"
 #include "game_memcard/unit_001463F0.h"
-
-extern char gFormat_69BDF8[];
-
-extern char gFormat_69BE08[];
-
-extern s32 D_006AEEF8;
-
-extern s32 D_006AEF10;
-
-extern s32 D_006AEF20;
-
-extern s32 D_006AEF28;
 
 void func_00146D00(void);
 
@@ -29,23 +18,9 @@ s32 sceMcClose(s32 fd);
 
 s32 sceMcDelete(s32 port, s32 slot, const char *name);
 
-extern s32 D_006AEEA0;
-
-extern s32 D_006AEE98;
-
-extern s32 D_006AEED8;
-
-extern s32 D_006AEF50;
-
 s32 sceMcOpen(s32 port, s32 slot, const char *name, s32 mode);
 
 s32 sceMcWrite(s32 fd, const void *buff, s32 size);
-
-extern s32 D_006AEF78;
-
-extern s32 D_006AF040;
-
-extern s32 D_006AF050;
 
 s32 sceMcGetDir(s32 port, s32 slot, const char *name, u32 mode, s32 maxent, void *table);
 

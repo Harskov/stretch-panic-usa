@@ -1,12 +1,9 @@
 #include "common.h"
-
-extern s32 D_0069C6D0;
+#include "globals.h"
 
 void func_001355E0();
 
 void __dl__FPv(void *);
-
-extern s32 D_0069C6F0;
 
 typedef struct Obj_00135570 {
     /* 0x00 */ void *unk_0;
@@ -18,23 +15,6 @@ typedef struct Obj_00135570 {
     /* 0x1C */ struct Obj_00135570 *link_1C;
     /* 0x20 */ struct Obj_00135570 **unk_20;
 } Obj_00135570;
-
-extern s32 D_0069C6B0;
-
-extern s32 D_0069C690;
-
-extern s32 D_0069C670;
-
-extern s32 D_0069C540;
-
-typedef struct Obj_00135450 {
-    /* 0x00 */ void *unk_0;
-    /* 0x04 */ u8 pad_4[0x8C];
-    /* 0x90 */ struct Obj_00135450 *link_90;
-    /* 0x94 */ struct Obj_00135450 *link_94;
-} Obj_00135450;
-
-extern Obj_00135450 *D_006A6CF0;
 
 void func_001318C0();
 

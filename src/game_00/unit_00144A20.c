@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 #include "types.h"
 
 typedef struct M128 {
@@ -18,8 +19,6 @@ void func_00125260();
 
 void func_00127BA0();
 
-extern s32 D_0069C7B0;
-
 void func_00172E80();
 
 void __dl__FPv(void *);
@@ -33,8 +32,6 @@ typedef struct Obj_00145790 {
     unsigned char unk_11C[0x34];
     /* 0x150 */ unsigned char unk_150[4];
 } Obj_00145790;
-
-extern s32 D_0069C8B0;
 
 void func_0013BC80();
 

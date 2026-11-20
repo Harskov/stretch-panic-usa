@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 
 extern void __dl__FPv(void *p);
 
@@ -10,45 +11,6 @@ typedef struct Obj_00127810 {
     u8 pad_78[0x18];
     u8 unk_90;
 } Obj_00127810;
-
-typedef struct Elem_001A0850 {
-    /* 0x00 */ u8 unk_0;
-    /* 0x01 */ u8 unk_1;
-    /* 0x02 */ u8 unk_2;
-    /* 0x03 */ u8 unk_3;
-} Elem_001A0850;
-
-typedef struct Obj_001A0840 {
-    /* 0x00 */ s32 unk_0;
-    u8 pad_4[0xC];
-    /* 0x10 */ Elem_001A0850 unk_10[12];
-} Obj_001A0840;
-
-extern Obj_001A0840 D_001A0840;
-
-extern s32 D_0069F794;
-
-extern s32 D_006A6980;
-
-extern s32 D_006A6990;
-
-extern s32 D_006A6998;
-
-extern s32 D_006A69A0;
-
-extern u8 D_006A69A8;
-
-extern u8 D_006A69D0;
-
-extern u8 D_006A69D8;
-
-extern u8 D_006A69E0;
-
-extern u8 D_006A69E8;
-
-extern u8 D_006A69F0;
-
-extern s32 D_006AF098;
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00127570", func_00127570);
 

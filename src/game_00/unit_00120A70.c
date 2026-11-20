@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 #include "game_00/obj_001211E0.h"
 
 
@@ -25,8 +26,6 @@ typedef struct Obj_001216E0 {
     /* 0x14 */ Sub_001216E0 *unk_14;
 } Obj_001216E0;
 
-extern char gFormat_69B3C0[];
-
 s32 scePadInit(s32 mode);
 
 s32 scePadPortOpen(s32 port, s32 slot, s32 addr);
@@ -42,8 +41,6 @@ s32 scePadInfoMode(s32 port, s32 slot, s32 term, s32 offs);
 s32 scePadInfoPressMode(s32 port, s32 slot);
 
 s32 scePadRead(s32 port, s32 slot, u8 *rdata);
-
-extern char gFormat_69B380[];
 
 void func_0011FE50(Sub_001216E0 *e);
 

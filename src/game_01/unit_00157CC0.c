@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 #include "game_01/pool70.h"
 #include "game_01/unit_00157CC0.h"
 
@@ -8,8 +9,6 @@ typedef struct Obj {
 } Obj;
 
 extern void func_00158130(Obj270 *p, s32 i);
-
-extern s32 D_0069C9A0;
 
 void func_00172E80();
 
@@ -67,8 +66,6 @@ void func_0013BB20(s32 *, s32);
 s32 func_0013DF50(s32, s32, s32, s32, s32, s32);
 
 void func_00172DA0();
-
-extern s32 D_0069C9D0;
 
 extern s32 *D_006A6D10;
 

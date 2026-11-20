@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 
 typedef struct Obj_00131800 {
     unsigned char unk_00[0x10];
@@ -12,42 +13,7 @@ typedef struct Obj_00131810 {
     u128 *unk_30;
 } Obj_00131810;
 
-extern s32 D_0069C330;
-
-extern s32 D_0069C4E0;
-
 extern void __dl__FPv(void *);
-
-typedef struct Obj_001318C0 Obj_001318C0;
-
-struct Obj_001318C0 {
-    s32 *unk_00;
-    u8 pad_04[0x50];
-    s32 unk_54;
-    s32 unk_58;
-    u8 pad_5C[4];
-    s32 unk_60;
-    s32 unk_64;
-    s32 unk_68;
-    /* 0x6C */ Obj_001318C0 *link_6C;
-    /* 0x70 */ Obj_001318C0 *link_70;
-    /* 0x74 */ Obj_001318C0 *link_74;
-    /* 0x78 */ Obj_001318C0 *link_78;
-    /* 0x7C */ Obj_001318C0 *link_7C;
-    /* 0x80 */ Obj_001318C0 *link_80;
-    /* 0x84 */ Obj_001318C0 *link_84;
-    /* 0x88 */ Obj_001318C0 *link_88;
-};
-
-extern s32 D_0069C4B0;
-
-extern s32 D_006A6C00;
-
-extern Obj_001318C0 *D_006A6C08;
-
-extern Obj_001318C0 *D_006A6C10[];
-
-extern Obj_001318C0 *D_006A6CB0;
 
 /* A slot of the function-pointer table D_0069C480. Only the member's address is
    taken, so its type is not known. */

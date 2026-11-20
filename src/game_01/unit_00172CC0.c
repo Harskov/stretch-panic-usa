@@ -1,10 +1,7 @@
 #include "common.h"
+#include "globals.h"
 
 #include "game_01/obj50.h"
-
-extern s32 D_00601BD0[];
-
-extern s32 D_006B3580[];
 
 /* List heads: func_0016C690 walks the 0x5F lists of D_006B3700 and func_0016C720 the
    list at D_006B3880, each through its own unit's object class; here they are only
@@ -14,8 +11,6 @@ typedef struct Node Node;
 extern Node *D_006B3700[];
 
 extern Node *D_006B3880;
-
-extern s32 D_006B3888;
 
 extern s32 D_006A6D18;
 
@@ -30,19 +25,11 @@ typedef struct Obj_006A6730 {
 
 extern Obj_006A6730 *D_006A6730;
 
-extern s32 D_006B3890;
-
-extern s32 D_006B38A0;
-
 void func_0012C9C0();
-
-extern s32 D_0069CEA0;
 
 void func_00172E80();
 
 void __dl__FPv(void *);
-
-extern s32 D_0069CED0;
 
 typedef struct Elem_00172D50 {
     u8 unk_0[0x10];

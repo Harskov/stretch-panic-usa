@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 
 typedef struct Obj_0013E690 {
     /* 0x000 */ u8 unk_0[0x1AC];
@@ -8,8 +9,6 @@ typedef struct Obj_0013E690 {
 typedef struct Obj_0013E350 {
     /* 0x00 */ s32 *unk_0;
 } Obj_0013E350;
-
-extern s32 D_0069C780;
 
 void func_0013E6A0();
 

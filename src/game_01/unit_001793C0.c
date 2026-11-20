@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 #include "game_01/obj2F8.h"
 
 typedef struct Node {
@@ -39,13 +40,9 @@ typedef struct Dst {
     /* 0xC0 */ s32 unk_C0;
 } Dst;
 
-extern s32 D_0069D280;
-
 void func_001318C0();
 
 extern void __dl__FPv(void *p);
-
-extern s32 D_0069D250;
 
 extern void __dla__FPv(void *p);
 

@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 
 typedef struct Sub_00123370 {
     /* 0x00 */ u32 pad_0 : 6;
@@ -27,21 +28,11 @@ typedef struct Obj_00122870 {
     /* 0x26 */ u8 unk_26;
 } Obj_00122870;
 
-extern s32 D_0069C250;
-
 void __dl__FPv(void *);
 
 extern s32 D_001972C0;
 
-extern s32 D_001972C4;
-
-extern s32 D_001972C8;
-
-extern s32 D_001972CC;
-
 extern s32 *D_001972D0;
-
-extern s64 D_006A6728;
 
 typedef struct Elem_00122FE0 {
     /* 0x00 */ u64 unk_0;

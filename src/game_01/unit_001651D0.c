@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 
 typedef struct Obj {
     unsigned char unk_00[0x50];
@@ -11,13 +12,9 @@ typedef struct Obj {
     /* 0x94 */ float unk_94;
 } Obj;
 
-extern s32 D_0069CBE0;
-
 void func_00172E80();
 
 void __dl__FPv(void *);
-
-extern s32 D_0069CC70;
 
 typedef struct Sub_00165730 {
     u128 unk_0[4];
@@ -54,8 +51,6 @@ typedef struct Src_00165730 {
     /* 0xA0 */ u128 unk_A0;
 } Src_00165730;
 
-extern s32 D_0069CC10;
-
 void func_00172DA0();
 
 typedef struct Obj_00165FF0 {
@@ -63,8 +58,6 @@ typedef struct Obj_00165FF0 {
     unsigned char unk_04[0x9C];
     /* 0xA0 */ void *unk_A0;
 } Obj_00165FF0;
-
-extern s32 D_0069CC40;
 
 void __dla__FPv(void *);
 

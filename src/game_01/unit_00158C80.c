@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 #include "game_01/obj1F0.h"
 #include "game_01/actorC4.h"
 #include "game_01/scratchpad.h"
@@ -23,10 +24,6 @@ typedef struct Obj {
 void func_00159E20(Obj1F0 *arg0, ObjCC *arg1);
 
 extern s32 func_00131B30(Obj *arg0, void *arg1, f32 *arg2, ObjC8 *arg3, void *arg4);
-
-extern s32 D_005CFC30;
-
-extern s32 D_0069C510;
 
 void func_0012AF20();
 
@@ -57,8 +54,6 @@ typedef struct Obj_006A6988 {
 } Obj_006A6988;
 
 extern Obj_006A6988 *D_006A6988;
-
-extern u8 D_006A69D8;
 
 void func_0012AA10(f32, void *, s32);
 

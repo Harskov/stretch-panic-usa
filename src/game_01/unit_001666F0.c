@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 
 typedef struct Obj {
     unsigned char unk_00[0xA8];
@@ -22,11 +23,7 @@ struct Obj_00167180 {
     /* 0xAC */ Obj_00167180 *link_AC;
 };
 
-extern s32 D_0069CCD0;
-
 void func_00135450();
-
-extern s32 D_0069CCA0;
 
 void func_00172E80();
 

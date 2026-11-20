@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 #include "types.h"
 
 extern s32 D_006A6730;
@@ -11,15 +12,11 @@ typedef struct Obj_0017DF40 {
     s32 unk_130;
 } Obj_0017DF40;
 
-extern s32 D_0069D450;
-
 void func_00172DA0(Obj_0017DF40 *, s32, s32);
 
 void func_0013BB20(s32 *, s32);
 
 void func_0017DFC0(Obj_0017DF40 *, s32, f32);
-
-extern s32 D_0069D4B0;
 
 void func_00172E80();
 

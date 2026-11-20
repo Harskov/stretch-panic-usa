@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 #include "game_01/obj80.h"
 
 typedef struct Src {
@@ -23,8 +24,6 @@ typedef struct Dst_00162900 {
     Obj30 unk_310;
 } Dst_00162900;
 
-extern s32 D_0069CAA0;
-
 void func_001355E0();
 
 void __dl__FPv(void *);
@@ -39,10 +38,6 @@ typedef struct Obj_001608D0 {
     f32 unk_2C;
     s32 unk_30;
 } Obj_001608D0;
-
-extern s32 D_00601A00;
-
-extern s32 D_006A6D00;
 
 void func_00135570();
 

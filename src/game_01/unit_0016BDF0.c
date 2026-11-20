@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 #include "game_01/rec10.h"
 #include "game_01/obj530.h"
 
@@ -14,10 +15,6 @@ extern s32 *D_006A6D10;
 extern s32 func_0013DF50(s32, s32, s32, s32, s32, s32);
 
 extern Node *D_006A6C38;
-
-extern s32 D_0069CDD0;
-
-extern s32 D_006AF4E8;
 
 void func_001319D0();
 

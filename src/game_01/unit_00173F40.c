@@ -1,7 +1,6 @@
 #include "common.h"
+#include "globals.h"
 #include "game_01/obj50.h"
-
-extern s32 D_0069CF90;
 
 void func_00172DA0();
 
@@ -17,8 +16,6 @@ typedef struct Obj_001753F0 {
     u128 unk_60;
     u128 unk_70;
 } Obj_001753F0;
-
-extern s32 D_0069CF60;
 
 typedef struct Obj_00174EF0 {
     void *unk_0;
@@ -37,8 +34,6 @@ typedef struct Obj_00174EF0 {
     u128 unk_80;
 } Obj_00174EF0;
 
-extern s32 D_0069CF00;
-
 void func_00172E80();
 
 void __dl__FPv(void *);
@@ -48,8 +43,6 @@ typedef struct Obj_00174860 {
     unsigned char unk_04[0x74];
     /* 0x78 */ void *unk_78;
 } Obj_00174860;
-
-extern s32 D_0069CF30;
 
 void __dla__FPv(void *);
 

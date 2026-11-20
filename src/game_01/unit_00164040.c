@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 
 typedef struct Ent {
     /* 0x00 */ unsigned char unk_0;
@@ -11,8 +12,6 @@ typedef struct Obj {
     unsigned char unk_54[0x14];
     /* 0x68 */ Ent *unk_68;
 } Obj;
-
-extern s32 D_0069CB50;
 
 void func_00172E80();
 
@@ -28,8 +27,6 @@ typedef struct Obj_00164690 {
     /* 0x68 */ void *unk_68;
 } Obj_00164690;
 
-extern s32 D_0069CB80;
-
 void __dla__FPv(void *);
 
 typedef struct Obj_00165090 {
@@ -37,8 +34,6 @@ typedef struct Obj_00165090 {
     unsigned char unk_04[0x80];
     /* 0x84 */ void *unk_84;
 } Obj_00165090;
-
-extern s32 D_0069CBB0;
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00164040", func_00164040);
 

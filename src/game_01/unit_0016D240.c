@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 #include "game_01/scratchpad.h"
 #include "types.h"
 
@@ -17,8 +18,6 @@ typedef struct {
     unsigned char unk_64[0x108];
     int unk_16C;
 } Obj;
-
-extern Quad D_00601A40;
 
 extern void func_0016EFC0(void *arg0, Quad *arg1, s32 arg2, s32 arg3, f32 arg4, f32 arg5);
 

@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 #include "game_00/unit_0012DF10.h"
 #include "game_01/obj80.h"
 
@@ -82,8 +83,6 @@ typedef struct Obj {
 } Obj;
 
 extern void func_0012E9E0(Vec *a, Vec *b, Vec *out, f32 t);
-
-extern Vec D_006AF4B0;
 
 
 typedef struct Obj_00152640 {

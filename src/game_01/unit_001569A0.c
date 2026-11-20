@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 #include "game_01/pool70.h"
 
 typedef struct Slot {
@@ -19,15 +20,9 @@ typedef struct Slot_00157650 {
 
 extern void func_00157920(Obj *arg0, s32 arg1);
 
-extern s32 D_0069C910;
-
 void func_00172E80();
 
 void __dl__FPv(void *);
-
-extern s32 D_0069C940;
-
-extern s32 D_0069C970;
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001569A0", func_001569A0);
 

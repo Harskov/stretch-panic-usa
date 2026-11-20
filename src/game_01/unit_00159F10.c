@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 #include "game_01/obj1F0.h"
 #include "game_01/actorC4.h"
 #include "game_01/scratchpad.h"
@@ -39,8 +40,6 @@ typedef struct Obj_006A6988 {
 } Obj_006A6988;
 
 extern Obj_006A6988 *D_006A6988;
-
-extern u8 D_006A69D8;
 
 void func_0012AA10(f32 arg0, void *arg1, s32 arg2);
 

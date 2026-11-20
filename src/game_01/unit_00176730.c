@@ -1,4 +1,5 @@
 #include "common.h"
+#include "globals.h"
 #include "types.h"
 
 typedef union Obj_00176730 {
@@ -6,8 +7,6 @@ typedef union Obj_00176730 {
     /* 0x00 */ Vec vec0;
     /* 0x00 */ s32 i0[4];
 } Obj_00176730;
-
-extern s32 D_0069D080;
 
 typedef struct Ent {
     void *unk_0;          /* 0x00 */
@@ -36,8 +35,6 @@ typedef struct Obj_00176B40 {
     unsigned char unk_04[0x98];
     /* 0x9C */ void *unk_9C;
 } Obj_00176B40;
-
-extern s32 D_0069D050;
 
 void __dla__FPv(void *);
 

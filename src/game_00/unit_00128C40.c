@@ -1,26 +1,11 @@
 #include "common.h"
-
-extern s32 D_001A0970[];
-
-extern s32 D_006A6980;
-
-extern s32 D_006A6990;
-
-extern s32 D_006A6998;
+#include "globals.h"
 
 s32 mwLoadOverlay(s32, s32);
 
-extern s32 D_0069C290;
-
 void __dl__FPv(void *);
 
-extern u8 D_006A6A00[];
-
 void func_0012A8C0();
-
-extern u8 D_001A0850[];
-
-extern u8 D_001A0851[];
 
 s32 rand();
 

@@ -1,17 +1,11 @@
 #include "common.h"
+#include "globals.h"
 #include "game_01/node90.h"
 #include "game_01/obj530.h"
-
-typedef struct Obj_0014DF80 {
-    u8 unk_00[0x60];
-    u32 unk_60;
-} Obj_0014DF80;
 
 extern s32 *D_006A6D10;
 
 extern s32 func_0013DF50(s32, s32, s32, s32, s32, s32);
-
-extern Obj_0014DF80 *D_006AF4D8;
 
 typedef struct Obj_001215E0 {
     u8 unk_00[0x18];
