@@ -1,19 +1,12 @@
 #include "common.h"
 #include "globals.h"
+#include "game_00/obj_001211E0.h"
 #include "game_01/node90.h"
 #include "game_01/obj530.h"
 
 
 extern s32 func_0013DF50(s32, s32, s32, s32, s32, s32);
 
-typedef struct Obj_001215E0 {
-    u8 unk_00[0x18];
-    u16 unk_18;
-} Obj_001215E0;
-
-extern s32 D_006A66F8;
-
-extern Obj_001215E0 *func_001215E0(s32, s32);
 
 void func_0014DF80(Obj4E0 *arg0) {
     if (arg0->flags & 4) {
