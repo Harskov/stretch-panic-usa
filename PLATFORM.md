@@ -453,16 +453,16 @@ Every function whose code carries COP2 instructions, matched or not. The matched
 | File | Line | Kind |
 |---|---|---|
 | `src/game_00/unit_0011FA00.c` | 22 | u128 |
-| `src/game_00/unit_001217C0.c` | 107 | inline asm |
-| `src/game_00/unit_001217C0.c` | 108 | COP2 |
-| `src/game_00/unit_001217C0.c` | 109 | COP2 |
-| `src/game_00/unit_001217C0.c` | 110 | COP2 |
-| `src/game_00/unit_001217C0.c` | 111 | COP2 |
-| `src/game_00/unit_001217C0.c` | 125 | inline asm |
-| `src/game_00/unit_001217C0.c` | 126 | COP2 |
-| `src/game_00/unit_001217C0.c` | 127 | COP2 |
-| `src/game_00/unit_001217C0.c` | 128 | COP2 |
-| `src/game_00/unit_001217C0.c` | 129 | COP2 |
+| `src/game_00/unit_001217C0.c` | 111 | inline asm |
+| `src/game_00/unit_001217C0.c` | 112 | COP2 |
+| `src/game_00/unit_001217C0.c` | 113 | COP2 |
+| `src/game_00/unit_001217C0.c` | 114 | COP2 |
+| `src/game_00/unit_001217C0.c` | 115 | COP2 |
+| `src/game_00/unit_001217C0.c` | 129 | inline asm |
+| `src/game_00/unit_001217C0.c` | 130 | COP2 |
+| `src/game_00/unit_001217C0.c` | 131 | COP2 |
+| `src/game_00/unit_001217C0.c` | 132 | COP2 |
+| `src/game_00/unit_001217C0.c` | 133 | COP2 |
 | `src/game_00/unit_00122260.c` | 106 | inline asm |
 | `src/game_00/unit_00122260.c` | 107 | COP2 |
 | `src/game_00/unit_00122260.c` | 108 | COP2 |

@@ -48,10 +48,6 @@ extern s32 D_006AEEB8;
 
 extern s32 D_006AEEC0;
 
-s32 func_00146A90();
-
-s32 func_001468E0();
-
 extern s32 D_006AEEA8;
 
 s32 func_00146060(s32 arg0, s32 arg1, s32 arg2);
@@ -306,21 +302,21 @@ void func_00147D50(void)
     func_001469B0(D_006AEFE0.unk_0);
 }
 
-s32 func_00147D60(void)
+s32 func_00147D60(s32 arg0, void *arg1, s32 arg2)
 {
     s32 r;
 
-    r = func_00146A90();
+    r = func_00146A90(arg0, arg1, arg2);
     if (r >= 0)
         r = 0;
     return r;
 }
 
-s32 func_00147D90(void)
+s32 func_00147D90(s32 arg0)
 {
     s32 r;
 
-    r = func_001468E0();
+    r = func_001468E0(arg0);
     if (r == 0 || r == -3)
         return r;
     return -1;

@@ -347,7 +347,7 @@ s32 **func_001201D0(s32 **arg0, s16 arg1)
 {
     if (arg0 != 0) {
         *arg0 = &D_0069C1B0;
-        func_00120830();
+        func_00120830(arg0);
         if (arg1 > 0) {
             __dl__FPv(arg0);
         }
@@ -367,7 +367,7 @@ void func_00120270(Obj_001202B0 *arg0, s32 arg1)
 
 void func_001202B0(Obj_001202B0 *arg0)
 {
-    func_00120830();
+    func_00120830(arg0);
     arg0->unk_4 = 1;
     func_00120230(arg0);
 }

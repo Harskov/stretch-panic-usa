@@ -54,9 +54,9 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00134FD0", func_00134FD0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00134FD0", func_00135190);
 
-Obj_00135450 *func_00135450(Obj_00135450 *o)
+Obj_00135450 *func_00135450(Obj_00135450 *o, s32 arg1, void *arg2)
 {
-    func_001318C0(o);
+    func_001318C0(o, arg1, arg2);
     o->unk_0 = &D_0069C540;
     o->link_90 = D_006A6CF0;
     o->link_94 = 0;

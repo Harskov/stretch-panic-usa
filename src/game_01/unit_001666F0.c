@@ -70,7 +70,7 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_001666F0", func_00166DE0);
 
 Obj_00167180 *func_00167180(Obj_00167180 *arg0, s32 arg1, Obj_00167180 *arg2)
 {
-    func_00135450();
+    func_00135450(arg0, arg1, arg2);
     arg0->unk_0 = &D_0069CCD0;
     arg0->link_A8 = arg2;
     if (arg0->link_A8 != 0) {

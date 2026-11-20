@@ -85,12 +85,16 @@ s32 func_001217C0(s32 value, s32 align)
     return align * ((value + (align - 1)) / align);
 }
 
-void func_001217E0(s32 value, s32 align)
+s32 func_001217E0(s32 value, s32 align)
 {
-    if (func_001179D8(align, func_001217C0(value, align)) == 0) {
+    s32 r;
+
+    r = func_001179D8(align, func_001217C0(value, align));
+    if (r == 0) {
         while (1) {
         }
     }
+    return r;
 }
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001217C0", func_00121820);

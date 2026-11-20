@@ -65,9 +65,9 @@ void func_00172CC0(Obj_00172D50 *arg0, s32 arg1, f32 arg2)
     func_0013BFB0(D_006A6D18, arg0);
 }
 
-void func_00172D10(s32 arg0)
+void func_00172D10(s32 arg0, Vec *arg1)
 {
-    func_0013BD20();
+    func_0013BD20(arg0, arg1);
     func_0013BFB0(D_006A6D18, arg0);
 }
 

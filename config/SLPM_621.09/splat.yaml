@@ -22,7 +22,7 @@ options:
   asm_data_macro: dlabel
   asm_jtbl_label_macro: jlabel
   asm_inc_header: ".set noat      /* allow manual use of $at */\n.set noreorder /* don't insert nops after branches */\n\n"
-  section_order: [".text", ".data", ".rodata", ".bss"]
+  section_order: [".text", ".data", ".rodata", ".sdata", ".sbss", ".bss"]
   generated_c_preamble: "#include \"common.h\""
   generated_s_preamble: ""
   string_encoding: SHIFT-JIS

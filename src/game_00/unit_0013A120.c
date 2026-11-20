@@ -57,9 +57,9 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013A120", func_0013A120);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013A120", func_0013A2E0);
 
-Obj_0013A880 *func_0013A880(Obj_0013A880 *self)
+Obj_0013A880 *func_0013A880(Obj_0013A880 *self, void *arg1, void *arg2)
 {
-    func_00135570(self);
+    func_00135570(self, arg1, arg2);
     self->unk_0 = &D_0069C5D0;
     self->unk_30 = 1.0f;
     self->unk_34 = 1.0f;
@@ -87,9 +87,9 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013A120", func_0013A940);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013A120", func_0013AA50);
 
-Obj_0013AC50 *func_0013AC50(Obj_0013AC50 *self)
+Obj_0013AC50 *func_0013AC50(Obj_0013AC50 *self, void *arg1, void *arg2)
 {
-    func_00135570(self);
+    func_00135570(self, arg1, arg2);
     self->unk_0 = &D_0069C5B0;
     self->unk_24 = 0;
     return self;

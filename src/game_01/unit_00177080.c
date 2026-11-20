@@ -67,7 +67,7 @@ s32 **func_00177F90(s32 **self, s16 flags) {
 
 void func_00177FF0(Obj_00177FF0 *arg0)
 {
-    func_0017A5B0();
+    func_0017A5B0(arg0);
     arg0->unk_4E9 = 0;
 }
 

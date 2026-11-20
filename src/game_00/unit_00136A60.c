@@ -231,11 +231,11 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00136A60", func_00139A00);
 
 /* builds the object over its base, then allocates and fills its two 0x28-byte sub-objects */
 // !FAKE: probably a constructor whose this the compiler kept in a stack slot and reloads before every access; volatile forces that in C
-Obj_00139ED0 *func_00139ED0(Obj_00139ED0 *volatile self)
+Obj_00139ED0 *func_00139ED0(Obj_00139ED0 *volatile self, void *arg1, void *arg2)
 {
     Sub_00139ED0 *sub;
 
-    func_00135570(self);
+    func_00135570(self, arg1, arg2);
     self->unk_0 = &D_0069C5F0;
     self->unk_148 = 8.0f;
     self->unk_150 = 0.0f;
