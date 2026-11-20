@@ -1,7 +1,7 @@
 #include "common.h"
 #include "game_01/objC0.h"
 
-typedef struct Obj {
+typedef struct Obj_00168630 {
     unsigned char unk_00[0x60];
     u32 unk_60;
     unsigned char unk_64[0x3C];
@@ -9,7 +9,7 @@ typedef struct Obj {
     float unk_A4;
     float unk_A8;
     float unk_AC;
-} Obj;
+} Obj_00168630;
 
 extern void func_001683F0(void *arg0, ObjC0 *arg1);
 
@@ -57,7 +57,7 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_00167ED0", func_00168470);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00167ED0", func_00168530);
 
-void func_00168630(Obj *o) {
+void func_00168630(Obj_00168630 *o) {
     float a;
     float b;
 

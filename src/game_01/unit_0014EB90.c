@@ -2,7 +2,7 @@
 #include "globals.h"
 #include "game_00/unit_0012DF10.h"
 
-typedef struct Obj {
+typedef struct Obj_0014F060 {
     u8 pad0[0x30];
     u128 unk_30;
     u8 pad40[0x14C - 0x40];
@@ -21,7 +21,7 @@ typedef struct Obj {
     s32 unk_3D0;
     u8 pad3D4[0x400 - 0x3D4];
     Vec unk_400;
-} Obj;
+} Obj_0014F060;
 
 
 void func_0014FFD0();
@@ -109,7 +109,7 @@ void func_0014EE90(s32 arg0, s32 arg1)
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0014EB90", func_0014EF80);
 
-void func_0014F060(Obj *arg0, Vec *arg1) {
+void func_0014F060(Obj_0014F060 *arg0, Vec *arg1) {
     arg0->unk_3A0 = arg0->unk_2B0;
     arg0->unk_3B0 = arg0->unk_30;
     if (arg0->flags & 2) {

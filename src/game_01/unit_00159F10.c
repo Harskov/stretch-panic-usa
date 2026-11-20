@@ -6,7 +6,7 @@
 #include "game_01/scratchpad.h"
 #include "game_01/unit_00157CC0.h"
 
-typedef struct Obj {
+typedef struct Obj_0015B540 {
     u8 unk_00[0x10];
     u128 unk_10;
     u8 unk_20[0x10];
@@ -20,9 +20,9 @@ typedef struct Obj {
     u128 unk_200;
     u8 unk_210[0x40];
     u8 unk_250[0x10];
-} Obj;
+} Obj_0015B540;
 
-extern s32 func_00131B30(Obj *arg0, void *arg1, f32 *arg2, ObjC8 *arg3, void *arg4);
+extern s32 func_00131B30(Obj_0015B540 *arg0, void *arg1, f32 *arg2, ObjC8 *arg3, void *arg4);
 
 
 void func_0015BA00(Obj1F0 *arg0, ObjCC *arg1);
@@ -100,7 +100,7 @@ void func_0015B500(Obj1F0 *arg0, Vec *arg1) {
 }
 
 // registers: out = the f32 func_00131B30 writes through its third argument, compared with zero
-s32 func_0015B540(Obj *arg0, ObjC8 *arg1)
+s32 func_0015B540(Obj_0015B540 *arg0, ObjC8 *arg1)
 {
     f32 out;
     f32 zero;

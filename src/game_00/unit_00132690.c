@@ -12,18 +12,18 @@ typedef struct Obj_00132690_3 {
     /* 0x40 */ u128 unk_40;
 } Obj_00132690_3;
 
-typedef struct Slot {
+typedef struct Slot_00134880 {
     /* 0x00 */ Obj_00132690_2 unk_0;
     /* 0x40 */ u128 unk_40;
     /* 0x50 */ Vec unk_50;
     /* 0x60 */ f32 unk_60;
-} Slot;
+} Slot_00134880;
 
 typedef struct Obj_00134880 {
     u8 pad_0[0x24];
     /* 0x24 */ u8 unk_24;
     u8 pad_25[3];
-    /* 0x28 */ Slot *unk_28;
+    /* 0x28 */ Slot_00134880 *unk_28;
 } Obj_00134880;
 
 typedef struct Obj_00132690 {
@@ -99,7 +99,7 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00132690", func_00134660);
 
 void func_00134880(Obj_00134880 *arg0, Obj_00132690_3 *arg1, Vec *arg2, f32 arg3)
 {
-    Slot *dst;
+    Slot_00134880 *dst;
 
     arg0->unk_24 = 1;
     dst = arg0->unk_28;

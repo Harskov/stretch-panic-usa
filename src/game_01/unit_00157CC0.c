@@ -4,10 +4,10 @@
 #include "game_01/pool70.h"
 #include "game_01/unit_00157CC0.h"
 
-typedef struct Obj {
+typedef struct Obj_00158670 {
     unsigned char unk_00[0x54];
     int count;
-} Obj;
+} Obj_00158670;
 
 extern void func_00158130(Obj270 *p, s32 i);
 
@@ -35,18 +35,18 @@ typedef struct Elem_001584D0 {
     /* 0x18 */ f32 unk_18;
 } Elem_001584D0;
 
-typedef struct Obj70 {
+typedef struct Obj70_001584D0 {
     u8 unk_0[0x60];
     /* 0x60 */ Elem_001584D0 *unk_60;
     u8 unk_64[0xC];
-} Obj70;
+} Obj70_001584D0;
 
 typedef struct Obj_001584D0 {
     /* 0x00 */ s32 *unk_0;
     u8 unk_4[0xC];
     /* 0x10 */ Quad unk_10;
     u8 unk_20[0x30];
-    /* 0x50 */ Obj70 *unk_50;
+    /* 0x50 */ Obj70_001584D0 *unk_50;
     /* 0x54 */ s32 unk_54;
 } Obj_001584D0;
 
@@ -118,7 +118,7 @@ s32 **func_00158470(s32 **self, s16 flags) {
 Obj_001584D0 *func_001584D0(Obj_001584D0 *volatile self, Sub_001584D0 *desc)
 {
     void *part;
-    Obj70 *owned;
+    Obj70_001584D0 *owned;
 
     func_00172DA0(self, 0x38, 0);
     self->unk_0 = &D_0069C9D0;
@@ -139,7 +139,7 @@ Obj_001584D0 *func_001584D0(Obj_001584D0 *volatile self, Sub_001584D0 *desc)
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00157CC0", func_001585F0);
 
-int func_00158670(Obj *o) {
+int func_00158670(Obj_00158670 *o) {
     return o->count-- > 0;
 }
 

@@ -1,25 +1,25 @@
 #include "common.h"
 #include "globals.h"
 
-typedef struct Ent {
+typedef struct Ent_00164E80 {
     /* 0x00 */ unsigned char unk_0;
     unsigned char unk_01[0x2F];
-} Ent;
+} Ent_00164E80;
 
-typedef struct Obj {
+typedef struct Obj_00164E80 {
     unsigned char unk_00[0x50];
     int count;
     unsigned char unk_54[0x14];
-    /* 0x68 */ Ent *unk_68;
-} Obj;
+    /* 0x68 */ Ent_00164E80 *unk_68;
+} Obj_00164E80;
 
 void func_00172E80();
 
 void __dl__FPv(void *);
 
-Ent *func_00164E80(Obj *o);
+Ent_00164E80 *func_00164E80(Obj_00164E80 *o);
 
-void func_00164930(Obj *o, Ent *e);
+void func_00164930(Obj_00164E80 *o, Ent_00164E80 *e);
 
 typedef struct Obj_00164690 {
     /* 0x00 */ s32 *unk_0;
@@ -76,7 +76,7 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_00164040", func_00164A80);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00164040", func_00164B10);
 
-Ent *func_00164E80(Obj *o) {
+Ent_00164E80 *func_00164E80(Obj_00164E80 *o) {
     int i;
 
     for (i = 0; i < o->count; i++) {
@@ -87,8 +87,8 @@ Ent *func_00164E80(Obj *o) {
     return 0;
 }
 
-void func_00164EE0(Obj *o) {
-    Ent *e = func_00164E80(o);
+void func_00164EE0(Obj_00164E80 *o) {
+    Ent_00164E80 *e = func_00164E80(o);
 
     if (e != 0) {
         func_00164930(o, e);

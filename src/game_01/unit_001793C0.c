@@ -7,15 +7,15 @@ typedef struct Node {
     /* 0x10 */ u128 unk_10;
 } Node;
 
-typedef struct Holder {
+typedef struct Holder_00179870 {
     u8 pad[0xD0];
     /* 0xD0 */ Node *unk_D0;
     /* 0xD4 */ Node *unk_D4;
     u8 pad2[8];
     /* 0xE0 */ u128 unk_E0;
-} Holder;
+} Holder_00179870;
 
-typedef struct Src {
+typedef struct Src_00179D30 {
     /* 0x00 */ u128 unk_0;
     /* 0x10 */ u128 v10;
     /* 0x20 */ u128 v20;
@@ -23,9 +23,9 @@ typedef struct Src {
     /* 0x40 */ f32 unk_40;
     /* 0x44 */ s32 unk_44;
     /* 0x48 */ s32 unk_48;
-} Src;
+} Src_00179D30;
 
-typedef struct Dst {
+typedef struct Dst_00179D30 {
     u8 pad0[0x10];
     /* 0x10 */ u128 v10;
     u8 pad20[0x10];
@@ -38,7 +38,7 @@ typedef struct Dst {
     /* 0xB8 */ s32 unk_B8;
     /* 0xBC */ s32 unk_BC;
     /* 0xC0 */ s32 unk_C0;
-} Dst;
+} Dst_00179D30;
 
 void func_001318C0();
 
@@ -76,7 +76,7 @@ Obj_00179610 *func_00179610(Obj_00179610 *self, s16 flags)
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001793C0", func_00179690);
 
-void func_00179870(u128 *out, Holder *h)
+void func_00179870(u128 *out, Holder_00179870 *h)
 {
     Node *n = h->unk_D0;
     if (n != 0) {
@@ -131,7 +131,7 @@ void func_00179D20(void)
 {
 }
 
-void func_00179D30(Dst *arg0, Src *arg1)
+void func_00179D30(Dst_00179D30 *arg0, Src_00179D30 *arg1)
 {
     arg0->v10 = arg1->unk_0;
     arg0->v30 = arg1->v10;

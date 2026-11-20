@@ -7,12 +7,12 @@ typedef struct M128 {
     /* 0x00 */ __int128 unk_0[8];
 } M128;
 
-typedef struct Obj {
+typedef struct Obj_00145A10 {
     unsigned char unk_00[0x90];
     /* 0x90 */ M128 unk_90;
     unsigned char unk_110[0x3C];
     /* 0x14C */ unsigned char unk_14C;
-} Obj;
+} Obj_00145A10;
 
 
 void func_00127BA0();
@@ -103,7 +103,7 @@ void func_001459B0(Obj_00145790 *o) {
     func_0013BFB0(D_006A6D18, o->unk_150);
 }
 
-void func_00145A10(Obj *o, M128 *dst) {
+void func_00145A10(Obj_00145A10 *o, M128 *dst) {
     *dst = o->unk_90;
     o->unk_14C = 0;
 }

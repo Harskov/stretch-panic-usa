@@ -1,5 +1,6 @@
 #include "common.h"
 #include "globals.h"
+#include "game_01/obj3B0.h"
 
 void func_001319D0();
 
@@ -11,13 +12,6 @@ void func_0012AF20();
 
 void *__nw__FUi(u32);
 
-typedef struct Obj3B0 {
-    /* 0x000 */ s32 *unk_0;
-    /* 0x004 */ u8 unk_4[0x24];
-    /* 0x028 */ u8 *unk_28;
-    /* 0x02C */ u8 unk_2C[0x4];
-    /* 0x030 */ u8 unk_30[0x380];
-} Obj3B0;
 
 typedef struct Obj_0015BD80 {
     /* 0x00 */ u8 unk_0[0x90];
@@ -42,7 +36,7 @@ typedef struct Obj_0015D100 {
     /* 0x110 */ f32 unk_110;
 } Obj_0015D100;
 
-typedef struct Obj90 {
+typedef struct Obj90_0015D100 {
     /* 0x00 */ Sub_0015D100 unk_0;
     /* 0x50 */ f32 unk_50;
     /* 0x54 */ f32 unk_54;
@@ -58,7 +52,7 @@ typedef struct Obj90 {
     /* 0x84 */ f32 unk_84;
     /* 0x88 */ f32 unk_88;
     /* 0x8C */ f32 unk_8C;
-} Obj90;
+} Obj90_0015D100;
 
 // registers: obj = the block operator new returns, then the object being built in it (obj)
 /* builds the two 0x3B0-byte objects the owner keeps at +0x90 and +0x94: operator new,
@@ -119,7 +113,7 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_0015BD80", func_0015CD50);
    the owner and its float at +0x110, with the second object's settings changed */
 void func_0015D100(Obj_0015D100 *arg0)
 {
-    Obj90 params;
+    Obj90_0015D100 params;
     void *p;
 
     params.unk_50 = 1.0f;

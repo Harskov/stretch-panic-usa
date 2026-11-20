@@ -5,14 +5,14 @@ typedef struct E64 {
     /* 0x00 */ __int128 unk_0[4];
 } E64;
 
-typedef struct Src {
+typedef struct Src_001313B0 {
     unsigned char unk_00[4];
     /* 0x04 */ E64 *unk_4;
-} Src;
+} Src_001313B0;
 
 typedef struct Ctx {
     unsigned char unk_00[8];
-    /* 0x08 */ Src *unk_8;
+    /* 0x08 */ Src_001313B0 *unk_8;
     int count;
     /* 0x10 */ E64 *unk_10;
 } Ctx;
@@ -43,7 +43,7 @@ extern void __dla__FPv(void *);
 
 typedef struct Sub_00131630 {
     /* 0x00 */ Quad *unk_0;
-    /* 0x04 */ Src *unk_4;
+    /* 0x04 */ Src_001313B0 *unk_4;
 } Sub_00131630;
 
 typedef struct Elem_00131630 {

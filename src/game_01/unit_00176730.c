@@ -9,7 +9,7 @@ typedef union Obj_00176730 {
     /* 0x00 */ s32 i0[4];
 } Obj_00176730;
 
-typedef struct Ent {
+typedef struct Ent_00176F80 {
     void *unk_0;          /* 0x00 */
     u8 pad04[0x4C];      /* 0x04 */
     s32 unk50;           /* 0x50 */
@@ -19,9 +19,9 @@ typedef struct Ent {
     Quad unk_B0;          /* 0xB0 */
     f32 unkC0;           /* 0xC0 */
     f32 unkC4;           /* 0xC4 */
-} Ent;
+} Ent_00176F80;
 
-void func_00172DA0(Ent *, s32, s32);
+void func_00172DA0(Ent_00176F80 *, s32, s32);
 
 void func_00127BA0();
 
@@ -88,7 +88,7 @@ void func_00176F70(void)
 {
 }
 
-Ent *func_00176F80(Ent *e, s32 a1, s32 a2, Quad *v1, Quad *v2, f32 f0, f32 f1)
+Ent_00176F80 *func_00176F80(Ent_00176F80 *e, s32 a1, s32 a2, Quad *v1, Quad *v2, f32 f0, f32 f1)
 {
 
     func_00172DA0(e, a1, 0);

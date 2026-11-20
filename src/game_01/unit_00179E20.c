@@ -2,7 +2,7 @@
 #include "game_00/obj_006A6730.h"
 #include "game_01/obj2F8.h"
 
-typedef struct Obj {
+typedef struct Obj_00179E20 {
     u8 unk_00[0x10];
     u128 unk_10;
     u8 unk_20[0x100];
@@ -11,7 +11,7 @@ typedef struct Obj {
     f32 unk_2E4;
     u8 unk_2E8[0x8];
     f32 unk_2F0;
-} Obj;
+} Obj_00179E20;
 
 typedef struct Obj16C {
     u8 pad0[0x16C];
@@ -66,7 +66,7 @@ typedef struct Obj_0017BBA0 {
 
 void func_00132690();
 
-void func_00179E20(Obj *o)
+void func_00179E20(Obj_00179E20 *o)
 {
     f32 zero;
 

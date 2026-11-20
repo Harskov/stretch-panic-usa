@@ -7,15 +7,15 @@ public:
     virtual void m2();
 };
 
-struct Obj {
+struct Obj_0016D1D0_2 {
     unsigned char unk_00[0xD8];
     /* 0xD8 */ u32 count;
     Obj_0016D1D0 **unk_DC;
 };
 
-extern "C" void func_0016D1D0(Obj *arg0);
+extern "C" void func_0016D1D0(Obj_0016D1D0_2 *arg0);
 
-void func_0016D1D0(Obj *arg0)
+void func_0016D1D0(Obj_0016D1D0_2 *arg0)
 {
     u32 i;
     u32 n;

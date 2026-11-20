@@ -128,8 +128,8 @@ typedef struct Obj_00135450 {
     /* 0x94 */ struct Obj_00135450 *link_94;
 } Obj_00135450;
 
-/* The objects on the list headed by D_006A6C38; func_0016C260 sets bit 0x10000 of
-   the word at +0x60 in each. */
+/* The objects on the list headed by D_006A6C38; func_0016C260 sets bit 0x10000 in
+   each one's flag word. */
 typedef struct Node_006A6C38 {
     unsigned char unk_00[0x60];
     u32 unk_60;

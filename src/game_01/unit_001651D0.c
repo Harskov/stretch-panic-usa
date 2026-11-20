@@ -1,7 +1,7 @@
 #include "common.h"
 #include "globals.h"
 
-typedef struct Obj {
+typedef struct Obj_001653D0 {
     unsigned char unk_00[0x50];
     /* 0x50 */ float unk_50;
     /* 0x54 */ float unk_54;
@@ -10,7 +10,7 @@ typedef struct Obj {
     unsigned char unk_60[0x30];
     /* 0x90 */ float unk_90;
     /* 0x94 */ float unk_94;
-} Obj;
+} Obj_001653D0;
 
 void func_00172E80();
 
@@ -65,7 +65,7 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_001651D0", func_001651D0);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001651D0", func_00165300);
 
-int func_001653D0(Obj *o) {
+int func_001653D0(Obj_001653D0 *o) {
     int alive = 1;
 
     o->unk_50 = o->unk_50 - o->unk_50 * o->unk_54;
