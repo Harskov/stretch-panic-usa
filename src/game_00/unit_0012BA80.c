@@ -7,15 +7,6 @@ void func_001319D0();
 
 void __dl__FPv(void *);
 
-extern f32 *D_006A6BB0;
-
-extern f32 *D_006A6BC0;
-
-extern f32 *D_006A6BC8;
-
-extern f32 *D_006A6BD0;
-
-extern f32 *D_006A6BD8;
 
 typedef struct Obj_0012C4B0 {
     u8 unk_0[0x190];
@@ -89,7 +80,9 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012BA80", func_0012C6A0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012BA80", func_0012C6E0);
 
-void func_0012C710(f32 *arg0) {
+/* Shares out a buffer of seven 4x4 matrices, four rows each, among the unit's matrix
+   pointers and fills four of them from the matrix at D_001A09E0, one float at a time. */
+void func_0012C710(Vec *arg0) {
     Obj_0012BA80 m;
     f32 *src;
     f32 v;
@@ -97,20 +90,20 @@ void func_0012C710(f32 *arg0) {
 
     m = D_001A09E0;
     src = m.unk_0;
-    D_006A6BB8 = arg0 + 16;
-    D_006A6BC0 = arg0 + 32;
-    D_006A6BC8 = arg0 + 48;
+    D_006A6BB8 = arg0 + 4;
+    D_006A6BC0 = arg0 + 8;
+    D_006A6BC8 = arg0 + 12;
     D_006A6BB0 = arg0;
-    D_006A6BD0 = arg0 + 64;
-    D_006A6BD8 = arg0 + 80;
-    D_006A6BA0 = arg0 + 96;
+    D_006A6BD0 = arg0 + 16;
+    D_006A6BD8 = arg0 + 20;
+    D_006A6BA0 = arg0 + 24;
     D_006A6BA8 = D_006A6BA0;
     for (i = 0; i < 16; i++) {
         v = *src;
-        D_006A6BD8[i] = v;
+        ((f32 *)D_006A6BD8)[i] = v;
         src++;
-        D_006A6BD0[i] = v;
-        D_006A6BC8[i] = v;
-        D_006A6BC0[i] = v;
+        ((f32 *)D_006A6BD0)[i] = v;
+        ((f32 *)D_006A6BC8)[i] = v;
+        ((f32 *)D_006A6BC0)[i] = v;
     }
 }
