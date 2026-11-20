@@ -6,7 +6,7 @@ public:
 };
 
 struct Obj_0015D4E0 {
-    unsigned char pad[0x114];
+    unsigned char pad_0[0x114];
     Sub *unk_114;
 };
 

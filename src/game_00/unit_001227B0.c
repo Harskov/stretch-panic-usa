@@ -31,7 +31,6 @@ typedef struct Obj_00122870 {
 void __dl__FPv(void *);
 
 
-
 void __dla__FPv(void *);
 
 void func_00122FE0(Obj_00122FE0 *o, u32 i);

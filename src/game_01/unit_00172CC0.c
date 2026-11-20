@@ -4,7 +4,6 @@
 
 #include "game_01/obj50.h"
 
-
 void func_0013BD20();
 
 void func_0013BFB0();

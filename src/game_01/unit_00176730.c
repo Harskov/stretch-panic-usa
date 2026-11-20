@@ -11,11 +11,11 @@ typedef union Obj_00176730 {
 
 typedef struct Ent_00176F80 {
     void *unk_0;          /* 0x00 */
-    u8 pad04[0x4C];      /* 0x04 */
+    u8 pad_04[0x4C];      /* 0x04 */
     s32 unk50;           /* 0x50 */
-    u8 pad54[0xC];       /* 0x54 */
+    u8 pad_54[0xC];       /* 0x54 */
     Obj_00176730 unk_60;         /* 0x60 */
-    u8 pad70[0x40];      /* 0x70 */
+    u8 pad_70[0x40];      /* 0x70 */
     Quad unk_B0;          /* 0xB0 */
     f32 unkC0;           /* 0xC0 */
     f32 unkC4;           /* 0xC4 */

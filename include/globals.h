@@ -166,6 +166,9 @@ extern Obj_00197260 D_00197280;
 extern Obj_001972A0 D_001972A0;
 extern Obj_00122FE0 *D_001972C0[2][2];
 extern Obj_00122FE0 **D_001972D0;
+/* volatile: func_00124080 stores each of these two words and loads it again before
+   copying it to the GS registers DISPFB1 and DISPFB2. guess: copies of those registers
+   that an interrupt handler reads as well. */
 extern volatile u64 D_0019F4A0;
 extern volatile u64 D_0019F4A8;
 extern Obj_001A0840 D_001A0840;

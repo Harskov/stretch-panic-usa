@@ -2,7 +2,7 @@
 #include "globals.h"
 
 typedef struct Obj0013BD20 {
-    u8 pad0[0x10];
+    u8 pad_0[0x10];
     /* 0x10 */ Vec unk_10;
     /* 0x20 */ Vec unk_20;
     /* 0x30 */ Vec unk_30[3];

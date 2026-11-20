@@ -14,7 +14,7 @@ typedef struct Obj_00179E20 {
 } Obj_00179E20;
 
 typedef struct Obj16C {
-    u8 pad0[0x16C];
+    u8 pad_0[0x16C];
     /* 0x16C */ s32 unk_16C;
 } Obj16C;
 
@@ -27,7 +27,7 @@ void func_0017AFC0();
 void func_0016E760(Obj2F8 *);
 
 typedef struct Obj4E8 {
-    u8 pad0[0x4E8];
+    u8 pad_0[0x4E8];
     u8 unk_4E8;
 } Obj4E8;
 

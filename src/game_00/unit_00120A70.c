@@ -2,7 +2,6 @@
 #include "globals.h"
 #include "game_00/obj_001211E0.h"
 
-
 void func_00121250(Obj_001211E0 *o);
 
 typedef struct Sub_001216E0 {

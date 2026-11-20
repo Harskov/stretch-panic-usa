@@ -3,15 +3,15 @@
 #include "game_01/obj2F8.h"
 
 typedef struct Node {
-    u8 pad[0x10];
+    u8 pad_0[0x10];
     /* 0x10 */ u128 unk_10;
 } Node;
 
 typedef struct Holder_00179870 {
-    u8 pad[0xD0];
+    u8 pad_0[0xD0];
     /* 0xD0 */ Node *unk_D0;
     /* 0xD4 */ Node *unk_D4;
-    u8 pad2[8];
+    u8 pad_D8[8];
     /* 0xE0 */ u128 unk_E0;
 } Holder_00179870;
 
@@ -26,11 +26,11 @@ typedef struct Src_00179D30 {
 } Src_00179D30;
 
 typedef struct Dst_00179D30 {
-    u8 pad0[0x10];
+    u8 pad_0[0x10];
     /* 0x10 */ u128 v10;
-    u8 pad20[0x10];
+    u8 pad_20[0x10];
     /* 0x30 */ u128 v30;
-    u8 pad40[0x50];
+    u8 pad_40[0x50];
     /* 0x90 */ u128 v90;
     /* 0xA0 */ u128 vA0;
     /* 0xB0 */ f32 unk_B0;

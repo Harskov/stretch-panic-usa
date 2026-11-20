@@ -21,7 +21,6 @@ typedef struct Obj_0011F5E0_2 {
 } Obj_0011F5E0_2;
 
 
-
 s32 sceSifInitRpc(s32 mode);
 
 s32 sceSifRebootIop(const char *img);

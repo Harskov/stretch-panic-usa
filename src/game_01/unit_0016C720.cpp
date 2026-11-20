@@ -11,7 +11,7 @@ public:
 };
 
 struct Node_006B3880 : public Obj_0016C720 {
-    unsigned char pad[0x44];
+    unsigned char pad_4[0x44];
     Node_006B3880 *next;
 };
 

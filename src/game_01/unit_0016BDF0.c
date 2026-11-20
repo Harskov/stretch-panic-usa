@@ -3,7 +3,6 @@
 #include "game_01/rec10.h"
 #include "game_01/obj530.h"
 
-
 extern s32 func_0013DF50(s32, s32, s32, s32, s32, s32);
 
 
