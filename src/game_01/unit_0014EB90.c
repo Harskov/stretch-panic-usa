@@ -76,6 +76,25 @@ void func_0012EE90(Vec *a, Vec *b, Vec *out, f32 t);
 
 void func_0012EDF0(Vec *a, Vec *b, f32 t);
 
+typedef struct Obj_006A6B88 {
+    u8 pad_0[0x140];
+    /* 0x140 */ Quad unk_140;
+} Obj_006A6B88;
+
+extern Obj_006A6B88 *D_006A6B88;
+
+typedef struct Obj_0014EC30 {
+    u8 pad_0[0x10];
+    /* 0x10 */ Vec unk_10;
+    u8 pad_20[0x1A0];
+    /* 0x1C0 */ Vec unk_1C0;
+    /* 0x1D0 */ Vec unk_1D0;
+} Obj_0014EC30;
+
+f32 func_0012E950(Vec *a, Vec *b);
+
+void func_0012E9E0(Vec *a, Vec *b, Vec *out, f32 t);
+
 void func_0014EB90(void *arg0, Vec *in, register Vec *out)
 {
     Vec dir;
@@ -107,7 +126,39 @@ void func_0014EB90(void *arg0, Vec *in, register Vec *out)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0014EB90", func_0014EC30);
+void func_0014EC30(Obj_0014EC30 *o, Vec *out, f32 t)
+{
+    Quad d;
+    register Vec *v;
+    register Vec *p;
+    register Vec *w;
+
+    d = D_006A6B88->unk_140;
+    p = &d.vec0;
+    v = &o->unk_10;
+    asm {
+        lqc2 vf1, 0(p)
+        lqc2 vf2, 0(v)
+        vsub.xyz vf1, vf1, vf2
+        sqc2 vf1, 0(p)
+    }
+    func_0012E9E0(&d.vec0, &o->unk_1C0, &d.vec0, func_0012E950(&d.vec0, &o->unk_1C0));
+    func_0012E8A0(&d.vec0);
+    w = &o->unk_1D0;
+    p = &d.vec0;
+    asm {
+        lqc2 vf1, 0(p)
+        lqc2 vf2, 0(w)
+        vsub.xyz vf1, vf1, vf2
+        sqc2 vf1, 0(p)
+        lqc2 vf1, 0(w)
+        lqc2 vf2, 0(p)
+        vopmula.xyz ACC, vf1, vf2
+        vopmsub.xyz vf3, vf2, vf1
+        sqc2 vf3, 0(p)
+    }
+    func_0012E9A0(out, &d.vec0, out, t);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0014EB90", func_0014ECF0);
 

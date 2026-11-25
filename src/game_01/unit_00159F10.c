@@ -57,6 +57,8 @@ s32 func_0015B8E0(Obj1F0 *arg0, ObjCC *arg1);
 
 s32 func_0015B540(Obj *arg0, ObjC8 *arg1);
 
+void func_0015B500(Obj1F0 *arg0, Vec *arg1);
+
 void *func_00159F10(Obj1F0 *o) {
     return &o->unk_10;
 }
@@ -75,7 +77,16 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_00159F10", func_0015A780);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00159F10", func_0015AAC0);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00159F10", func_0015AC70);
+/* the same dispatch on the state at +0xC0 as func_0015AD30; state 0 hands the owner's first
+   16 bytes to func_0015B500, which fills them as a vector */
+void func_0015AC70(Obj1F0 *arg0, ObjCC *arg1)
+{
+    switch (arg1->unk_C0) {
+    case 0:
+        func_0015B500(arg0, (Vec *)arg1);
+        break;
+    }
+}
 
 /* the same dispatch on the owner's state at +0xC0 as func_00159370, passing on the
    handler's result; an unhandled state gives 0. func_0015B540's prototype types the
