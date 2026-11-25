@@ -52,6 +52,10 @@ extern s32 D_006AEEA8;
 
 s32 func_00146060(s32 arg0, s32 arg1, s32 arg2);
 
+extern s32 D_006AEE98;
+
+s32 func_001463F0(void);
+
 INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00146FD0);
 
 void func_00147070(void)
@@ -191,7 +195,27 @@ void func_00147440(void)
     func_00147B80(12);
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_00146FD0", func_00147450);
+/* Counts one more poll and polls func_001463F0. Past 600 polls, or on a result
+   other than 0, -1 or -2, it records -3 in D_006AEEA8 and returns it. */
+s32 func_00147450(void)
+{
+    D_006AEE98++;
+    func_00147B80(13);
+    if (D_006AEE98 >= 600) {
+        D_006AEEA8 = -3;
+        return -3;
+    }
+    switch (func_001463F0()) {
+    case 0:
+        return 0;
+    case -1:
+    case -2:
+        return -1;
+    default:
+        D_006AEEA8 = -3;
+        return -3;
+    }
+}
 
 void func_00147500(void)
 {

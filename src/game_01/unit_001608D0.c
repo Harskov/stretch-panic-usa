@@ -54,6 +54,29 @@ void func_00162870();
 
 void func_00162900();
 
+typedef struct Obj_00161840 {
+    u8 unk_0[0x210];
+    /* 0x210 */ Vec unk_210;
+    /* 0x220 */ Vec unk_220;
+    /* 0x230 */ Vec unk_230;
+    /* 0x240 */ Vec unk_240;
+} Obj_00161840;
+
+typedef struct Obj_006A6730 {
+    u8 unk_0[0x378];
+    /* 0x378 */ s32 unk_378;
+    u8 unk_37C[0x184];
+    /* 0x500 */ s32 unk_500[1];
+} Obj_006A6730;
+
+extern Obj_006A6730 *D_006A6730;
+
+void func_0012CA30();
+
+extern s32 D_006AF4D0;
+
+extern s32 D_006AF4D4;
+
 Obj_001608D0 *func_001608D0(Obj_001608D0 *self)
 {
     func_00135570(self, D_006A6D00 + 0x100, D_006A6D00 + 0x118);
@@ -114,9 +137,47 @@ void func_001617F0(Src *a0, Dst *a1)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_001608D0", func_00161840);
+/* Fills one vector (mode 1) or three (mode 3) with fixed values and hands each
+   to func_0012CA30 with the entry of D_006A6730's table that unk_378 selects. */
+void func_00161840(Obj_00161840 *o, s32 mode)
+{
+    switch (mode) {
+    case 1:
+        o->unk_210.x = 0.15f;
+        o->unk_210.y = 0.0f;
+        o->unk_210.z = 0.25f;
+        o->unk_210.w = 1.0f;
+        func_0012CA30(D_006A6730->unk_500[D_006A6730->unk_378], &o->unk_210);
+        break;
+    case 3:
+        o->unk_220.x = 0.085f;
+        o->unk_220.y = 0.0f;
+        o->unk_220.z = -0.045f;
+        o->unk_220.w = 1.0f;
+        o->unk_230.x = -0.085f;
+        o->unk_230.y = 0.0f;
+        o->unk_230.z = -0.045f;
+        o->unk_230.w = 1.0f;
+        o->unk_240.x = 0.0f;
+        o->unk_240.y = 0.3f;
+        o->unk_240.z = -1.0f;
+        o->unk_240.w = 1.0f;
+        func_0012CA30(D_006A6730->unk_500[D_006A6730->unk_378], &o->unk_220);
+        func_0012CA30(D_006A6730->unk_500[D_006A6730->unk_378], &o->unk_230);
+        func_0012CA30(D_006A6730->unk_500[D_006A6730->unk_378], &o->unk_240);
+        break;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_001608D0", func_00161980);
+/* Combines two flag words: 1 when both are 1, 0 when either is clear, 2 otherwise. */
+s32 func_00161980(void)
+{
+    if (D_006AF4D0 == 1 && D_006AF4D4 == 1)
+        return 1;
+    if (D_006AF4D0 == 0 || D_006AF4D4 == 0)
+        return 0;
+    return 2;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001608D0", func_001619E0);
 

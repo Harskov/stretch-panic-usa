@@ -33,7 +33,13 @@ typedef struct Obj_00132690 {
     /* 0x10 */ s32 unk_10;
     u8 pad_14[4];
     /* 0x18 */ u8 unk_18;
-    u8 pad_19[0x1F];
+    u8 pad_19[3];
+    /* 0x1C */ s32 unk_1C;
+    u8 pad_20[8];
+    /* 0x28 */ s32 unk_28;
+    /* 0x2C */ s32 unk_2C;
+    /* 0x30 */ s32 unk_30;
+    /* 0x34 */ s32 unk_34;
     /* 0x38 */ s32 unk_38;
     /* 0x3C */ s32 unk_3C;
 } Obj_00132690;
@@ -41,6 +47,16 @@ typedef struct Obj_00132690 {
 void func_00132B50();
 
 void func_00132E10();
+
+extern Obj_00132690_3 *D_006A6BA0;
+
+s32 func_00133640(Obj_00132690 *o, s32 arg1);
+
+s32 func_00133A30(Obj_00132690 *o, s32 arg1);
+
+s32 func_00133CE0(Obj_00132690 *o, s32 arg1);
+
+s32 func_001340F0(Obj_00132690 *o, s32 arg1);
 
 void func_00132690(Obj_00132690 *o, s32 arg1, s32 arg2, s32 arg3, s32 arg4)
 {
@@ -73,9 +89,53 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00132690", func_00132780);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00132690", func_00132880);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00132690", func_00132970);
+/* Each list walk runs from the last entry down and stops at the first callee that returns nonzero. */
+void func_00132970(Obj_00132690 *o, s32 arg1, Obj_00132690_3 *arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6)
+{
+    Obj_00132690_3 *dst;
+    s32 i;
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00132690", func_00132A60);
+    dst = D_006A6BA0;
+    dst->unk_0 = arg2->unk_0;
+    dst->unk_40 = arg2->unk_40;
+    o->unk_38 = arg1;
+    o->unk_10 = arg3;
+    o->unk_1C = arg4;
+    o->unk_28 = arg5;
+    o->unk_2C = arg6;
+    for (i = o->unk_8[0]; i != 0; i--) {
+        if (func_00133640(o, o->unk_8[i]) != 0)
+            break;
+    }
+    for (i = o->unk_8[0]; i != 0; i--) {
+        if (func_00133A30(o, o->unk_8[i]) != 0)
+            break;
+    }
+}
+
+/* Each list walk runs from the last entry down and stops at the first callee that returns nonzero. */
+void func_00132A60(Obj_00132690 *o, s32 arg1, Obj_00132690_3 *arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6)
+{
+    Obj_00132690_3 *dst;
+    s32 i;
+
+    dst = D_006A6BA0;
+    dst->unk_0 = arg2->unk_0;
+    dst->unk_40 = arg2->unk_40;
+    o->unk_38 = arg1;
+    o->unk_10 = arg3;
+    o->unk_1C = arg4;
+    o->unk_30 = arg5;
+    o->unk_34 = arg6;
+    for (i = o->unk_8[0]; i != 0; i--) {
+        if (func_00133CE0(o, o->unk_8[i]) != 0)
+            break;
+    }
+    for (i = o->unk_8[0]; i != 0; i--) {
+        if (func_001340F0(o, o->unk_8[i]) != 0)
+            break;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00132690", func_00132B50);
 

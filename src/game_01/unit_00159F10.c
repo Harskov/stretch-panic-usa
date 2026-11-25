@@ -46,6 +46,14 @@ void func_0012AA10(f32 arg0, void *arg1, s32 arg2);
 
 void func_0016B960(Quad *arg0, f32 arg1);
 
+s32 func_0015B620(Obj1F0 *arg0, ObjCC *arg1);
+
+s32 func_0015B800(Obj1F0 *arg0, ObjCC *arg1);
+
+s32 func_0015B8E0(Obj1F0 *arg0, ObjCC *arg1);
+
+s32 func_0015B540(Obj *arg0, ObjC8 *arg1);
+
 void *func_00159F10(Obj1F0 *o) {
     return &o->unk_10;
 }
@@ -66,7 +74,23 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_00159F10", func_0015AAC0);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00159F10", func_0015AC70);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00159F10", func_0015ACA0);
+/* the same dispatch on the owner's state at +0xC0 as func_00159370, passing on the
+   handler's result; an unhandled state gives 0. func_0015B540's prototype types the
+   pair as Obj/ObjC8, the other handlers as Obj1F0/ObjCC: the two views are unreconciled */
+s32 func_0015ACA0(Obj1F0 *arg0, ObjCC *arg1)
+{
+    switch (arg1->unk_C0) {
+    case 0:
+        return func_0015B540((Obj *)arg0, (ObjC8 *)arg1);
+    case 6:
+        return func_0015B620(arg0, arg1);
+    case 3:
+        return func_0015B800(arg0, arg1);
+    case 4:
+        return func_0015B8E0(arg0, arg1);
+    }
+    return 0;
+}
 
 void func_0015AD30(Obj1F0 *arg0, ObjCC *arg1)
 {

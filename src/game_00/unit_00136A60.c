@@ -126,6 +126,19 @@ extern s32 D_0069C5F0;
 
 void *func_001006F0(u32);
 
+typedef struct Obj_00138730 {
+    u8 pad_0[0x4];
+    /* 0x04 */ s32 unk_4;
+    /* 0x08 */ u32 counter;
+    u8 pad_C[0x4];
+    /* 0x10 */ f32 unk_10;
+    /* 0x14 */ f32 unk_14;
+    /* 0x18 */ f32 unk_18;
+    /* 0x1C */ f32 unk_1C;
+} Obj_00138730;
+
+f32 func_0012C6A0(f32);
+
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00136A60", func_00136A60);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00136A60", func_00136CA0);
@@ -161,7 +174,38 @@ Obj_001386B0 *func_001386B0(Obj_001386B0 *self, s16 flags) {
     return self;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00136A60", func_00138730);
+/* A three-state update: states 0 and 1 advance once the tick count passes 16 and 76;
+   state 2 steers the point at 0x10 toward (arg1, arg2) with a damped velocity and
+   reports whether it is still 16 units or more away. */
+s32 func_00138730(Obj_00138730 *arg0, f32 arg1, f32 arg2)
+{
+    s32 ret;
+
+    arg0->counter++;
+    switch (arg0->unk_4) {
+    case 0:
+        arg0->unk_4 += (u8)(arg0->counter >= 16);
+        return 1;
+    case 1:
+        arg0->unk_4 += (u8)(arg0->counter >= 76);
+        return 1;
+    case 2:
+        arg1 -= arg0->unk_10;
+        arg2 -= arg0->unk_14;
+        arg0->unk_18 += 3.0f * func_0012C6A0(arg1);
+        arg0->unk_1C += 3.0f * func_0012C6A0(arg2);
+        arg0->unk_18 -= 0.05f * arg0->unk_18;
+        arg0->unk_1C -= 0.05f * arg0->unk_1C;
+        arg0->unk_10 += arg0->unk_18;
+        arg0->unk_14 += arg0->unk_1C;
+        ret = 1;
+        if (arg1 * arg1 + arg2 * arg2 < 256.0f)
+            ret = 0;
+        return ret;
+    default:
+        return 0;
+    }
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00136A60", func_00138890);
 

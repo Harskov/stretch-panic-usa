@@ -1,15 +1,191 @@
 #include "common.h"
 #include "game_00/unit_0012DF10.h"
 
+void func_0012C710(f32 *);
+
+typedef struct Obj_0012E350 {
+    /* 0x00 */ Vec unk_0[4];
+    /* 0x40 */ s32 unk_40;
+} Obj_0012E350;
+
+extern Vec *D_006A6BB0;
+
+extern Vec *D_006A6BB8;
+
+void func_0012C810(Vec *a, Vec *b);
+
+void func_0012C840(Vec *a, Vec *b, Vec *out);
+
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012DF10", func_0012DF10);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012DF10", func_0012E190);
+/* Probably a perspective (frustum) projection: the matrix at D_006A6BB8 takes 2*arg5/(arg2-arg1),
+   2*arg5/(arg4-arg3) on its diagonal, the centres in its third row with -1 in its w, and the
+   depth terms from arg5 and arg6, then goes through func_0012C840 into arg0. */
+// locals: the reciprocals of the three extents (inv_x, inv_y, inv_z)
+void func_0012E190(Obj_0012E350 *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6)
+{
+    f32 inv_x;
+    f32 inv_y;
+    f32 inv_z;
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012DF10", func_0012E350);
+    arg0->unk_40 = 0;
+    func_0012C810(arg0->unk_0, D_006A6BB0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012DF10", func_0012E500);
+    inv_x = 1.0f / (arg2 - arg1);
+    inv_y = 1.0f / (arg4 - arg3);
+    inv_z = 1.0f / (arg6 - arg5);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012DF10", func_0012E6D0);
+    D_006A6BB8[0].x = 2.0f * arg5 * inv_x;
+    D_006A6BB8[1].x = 0.0f;
+    D_006A6BB8[2].x = inv_x * (arg2 + arg1);
+    D_006A6BB8[3].x = 0.0f;
+
+    D_006A6BB8[0].y = 0.0f;
+    D_006A6BB8[1].y = 2.0f * arg5 * inv_y;
+    D_006A6BB8[2].y = inv_y * (arg4 + arg3);
+    D_006A6BB8[3].y = 0.0f;
+
+    D_006A6BB8[0].z = 0.0f;
+    D_006A6BB8[1].z = 0.0f;
+    D_006A6BB8[2].z = -inv_z * (arg6 + arg5);
+    D_006A6BB8[3].z = inv_z * (-2.0f * arg6 * arg5);
+
+    D_006A6BB8[0].w = 0.0f;
+    D_006A6BB8[1].w = 0.0f;
+    D_006A6BB8[2].w = -1.0f;
+    D_006A6BB8[3].w = 0.0f;
+
+    func_0012C840(D_006A6BB8, D_006A6BB0, arg0->unk_0);
+}
+
+/* Probably an orthographic projection: the matrix at D_006A6BB8 takes 2/(arg2-arg1),
+   2/(arg4-arg3), -2/(arg6-arg5) on its diagonal and the negated centres in its last row,
+   then goes through func_0012C840 into arg0, whose word at +0x40 is cleared first. */
+// locals: the reciprocals of the three extents (inv_x, inv_y, inv_z)
+void func_0012E350(Obj_0012E350 *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6)
+{
+    f32 inv_x;
+    f32 inv_y;
+    f32 inv_z;
+
+    arg0->unk_40 = 0;
+    func_0012C810(arg0->unk_0, D_006A6BB0);
+
+    inv_x = 1.0f / (arg2 - arg1);
+    inv_y = 1.0f / (arg4 - arg3);
+    inv_z = 1.0f / (arg6 - arg5);
+
+    D_006A6BB8[0].x = 2.0f * inv_x;
+    D_006A6BB8[1].x = 0.0f;
+    D_006A6BB8[2].x = 0.0f;
+    D_006A6BB8[3].x = -inv_x * (arg2 + arg1);
+
+    D_006A6BB8[0].y = 0.0f;
+    D_006A6BB8[1].y = 2.0f * inv_y;
+    D_006A6BB8[2].y = 0.0f;
+    D_006A6BB8[3].y = -inv_y * (arg4 + arg3);
+
+    D_006A6BB8[0].z = 0.0f;
+    D_006A6BB8[1].z = 0.0f;
+    D_006A6BB8[2].z = -2.0f * inv_z;
+    D_006A6BB8[3].z = -inv_z * (arg6 + arg5);
+
+    D_006A6BB8[0].w = 0.0f;
+    D_006A6BB8[1].w = 0.0f;
+    D_006A6BB8[2].w = 0.0f;
+    D_006A6BB8[3].w = 1.0f;
+
+    func_0012C840(D_006A6BB8, D_006A6BB0, arg0->unk_0);
+}
+
+/* Probably a planar projection (shadow) matrix: with d the dot of arg1..arg3 and arg5..arg7,
+   the matrix at D_006A6BB8 holds d on its diagonal less arg5..arg8 times arg1..arg4, the
+   other entries their negated products; it then goes through func_0012C840 into arg0. */
+// locals: the dot product of the first three of each four arguments (dot)
+void func_0012E500(Obj_0012E350 *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8)
+{
+    f32 dot;
+
+    arg0->unk_40 = 0;
+    func_0012C810(arg0->unk_0, D_006A6BB0);
+
+    dot = arg1 * arg5 + arg2 * arg6 + arg3 * arg7;
+
+    D_006A6BB8[0].x = dot - arg5 * arg1;
+    D_006A6BB8[1].x = -arg6 * arg1;
+    D_006A6BB8[2].x = -arg7 * arg1;
+    D_006A6BB8[3].x = -arg8 * arg1;
+
+    D_006A6BB8[0].y = -arg5 * arg2;
+    D_006A6BB8[1].y = dot - arg6 * arg2;
+    D_006A6BB8[2].y = -arg7 * arg2;
+    D_006A6BB8[3].y = -arg8 * arg2;
+
+    D_006A6BB8[0].z = -arg5 * arg3;
+    D_006A6BB8[1].z = -arg6 * arg3;
+    D_006A6BB8[2].z = dot - arg7 * arg3;
+    D_006A6BB8[3].z = -arg8 * arg3;
+
+    D_006A6BB8[0].w = -arg5 * arg4;
+    D_006A6BB8[1].w = -arg6 * arg4;
+    D_006A6BB8[2].w = -arg7 * arg4;
+    D_006A6BB8[3].w = dot - arg8 * arg4;
+
+    func_0012C840(D_006A6BB8, D_006A6BB0, arg0->unk_0);
+}
+
+/* After func_0012C710 on the argument, fills a table of vectors in the scratchpad: the six
+   unit axes +x -x +y -y +z -z as points (w = 1), the point (0, 0, 0, 1), then a zero vector
+   and a vector of ones. What reads the table is not yet known. */
+void func_0012E6D0(void *arg0)
+{
+    func_0012C710(arg0);
+
+    ((Vec *)0x70000B80)->x = 1.0f;
+    ((Vec *)0x70000B80)->y = 0.0f;
+    ((Vec *)0x70000B80)->z = 0.0f;
+    ((Vec *)0x70000B80)->w = 1.0f;
+
+    ((Vec *)0x70000B90)->x = -1.0f;
+    ((Vec *)0x70000B90)->y = 0.0f;
+    ((Vec *)0x70000B90)->z = 0.0f;
+    ((Vec *)0x70000B90)->w = 1.0f;
+
+    ((Vec *)0x70000BA0)->x = 0.0f;
+    ((Vec *)0x70000BA0)->y = 1.0f;
+    ((Vec *)0x70000BA0)->z = 0.0f;
+    ((Vec *)0x70000BA0)->w = 1.0f;
+
+    ((Vec *)0x70000BB0)->x = 0.0f;
+    ((Vec *)0x70000BB0)->y = -1.0f;
+    ((Vec *)0x70000BB0)->z = 0.0f;
+    ((Vec *)0x70000BB0)->w = 1.0f;
+
+    ((Vec *)0x70000BC0)->x = 0.0f;
+    ((Vec *)0x70000BC0)->y = 0.0f;
+    ((Vec *)0x70000BC0)->z = 1.0f;
+    ((Vec *)0x70000BC0)->w = 1.0f;
+
+    ((Vec *)0x70000BD0)->x = 0.0f;
+    ((Vec *)0x70000BD0)->y = 0.0f;
+    ((Vec *)0x70000BD0)->z = -1.0f;
+    ((Vec *)0x70000BD0)->w = 1.0f;
+
+    ((Vec *)0x70000BE0)->x = 0.0f;
+    ((Vec *)0x70000BE0)->y = 0.0f;
+    ((Vec *)0x70000BE0)->z = 0.0f;
+    ((Vec *)0x70000BE0)->w = 1.0f;
+
+    ((Vec *)0x70000C00)->x = 0.0f;
+    ((Vec *)0x70000C00)->y = 0.0f;
+    ((Vec *)0x70000C00)->z = 0.0f;
+    ((Vec *)0x70000C00)->w = 0.0f;
+
+    ((Vec *)0x70000BF0)->x = 1.0f;
+    ((Vec *)0x70000BF0)->y = 1.0f;
+    ((Vec *)0x70000BF0)->z = 1.0f;
+    ((Vec *)0x70000BF0)->w = 1.0f;
+}
 
 asm f32 func_0012E820(Vec *a)
 {

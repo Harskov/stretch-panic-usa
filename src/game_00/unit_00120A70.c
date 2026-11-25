@@ -11,10 +11,11 @@ typedef struct Sub_001216E0 {
     /* 0x1C */ s32 unk_1C;
     /* 0x20 */ u16 unk_20;
     /* 0x22 */ u16 unk_22;
-    /* 0x24 */ u8 unk_24[4];
+    /* 0x24 */ s32 flags_24;
     /* 0x28 */ s32 flags;
-    /* 0x2C */ s32 unk_2C;
-    /* 0x30 */ u8 unk_30[0xC];
+    /* 0x2C */ s32 flags_2C;
+    /* 0x30 */ u8 unk_30[8];
+    /* 0x38 */ s32 counter;
     /* 0x3C */ s32 unk_3C;
 } Sub_001216E0;
 
@@ -99,6 +100,16 @@ void func_00120160();
 void func_001201D0();
 
 void func_00120270();
+
+s32 scePadGetReqState(s32 port, s32 slot);
+
+s32 scePadSetActDirect(s32 port, s32 slot, u8 *data);
+
+s32 scePadSetMainMode(s32 port, s32 slot, s32 offs, s32 lock);
+
+s32 scePadSetActAlign(s32 port, s32 slot, u8 *data);
+
+s32 scePadEnterPressMode(s32 port, s32 slot);
 
 /* Polls one pad: its libpad state, the terminal id of the connected controller
    (0x41, 0x53, 0x73 or 0x79), then the button bytes; a failed scePadRead hangs. */
@@ -197,7 +208,7 @@ void func_00120DF0(Sub_001216E0 *e)
     if (e->unk_22 == 0x73) {
         if (e->flags & 4) {
             e->flags &= ~4;
-            e->unk_2C |= 4;
+            e->flags_2C |= 4;
         }
     }
 }
@@ -208,7 +219,93 @@ void func_00120E30(s32 arg0)
     } while (func_00120E70(arg0) == 0);
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00120E70);
+/* One step of the controller's mode setup (main mode, actuator alignment, pressure
+   mode): 0 when a step went through and the caller should call again, 1 when it
+   should wait; probably the pad library's request states, the caller loops on 0. */
+// registers: sp+0x28 = the six bytes passed as scePadSetActAlign's data (actAlign), a2 = scePadSetMainMode's third argument (offs), a3 = its fourth (lock)
+s32 func_00120E70(s32 arg0)
+{
+    /* the unit and its caller hand the pad entry over as a word */
+    Sub_001216E0 *e = (Sub_001216E0 *)arg0;
+    u8 actAlign[6];
+    s32 state;
+    s32 offs;
+    s32 lock;
+
+    switch (e->counter) {
+    case 0:
+        if (scePadGetReqState(e->unk_14, e->unk_18) != 2) {
+            if (e->flags_2C & 1) {
+                e->flags_2C &= ~1;
+                e->flags |= 2;
+                e->flags |= 4;
+                e->flags_2C |= 0x10;
+                e->counter = 1;
+                return 0;
+            }
+            if (e->flags_2C & 2) {
+                e->flags_2C &= ~2;
+                e->flags |= 8;
+                e->flags_2C |= 0x10;
+                e->counter = 3;
+                return 0;
+            }
+            if (e->flags_2C & 4) {
+                e->flags_2C &= ~4;
+                e->flags |= 8;
+                e->flags_2C |= 0x10;
+                e->counter = 5;
+                return 0;
+            }
+            if (e->flags_2C & 8) {
+                if (scePadSetActDirect(e->unk_14, e->unk_18, e->unk_30) == 1)
+                    e->flags_2C &= ~8;
+            }
+        }
+        break;
+    case 1:
+        offs = (e->flags_24 & 1) ? 1 : 0;
+        lock = (e->flags_24 & 2) ? 3 : 2;
+        if (scePadSetMainMode(e->unk_14, e->unk_18, offs, lock) == 1) {
+            e->counter++;
+            return 0;
+        }
+        break;
+    case 2:
+    case 4:
+    case 6:
+        state = scePadGetReqState(e->unk_14, e->unk_18);
+        if (state == 1) {
+            e->counter--;
+            return 0;
+        }
+        if (state == 0) {
+            e->flags_2C &= ~0x10;
+            e->counter = 0;
+            return 0;
+        }
+        break;
+    case 3:
+        actAlign[0] = 0;
+        actAlign[1] = 1;
+        actAlign[2] = 0xFF;
+        actAlign[3] = 0xFF;
+        actAlign[4] = 0xFF;
+        actAlign[5] = 0xFF;
+        if (scePadSetActAlign(e->unk_14, e->unk_18, actAlign) == 1) {
+            e->counter++;
+            return 0;
+        }
+        break;
+    case 5:
+        if (scePadEnterPressMode(e->unk_14, e->unk_18) == 1) {
+            e->counter++;
+            return 0;
+        }
+        break;
+    }
+    return 1;
+}
 
 /* Sets or clears bit 0 and bit 1 of unk_24 from the two arguments; each actual change sets bit 0 of unk_28
    (probably a changed marker). */
@@ -301,7 +398,14 @@ void func_001213F0(Obj_001215E0 *o)
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_001214F0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_001215A0);
+/* Entry lookup by index: an index outside 0..count-1 gives no entry. */
+Sub_001216E0 *func_001215A0(Obj_001216E0 *o, s32 i)
+{
+    if (i < 0 || i >= o->count) {
+        return 0;
+    }
+    return o->unk_14 + i;
+}
 
 /* Element lookup by index: -1 selects the special entry at unk_20, an index outside
    -1..unk_10-1 falls back to the entry at unk_24. */
@@ -318,7 +422,16 @@ Elem_001215E0 *func_001215E0(Obj_001215E0 *o, s32 i)
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00121640);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00120A70", func_00121690);
+/* Passes entry i of unk_14 to func_001211C0 with the two byte arguments; an index
+   outside 0..count-1 does nothing, the same range test as func_001215A0. The entry is
+   probably the object func_001211C0 declares on its own (both carry a flag word at +0x28). */
+void func_00121690(Obj_001216E0 *o, s32 i, u8 arg2, u8 arg3)
+{
+    if (i < 0 || i >= o->count) {
+        return;
+    }
+    func_001211C0((Obj_001211C0 *)(o->unk_14 + i), arg2, arg3);
+}
 
 /* When bit 0 of unk_0 is set: scePadInit, then scePadPortOpen for each of the
    unk_10 entries, hanging on a failure; the bit is cleared afterwards. */

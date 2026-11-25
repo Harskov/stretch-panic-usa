@@ -30,6 +30,29 @@ extern s32 D_0069D150;
 
 void func_00172E80();
 
+typedef struct Obj_00178380 {
+    u8 pad_0[0x10];
+    Vec unk_10;
+    Vec unk_20;
+    u8 pad_30[0x2C];
+    f32 unk_5C;
+    u8 pad_60[0x10];
+    f32 unk_70;
+    u8 pad_74[0x1C];
+    Vec unk_90;
+    Vec unk_A0;
+    f32 unk_B0;
+    f32 unk_B4;
+    f32 unk_B8;
+    f32 unk_BC;
+    f32 unk_C0;
+    f32 unk_C4;
+    f32 unk_C8;
+    f32 unk_CC;
+} Obj_00178380;
+
+void func_0012E9A0(Vec *a0, Vec *a1, Vec *a2, f32 f12);
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00177080", func_00177080);
 
 void func_00177170(Obj_00177170 *arg0)
@@ -86,6 +109,20 @@ s32 **func_00178320(s32 **self, s16 flags) {
     return self;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00177080", func_00178380);
+s32 func_00178380(Obj_00178380 *arg0)
+{
+    func_0012E9A0(&arg0->unk_10, &arg0->unk_20, &arg0->unk_90, arg0->unk_B0);
+    func_0012E9A0(&arg0->unk_10, &arg0->unk_20, &arg0->unk_A0, arg0->unk_BC);
+    arg0->unk_B0 += arg0->unk_B4;
+    arg0->unk_B4 += arg0->unk_B8;
+    arg0->unk_BC += arg0->unk_C0;
+    arg0->unk_C0 += arg0->unk_C4;
+    arg0->unk_70 += arg0->unk_C8;
+    arg0->unk_5C += arg0->unk_CC;
+    if (arg0->unk_70 < 0.001f) {
+        return 0;
+    }
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00177080", func_00178460);

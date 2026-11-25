@@ -99,9 +99,9 @@ s32 printf(const char *fmt, ...);
 
 void *__nw__FUi(u32 size);
 
-s32 func_0010C610(char *path, s32 arg1, s32 arg2);
+s32 sceSifLoadModule(char *path, s32 arg1, s32 arg2);
 
-void func_00119AA0(u32 arg0);
+void srand(u32 arg0);
 
 void func_00121640(void *arg0, s32 arg1, s32 arg2, s32 arg3);
 
@@ -228,6 +228,12 @@ typedef struct Obj_001207D0 {
 
 void func_001207D0();
 
+void func_001203A0(void);
+
+void func_00120340(Obj_0011F5E0_2 *p);
+
+void func_001202B0(Obj_001202B0 *arg0);
+
 void func_0011FA00(void)
 {
     s32 start = (s32)&D_EF0100;
@@ -238,7 +244,7 @@ void func_0011FA00(void)
 }
 
 /* Boot-time set-up: reboots the IOP with the image at D_0069B250, loads four IOP
-   modules (retrying with a message until each loads), then seeds func_00119AA0 from
+   modules (retrying with a message until each loads), then seeds srand from
    the CD clock and resets DMA, the GS and VU0. */
 void func_0011FA50(void)
 {
@@ -259,13 +265,13 @@ void func_0011FA50(void)
         ;
     sceCdMmode(1);
 
-    while (func_0010C610(D_0069B270, 0, 0) < 0)
+    while (sceSifLoadModule(D_0069B270, 0, 0) < 0)
         printf(gFormat_69B290);
-    while (func_0010C610(D_0069B2C0, 0, 0) < 0)
+    while (sceSifLoadModule(D_0069B2C0, 0, 0) < 0)
         printf(gFormat_69B2E0);
-    while (func_0010C610(D_0069B300, 0, 0) < 0)
+    while (sceSifLoadModule(D_0069B300, 0, 0) < 0)
         printf(gFormat_69B320);
-    while (func_0010C610(D_0069B340, 0, 0) < 0)
+    while (sceSifLoadModule(D_0069B340, 0, 0) < 0)
         printf(gFormat_69B360);
 
     func_0013DBF0();
@@ -278,7 +284,7 @@ void func_0011FA50(void)
 
     while (sceCdReadClock(clock) == 0)
         sceGsSyncV(0);
-    func_00119AA0((clock[5] * 3) << 24 | (clock[3] * 3) << 16 | (clock[2] * 3) << 8 | clock[1] * 3 | 1);
+    srand((clock[5] * 3) << 24 | (clock[3] * 3) << 16 | (clock[2] * 3) << 8 | clock[1] * 3 | 1);
 
     sceDmaReset(1);
     sceGsResetPath();
@@ -329,7 +335,18 @@ void func_0011FE50(Obj_0011FE50 *p)
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_0011FEA0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_00120100);
+/* the same set-up as func_00120160, finished by func_001202B0 instead of func_00120270 */
+Obj_00120160 *func_00120100(Obj_00120160 *arg0)
+{
+    arg0->unk_0 = &D_0069C1B0;
+    func_0011FE50(&arg0->unk_20);
+    func_0011FE50(&arg0->unk_32);
+    arg0->unk_10 = 0;
+    arg0->unk_C = 0;
+    arg0->unk_8 = 0;
+    func_001202B0((Obj_001202B0 *)arg0);
+    return arg0;
+}
 
 Obj_00120160 *func_00120160(Obj_00120160 *arg0, s32 arg1)
 {
@@ -372,7 +389,19 @@ void func_001202B0(Obj_001202B0 *arg0)
     func_00120230(arg0);
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0011FA00", func_001202F0);
+/* unk_4 holds the 0 or 1 that func_00120270 and func_001202B0 store; state 0 runs
+   func_001203A0 first, then every state goes on to func_00120340 */
+void func_001202F0(Obj_001202B0 *arg0)
+{
+    switch (arg0->unk_4) {
+    case 0:
+        func_001203A0();
+        break;
+    case 1:
+        break;
+    }
+    func_00120340((Obj_0011F5E0_2 *)arg0);
+}
 
 void func_00120340(Obj_0011F5E0_2 *p) {
     u16 cur;

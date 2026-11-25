@@ -51,6 +51,31 @@ void func_001318C0();
 
 void func_00150330();
 
+extern s32 D_006AF0A0[];
+
+extern s32 D_006AF0A4[];
+
+extern s32 D_006AF4A0;
+
+typedef struct Obj_0014ED70 {
+    u8 pad_0[0xB8];
+    /* 0xB8 */ f32 unk_B8;
+    u8 pad_BC[0x570 - 0xBC];
+    /* 0x570 */ s32 counter_570;
+    /* 0x574 */ f32 counter_574;
+    u8 pad_578[0x580 - 0x578];
+    /* 0x580 */ Vec unk_580;
+    /* 0x590 */ Vec unk_590;
+    /* 0x5A0 */ Quad unk_5A0;
+    /* 0x5B0 */ Quad unk_5B0;
+    u8 pad_5C0[0x5D0 - 0x5C0];
+    /* 0x5D0 */ Vec unk_5D0;
+} Obj_0014ED70;
+
+void func_0012EE90(Vec *a, Vec *b, Vec *out, f32 t);
+
+void func_0012EDF0(Vec *a, Vec *b, f32 t);
+
 void func_0014EB90(void *arg0, Vec *in, register Vec *out)
 {
     Vec dir;
@@ -86,7 +111,35 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_0014EB90", func_0014EC30);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0014EB90", func_0014ECF0);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0014EB90", func_0014ED70);
+/* A three-state ramp: state 0 waits for unk_B8 to pass 75, state 1 raises
+   unk_574 by 1/16 up to 1, state 2 lowers it to 0; the value then weights the
+   blend of the vectors at 0x580 and 0x590, probably a fade in and out. */
+void func_0014ED70(Obj_0014ED70 *arg0)
+{
+    switch (arg0->counter_570) {
+    case 0:
+        if (arg0->unk_B8 > 75.0f)
+            arg0->counter_570++;
+        break;
+    case 1:
+        arg0->counter_574 += 0.0625f;
+        if (arg0->counter_574 > 1.0f) {
+            arg0->counter_574 = 1.0f;
+            arg0->counter_570++;
+        }
+        break;
+    case 2:
+        arg0->counter_574 -= 0.0625f;
+        if (arg0->counter_574 < 0.0f) {
+            arg0->counter_574 = 0.0f;
+            arg0->counter_570--;
+        }
+        break;
+    }
+    func_0012EE90(&arg0->unk_580, &arg0->unk_590, &arg0->unk_5B0.vec0, arg0->counter_574);
+    arg0->unk_5A0.unk_0 = arg0->unk_5B0.unk_0;
+    func_0012EDF0(&arg0->unk_5B0.vec0, &arg0->unk_5D0, 0.5f);
+}
 
 /* Adds arg1 to the counter at D_006AF098, kept within 0..99, then calls
    func_0013DFD0 with 5 for a rise or 4 for a fall. Nothing happens when the
@@ -111,7 +164,26 @@ void func_0014EE90(s32 arg0, s32 arg1)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0014EB90", func_0014EF80);
+void func_0014EF80(s32 arg0)
+{
+    s32 first;
+    s32 second;
+
+    first = D_006AF0A0[D_006AF4A0 * 2];
+    if (first != 0) {
+        func_0014EE90(arg0, first);
+        D_006AF0A0[D_006AF4A0 * 2] = 0;
+    }
+    second = D_006AF0A4[D_006AF4A0 * 2];
+    if (second != 0) {
+        func_0014EE90(arg0, second);
+        D_006AF0A4[D_006AF4A0 * 2] = 0;
+    }
+    D_006AF4A0 += 1;
+    if (D_006AF4A0 >= 0x80) {
+        D_006AF4A0 = 0;
+    }
+}
 
 void func_0014F060(Obj *arg0, Vec *arg1) {
     arg0->unk_3A0 = arg0->unk_2B0;

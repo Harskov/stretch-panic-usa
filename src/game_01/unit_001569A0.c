@@ -9,7 +9,10 @@ typedef struct Slot {
 typedef struct Obj {
     u8 unk_00[0x50];
     u8 unk_50;
-    u8 unk_51[0x1F];
+    u8 unk_51[0xF];
+    /* 0x60 */ s32 unk_60;
+    /* 0x64 */ s32 counter;
+    u8 unk_68[8];
     Slot unk_70[8];
 } Obj;
 
@@ -28,6 +31,10 @@ void __dl__FPv(void *);
 extern s32 D_0069C940;
 
 extern s32 D_0069C970;
+
+void func_00157690(Obj *arg0);
+
+void func_001578C0(Obj270 *p, int i);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001569A0", func_001569A0);
 
@@ -71,7 +78,26 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_001569A0", func_001571D0);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001569A0", func_001574B0);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_001569A0", func_00157550);
+/* Steps every in-use slot once; when the count at +0x64 has reached the limit at
+   +0x60, func_00157690 runs first and the count restarts from zero.
+   Obj and Obj270 describe the same owner of the slot array; the call passes it
+   under the type the callee is declared with. */
+s32 func_00157550(Obj *arg0)
+{
+    s32 i;
+
+    if (arg0->counter >= arg0->unk_60) {
+        func_00157690(arg0);
+        arg0->counter = 0;
+    }
+    for (i = 0; i < 8; i++) {
+        if (arg0->unk_70[i].unk_00 != 0) {
+            func_001578C0((Obj270 *)arg0, i);
+        }
+    }
+    arg0->counter++;
+    return 1;
+}
 
 void func_001575E0(Obj *arg0)
 {

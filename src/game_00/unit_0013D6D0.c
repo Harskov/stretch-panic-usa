@@ -14,7 +14,7 @@ extern s32 D_006AEE38;
 
 s32 sceSifInitRpc(s32 mode);
 
-s32 func_0010C610(char *path, s32 arg1, s32 arg2);
+s32 sceSifLoadModule(char *path, s32 arg1, s32 arg2);
 
 s32 func_0013C250(void);
 
@@ -54,9 +54,9 @@ s32 func_0013DBF0(void)
     s32 args[2];
 
     sceSifInitRpc(0);
-    while (func_0010C610(D_0069B800, 0, 0) < 0)
+    while (sceSifLoadModule(D_0069B800, 0, 0) < 0)
         ;
-    while (func_0010C610(D_0069B820, 0, 0) < 0)
+    while (sceSifLoadModule(D_0069B820, 0, 0) < 0)
         ;
     if (func_0013C250() < 0)
         return -1;
@@ -74,7 +74,7 @@ s32 func_0013DBF0(void)
     return 0;
 }
 
-/* evidence: debug string D_0069B840 begins with this name and only this function references it */
+/* evidence: debug string gFormat_69B840 begins with this name and only this function references it */
 void smsBufferPush(void)
 {
     if (D_006AEE38 >= 4) {
@@ -85,7 +85,7 @@ void smsBufferPush(void)
     D_006AEE38 += 1;
 }
 
-/* evidence: debug string D_0069B870 begins with this name and only this function references it */
+/* evidence: debug string gFormat_69B870 begins with this name and only this function references it */
 void smsBufferPop(void)
 {
     if (D_006AEE38 <= 0) {

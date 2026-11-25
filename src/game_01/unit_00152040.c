@@ -94,9 +94,65 @@ typedef struct Obj_00152640 {
     u128 unk_A0;
 } Obj_00152640;
 
+typedef struct Obj_006A6730 {
+    u8 unk_00[0x378];
+    s32 unk_378;
+    u8 unk_37C[0x184];
+    void *unk_500[1];
+} Obj_006A6730;
+
+typedef struct Obj_00152160 {
+    u8 unk_00[0x140];
+    Vec unk_140;
+    u8 unk_150[0x10];
+    Vec unk_160;
+    Vec unk_170;
+    Vec unk_180;
+    Vec unk_190;
+} Obj_00152160;
+
+extern Obj_006A6730 *D_006A6730;
+
+extern void func_0012CA30(void *m, Vec *v);
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00152040", func_00152040);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00152040", func_00152160);
+/* Fills a set of unit-w vectors chosen by arg1 and passes each through
+   func_0012CA30 with the table entry D_006A6730 selects. */
+void func_00152160(Obj_00152160 *o, s32 arg1)
+{
+    switch (arg1) {
+    case 1:
+        o->unk_140.x = 0.15f;
+        o->unk_140.y = 0.0f;
+        o->unk_140.z = 0.25f;
+        o->unk_140.w = 1.0f;
+        func_0012CA30(D_006A6730->unk_500[D_006A6730->unk_378], &o->unk_140);
+        o->unk_160.x = 0.0f;
+        o->unk_160.y = 0.1f;
+        o->unk_160.z = 0.0f;
+        o->unk_160.w = 1.0f;
+        func_0012CA30(D_006A6730->unk_500[D_006A6730->unk_378], &o->unk_160);
+        break;
+    case 3:
+        o->unk_170.x = 0.085f;
+        o->unk_170.y = 0.0f;
+        o->unk_170.z = -0.045f;
+        o->unk_170.w = 1.0f;
+        o->unk_180.x = -0.085f;
+        o->unk_180.y = 0.0f;
+        o->unk_180.z = -0.045f;
+        o->unk_180.w = 1.0f;
+        o->unk_190.x = 0.0f;
+        o->unk_190.y = 0.3f;
+        o->unk_190.z = -1.0f;
+        o->unk_190.w = 1.0f;
+        func_0012CA30(D_006A6730->unk_500[D_006A6730->unk_378], &o->unk_170);
+        func_0012CA30(D_006A6730->unk_500[D_006A6730->unk_378], &o->unk_180);
+        func_0012CA30(D_006A6730->unk_500[D_006A6730->unk_378], &o->unk_190);
+        break;
+    }
+}
 
 void func_001522E0(Src_00152380 *s, Dst_00152380 *d)
 {

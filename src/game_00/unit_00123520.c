@@ -123,6 +123,60 @@ void func_00123590();
 
 void func_001247B0();
 
+typedef struct Obj_001249B0 {
+    u8 pad_0[0x350];
+    /* 0x350 */ s32 unk_350;
+    u8 pad_354[0x2C];
+    /* 0x380 */ u128 unk_380;
+    /* 0x390 */ u128 unk_390;
+    u8 pad_3A0[0x16C];
+    /* 0x50C */ s32 unk_50C;
+} Obj_001249B0;
+
+void func_00123480(Obj_001249B0 *arg0, s32 arg1, u64 arg2, s32 arg3, u128 *arg4);
+
+void func_0012C8C0(s32 arg0, u128 *arg1);
+
+typedef struct Obj_00124900 {
+    /* 0x00 */ f32 unk_0;
+    /* 0x04 */ f32 unk_4;
+    /* 0x08 */ f32 unk_8;
+    /* 0x0C */ f32 unk_C;
+    /* 0x10 */ f32 unk_10;
+    /* 0x14 */ f32 unk_14;
+    /* 0x18 */ f32 unk_18;
+    /* 0x1C */ f32 unk_1C;
+    /* 0x20 */ u64 unk_20;
+    /* 0x28 */ u64 unk_28;
+} Obj_00124900;
+
+typedef struct Obj_001250F0 {
+    u8 pad_0[0x350];
+    /* 0x350 */ s32 flags_350;
+    /* 0x354 */ s32 unk_354;
+    /* 0x358 */ s32 unk_358;
+    /* 0x35C */ u32 unk_35C;
+    /* 0x360 */ u32 flags_360;
+    u8 pad_364[0x1CFC];
+    /* 0x2060 */ s32 unk_2060;
+} Obj_001250F0;
+
+void func_001234E0(Obj_001250F0 *arg0, s32 arg1);
+
+void func_00124500(Obj_001250F0 *arg0);
+
+void func_00124AE0(Obj_001250F0 *arg0);
+
+void func_00124BC0(Obj_001250F0 *arg0);
+
+void func_00124CD0(Obj_001250F0 *arg0);
+
+void func_00124E10(Obj_001250F0 *arg0);
+
+extern s32 D_0019F300[];
+
+extern s32 D_0019F380[];
+
 /* Sends the current buffer when it holds anything: clears the ID bits (28-30) of the last
    tag written, flushes the data cache, and starts the transfer on the object's channel. */
 void func_00123520(Obj_00123520 *o)
@@ -276,11 +330,47 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_00124500);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_001247B0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_00124900);
+void func_00124900(Obj_001249B0 *arg0)
+{
+    Obj_00124900 *p;
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_001249B0);
+    p = func_001006F0(0x30);
+    func_00123480(arg0, 1, (u64)0x6C038000 << 32, 3, (u128 *)p);
+    func_00123480(arg0, 0, (u64)0x14000000 << 32, 0, 0);
+    p->unk_0 = 255.0f;
+    p->unk_4 = 255.0f;
+    p->unk_8 = 255.0f;
+    p->unk_C = 128.0f;
+    p->unk_10 = 4095.0f;
+    p->unk_14 = 0.0f;
+    p->unk_18 = 0.5f;
+    p->unk_1C = 0.5f;
+    p->unk_20 = 0x8000;
+    p->unk_28 = 0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_00124A50);
+void func_001249B0(Obj_001249B0 *arg0)
+{
+    u128 *q;
+
+    q = func_001006F0(0x20);
+    func_00123480(arg0, 1, (u64)0x6C028000 << 32, 2, q);
+    func_00123480(arg0, 0, (u64)0x14000008 << 32, 0, 0);
+    q[0] = arg0->unk_380;
+    q[1] = arg0->unk_390;
+    arg0->unk_350 &= ~0x1000;
+}
+
+void func_00124A50(Obj_001249B0 *arg0)
+{
+    u128 *q;
+
+    q = func_001006F0(0x40);
+    func_00123480(arg0, 1, (u64)0x6C048000 << 32, 4, q);
+    func_00123480(arg0, 0, (u64)0x1400000E << 32, 0, 0);
+    func_0012C8C0(arg0->unk_50C, q);
+    arg0->unk_350 &= ~0x800;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_00124AE0);
 
@@ -292,7 +382,43 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_00124E10);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_00124EC0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_00123520", func_001250F0);
+void func_001250F0(Obj_001250F0 *arg0, s32 arg1)
+{
+    u32 bits;
+
+    arg0->unk_2060 = 0;
+    func_001247B0();
+    func_00124500(arg0);
+    if (arg0->flags_350 & 0x1000) {
+        func_001249B0((Obj_001249B0 *)arg0);
+    }
+    if (arg0->flags_350 & 0x800) {
+        func_00124A50((Obj_001249B0 *)arg0);
+    }
+    if (arg0->flags_350 & 0xF) {
+        func_00124BC0(arg0);
+    }
+    if (arg0->flags_350 & 0x2300) {
+        func_00124AE0(arg0);
+    }
+    if (arg0->flags_350 & 0x7F0) {
+        func_00124CD0(arg0);
+    }
+    if (arg0->flags_350 & 0x4000) {
+        func_00124E10(arg0);
+    }
+    arg0->unk_354 = ((arg0->flags_360 >> 4) & 0xF) | D_0019F300[arg1];
+    if (arg0->unk_354 != arg0->unk_358) {
+        arg0->unk_358 = arg0->unk_354;
+        func_001234E0(arg0, D_0019F380[arg0->unk_354]);
+    }
+    bits = arg0->flags_360;
+    arg0->unk_35C = arg1
+        | (((bits & 0x200) >> 9) << 3)
+        | (((bits & 0x100) >> 8) << 5)
+        | (((bits & 0x400) >> 10) << 6)
+        | (((bits & 0x800) >> 11) << 4);
+}
 
 void func_00125260(Obj_00125260 *arg0)
 {

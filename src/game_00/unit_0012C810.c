@@ -23,6 +23,10 @@ extern Vec *D_006A6BC8;
 
 extern Vec *D_006A6BD8;
 
+extern Vec *D_006A6BB8;
+
+void func_0012E8A0(Vec *arg0);
+
 void func_0012C810(register Vec *src, register Vec *dst)
 {
     asm {
@@ -240,7 +244,53 @@ void func_0012D560(Vec *arg0, f32 arg1)
     func_0012C840(D_006A6BC8, D_006A6BB0, arg0);
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012D5E0);
+/* Probably the axis-angle rotation in Rodrigues' form: arg1 the angle, (arg2, arg3, arg4)
+   the axis, normalised first; the outer product of the axis is blended toward the
+   identity by the cosine and the cross terms take the sine. */
+void func_0012D5E0(Vec *arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4)
+{
+    f32 c;
+    f32 s;
+    Vec v;
+
+    func_0012C810(arg0, D_006A6BB0);
+    c = cosf(arg1);
+    s = sinf(arg1);
+    v.x = arg2;
+    v.y = arg3;
+    v.z = arg4;
+    v.w = 1.0f;
+    func_0012E8A0(&v);
+
+    D_006A6BB8[0].x = v.x * v.x;
+    D_006A6BB8[1].x = v.x * v.y;
+    D_006A6BB8[2].x = v.x * v.z;
+    D_006A6BB8[3].x = 0.0f;
+    D_006A6BB8[0].y = v.y * v.x;
+    D_006A6BB8[1].y = v.y * v.y;
+    D_006A6BB8[2].y = v.y * v.z;
+    D_006A6BB8[3].y = 0.0f;
+    D_006A6BB8[0].z = v.z * v.x;
+    D_006A6BB8[1].z = v.z * v.y;
+    D_006A6BB8[2].z = v.z * v.z;
+    D_006A6BB8[3].z = 0.0f;
+    D_006A6BB8[0].w = 0.0f;
+    D_006A6BB8[1].w = 0.0f;
+    D_006A6BB8[2].w = 0.0f;
+    D_006A6BB8[3].w = 1.0f;
+
+    D_006A6BB8[0].x += c * (1.0f - D_006A6BB8[0].x);
+    D_006A6BB8[1].x += c * -D_006A6BB8[1].x - s * v.z;
+    D_006A6BB8[2].x += c * -D_006A6BB8[2].x + s * v.y;
+    D_006A6BB8[0].y += c * -D_006A6BB8[0].y + s * v.z;
+    D_006A6BB8[1].y += c * (1.0f - D_006A6BB8[1].y);
+    D_006A6BB8[2].y += c * -D_006A6BB8[2].y - s * v.x;
+    D_006A6BB8[0].z += c * -D_006A6BB8[0].z - s * v.y;
+    D_006A6BB8[1].z += c * -D_006A6BB8[1].z + s * v.x;
+    D_006A6BB8[2].z += c * (1.0f - D_006A6BB8[2].z);
+
+    func_0012C840(D_006A6BB8, D_006A6BB0, arg0);
+}
 
 /* Probably a rotation about the x axis: the rows of D_006A6BD0 take the sine and
    cosine of arg1 the way func_0012DBA0 fills them, then the result goes back to arg0. */
@@ -323,7 +373,19 @@ void func_0012DBA0(Vec *arg0, f32 arg1, f32 arg2, f32 arg3)
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012DD20);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012C810", func_0012DDB0);
+/* Probably a scale along three axes: unless arg1, arg2 and arg3 are all 1, the diagonal of
+   D_006A6BD8 takes them and the product goes back to arg0, whose word at +0x40 is cleared first. */
+void func_0012DDB0(Obj_0012D430 *arg0, f32 arg1, f32 arg2, f32 arg3)
+{
+    if (arg1 != 1.0f || arg2 != 1.0f || arg3 != 1.0f) {
+        arg0->unk_40 = 0;
+        func_0012C810((Vec *)arg0, D_006A6BB0);
+        D_006A6BD8[0].x = arg1;
+        D_006A6BD8[1].y = arg2;
+        D_006A6BD8[2].z = arg3;
+        func_0012C840(D_006A6BD8, D_006A6BB0, (Vec *)arg0);
+    }
+}
 
 /* Probably a scale along the y axis: unless arg1 is 1, the diagonal of D_006A6BD8 takes
    1, arg1, 1 and the product goes back to arg0, whose word at +0x40 is cleared first. */

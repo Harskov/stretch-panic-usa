@@ -53,6 +53,15 @@ typedef struct Elem_0013AC90 {
     /* 0x28 */ struct Elem_0013AC90 *next;
 } Elem_0013AC90;
 
+typedef struct Obj_0013A940 {
+    u8 unk_0[0x3C];
+    f32 unk_3C;
+    s32 unk_40;
+    f32 unk_44;
+    f32 unk_48;
+    f32 unk_4C;
+} Obj_0013A940;
+
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013A120", func_0013A120);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013A120", func_0013A2E0);
@@ -83,7 +92,40 @@ s32 **func_0013A8E0(s32 **self, s16 flags) {
     return self;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013A120", func_0013A940);
+s32 func_0013A940(Obj_0013A940 *arg0)
+{
+    switch (arg0->unk_40) {
+    case 0:
+        break;
+    case 1: {
+        f32 step = 1.0f;
+        arg0->unk_48 = arg0->unk_48 + step;
+        if (arg0->unk_48 >= arg0->unk_44) {
+            arg0->unk_48 = arg0->unk_44;
+            arg0->unk_40 = 0;
+        }
+        break;
+    }
+    case 2:
+        arg0->unk_48 = arg0->unk_48 - 1.0f;
+        if (arg0->unk_48 <= 0.0f) {
+            arg0->unk_48 = 0.0f;
+            arg0->unk_40 = 0;
+        }
+        break;
+    case 3: {
+        f32 step = 1.0f;
+        arg0->unk_48 = arg0->unk_48 + step;
+        if (arg0->unk_48 >= arg0->unk_44) {
+            arg0->unk_48 = arg0->unk_44;
+            arg0->unk_40 = 2;
+        }
+        break;
+    }
+    }
+    arg0->unk_3C = (arg0->unk_4C * arg0->unk_48) / arg0->unk_44;
+    return 1;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013A120", func_0013AA50);
 

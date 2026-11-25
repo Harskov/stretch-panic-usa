@@ -53,6 +53,32 @@ s32 sceMcMkdir(s32 port, s32 slot, const char *name);
 
 s32 sceMcRead(s32 fd, void *buff, s32 size);
 
+extern s32 D_006AEF18;
+
+extern s32 D_006AEF30;
+
+extern s32 D_006AEF38;
+
+extern s32 D_006AEF40;
+
+extern s32 D_006AEF48;
+
+extern s32 D_006AEF58;
+
+extern s32 D_006AEF60;
+
+extern s32 D_006AEF68;
+
+extern s32 D_006AEF70;
+
+extern s32 D_006AEF80;
+
+extern s32 D_006AEEA8;
+
+s32 func_001463A0(void);
+
+s32 func_001463B0(void);
+
 /* The memory-card format step (it prints "[FORMAT]" when it issues sceMcFormat
    and "[FORMAT END]" once both state words read 0x10); the negative returns are
    status codes whose meaning is not yet known. */
@@ -273,7 +299,37 @@ INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_001463F0", func_00146C60);
 
 INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_001463F0", func_00146D00);
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_001463F0", func_00146D80);
+/* Probably a state step: state 1 latches three words and derives two flags from them
+   before calling on; state -1 records the value 3. */
+void func_00146D80(void)
+{
+    func_00146D00();
+    switch (D_006AEF18) {
+    case 1:
+        D_006AEF48 = D_006AEF60;
+        D_006AEF50 = D_006AEF68;
+        D_006AEF58 = D_006AEF70;
+        if (D_006AEF58 == 1 && D_006AEF48 == 2) {
+            D_006AEF38 = 1;
+        } else {
+            D_006AEF38 = 0;
+        }
+        if (D_006AEF28 != 0) {
+            D_006AEF40 = 1;
+        } else {
+            D_006AEF40 = 0;
+        }
+        D_006AEF30 = D_006AEF28;
+        D_006AEF80 = 1;
+        func_00147BA0();
+        break;
+    case -1:
+        D_006AEEF8 = 3;
+        break;
+    case 0:
+        break;
+    }
+}
 
 void func_00146E90(void) {
 }
@@ -291,7 +347,32 @@ s32 func_00146EC0(void)
     return 0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_memcard/unit_001463F0", func_00146EE0);
+/* Counts one more step and returns 0 at once when func_001463A0 reports 1. Before the
+   60th step it returns -1; after that it maps func_001463B0's result into D_006AEEA8. */
+s32 func_00146EE0(void)
+{
+    D_006AEE98 += 1;
+    func_00147B80(1);
+    if (func_001463A0() == 1) {
+        return 0;
+    }
+    if (D_006AEE98 < 60) {
+        return -1;
+    }
+    switch (func_001463B0()) {
+    case 0:
+        D_006AEEA8 = 11;
+        break;
+    case 1:
+    case 3:
+        D_006AEEA8 = 13;
+        break;
+    case 2:
+        D_006AEEA8 = 7;
+        return 7;
+    }
+    return -3;
+}
 
 void func_00146FC0(void)
 {

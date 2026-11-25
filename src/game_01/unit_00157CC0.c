@@ -72,9 +72,69 @@ extern s32 D_0069C9D0;
 
 extern s32 *D_006A6D10;
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00157CC0", func_00157CC0);
+typedef struct Src10 {
+    f32 unk_0;
+    f32 unk_4;
+    f32 unk_8;
+    s32 unk_C;
+} Src10;
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00157CC0", func_00157D60);
+typedef struct Obj_00157CC0 {
+    /* 0x00 */ s32 *unk_0;
+    unsigned char unk_04[0x4C];
+    /* 0x50 */ unsigned char unk_50;
+    unsigned char unk_51[3];
+    /* 0x54 */ f32 unk_54;
+    /* 0x58 */ f32 unk_58;
+    /* 0x5C */ f32 unk_5C;
+    /* 0x60 */ s32 unk_60;
+    /* 0x64 */ s32 counter;
+    unsigned char unk_68[8];
+    /* 0x70 */ Slot40 unk_70[8];
+} Obj_00157CC0;
+
+void func_00157EA0(Obj_00157CC0 *self);
+
+void func_001580D0(Obj270 *p, int i);
+
+Obj_00157CC0 *func_00157CC0(Obj_00157CC0 *self, Src10 *src)
+{
+    s32 i;
+
+    func_00172DA0(self, 0x30, 0);
+    self->unk_0 = &D_0069C9A0;
+    self->unk_50 = 0;
+    self->unk_54 = src->unk_0;
+    self->unk_58 = src->unk_4;
+    self->unk_5C = src->unk_8;
+    self->unk_60 = src->unk_C;
+    self->counter = 0;
+    for (i = 0; i < 8; i++) {
+        self->unk_70[i].unk_0 = 0;
+    }
+    return self;
+}
+
+/* Steps every in-use slot once; when the count at +0x64 has reached the limit at
+   +0x60, func_00157EA0 runs first and the count restarts from zero.
+   Obj_00157CC0 and Obj270 describe the same owner of the slot array; the call passes
+   it under the type the callee is declared with. */
+s32 func_00157D60(Obj_00157CC0 *self)
+{
+    s32 i;
+
+    if (self->counter >= self->unk_60) {
+        func_00157EA0(self);
+        self->counter = 0;
+    }
+    for (i = 0; i < 8; i++) {
+        if (self->unk_70[i].unk_0 != 0) {
+            func_001580D0((Obj270 *)self, i);
+        }
+    }
+    self->counter++;
+    return 1;
+}
 
 void func_00157DF0(Obj270 *p)
 {

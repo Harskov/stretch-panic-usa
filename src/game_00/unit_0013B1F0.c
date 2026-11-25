@@ -30,6 +30,47 @@ void __dla__FPv(void *p);
 
 void __dl__FPv(void *p);
 
+typedef struct Obj_0013B350 {
+    /* 0x00 */ s32 *unk_0;
+    u8 pad_4[0x60];
+    /* 0x64 */ s32 unk_64;
+    /* 0x68 */ s32 unk_68;
+    u8 pad_6C[0x24];
+    /* 0x90 */ void *unk_90;
+    /* 0x94 */ void *unk_94;
+    /* 0x98 */ void *unk_98;
+    /* 0x9C */ void *unk_9C;
+    /* 0xA0 */ void *unk_A0;
+    /* 0xA4 */ void *unk_A4;
+    u8 pad_A8[0x8];
+    /* 0xB0 */ Vec unk_B0;
+    /* 0xC0 */ Vec unk_C0;
+    /* 0xD0 */ Vec unk_D0;
+    /* 0xE0 */ Vec unk_E0;
+    /* 0xF0 */ f32 unk_F0;
+    /* 0xF4 */ f32 unk_F4;
+    /* 0xF8 */ f32 unk_F8;
+    u8 pad_FC[0x4];
+    /* 0x100 */ s32 unk_100;
+    /* 0x104 */ s32 unk_104[12];
+} Obj_0013B350;
+
+extern s32 D_0069C580;
+
+void func_001318C0(void *obj, s32 a, s32 b);
+
+void func_00139ED0(void *obj, s32 *a, s32 *b);
+
+void func_001356A0(void *obj, s32 *a, s32 *b);
+
+void func_001368A0(void *obj, s32 *a, s32 *b);
+
+void func_00136440(void *obj, s32 *a, s32 *b);
+
+void func_0013A880(void *obj, s32 *a, s32 *b);
+
+void func_0013AC50(void *obj, s32 *a, s32 *b);
+
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013B1F0", func_0013B1F0);
 
 void *func_0013B220(void)
@@ -48,7 +89,78 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013B1F0", func_0013B2B0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013B1F0", func_0013B320);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013B1F0", func_0013B350);
+/* Sets up the object, publishes it in D_006A6D00, then builds its six parts, each handed
+   the word at +0x100 and one slot of the table after it. */
+Obj_0013B350 *func_0013B350(Obj_0013B350 *arg0)
+{
+    // !FAKE: the object pointer is kept in a stack slot and reread after every store through it; only a volatile local reproduces that, and the plain copy self stands for the single reread the bytes share between two uses
+    Obj_0013B350 * volatile o = arg0;
+    Obj_0013B350 *self;
+    void *obj;
+    s32 i;
+
+    func_001318C0(o, 0x24, 0);
+    o->unk_0 = &D_0069C580;
+    self = o;
+    D_006A6D00 = (s32)self;
+    self->unk_64 = 0;
+    o->unk_68 = 0;
+    o->unk_B0.x = 0.0f;
+    o->unk_B0.y = 0.0f;
+    o->unk_B0.z = 0.0f;
+    o->unk_B0.w = 0.0f;
+    o->unk_C0.x = 0.75f;
+    o->unk_C0.y = 0.75f;
+    o->unk_C0.z = 0.75f;
+    o->unk_C0.w = 0.5f;
+    o->unk_D0.x = 1.0f;
+    o->unk_D0.y = 1.0f;
+    o->unk_D0.z = 1.0f;
+    o->unk_D0.w = 0.5f;
+    o->unk_E0.x = 0.0f;
+    o->unk_E0.y = 0.0f;
+    o->unk_E0.z = 0.0f;
+    o->unk_E0.w = 0.0f;
+    o->unk_F0 = 1.0f;
+    o->unk_F4 = 0.0f;
+    o->unk_F8 = 0.0f;
+    o->unk_100 = 0;
+    for (i = 0; i < 12; i++) {
+        o->unk_104[i] = 0;
+    }
+
+    if ((obj = __nw__FUi(0x170)) != 0) {
+        self = o;
+        func_00139ED0(obj, &self->unk_100, &self->unk_104[4]);
+    }
+    o->unk_90 = obj;
+    if ((obj = __nw__FUi(0x48)) != 0) {
+        self = o;
+        func_001356A0(obj, &self->unk_100, &self->unk_104[0]);
+    }
+    o->unk_94 = obj;
+    if ((obj = __nw__FUi(0x34)) != 0) {
+        self = o;
+        func_001368A0(obj, &self->unk_100, &self->unk_104[3]);
+    }
+    o->unk_98 = obj;
+    if ((obj = __nw__FUi(0x38)) != 0) {
+        self = o;
+        func_00136440(obj, &self->unk_100, &self->unk_104[9]);
+    }
+    o->unk_9C = obj;
+    if ((obj = __nw__FUi(0x50)) != 0) {
+        self = o;
+        func_0013A880(obj, &self->unk_100, &self->unk_104[10]);
+    }
+    o->unk_A0 = obj;
+    if ((obj = __nw__FUi(0x28)) != 0) {
+        self = o;
+        func_0013AC50(obj, &self->unk_100, &self->unk_104[11]);
+    }
+    o->unk_A4 = obj;
+    return o;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013B1F0", func_0013B590);
 

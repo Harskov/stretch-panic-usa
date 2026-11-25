@@ -26,6 +26,13 @@ typedef struct Obj_0013E160 {
     /* 0x12 */ s16 unk_12;
 } Obj_0013E160;
 
+typedef struct Obj_0013E0E0 {
+    /* 0x00 */ s32 unk_0;
+    /* 0x04 */ s32 unk_4;
+    /* 0x08 */ u16 unk_8;
+    /* 0x0A */ u16 unk_A;
+} Obj_0013E0E0;
+
 void func_0013DE70(s32 arg0)
 {
     func_0013C420(0xB, (s32)&arg0, 4);
@@ -105,7 +112,20 @@ void func_0013E050(s32 arg0)
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013DE70", func_0013E080);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013DE70", func_0013E0E0);
+s32 func_0013E0E0(s32 arg0, s32 arg1, s32 arg2, s32 arg3)
+{
+    Obj_0013E0E0 args;
+    s32 x;
+    s32 y;
+
+    args.unk_0 = arg0;
+    args.unk_4 = arg3;
+    func_0013DF00(arg1, arg2, &x, &y);
+    args.unk_8 = x;
+    args.unk_A = y;
+    func_0013C420(0x15, (s32)&args, 0xC);
+    return arg0;
+}
 
 void func_0013E140(void)
 {

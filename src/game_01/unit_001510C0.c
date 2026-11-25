@@ -89,13 +89,91 @@ typedef struct Obj_001518C0 {
     /* 0x504 */ Obj_0013BB20 *unk_504;
 } Obj_001518C0;
 
+void func_0014F060();
+
+void func_001522E0();
+
+void func_00152300();
+
+void func_00152380();
+
+typedef struct Obj_001512B0 {
+    u8 unk_00[0x544];
+    /* 0x544 */ void *unk_544;
+} Obj_001512B0;
+
+typedef struct Sub_001512B0 {
+    u8 unk_00[0xC0];
+    /* 0xC0 */ s32 unk_C0;
+} Sub_001512B0;
+
+void func_0014F590();
+
+void func_00152500();
+
+void func_001525D0();
+
+void func_00152600();
+
+s32 func_0014F0D0(Obj_001512B0 *arg0, Sub_001512B0 *arg1);
+
+s32 func_0014F280(Obj_001512B0 *arg0, Sub_001512B0 *arg1);
+
+s32 func_0014F320(Obj_001512B0 *arg0, Sub_001512B0 *arg1);
+
+s32 func_0014F3D0(Obj_001512B0 *arg0, Sub_001512B0 *arg1);
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001510C0", func_001510C0);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_001510C0", func_001512B0);
+void func_001512B0(Obj_001512B0 *arg0, Sub_001512B0 *arg1) {
+    switch (arg1->unk_C0) {
+    case 0:
+        func_0014F060(arg0, arg1);
+        break;
+    case 3:
+        func_001522E0(arg0->unk_544, arg1);
+        break;
+    case 4:
+        func_00152300(arg0->unk_544, arg1);
+        break;
+    case 5:
+        func_00152380(arg0->unk_544, arg1);
+        break;
+    }
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_001510C0", func_00151340);
+/* the same dispatch on the state at +0xC0 as func_001512B0 and func_001513D0,
+   here passing on the handler's result; an unhandled state gives 0 */
+s32 func_00151340(Obj_001512B0 *arg0, Sub_001512B0 *arg1) {
+    switch (arg1->unk_C0) {
+    case 0:
+        return func_0014F0D0(arg0, arg1);
+    case 1:
+        return func_0014F280(arg0, arg1);
+    case 2:
+        return func_0014F320(arg0, arg1);
+    case 6:
+        return func_0014F3D0(arg0, arg1);
+    }
+    return 0;
+}
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_001510C0", func_001513D0);
+void func_001513D0(Obj_001512B0 *arg0, Sub_001512B0 *arg1) {
+    switch (arg1->unk_C0) {
+    case 0:
+        func_0014F590(arg0, arg1);
+        break;
+    case 3:
+        func_00152500(arg0->unk_544, arg1);
+        break;
+    case 4:
+        func_001525D0(arg0->unk_544, arg1);
+        break;
+    case 5:
+        func_00152600(arg0->unk_544, arg1);
+        break;
+    }
+}
 
 void func_00151460(Obj430 *arg0, s32 arg1, f32 fparg0) {
     arg0->unk_60 |= 0x04000000;

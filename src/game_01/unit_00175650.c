@@ -15,6 +15,29 @@ extern s32 D_0069CFC0;
 
 void func_00175970(s32 **, s32, s32, f32);
 
+typedef struct Elem_001758D8 {
+    /* 0x00 */ u128 unk_0;
+    /* 0x10 */ u128 unk_10;
+    /* 0x20 */ u128 unk_20;
+    /* 0x30 */ u128 unk_30;
+    /* 0x40 */ u128 unk_40;
+} Elem_001758D8;
+
+typedef struct Sub_001758CC {
+    /* 0x00 */ u8 pad_0[0x10];
+    /* 0x10 */ Elem_001758D8 **unk_10;
+} Sub_001758CC;
+
+typedef struct Obj_00175860 {
+    /* 0x00 */ s32 *unk_0;
+    /* 0x04 */ u8 pad_4[0x4C];
+    /* 0x50 */ Sub_001758CC *unk_50;
+    /* 0x54 */ u8 pad_54[0x7C];
+    /* 0xD0 */ Elem_001758D8 *unk_D0;
+    /* 0xD4 */ u8 pad_D4[0xC];
+    /* 0xE0 */ Elem_001758D8 unk_E0;
+} Obj_00175860;
+
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00175650", func_00175650);
 
 s32 **func_001757E0(s32 **volatile arg0, s32 arg1, s32 arg2, f32 arg3)
@@ -26,7 +49,30 @@ s32 **func_001757E0(s32 **volatile arg0, s32 arg1, s32 arg2, f32 arg3)
     return arg0;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00175650", func_00175860);
+/* probably a constructor: the base part and its table, then a private copy of the
+   block the object at +0x50 points through, which is redirected to that copy */
+Obj_00175860 *func_00175860(Obj_00175860 *volatile arg0, s32 arg1, s32 arg2, f32 arg3, u128 *arg4, u128 *arg5)
+{
+    Obj_00175860 *p;
+
+    // !FAKE: probably a C++ constructor keeping `this` in a stack slot and returning it; the volatile parameter forces that spill in C, and the copy into p reads it once per statement as the constructor's `this` is reloaded
+    func_00172DA0(arg0, 0x5B, 0);
+    arg0->unk_0 = &D_0069CFC0;
+    func_00175970((s32 **)arg0, arg1, arg2, arg3);
+    p = arg0;
+    p->unk_E0 = **p->unk_50->unk_10;
+    p = arg0;
+    p->unk_D0 = &p->unk_E0;
+    p = arg0;
+    p->unk_50->unk_10 = &p->unk_D0;
+    p = arg0;
+    p->unk_E0.unk_0 = *arg4;
+    p = arg0;
+    p->unk_E0.unk_10 = *arg4;
+    p = arg0;
+    p->unk_E0.unk_30 = *arg5;
+    return arg0;
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00175650", func_00175970);
 

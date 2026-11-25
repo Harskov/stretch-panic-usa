@@ -46,7 +46,8 @@ extern s64 D_006A6728;
 typedef struct Elem_00122FE0 {
     /* 0x00 */ u64 unk_0;
     /* 0x08 */ s32 *unk_8;
-    /* 0x0C */ s32 pad_C;
+    /* 0x0C */ u16 unk_C;
+    /* 0x0E */ u16 pad_E;
 } Elem_00122FE0;
 
 typedef struct Obj_00122FE0 {
@@ -63,6 +64,10 @@ typedef struct Obj_00122FE0 {
 void __dla__FPv(void *);
 
 void func_00122FE0(Obj_00122FE0 *o, u32 i);
+
+extern s32 D_006A6718;
+
+s32 func_00123080(Obj_00122FE0 *o, s32 i);
 
 s32 **func_001227B0(s32 **arg0, s16 arg1)
 {
@@ -120,7 +125,29 @@ Obj_00122FE0 *func_00122C30(Obj_00122FE0 *o, s16 arg1)
     return o;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_00122CF0);
+/* Walks the entries from i in the order func_00122FE0 visits them (children 4*i+1 .. 4*i+4):
+   an entry whose pointer is set gives -1; one whose half-word at +0xC equals D_006A6718 gives
+   its index when func_00123080 accepts it, else -1; otherwise the first child result not -1. */
+s32 func_00122CF0(Obj_00122FE0 *o, s32 i)
+{
+    s32 r;
+
+    if (o->unk_10[i].unk_8 != 0)
+        return -1;
+    if (D_006A6718 == o->unk_10[i].unk_C)
+        return func_00123080(o, i) ? i : -1;
+    i *= 4;
+    r = func_00122CF0(o, i + 1);
+    if (~r)
+        return r;
+    r = func_00122CF0(o, i + 2);
+    if (~r)
+        return r;
+    r = func_00122CF0(o, i + 3);
+    if (~r)
+        return r;
+    return func_00122CF0(o, i + 4);
+}
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_00122DE0);
 
@@ -171,7 +198,14 @@ void func_00123400(Obj_00123370 *o, s32 arg1, u32 arg2, u32 arg3)
     o->unk_8->cursor += 2;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_001227B0", func_00123480);
+/* Appends one quadword to the current buffer: a tag word built from arg1, arg3 and arg4
+   (bits 28-29 set, arg4 in the upper half) and a second word that is arg2 as given. */
+void func_00123480(Obj_00123370 *o, s32 arg1, s64 arg2, u32 arg3, u32 arg4)
+{
+    o->unk_8->cursor[0] = ((u64)arg4 << 32) | ((u64)arg3 | ((u64)arg1 << 16) | 0x30000000);
+    o->unk_8->cursor[1] = arg2;
+    o->unk_8->cursor += 2;
+}
 
 /* Appends one quadword to the current buffer: a tag word with arg1 in its upper half and 0x50000000 set, then a zero word. */
 void func_001234E0(Obj_00123370 *o, u32 arg1)

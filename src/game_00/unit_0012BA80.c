@@ -40,6 +40,29 @@ typedef struct Obj_0012C4B0 {
 } Obj_0012C4B0;
 
 
+typedef struct Sub_0012C380 {
+    /* 0x00 */ u128 unk_0[5];
+} Sub_0012C380;
+
+typedef struct Obj_0012C380 {
+    u8 pad_0[0x1D0];
+    /* 0x1D0 */ Sub_0012C380 unk_1D0;
+    /* 0x220 */ Sub_0012C380 unk_220;
+} Obj_0012C380;
+
+typedef struct Obj_006A6730 {
+    u8 pad_0[0x350];
+    /* 0x350 */ s32 unk_350;
+    u8 pad_354[0x24];
+    /* 0x378 */ s32 unk_378;
+    u8 pad_37C[0x184];
+    /* 0x500 */ Sub_0012C380 *unk_500[3];
+} Obj_006A6730;
+
+extern Obj_006A6730 *D_006A6730;
+
+void func_0012D430(Sub_0012C380 *arg0);
+
 void *func_0012BA80(Obj90 *o) {
     return &o->unk_A0;
 }
@@ -69,7 +92,28 @@ s32 **func_0012BD70(s32 **self, s16 flags) {
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012BA80", func_0012BDD0);
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0012BA80", func_0012C380);
+/* Fills slots 2 and 1 of the table at +0x500 from the object's two five-quad blocks,
+   setting each slot's bit (0x100 << slot) in the word at +0x350, then hands slot 0
+   to func_0012D430 and sets its bit too. */
+void func_0012C380(Obj_0012C380 *arg0)
+{
+    Obj_006A6730 *obj;
+
+    D_006A6730->unk_378 = 2;
+    obj = D_006A6730;
+    *obj->unk_500[obj->unk_378] = arg0->unk_220;
+    obj->unk_350 |= 0x100 << obj->unk_378;
+
+    D_006A6730->unk_378 = 1;
+    obj = D_006A6730;
+    *obj->unk_500[obj->unk_378] = arg0->unk_1D0;
+    obj->unk_350 |= 0x100 << obj->unk_378;
+
+    D_006A6730->unk_378 = 0;
+    obj = D_006A6730;
+    func_0012D430(obj->unk_500[obj->unk_378]);
+    obj->unk_350 |= 0x100 << obj->unk_378;
+}
 
 int func_0012C4B0(Obj_0012C4B0 *arg0, Vec *arg1)
 {

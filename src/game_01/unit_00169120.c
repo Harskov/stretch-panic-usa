@@ -19,11 +19,11 @@ typedef struct Elem_00169930 {
 
 typedef struct Obj_00169930 {
     /* 0x000 */ u8 pad_0[0x60];
-    /* 0x060 */ s32 unk_60;
+    /* 0x060 */ s32 flags;
     /* 0x064 */ u8 pad_64[0x2C];
     /* 0x090 */ u8 unk_90[0x50];
     /* 0x0E0 */ Elem_00169930 unk_E0[2];
-    /* 0x140 */ s32 unk_140;
+    /* 0x140 */ s32 counter;
 } Obj_00169930;
 
 void * __nw__FUi(u32);
@@ -72,15 +72,15 @@ int func_00169930(Obj_00169930 *o)
         sub = o->unk_E0[i].unk_20;
         sub->unk_10 = q;
         sub->unk_50 = 1;
-        if ((o->unk_140 & 3) == 0) {
+        if ((o->counter & 3) == 0) {
             p = __nw__FUi(0x80);
             if (p != 0) {
                 func_00163A90(p, &q, 1, 0, 2, 0x10, 0.33333334f);
             }
         }
     }
-    o->unk_140++;
-    return !(o->unk_60 & 0x10000);
+    o->counter++;
+    return !(o->flags & 0x10000);
 }
 
 void func_00169A40(void) {
