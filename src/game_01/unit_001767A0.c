@@ -1,4 +1,5 @@
 #include "common.h"
+
 #include "types.h"
 
 typedef union Obj_00176730 {
@@ -52,18 +53,16 @@ typedef struct Obj_00176BB0 {
     s32 unk_C8;
 } Obj_00176BB0;
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00176730", func_00176730);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_001767A0", func_001767A0);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00176730", func_001767A0);
-
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00176730", func_001768B0);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_001767A0", func_001768B0);
 
 void func_00176A00(void) {
     func_00127BA0(D_006A6730);
     func_00127BA0(D_006A6730);
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00176730", func_00176A30);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_001767A0", func_00176A30);
 
 Obj_00176B40 *func_00176B40(Obj_00176B40 *self, s16 flags) {
     if (self != 0) {
@@ -92,9 +91,9 @@ s32 func_00176BB0(Obj_00176BB0 *o) {
     return 1;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00176730", func_00176C10);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_001767A0", func_00176C10);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00176730", func_00176C60);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_001767A0", func_00176C60);
 
 void func_00176F30(void) {
 }

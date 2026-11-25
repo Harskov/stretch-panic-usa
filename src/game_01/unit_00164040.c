@@ -113,5 +113,3 @@ Obj_00165090 *func_00165090(Obj_00165090 *self, s16 flags) {
     }
     return self;
 }
-
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00164040", func_00165100);

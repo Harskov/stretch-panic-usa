@@ -115,10 +115,9 @@ Obj_00157CC0 *func_00157CC0(Obj_00157CC0 *self, Src10 *src)
     return self;
 }
 
-/* Steps every in-use slot once; when the count at +0x64 has reached the limit at
-   +0x60, func_00157EA0 runs first and the count restarts from zero.
-   Obj_00157CC0 and Obj270 describe the same owner of the slot array; the call passes
-   it under the type the callee is declared with. */
+/* Steps every in-use slot once; when the count at +0x64 reaches the limit at +0x60,
+   func_00157EA0 runs first and the count restarts. Obj_00157CC0 and Obj270 are two views
+   of the slot array's owner, and the call passes the one the callee is declared with. */
 s32 func_00157D60(Obj_00157CC0 *self)
 {
     s32 i;

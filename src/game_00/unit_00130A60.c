@@ -28,7 +28,7 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_00130A60", func_00130D80);
 /* Stores arg1 - arg0 (xyz) in arg3, then goes on only when func_0012E8A0 of that
    difference is within the sum of the two unk_10 values; probably a reach test
    between two bounded objects. */
-int func_00130E10(Obj_00130A60 *arg0, Obj_00130A60 *arg1, void *arg2, Vec *arg3) {
+s32 func_00130E10(Obj_00130A60 *arg0, Obj_00130A60 *arg1, void *arg2, Vec *arg3) {
     register Vec *dst = arg3;
     register Obj_00130A60 *p1 = arg1;
     register Obj_00130A60 *p0 = arg0;

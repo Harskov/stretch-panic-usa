@@ -27,22 +27,18 @@ typedef struct Obj_0013D940 {
     /* 0x240 */ s32 unk_240;
 } Obj_0013D940;
 
-extern s32 gFormat_69B870;
+extern char gFormat_69B870[];
 
-void printf();
+s32 printf(const char *fmt, ...);
 
-extern s32 gFormat_69B840;
-
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013D6D0", func_0013D6D0);
-
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013D6D0", func_0013D8C0);
+extern char gFormat_69B840[];
 
 void func_0013D940(Obj_0013D940 *o, s32 *arg1)
 {
     *arg1 = o->unk_240;
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013D6D0", func_0013D950);
+INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013D940", func_0013D950);
 
 void func_0013DBE0(void) {
 }
@@ -78,7 +74,7 @@ s32 func_0013DBF0(void)
 void smsBufferPush(void)
 {
     if (D_006AEE38 >= 4) {
-        printf(&gFormat_69B840);
+        printf(gFormat_69B840);
         return;
     }
     func_0013C420(6, (s32)&D_006AEE38, 4);
@@ -89,7 +85,7 @@ void smsBufferPush(void)
 void smsBufferPop(void)
 {
     if (D_006AEE38 <= 0) {
-        printf(&gFormat_69B870);
+        printf(gFormat_69B870);
         return;
     }
     D_006AEE38 -= 1;

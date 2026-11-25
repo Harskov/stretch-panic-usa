@@ -1,9 +1,10 @@
 #include "common.h"
+
 #include "game_00/unit_0012DF10.h"
+
 #include "game_01/obj2F8.h"
 
 void func_0016FBE0();
-
 
 void func_0012D430(Vec *);
 
@@ -204,5 +205,3 @@ void func_0016E780(void) {
 }
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016DE30", func_0016E790);
-
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016DE30", func_0016E920);

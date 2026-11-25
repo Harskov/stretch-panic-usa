@@ -1,4 +1,5 @@
 #include "common.h"
+
 #include "game_01/objC0.h"
 
 typedef struct Obj {
@@ -87,5 +88,3 @@ void func_00168E20(void) {
 }
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00167ED0", func_00168E30);
-
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00167ED0", func_001690A0);

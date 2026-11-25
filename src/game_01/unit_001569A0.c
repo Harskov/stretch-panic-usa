@@ -78,10 +78,9 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_001569A0", func_001571D0);
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_001569A0", func_001574B0);
 
-/* Steps every in-use slot once; when the count at +0x64 has reached the limit at
-   +0x60, func_00157690 runs first and the count restarts from zero.
-   Obj and Obj270 describe the same owner of the slot array; the call passes it
-   under the type the callee is declared with. */
+/* Steps every in-use slot once; when the count at +0x64 reaches the limit at +0x60,
+   func_00157690 runs first and the count restarts. Obj and Obj270 are two views of the
+   slot array's owner, and the call passes the one the callee is declared with. */
 s32 func_00157550(Obj *arg0)
 {
     s32 i;

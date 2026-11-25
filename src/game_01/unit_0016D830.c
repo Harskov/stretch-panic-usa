@@ -1,6 +1,9 @@
 #include "common.h"
+
 #include "game_01/obj168.h"
+
 #include "game_01/scratchpad.h"
+
 #include "game_00/unit_0012DF10.h"
 
 /* +0x230, +0x240 and +0x250 are copied whole from +0x190..+0x1B0 and then have their
@@ -21,7 +24,6 @@ typedef struct Obj2F4 {
     u8 unk_290[0x64];
     u8 unk_2F4;
 } Obj2F4;
-
 
 typedef struct Obj130 {
     u8 unk_00[0x10];
@@ -124,9 +126,3 @@ void func_0016DCD0(Obj168 *arg0, Obj168 *arg1) {
     arg0->unk_164 = arg1->unk_164;
     arg0->unk_168 = arg1->unk_168;
 }
-
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016D830", func_0016DCF0);
-
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016D830", func_0016DD60);
-
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016D830", func_0016DDD0);

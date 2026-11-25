@@ -396,6 +396,8 @@ s32 func_0017C370(Obj_0017C370 *arg0)
     return 0;
 }
 
+// locals: the word at +0x4EC (radius) and its square (radiusSq), against which func_0012E850 of the
+// xyz difference of +0x10 and +0x120 is tested; probably a squared distance against a radius
 s32 func_0017C3C0(Obj_0017C3C0 *arg0)
 {
     Vec diff;

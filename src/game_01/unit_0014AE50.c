@@ -50,7 +50,8 @@ INCLUDE_ASM("asm/nonmatchings/game_01/unit_0014AE50", func_0014D930);
 
 /* Advances unk_B8 by a step scaled from the table entry for unk_410, passes the step on,
    then sets unk_364 from unk_410 (1, 2, 3 give 7, 8, 9). */
-void func_0014DDF0(Obj_0014DDF0 *arg0) {
+void func_0014DDF0(Obj_0014DDF0 *arg0)
+{
     f32 r;
 
     if ((arg0->flags & 0x4000000) && func_0016BEB0(arg0->unk_558) != 0) {

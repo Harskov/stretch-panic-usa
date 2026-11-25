@@ -1,5 +1,6 @@
 #include "common.h"
 #include "game_memcard/unit_001463F0.h"
+#include "game_memcard/unit_00146FD0.h"
 
 extern char gFormat_69BDF8[];
 
@@ -23,7 +24,6 @@ s32 sceMcFormat(s32 port, s32 slot);
 
 s32 printf(const char *fmt, ...);
 
-void func_00147B80(s32 arg0);
 
 s32 sceMcClose(s32 fd);
 

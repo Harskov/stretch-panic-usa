@@ -1,6 +1,5 @@
 #include "common.h"
-
-void func_00147B80(s32 arg0);
+#include "game_memcard/unit_00146FD0.h"
 
 extern s32 D_006AEE70;
 

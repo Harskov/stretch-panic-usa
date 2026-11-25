@@ -70,7 +70,3 @@ INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013E1D0", func_0013E6C0);
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013E1D0", func_0013EBD0);
 
 INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013E1D0", func_0013FB70);
-
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013E1D0", func_0013FCB0);
-
-INCLUDE_ASM("asm/nonmatchings/game_00/unit_0013E1D0", func_0013FD20);

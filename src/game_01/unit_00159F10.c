@@ -1,7 +1,11 @@
 #include "common.h"
+
 #include "game_01/obj1F0.h"
+
 #include "game_01/actorC4.h"
+
 #include "game_01/scratchpad.h"
+
 #include "game_01/unit_00157CC0.h"
 
 typedef struct Obj {
@@ -21,7 +25,6 @@ typedef struct Obj {
 } Obj;
 
 extern s32 func_00131B30(Obj *arg0, void *arg1, f32 *arg2, ObjC8 *arg3, void *arg4);
-
 
 void func_0015BA00(Obj1F0 *arg0, ObjCC *arg1);
 
@@ -203,5 +206,3 @@ void func_0015BA80(Obj_0015BA80 *arg0)
 }
 
 INCLUDE_ASM("asm/nonmatchings/game_01/unit_00159F10", func_0015BBB0);
-
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00159F10", func_0015BD00);

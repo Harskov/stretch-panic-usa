@@ -97,31 +97,27 @@ s32 func_0013A940(Obj_0013A940 *arg0)
     switch (arg0->unk_40) {
     case 0:
         break;
-    case 1: {
-        f32 step = 1.0f;
-        arg0->unk_48 = arg0->unk_48 + step;
+    case 1:
+        arg0->unk_48 += 1.0f;
         if (arg0->unk_48 >= arg0->unk_44) {
             arg0->unk_48 = arg0->unk_44;
             arg0->unk_40 = 0;
         }
         break;
-    }
     case 2:
-        arg0->unk_48 = arg0->unk_48 - 1.0f;
+        arg0->unk_48 -= 1.0f;
         if (arg0->unk_48 <= 0.0f) {
             arg0->unk_48 = 0.0f;
             arg0->unk_40 = 0;
         }
         break;
-    case 3: {
-        f32 step = 1.0f;
-        arg0->unk_48 = arg0->unk_48 + step;
+    case 3:
+        arg0->unk_48 += 1.0f;
         if (arg0->unk_48 >= arg0->unk_44) {
             arg0->unk_48 = arg0->unk_44;
             arg0->unk_40 = 2;
         }
         break;
-    }
     }
     arg0->unk_3C = (arg0->unk_4C * arg0->unk_48) / arg0->unk_44;
     return 1;

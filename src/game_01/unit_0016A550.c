@@ -1,4 +1,5 @@
 #include "common.h"
+
 #include "game_00/unit_0012DF10.h"
 
 typedef struct Obj_0016B1D0 {
@@ -10,12 +11,9 @@ typedef struct Obj_0016B1D0 {
     Vec unk_170;
 } Obj_0016B1D0;
 
-
-
 f32 func_0012E950(Vec *a, Vec *b);
 
 void func_0012E9E0(Vec *a, Vec *b, Vec *c, f32 t);
-
 
 typedef struct Obj_0016B170 {
     u8 unk_0[0x1A8];
@@ -25,21 +23,15 @@ typedef struct Obj_0016B170 {
 
 extern f32 sinf(f32);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_00169EC0);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016A550", func_0016A550);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016A0A0);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016A550", func_0016A6C0);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016A4F0);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016A550", func_0016A970);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016A550);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016A550", func_0016ACC0);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016A6C0);
-
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016A970);
-
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016ACC0);
-
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016B000);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016A550", func_0016B000);
 
 /* the angle at +0x1A8 advances by pi/48 (0.06544985) a call; +0x1AC takes half its sine */
 void func_0016B170(Obj_0016B170 *arg0) {
@@ -72,11 +64,11 @@ void func_0016B1D0(Obj_0016B1D0 *arg0) {
     func_0012E9A0(&arg0->unk_40, &v, &arg0->unk_40, 0.049087387f);
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016B250);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016A550", func_0016B250);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016B480);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016A550", func_0016B480);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016B5F0);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016A550", func_0016B5F0);
 
 void func_0016B680(void) {
 }
@@ -88,7 +80,7 @@ int func_0016B690(void) {
 void func_0016B6A0(void) {
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016B6B0);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016A550", func_0016B6B0);
 
 void func_0016B730(Vec *arg0, Vec *arg1, Vec *arg2) {
     Vec v;
@@ -98,8 +90,8 @@ void func_0016B730(Vec *arg0, Vec *arg1, Vec *arg2) {
     func_0012E8A0(arg2);
 }
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016B790);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016A550", func_0016B790);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016B960);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016A550", func_0016B960);
 
-INCLUDE_ASM("asm/nonmatchings/game_01/unit_00169EC0", func_0016BC10);
+INCLUDE_ASM("asm/nonmatchings/game_01/unit_0016A550", func_0016BC10);
