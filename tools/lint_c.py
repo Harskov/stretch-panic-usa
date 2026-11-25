@@ -21,7 +21,8 @@ FILE arguments narrow it (a wip attempt before `mark`, say).
 
 Rules (error): overlay-cast, byte-offset, reinterpret-lvalue, inline-asm, do-while-zero,
 typedef-redeclare, process-comment, fake-body-unexplained, member-offset, invented-name (a type or member
-declared outside the placeholder forms with no checked record, where a ledger is; remediation 2026-10-20-remediation-38),
+declared outside the placeholder forms with no checked record, where a ledger is; remediation 2026-10-20-remediation-38;
+and an `inline` helper a file defines under another name than inline_<ADDR>, which no record can back; remediation-147),
 call-arity (a call whose argument count differs from the definition src/ holds of its callee), void-result (a call that
 reads the result of a function src/ defines void; both remediation 2026-11-07-remediation-105, the section above lint_file),
 register-name (a decompiler's
@@ -1033,6 +1034,37 @@ def invented_name_findings(repo, paths):
             out.append({"path": rel, "line": mem.get("line") or a.get("line") or 1, "rule": "invented-name", "severity": "error",
                         "source": f"{name}.{nm}: a member's name comes from the name pass; until then unk_<offset> "
                                   "(pad_<offset> for bytes no code reaches, a type letter before the offset for a union's views)"})
+    out.extend(inline_helper_findings(repo, {rel: items[rel] for rel in rels}))
+    return out
+
+
+INLINE_HELPER = re.compile(r"^[ \t]*(?:static[ \t]+)?(?:__inline__|__inline|inline)\b[^;{}()]*?(?<![:\w])(\w+)[ \t]*\([^;{}]*\)\s*\{", re.M)
+INLINE_PLACEHOLDER = re.compile(r"inline_[0-9A-F]{8}(?:_\d+)?")
+
+
+def inline_helper_findings(repo, texts):
+    """invented-name for a helper: an `inline` function a file defines at file scope has no address and no ledger record, so
+    no writer can check a name for it or return one to a placeholder. It keeps `inline_<ADDR>` (the address of the first
+    function that uses it; `_<n>` after it for a second helper of that function) until a name pass can cite a fact for it
+    (K1 §4). A recorded function declared inline keeps its own name. stretch-panic run 2026-11-25-059 F-4: the lane wrote
+    `Obj_00178990_SetUnk360` into two units, and the attempt files of the PS2 targets hold 22 such names (set_unk_1690,
+    nop_stub, func_00178990_SetFlags)."""
+    recorded = set()
+    for ln in (Path(repo) / "ledger" / "functions.jsonl").read_text(encoding="utf-8").splitlines():
+        if ln.strip():
+            r = json.loads(ln)
+            recorded.add(r.get("name"))
+            recorded.update(x.get("name") for x in r.get("renamed_from") or [])
+    out = []
+    for rel, text in texts.items():
+        code = strip_comments(text)
+        for m in INLINE_HELPER.finditer(code):
+            name = m.group(1)
+            if name in recorded or INLINE_PLACEHOLDER.fullmatch(name):
+                continue
+            out.append({"path": rel, "line": code.count("\n", 0, m.start(1)) + 1, "rule": "invented-name", "severity": "error",
+                        "source": f"inline helper {name}: a helper the source defines keeps the placeholder inline_<ADDR> (the address "
+                                  "of the first function that uses it, `_<n>` for a further one) until a name pass has a checked fact for it"})
     return out
 
 
